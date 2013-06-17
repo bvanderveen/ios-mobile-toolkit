@@ -27,6 +27,14 @@
 #import "OccasionVC.h"
 #import "CoverFlowVC.h"
 #import "HomeController.h"
+#import "UIImage+RumblefishSDKResources.h"
+
+typedef enum RFTabView {
+    RFTabViewHome = 0,
+    RFTabViewMood,
+    RFTabViewOccasion,
+    RFTabViewHot
+} RFTabView;
 
 @interface TabBarViewController ()
 
@@ -56,22 +64,58 @@
     _tabBarController = [[UITabBarController alloc] init];
 	_tabBarController.view.frame = self.view.bounds;
     
-    // Create VCs
-    HomeController *home = [[HomeController alloc] init];
-    home.tabBarItem.title = @"Home";
-
-    MoodMapVC *moodmap = [[MoodMapVC alloc] init];
-    moodmap.tabBarItem.title = @"Mood";
-
-    OccasionVC *occasion = [[OccasionVC alloc] init];
-    occasion.tabBarItem.title = @"Occasion";
-
-    CoverFlowVC *hot = [[CoverFlowVC alloc] init];
-    hot.tabBarItem.title = @"Hot";
 
     //Set VCs
-    [_tabBarController setViewControllers:@[home, moodmap, occasion, hot]];
+    [_tabBarController setViewControllers:@[[self cancelableNavControllerWithTabView:RFTabViewHome],
+                                            [self cancelableNavControllerWithTabView:RFTabViewMood],
+                                            [self cancelableNavControllerWithTabView:RFTabViewOccasion],
+                                            [self cancelableNavControllerWithTabView:RFTabViewHot]]];
     [self.view addSubview:_tabBarController.view];
+}
+
+- (UINavigationController *)cancelableNavControllerWithTabView:(RFTabView)tabView
+{
+    UIViewController *viewController;
+    NSString *title;
+    switch (tabView) {
+        case RFTabViewHome:
+            viewController = [[HomeController alloc] init];
+            title = @"Home";
+            break;
+        case RFTabViewMood:
+            viewController = [[MoodMapVC alloc] init];
+            title = @"Mood";
+            break;
+        case RFTabViewOccasion:
+            viewController = [[OccasionVC alloc] init];
+            title = @"Occasion";
+            break;
+        case RFTabViewHot:
+            viewController = [[CoverFlowVC alloc] init];
+            title = @"Hot";
+            break;
+        default:
+            break;
+    }
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    navController.navigationBar.barStyle = UIBarStyleBlack;
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                     style:UIBarButtonItemStyleBordered
+                                                                    target:self
+                                                                    action:@selector(cancelModalView)];
+    viewController.navigationItem.leftBarButtonItem = cancelButton;
+    navController.tabBarItem.title = title;
+    
+    UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageInResourceBundleNamed:@"friendlymusic_logo.png"]];
+    viewController.navigationItem.titleView = titleView;
+    
+    return navController;
+}
+
+- (void)cancelModalView
+{
+    NSLog(@"Cancel");
 }
 
 - (void)viewDidLoad
