@@ -102,9 +102,9 @@ typedef enum RFAPIMethod {
 @property (nonatomic, strong) NSURL *videoURL;
 @property (nonatomic,strong) NSHTTPURLResponse *lastResponse;
 
-+ (void)rumbleWithEnvironment:(RFAPIEnv)env publicKey:(NSString *)publicKey password:(NSString *)password callback:(void (^)())callback videoURL:(NSURL *)url;
++ (void)rumbleWithEnvironment:(RFAPIEnv)env publicKey:(NSString *)publicKey password:(NSString *)password videoURL:(NSURL *)url;
 
-+(RFAPI *) singleton;
++ (RFAPI *)singleton;
 
 - (Producer)getHome;
 

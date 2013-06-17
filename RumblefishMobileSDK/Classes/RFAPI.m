@@ -131,12 +131,6 @@
 
 @end
 
-@interface RFAPI ()
-
-+ (Producer)apiWithEnvironment:(RFAPIEnv)environment version:(RFAPIVersion)version publicKey:(NSString *)publicKey password:(NSString *)password videoURL:(NSURL *)videoURL;
-
-@end
-
 @interface NSData (ParseJson)
 
 - (id)parseJson;
@@ -164,11 +158,10 @@
 @synthesize ipAddress = _ipAddress;
 
 static RFAPI *rfAPIObject = nil; // use [RFAPI singleton]
-static CancelCallback cancellation;
 
 static int RFAPI_TIMEOUT = 30.0; // request timeout
 
-+ (Producer)retrieveIPAddress {
+- (Producer)retrieveIPAddress {
     return [SMWebRequest producerWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://checkip.dyndns.org/"]] dataParser:^ id (NSData *data) {
         
         NSString *resultString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -201,37 +194,23 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
     }];
 }
 
-+ (Producer)apiWithEnvironment:(RFAPIEnv)environment version:(RFAPIVersion)version publicKey:(NSString *)publicKey password:(NSString *)password videoURL:(NSURL *)videoURL {
-    __block RFAPI *api = [[RFAPI alloc] init];
++ (RFAPI *)apiWithEnvironment:(RFAPIEnv)environment version:(RFAPIVersion)version publicKey:(NSString *)publicKey password:(NSString *)password videoURL:(NSURL *)videoURL {
+    RFAPI *api = [[RFAPI alloc] init];
     api.environment = environment;
     api.publicKey = publicKey;
     api.password = password;
     api.version = version;
     api.videoURL = videoURL;
-    
-    return [Async mapResultOfProducer:[Async continueAfterProducer:[self retrieveIPAddress] withSelector:^Producer(id result) {
-        api.ipAddress = result;
-        return [api getTokenForPublicKey:publicKey password:password];
-    }] withSelector:^ (id result) {
-        api.accessToken = result;
-        NSLog(@"Initialized RFAPI singleton for host %@, publicKey %@, and ipAddress %@", api.host, publicKey, api.ipAddress);
-        return api;
-    }];
+    return api;
     
 }
 
-+ (void)rumbleWithEnvironment:(RFAPIEnv)env publicKey:(NSString *)publicKey password:(NSString *)password callback:(void (^)())callback videoURL:(NSURL *)videoURL {
-    cancellation = [self apiWithEnvironment:env version:RFAPIVersion2 publicKey:publicKey password:password videoURL:videoURL](^ (id api) {
-        rfAPIObject = api;
-        cancellation = nil;
-        callback();
-    }, ^ (id error) {
-        cancellation = nil;
-    });
++ (void)rumbleWithEnvironment:(RFAPIEnv)env publicKey:(NSString *)publicKey password:(NSString *)password videoURL:(NSURL *)videoURL {
+    rfAPIObject = [self apiWithEnvironment:env version:RFAPIVersion2 publicKey:publicKey password:password videoURL:videoURL];
 }
 
 
-+(RFAPI *) singleton {
++ (RFAPI *)singleton {
     if (!rfAPIObject)
         @throw [NSException exceptionWithName:@"SingletonNotInitializedException" reason:@"Please use initSingletonWithEnvironment to initialize the singleton." userInfo:nil];
         
@@ -240,7 +219,7 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
 
 #pragma mark URL building methods.
 
--(NSString *) host {
+- (NSString *)host {
     switch (self.environment) {
         case RFAPIEnvProduction:
             return @"api.rumblefish.com";
@@ -254,7 +233,7 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
     }
 }
 
--(NSString *) pathToResource:(RFAPIResource)resource {
+- (NSString *)pathToResource:(RFAPIResource)resource {
     NSString *path = @"unknown";
     
     switch (resource) {
@@ -296,7 +275,7 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
     return [NSString stringWithFormat:@"/v%d/%@", self.version, path];
 }
 
--(NSString *) queryStringFor:(NSDictionary *)parameters {
+- (NSString *)queryStringFor:(NSDictionary *)parameters {
     parameters = [parameters mutableCopy];
     
     // ensure dictionary
@@ -333,7 +312,7 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
     return queryString;
 }
 
--(NSString *) urlStringForResource:(RFAPIResource)resource withParameters:(NSDictionary *)parameters {
+- (NSString *)urlStringForResource:(RFAPIResource)resource withParameters:(NSDictionary *)parameters {
     
     NSString *baseURL = [NSString stringWithFormat:@"https://%@%@", [self host], [self pathToResource:resource]];
     NSString *query = [self queryStringFor:parameters];
@@ -341,7 +320,7 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
     return [NSString stringWithFormat:@"%@%@", baseURL, query];    
 }
 
--(NSString *) escapeString:(NSString *)unencodedString {
+- (NSString *)escapeString:(NSString *)unencodedString {
     NSString *s = (__bridge NSString *) CFURLCreateStringByAddingPercentEscapes(NULL,
                                                                       (__bridge CFStringRef)unencodedString,
                                                                       NULL,
@@ -353,7 +332,7 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
 
 #pragma mark Request building methods.
 
--(NSMutableURLRequest *) requestWithURL:(NSURL *)url method:(RFAPIMethod)method {
+- (NSMutableURLRequest *)requestWithURL:(NSURL *)url method:(RFAPIMethod)method {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:RFAPI_TIMEOUT];
     if (method == RFAPIMethodPOST)
         request.HTTPMethod = @"POST";
@@ -363,50 +342,39 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
     return request;
 }
 
--(NSMutableURLRequest *) requestResource:(RFAPIResource)resource withMethod:(RFAPIMethod)method andParameters:(NSDictionary *)parameters {
+- (NSMutableURLRequest *)requestResource:(RFAPIResource)resource withMethod:(RFAPIMethod)method andParameters:(NSDictionary *)parameters {
     NSURL *url = [NSURL URLWithString:[self urlStringForResource:resource withParameters:parameters]];
     
     return [self requestWithURL:url method:method];
 }
 
-
-
-#pragma mark Request execution methods.
-
--(NSString *) doRequest:(NSURLRequest *)request {
-    NSString *resultString;
-    
-    // clear lastError and lastRequest before we attempt the request.
-    _lastError = nil;
-    _lastResponse = nil;
-    
-    NSError *localError = [[NSError alloc] init];
-    NSHTTPURLResponse *localResponse = nil;
-    
-    // Make synchronous request; lastResponse and lastError are set automatically.
-    NSData *urlData = [NSURLConnection sendSynchronousRequest:request returningResponse:&localResponse error:&localError];
-    
-    if (localResponse && ([localResponse statusCode] == 200)) {
-        resultString = [[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
-        [self setLastResponse:localResponse];
-    } else {
-        [self setLastError:localError];
-    }
-
-    return resultString;
-}
-
--(NSURLConnection *) doRequest:(NSURLRequest *)request delegate:(NSObject <NSURLConnectionDelegate> *)delegate {
-    return [NSURLConnection connectionWithRequest:request delegate:delegate];
-}
-
-
-
-#pragma mark Response handling methods.
-
--(NSObject *) stringResponseToJson:(NSString *)stringResponse {
+- (NSObject *)stringResponseToJson:(NSString *)stringResponse {
     SBJsonParser *jsonParser = [SBJsonParser new];
     return [jsonParser objectWithString:stringResponse error:NULL];
+}
+
+- (Producer)performRequestWithMethod:(RFAPIMethod *)method resource:(RFAPIResource)resource parameters:(NSDictionary *)parameters handler:(id(^)(id))resultHandler {
+    
+    
+    Producer (^makeRequest)() = ^ Producer {
+        NSURLRequest *request = [self requestResource:resource withMethod:method andParameters:parameters];
+        return [SMWebRequest producerWithURLRequest:request dataParser:^id(NSData *data) {
+            return resultHandler([data parseJson]);
+        }];
+    };
+    
+    if (!self.ipAddress) {
+        return [Async continueAfterProducer:[self retrieveIPAddress] withSelector:^Producer(id ip) {
+            self.ipAddress = ip;
+            return [Async continueAfterProducer:[self getTokenForPublicKey:self.publicKey password:self.password] withSelector:^Producer(id token) {
+                self.accessToken = token;
+                NSLog(@"Initialized RFAPI singleton for host %@, publicKey %@, ipAddress %@, accessToken = %@", self.host, self.publicKey, self.ipAddress, self.accessToken);
+                return makeRequest();
+            }];
+        }];
+    }
+    else
+        return makeRequest();
 }
 
 - (Producer)getHome {
@@ -427,10 +395,9 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
 - (Producer)getPlaylistsWithOffset:(NSInteger)offset {
     NSString *offsetString = [NSString stringWithFormat:@"%u", offset];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:offsetString, @"start", @"all", @"filter", nil];
-    NSURLRequest *request = [self requestResource:RFAPIResourcePlaylist withMethod:RFAPIMethodGET andParameters:params];
     
-    return [SMWebRequest producerWithURLRequest:request dataParser:^ id (NSData *data) {
-        NSArray *playlists = [[data parseJson] objectForKey:@"playlists"];
+    return [self performRequestWithMethod:RFAPIMethodGET resource:RFAPIResourcePlaylist parameters:params handler:^id(id json) {
+        NSArray *playlists = [json objectForKey:@"playlists"];
         return [playlists map: ^ id (id p) { return [[Playlist alloc] initWithDictionary:p]; }];
     }];
 }
@@ -438,19 +405,16 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
 - (Producer)getPlaylist:(NSInteger)playlistID {
     NSString *idString = [NSString stringWithFormat:@"%u", playlistID];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:idString, @"id", nil];
-    NSURLRequest *request = [self requestResource:RFAPIResourcePlaylist withMethod:RFAPIMethodGET andParameters:params];
     
-    return [SMWebRequest producerWithURLRequest:request dataParser:^ id (NSData *data) {
-        NSDictionary *playlist = [[data parseJson] objectForKey:@"playlist"];
+    return [self performRequestWithMethod:RFAPIMethodGET resource:RFAPIResourcePlaylist parameters:params handler:^id(id json) {
+        NSDictionary *playlist = [json objectForKey:@"playlist"];
         return [[Playlist alloc] initWithDictionary:playlist];
     }];
 }
 
 - (Producer)getOccasions {
-    NSURLRequest *request = [self requestResource:RFAPIResourceOccasion withMethod:RFAPIMethodGET andParameters:nil];
-    
-    return [SMWebRequest producerWithURLRequest:request dataParser:^ id (NSData *data) {
-        NSArray *occasions = [[data parseJson] objectForKey:@"occasions"];
+    return [self performRequestWithMethod:RFAPIMethodGET resource:RFAPIResourceOccasion parameters:nil handler:^id(id json) {
+        NSArray *occasions = [json objectForKey:@"occasions"];
         return [occasions map: ^ id (id o) { return [[Occasion alloc] initWithDictionary:o]; }];
     }];
 }
@@ -458,10 +422,9 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
 - (Producer)getOccasion:(NSInteger)occasionID {
     NSString *idString = [NSString stringWithFormat:@"%u", occasionID];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:idString, @"id", nil];
-    NSURLRequest *request = [self requestResource:RFAPIResourceOccasion withMethod:RFAPIMethodGET andParameters:params];
     
-    return [SMWebRequest producerWithURLRequest:request dataParser:^ id (NSData *data) {
-        NSDictionary *occasion = [[data parseJson] objectForKey:@"occasion"];
+    return [self performRequestWithMethod:RFAPIMethodGET resource:RFAPIResourceOccasion parameters:params handler:^id(id json) {
+        NSDictionary *occasion = [json objectForKey:@"occasion"];
         return [[Occasion alloc] initWithDictionary:occasion];
     }];
 }
