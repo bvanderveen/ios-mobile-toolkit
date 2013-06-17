@@ -470,6 +470,21 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
     return [self resource:resource withParams:nil delegate:delegate];
 }
 
+- (Producer)getHome {
+    return ^ CancelCallback (ResultCallback r, ErrorCallback e) {
+        id result = @[
+          @{
+              @"Title": @"Skating",
+              @"Subtitle":@"Shredding 101",
+              @"ThumbnailURL": @"",
+              @"LargeImageURL": @"",
+              @"PlaylistID": @"1234"
+              }];
+        r(result);
+        return ^ {};
+    };
+}
+
 - (Producer)getPlaylistsWithOffset:(NSInteger)offset {
     NSString *offsetString = [NSString stringWithFormat:@"%u", offset];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:offsetString, @"start", @"all", @"filter", nil];

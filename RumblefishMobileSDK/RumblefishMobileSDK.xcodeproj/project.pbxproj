@@ -114,6 +114,8 @@
 		413FDA051639DC49002A9183 /* UIImage+RumblefishSDKResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FDA041639DC49002A9183 /* UIImage+RumblefishSDKResources.m */; };
 		41DAA76C16547DCE001D6D8D /* homeHeaderBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DAA76516547D02001D6D8D /* homeHeaderBackground.png */; };
 		41DAA76D16547DCE001D6D8D /* homeHeaderBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DAA76616547D02001D6D8D /* homeHeaderBackground@2x.png */; };
+		41FE1A0C176F7FC5002E022D /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FE1A0B176F7FC5002E022D /* HomeController.m */; };
+		41FE1A0F176F8048002E022D /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FE1A0E176F8048002E022D /* HomeCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -326,6 +328,10 @@
 		413FDA041639DC49002A9183 /* UIImage+RumblefishSDKResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RumblefishSDKResources.m"; path = "Classes/UIImage+RumblefishSDKResources.m"; sourceTree = SOURCE_ROOT; };
 		41DAA76516547D02001D6D8D /* homeHeaderBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeHeaderBackground.png; sourceTree = "<group>"; };
 		41DAA76616547D02001D6D8D /* homeHeaderBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeHeaderBackground@2x.png"; sourceTree = "<group>"; };
+		41FE1A0A176F7FC5002E022D /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeController.h; path = Classes/HomeController.h; sourceTree = SOURCE_ROOT; };
+		41FE1A0B176F7FC5002E022D /* HomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeController.m; path = Classes/HomeController.m; sourceTree = SOURCE_ROOT; };
+		41FE1A0D176F8048002E022D /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeCell.h; path = Classes/HomeCell.h; sourceTree = SOURCE_ROOT; };
+		41FE1A0E176F8048002E022D /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeCell.m; path = Classes/HomeCell.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -409,6 +415,7 @@
 		413FD7F11639AD24002A9183 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				41FE1A05176F7FAF002E022D /* Home */,
 				413FD7B81639AB2E002A9183 /* AlbumVC.h */,
 				413FD7B91639AB2E002A9183 /* AlbumVC.m */,
 				413FD7BC1639AB2E002A9183 /* CoverFlowVC.h */,
@@ -575,6 +582,17 @@
 			name = Images;
 			path = RumblefishMobileSDKResources/Images;
 			sourceTree = SOURCE_ROOT;
+		};
+		41FE1A05176F7FAF002E022D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				41FE1A0A176F7FC5002E022D /* HomeController.h */,
+				41FE1A0B176F7FC5002E022D /* HomeController.m */,
+				41FE1A0D176F8048002E022D /* HomeCell.h */,
+				41FE1A0E176F8048002E022D /* HomeCell.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -812,6 +830,8 @@
 				413FD7EA1639AB2E002A9183 /* UIImage+Undeferred.m in Sources */,
 				413FD9641639CBBB002A9183 /* NSBundle+RumblefishMobileSDKResources.m in Sources */,
 				413FDA051639DC49002A9183 /* UIImage+RumblefishSDKResources.m in Sources */,
+				41FE1A0C176F7FC5002E022D /* HomeController.m in Sources */,
+				41FE1A0F176F8048002E022D /* HomeCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
