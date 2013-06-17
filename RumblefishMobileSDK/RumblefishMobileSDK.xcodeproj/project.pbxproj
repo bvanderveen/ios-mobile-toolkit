@@ -116,6 +116,8 @@
 		41DAA76D16547DCE001D6D8D /* homeHeaderBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DAA76616547D02001D6D8D /* homeHeaderBackground@2x.png */; };
 		41FE1A0C176F7FC5002E022D /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FE1A0B176F7FC5002E022D /* HomeController.m */; };
 		41FE1A0F176F8048002E022D /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FE1A0E176F8048002E022D /* HomeCell.m */; };
+		41FE1A13176F8B4F002E022D /* PreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FE1A12176F8B4F002E022D /* PreviewView.m */; };
+		41FE1A1E176FAA90002E022D /* SongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FE1A1D176FAA8F002E022D /* SongCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -332,6 +334,11 @@
 		41FE1A0B176F7FC5002E022D /* HomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeController.m; path = Classes/HomeController.m; sourceTree = SOURCE_ROOT; };
 		41FE1A0D176F8048002E022D /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeCell.h; path = Classes/HomeCell.h; sourceTree = SOURCE_ROOT; };
 		41FE1A0E176F8048002E022D /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeCell.m; path = Classes/HomeCell.m; sourceTree = SOURCE_ROOT; };
+		41FE1A11176F8B4F002E022D /* PreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreviewView.h; path = Classes/PreviewView.h; sourceTree = SOURCE_ROOT; };
+		41FE1A12176F8B4F002E022D /* PreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreviewView.m; path = Classes/PreviewView.m; sourceTree = SOURCE_ROOT; };
+		41FE1A14176F91E2002E022D /* maiden_trashplane_1280x720.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = maiden_trashplane_1280x720.mp4; path = RumblefishMobileSDKResources/maiden_trashplane_1280x720.mp4; sourceTree = SOURCE_ROOT; };
+		41FE1A1C176FAA8E002E022D /* SongCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SongCell.h; path = Classes/SongCell.h; sourceTree = SOURCE_ROOT; };
+		41FE1A1D176FAA8F002E022D /* SongCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SongCell.m; path = Classes/SongCell.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -397,6 +404,7 @@
 				413FD7C11639AB2E002A9183 /* FriendlyMusic.m */,
 				413FD7C21639AB2E002A9183 /* LocalPlaylist.h */,
 				413FD7C31639AB2E002A9183 /* LocalPlaylist.m */,
+				41FE1A10176F8B27002E022D /* Preview */,
 				413FD7F11639AD24002A9183 /* Controllers */,
 				413FD7F31639AD48002A9183 /* Utilities */,
 				413FD7AC1639A84A002A9183 /* Supporting Files */,
@@ -415,6 +423,8 @@
 		413FD7F11639AD24002A9183 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				41FE1A1C176FAA8E002E022D /* SongCell.h */,
+				41FE1A1D176FAA8F002E022D /* SongCell.m */,
 				41FE1A05176F7FAF002E022D /* Home */,
 				413FD7B81639AB2E002A9183 /* AlbumVC.h */,
 				413FD7B91639AB2E002A9183 /* AlbumVC.m */,
@@ -478,6 +488,7 @@
 		413FD8321639B33C002A9183 /* RumblefishSDKResources */ = {
 			isa = PBXGroup;
 			children = (
+				41FE1A14176F91E2002E022D /* maiden_trashplane_1280x720.mp4 */,
 				413FD96E1639D7DA002A9183 /* Images */,
 				413FD96C1639D07E002A9183 /* playlist.plist */,
 				411FCF3B163AD1D0000B1841 /* occasion_image_cache.plist */,
@@ -592,6 +603,15 @@
 				41FE1A0E176F8048002E022D /* HomeCell.m */,
 			);
 			name = Home;
+			sourceTree = "<group>";
+		};
+		41FE1A10176F8B27002E022D /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				41FE1A11176F8B4F002E022D /* PreviewView.h */,
+				41FE1A12176F8B4F002E022D /* PreviewView.m */,
+			);
+			name = Preview;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -832,6 +852,8 @@
 				413FDA051639DC49002A9183 /* UIImage+RumblefishSDKResources.m in Sources */,
 				41FE1A0C176F7FC5002E022D /* HomeController.m in Sources */,
 				41FE1A0F176F8048002E022D /* HomeCell.m in Sources */,
+				41FE1A13176F8B4F002E022D /* PreviewView.m in Sources */,
+				41FE1A1E176FAA90002E022D /* SongCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

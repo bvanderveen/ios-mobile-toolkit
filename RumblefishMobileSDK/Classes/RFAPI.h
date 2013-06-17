@@ -99,9 +99,10 @@ typedef enum RFAPIMethod {
 @property (nonatomic,strong) NSString *accessToken;
 @property (nonatomic,strong) NSString *ipAddress;
 @property (nonatomic,strong) NSError *lastError;
+@property (nonatomic, strong) NSURL *videoURL;
 @property (nonatomic,strong) NSHTTPURLResponse *lastResponse;
 
-+ (void)rumbleWithEnvironment:(RFAPIEnv)env publicKey:(NSString *)publicKey password:(NSString *)password callback:(void (^)())callback;
++ (void)rumbleWithEnvironment:(RFAPIEnv)env publicKey:(NSString *)publicKey password:(NSString *)password callback:(void (^)())callback videoURL:(NSURL *)url;
 
 +(RFAPI *) singleton;
 

@@ -133,7 +133,7 @@
 
 @interface RFAPI ()
 
-+ (Producer)apiWithEnvironment:(RFAPIEnv)environment version:(RFAPIVersion)version publicKey:(NSString *)publicKey password:(NSString *)password;
++ (Producer)apiWithEnvironment:(RFAPIEnv)environment version:(RFAPIVersion)version publicKey:(NSString *)publicKey password:(NSString *)password videoURL:(NSURL *)videoURL;
 
 @end
 
@@ -201,12 +201,13 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
     }];
 }
 
-+ (Producer)apiWithEnvironment:(RFAPIEnv)environment version:(RFAPIVersion)version publicKey:(NSString *)publicKey password:(NSString *)password {
++ (Producer)apiWithEnvironment:(RFAPIEnv)environment version:(RFAPIVersion)version publicKey:(NSString *)publicKey password:(NSString *)password videoURL:(NSURL *)videoURL {
     __block RFAPI *api = [[RFAPI alloc] init];
     api.environment = environment;
     api.publicKey = publicKey;
     api.password = password;
     api.version = version;
+    api.videoURL = videoURL;
     
     return [Async mapResultOfProducer:[Async continueAfterProducer:[self retrieveIPAddress] withSelector:^Producer(id result) {
         api.ipAddress = result;
@@ -219,8 +220,8 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
     
 }
 
-+ (void)rumbleWithEnvironment:(RFAPIEnv)env publicKey:(NSString *)publicKey password:(NSString *)password callback:(void (^)())callback {
-    cancellation = [self apiWithEnvironment:env version:RFAPIVersion2 publicKey:publicKey password:password](^ (id api) {
++ (void)rumbleWithEnvironment:(RFAPIEnv)env publicKey:(NSString *)publicKey password:(NSString *)password callback:(void (^)())callback videoURL:(NSURL *)videoURL {
+    cancellation = [self apiWithEnvironment:env version:RFAPIVersion2 publicKey:publicKey password:password videoURL:videoURL](^ (id api) {
         rfAPIObject = api;
         cancellation = nil;
         callback();

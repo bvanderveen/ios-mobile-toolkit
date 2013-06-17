@@ -38,10 +38,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     // PLEASE SPECIFY A VALID public key and password. Contact developers@rumblefish.com for more info.
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"maiden_trashplane_1280x720" withExtension:@"mp4"];
     [RFAPI rumbleWithEnvironment:RFAPIEnvSandbox
                        publicKey:@"sandbox"
                         password:@"sandbox"
-                        callback:^ { button.enabled = TRUE; }];
+                        callback:^ { button.enabled = TRUE; } videoURL:url];
 }
 
 - (IBAction)start {
