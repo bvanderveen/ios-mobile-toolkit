@@ -101,8 +101,6 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
     [super viewDidLoad];
     
     adjacentColors = [[NSMutableArray alloc] init];
-    self.navigationItem.title = @"Back";
-    self.navigationController.navigationBarHidden = YES;
     tabView.separatorColor = [UIColor colorWithRed:0.08f green:0.08f blue:0.08f alpha:1.0f];
     glow.alpha = 0;
     ring.alpha = 0;
@@ -150,8 +148,6 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    
     [self updateStatusBarForOrientation:self.interfaceOrientation];
     
     
