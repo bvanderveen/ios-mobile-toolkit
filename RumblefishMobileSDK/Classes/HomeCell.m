@@ -24,6 +24,57 @@
 
 #import "HomeCell.h"
 
+#define kCellLabelPadding 11
+#define kTitleSubtitlePadding 4
+
 @implementation HomeCell
+
+- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier]) {
+//        //bgImageView is declared in the header as UIImageView *bgHeader;
+        _titleLabel = [[UILabel alloc] init];
+        _subtitleLabel = [[UILabel alloc] init];
+        _thumbnailView = [[UIImageView alloc] init];
+        
+        [self.contentView addSubview:_titleLabel];
+        [self.contentView addSubview:_subtitleLabel];
+        [self.contentView addSubview:_thumbnailView];
+        
+        self.contentView.backgroundColor = [UIColor darkGrayColor];
+        
+//        bgImageView = [[UIImageView alloc] init];
+//        bgImageView.image = [UIImage imageNamed:@"YourFileName.png"];
+//        //add the subView to the cell
+//        [self.contentView addSubview:bgImageView];
+//        //be sure to release bgImageView in the dealloc method!
+    }
+    return self;
+}
+                       
+- (void)layoutSubviews
+{
+   [super layoutSubviews];
+    
+   CGRect thumbFrame = CGRectMake(0,
+                                  0,
+                                  self.frame.size.height,
+                                  self.frame.size.height);
+    _thumbnailView.frame = thumbFrame;
+    //TODO: Add border to image
+    
+    CGRect titleFrame = CGRectMake(thumbFrame.size.width + kCellLabelPadding,
+                                   21,
+                                   self.frame.size.width - thumbFrame.size.width - kCellLabelPadding,
+                                   24);
+    _titleLabel.frame = titleFrame;
+    
+    CGRect subtitleFrame = CGRectMake(thumbFrame.size.width + kCellLabelPadding,
+                                      titleFrame.origin.y + titleFrame.size.height + kTitleSubtitlePadding,
+                                      self.frame.size.width - thumbFrame.size.width - kCellLabelPadding,
+                                      15);
+    _subtitleLabel.frame = subtitleFrame;
+    
+}
 
 @end

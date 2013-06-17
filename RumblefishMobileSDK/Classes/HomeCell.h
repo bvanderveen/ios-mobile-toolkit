@@ -22,6 +22,12 @@
  this file requires a written agreement with Rumblefish, Inc.
  */
 
-@interface HomeCell : NSObject
+@interface HomeCell : UITableViewCell
+
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIImageView *thumbnailView;
+@property (nonatomic, strong) UILabel *subtitleLabel;
+
+- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier;
 
 @end

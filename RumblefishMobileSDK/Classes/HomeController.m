@@ -54,17 +54,15 @@
 @implementation HomeController
 
 - (void)viewDidLoad
-{
-    //Create nav controller
-    
+{    
     //Create header view
-    CGRect headerFrame = CGRectMake(0, 0, self.view.frame.size.width, 200);
+    CGRect headerFrame = CGRectMake(0, 0, self.view.frame.size.width, 158);
     HeaderView *headerView = [[HeaderView alloc] initWithFrame:headerFrame];
     
     [self.view addSubview:headerView];
     
     //Create TableView
-    CGRect tableViewFrame = CGRectMake(0, headerFrame.origin.y + headerFrame.size.height, self.view.frame.size.width, 300);
+    CGRect tableViewFrame = CGRectMake(0, headerFrame.origin.y + headerFrame.size.height, self.view.frame.size.width, self.view.frame.size.height - headerFrame.size.height);
     UITableView *tableView = [[UITableView alloc] initWithFrame:tableViewFrame];
     tableView.dataSource = self;
     tableView.delegate = self;
@@ -76,11 +74,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 //    HomeCell
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    HomeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell)
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        cell = [[HomeCell alloc] initWithReuseIdentifier:@"Cell"];
     
-    cell.backgroundColor = [UIColor blueColor];
+    cell.titleLabel.text = @"Skateboarding";
+    cell.subtitleLabel.text = @"Shreading 101";
+    cell.thumbnailView.image = [UIImage imageNamed:@"blank.jpg"];
+    
     return cell;
 }
 
@@ -92,6 +93,11 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80;
 }
 
 #pragma mark UITableViewDelegate
