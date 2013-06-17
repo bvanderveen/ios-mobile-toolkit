@@ -106,16 +106,6 @@ typedef enum RFAPIMethod {
 
 +(RFAPI *) singleton;
 
-// synchronous resource methods! These all return JSON NSObjects, or nil if the request failed. Please see lastResponse and lastError in the case of failure.
--(NSObject *) resource:(RFAPIResource)resource withParams:(NSDictionary *)params;
--(NSObject *) resource:(RFAPIResource)resource withID:(NSObject *)resourceId;
--(NSObject *) resource:(RFAPIResource)resource;
-
-// delegated resource methods!
--(NSURLConnection *) resource:(RFAPIResource)resource withParams:(NSDictionary *)params delegate:(NSObject <NSURLConnectionDelegate> *)delegate;
--(NSURLConnection *) resource:(RFAPIResource)resource withID:(NSObject *)resourceId delegate:(NSObject <NSURLConnectionDelegate> *)delegate;
--(NSURLConnection *) resource:(RFAPIResource)resource delegate:(NSObject <NSURLConnectionDelegate> *)delegate;
-
 - (Producer)getHome;
 
 - (Producer)getPlaylistsWithOffset:(NSInteger)offset;
