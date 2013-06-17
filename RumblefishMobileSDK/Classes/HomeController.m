@@ -24,6 +24,7 @@
 
 #import "HomeController.h"
 #import "HomeCell.h"
+#import "UIImage+RumblefishSDKResources.h"
 
 #pragma mark - HeaderView
 @interface HeaderView : UIView
@@ -73,14 +74,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    HomeCell
     HomeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell)
         cell = [[HomeCell alloc] initWithReuseIdentifier:@"Cell"];
     
-    cell.titleLabel.text = @"Skateboarding";
-    cell.subtitleLabel.text = @"Shreading 101";
-    cell.thumbnailView.image = [UIImage imageNamed:@"blank.jpg"];
+    cell.textLabel.text = @"Skateboarding";
+    cell.detailTextLabel.text = @"Shreading 101";
+    cell.imageView.image = [UIImage imageInResourceBundleNamed:@"blank.jpg"];
     
     return cell;
 }
@@ -101,5 +101,10 @@
 }
 
 #pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.backgroundColor = [UIColor darkGrayColor];
+}
 
 @end
