@@ -45,10 +45,14 @@
 }
 
 - (IBAction)start {
-    FriendlyMusic *friendlyMusic = [[FriendlyMusic alloc] init];
-    [friendlyMusic setOptions:friendlyMusic.FMMOODMAP | friendlyMusic.FMOCCASION | friendlyMusic.FMEDITORSPICKS];
-    [self.navigationController pushViewController:friendlyMusic animated:YES];
-    [friendlyMusic release];
+    
+    TabBarViewController *tabController = [[TabBarViewController alloc] init];
+    [self.navigationController pushViewController:tabController animated:YES];
+    [tabController release];
+//    FriendlyMusic *friendlyMusic = [[FriendlyMusic alloc] init];
+//    [friendlyMusic setOptions:friendlyMusic.FMMOODMAP | friendlyMusic.FMOCCASION | friendlyMusic.FMEDITORSPICKS];
+//    [self.navigationController pushViewController:friendlyMusic animated:YES];
+//    [friendlyMusic release];
 }
 
 @end

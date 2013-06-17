@@ -22,6 +22,6 @@
  this file requires a written agreement with Rumblefish, Inc.
  */
 
-#import "RFAPI.h"
-#import "TabBarViewController.h"
-#import "Async.h"
+@interface TabBarViewController : UIViewController
+
+@end

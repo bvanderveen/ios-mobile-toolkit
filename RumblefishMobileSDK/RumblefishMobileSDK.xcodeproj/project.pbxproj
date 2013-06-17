@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34644CE5176F9237003DFAE1 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34644CE4176F9236003DFAE1 /* TabBarViewController.m */; };
+		34644CEA176F9651003DFAE1 /* TabBarViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 34644CE3176F9235003DFAE1 /* TabBarViewController.h */; };
 		411FCEF11639F107000B1841 /* RumblefishMobileSDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 411FCEEB1639F0A8000B1841 /* RumblefishMobileSDK.h */; };
 		411FCF3C163AD205000B1841 /* occasion_image_cache.plist in Resources */ = {isa = PBXBuildFile; fileRef = 411FCF3B163AD1D0000B1841 /* occasion_image_cache.plist */; };
 		413FD7AA1639A84A002A9183 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 413FD7A91639A84A002A9183 /* Foundation.framework */; };
@@ -191,6 +193,7 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
+				34644CEA176F9651003DFAE1 /* TabBarViewController.h in CopyFiles */,
 				411FCEF11639F107000B1841 /* RumblefishMobileSDK.h in CopyFiles */,
 				413FD9561639BFA2002A9183 /* Async.h in CopyFiles */,
 				413FD8191639B293002A9183 /* RFAPI.h in CopyFiles */,
@@ -201,6 +204,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		34644CE3176F9235003DFAE1 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabBarViewController.h; path = Classes/TabBarViewController.h; sourceTree = SOURCE_ROOT; };
+		34644CE4176F9236003DFAE1 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabBarViewController.m; path = Classes/TabBarViewController.m; sourceTree = SOURCE_ROOT; };
 		411FCED21639E922000B1841 /* RumblefishMobileSDKResources-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "RumblefishMobileSDKResources-Info.plist"; path = "RumblefishMobileSDKResources/RumblefishMobileSDKResources-Info.plist"; sourceTree = SOURCE_ROOT; };
 		411FCEEB1639F0A8000B1841 /* RumblefishMobileSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RumblefishMobileSDK.h; path = Classes/RumblefishMobileSDK.h; sourceTree = SOURCE_ROOT; };
 		411FCF3B163AD1D0000B1841 /* occasion_image_cache.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = occasion_image_cache.plist; path = RumblefishMobileSDKResources/occasion_image_cache.plist; sourceTree = SOURCE_ROOT; };
@@ -415,6 +420,8 @@
 		413FD7F11639AD24002A9183 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				34644CE3176F9235003DFAE1 /* TabBarViewController.h */,
+				34644CE4176F9236003DFAE1 /* TabBarViewController.m */,
 				41FE1A05176F7FAF002E022D /* Home */,
 				413FD7B81639AB2E002A9183 /* AlbumVC.h */,
 				413FD7B91639AB2E002A9183 /* AlbumVC.m */,
@@ -832,6 +839,7 @@
 				413FDA051639DC49002A9183 /* UIImage+RumblefishSDKResources.m in Sources */,
 				41FE1A0C176F7FC5002E022D /* HomeController.m in Sources */,
 				41FE1A0F176F8048002E022D /* HomeCell.m in Sources */,
+				34644CE5176F9237003DFAE1 /* TabBarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
