@@ -23,7 +23,77 @@
  */
 
 #import "HomeController.h"
+#import "HomeCell.h"
+
+#pragma mark - HeaderView
+@interface HeaderView : UIView
+
+@end
+
+@implementation HeaderView
+
+-(id)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame])
+    {
+        self.backgroundColor = [UIColor greenColor];
+    }
+    return self;
+}
+
+@end
+
+
+#pragma mark - HomeController
+
+@interface HomeController () <UITableViewDataSource, UITableViewDelegate>
+
+
+@end
 
 @implementation HomeController
+
+- (void)viewDidLoad
+{
+    //Create nav controller
+    
+    //Create header view
+    CGRect headerFrame = CGRectMake(0, 0, self.view.frame.size.width, 200);
+    HeaderView *headerView = [[HeaderView alloc] initWithFrame:headerFrame];
+    
+    [self.view addSubview:headerView];
+    
+    //Create TableView
+    CGRect tableViewFrame = CGRectMake(0, headerFrame.origin.y + headerFrame.size.height, self.view.frame.size.width, 300);
+    UITableView *tableView = [[UITableView alloc] initWithFrame:tableViewFrame];
+    tableView.dataSource = self;
+    tableView.delegate = self;
+    [self.view addSubview:tableView];
+}
+
+#pragma mark UITableViewDataSource
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    HomeCell
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (!cell)
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    
+    cell.backgroundColor = [UIColor blueColor];
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+#pragma mark UITableViewDelegate
 
 @end
