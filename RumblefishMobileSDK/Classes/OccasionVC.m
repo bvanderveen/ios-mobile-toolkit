@@ -32,6 +32,7 @@
 #import "LocalPlaylist.h"
 #import "NSBundle+RumblefishMobileSDKResources.h"
 #import "UIImage+RumblefishSDKResources.h"
+#import "SongCell.h"
 
 @class OccasionControllerView;
 
@@ -86,7 +87,6 @@
 }
 
 - (void)layoutButtonsVisible {
-    
     CGFloat itemWidth = imageWidth + imageMargin * 2;
     CGFloat itemsFittingH = MIN(3, floorf(self.bounds.size.width / itemWidth));
     
@@ -104,7 +104,7 @@
     CGFloat xInterval = imageWidth + calculatedXmargin * 2;
     CGFloat yInterval = imageHeight + calculatedYmargin * 2;
     
-    NSLog(@"xInit = %f, yInit = %f, xInterval = %f, yInterval = %f", xInit, yInit, xInterval, yInterval);
+    //NSLog(@"xInit = %f, yInit = %f, xInterval = %f, yInterval = %f", xInit, yInit, xInterval, yInterval);
     
     __block CGFloat x = xInit, y = yInit;
     [rootButtons each:^(id i) {
@@ -212,17 +212,10 @@
 @synthesize displayedOccasion, displayedPlaylists, occasions, occasionStack, occasionImages, controllerView;
 
 NSMutableArray *secondButtons, *thirdButtons;
-int level, plRow, plSection;
-bool isPlaying;
-NSString *srv;
-UITableViewCell *selectedCell;
-AVPlayer *audioPlayer;
-AVPlayerItem *playerItem;
+int level;
 PlaylistVC *playlist;
 CGRect thirdRect, secondRect;
-bool replaySong;
 
-NSMutableDictionary *allImagesDict;
 NSTimer *rotateImagesTimer;
 
 
@@ -247,14 +240,11 @@ NSTimer *rotateImagesTimer;
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
-    plRow = -1;
-    plSection = -1;
     level = 1;
     table.alpha = 0;
-    replaySong = NO;
     
     table.separatorColor = [UIColor colorWithRed:0.08f green:0.08f blue:0.08f alpha:1.0f];
-    selectedCell = [[UITableViewCell alloc] init];
+    table.rowHeight = 60;
     
     UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageInResourceBundleNamed:@"friendlymusic_logo.png"]];
     self.navigationItem.titleView = titleView;
@@ -325,10 +315,6 @@ NSTimer *rotateImagesTimer;
     [rotateImagesTimer invalidate];
 
     [super viewWillDisappear:animated];
-        
-    if (plRow >= 0) {
-        [self stop];
-    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -349,7 +335,6 @@ NSTimer *rotateImagesTimer;
 }
 
 - (void)goBack {
-    [audioPlayer pause];
     [self.navigationController popViewControllerAnimated:YES];
 
 }
@@ -495,11 +480,6 @@ NSTimer *rotateImagesTimer;
     while (occasionStack.count)
         [self popOccasion];
     
-    // stop if playing
-    if (plRow >= 0) {
-        [self stop];
-    }
-    
     [UIView animateWithDuration:0.5 animations:^ {
             firstButton.alpha = 0;
             table.alpha = 0;
@@ -539,7 +519,6 @@ NSTimer *rotateImagesTimer;
     int tag = [button tag];
     
     if (level == 2) {
-        replaySong = NO;
         Occasion *parent = [occasionStack objectAtIndex:0];
         Occasion *child = [parent.children objectAtIndex:button.tag];
         [self pushOccasion:child];
@@ -567,10 +546,6 @@ NSTimer *rotateImagesTimer;
     }
     else if (level == 3 || level == 4) {  //opposite direction of level 2
         [self popOccasion];
-        // stop if playing
-        if (plRow >= 0) {
-            [self stop];
-        }
         
         [UIView animateWithDuration:0.5 animations:^{
             table.alpha = 0;
@@ -621,12 +596,6 @@ NSTimer *rotateImagesTimer;
         [table reloadData];
         table.alpha = 1.0;
         [loadingIndicator stopAnimating];
-        // play same song if needed
-        if (replaySong && plRow>=0 && plSection>=0) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:plRow inSection:plSection];
-            [table selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-            [table.delegate tableView:table didSelectRowAtIndexPath:indexPath];
-        }
     }];
 }
 
@@ -656,10 +625,6 @@ NSTimer *rotateImagesTimer;
         level = 4;
     }
     else {  // opposite direction of level 3
-        // stop if playing
-        if (plRow >= 0) {
-            [self stop];
-        }
         
         button.titleLabel.font = [UIFont systemFontOfSize:50];
         [UIView animateWithDuration:0.5 animations:^{
@@ -708,9 +673,7 @@ NSTimer *rotateImagesTimer;
 }
 
 - (void)gotoPlaylist {
-    if (plRow >= 0) {
-        [self stop];
-    }
+    
     if (playlist == nil) {
         playlist = [[PlaylistVC alloc] init];
     }
@@ -760,154 +723,25 @@ NSTimer *rotateImagesTimer;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"MoodCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.contentView.backgroundColor = [UIColor colorWithRed:0.1686f green:0.1686f blue:0.1686f alpha:1.0f];
-        
-        UIImage *horImage = [UIImage imageInResourceBundleNamed:@"separator_horizontal.png"];
-        UIImageView *horSeparator = [[UIImageView alloc] initWithImage:horImage];
-        horSeparator.frame = CGRectMake(0, 0, horImage.size.width, horImage.size.height);
-        horSeparator.tag = 1;
-        [cell.contentView addSubview:horSeparator];
-        
-        UIImage *verImage = [UIImage imageInResourceBundleNamed:@"separator_vertical.png"];
-        UIImageView *verSeparator = [[UIImageView alloc] initWithImage:verImage];
-        verSeparator.frame = CGRectMake(45, 1, verImage.size.width, verImage.size.height);
-        verSeparator.tag = 2;
-        [cell.contentView addSubview:verSeparator];
-        
-        UILabel *indexLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 45, 44)];
-        indexLabel.tag = 3;
-        indexLabel.textColor = [UIColor whiteColor];
-        indexLabel.textAlignment = NSTextAlignmentCenter;
-        indexLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
-        indexLabel.backgroundColor = [UIColor clearColor];
-        [cell.contentView addSubview:indexLabel];
-        
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(49, 0, 232, 44)];
-        titleLabel.tag = 4;
-        titleLabel.textColor = [UIColor whiteColor];
-        titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
-        titleLabel.numberOfLines = 2;
-        titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        titleLabel.backgroundColor = [UIColor clearColor];
-        [cell.contentView addSubview:titleLabel];
-        
-        UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        addButton.tag = 5;
-        UIImage *addImage = [UIImage imageInResourceBundleNamed:@"btn_add.png"];
-        [addButton setImage:addImage forState:UIControlStateNormal];
-        [addButton setFrame:CGRectMake(270, 0, 44, 44)];
-        [addButton addTarget:self action:@selector(addToPlaylist:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.contentView addSubview:addButton];
-        
-        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-        spinner.center = CGPointMake(22.5, 22);
-        spinner.hidesWhenStopped = YES;
-        spinner.tag = 6;
-        [cell.contentView addSubview:spinner];
-        
-        UIButton *stopButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        stopButton.tag = 7;
-        UIImage *stopImage = [UIImage imageInResourceBundleNamed:@"btn_stop.png"];
-        [stopButton setImage:stopImage forState:UIControlStateNormal];
-        [stopButton setFrame:CGRectMake(1, 0, 44, 44)];
-        [stopButton addTarget:self action:@selector(stop) forControlEvents:UIControlEventTouchUpInside];
-        stopButton.hidden = YES;
-        [cell.contentView addSubview:stopButton];
-        
-        UIButton *tikButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        tikButton.tag = 8;
-        UIImage *tikImage = [UIImage imageInResourceBundleNamed:@"song_check.png"];
-        [tikButton setImage:tikImage forState:UIControlStateNormal];
-        [tikButton setFrame:CGRectMake(280, 12, 22, 19)];
-        [tikButton addTarget:self action:@selector(removeFromPlaylist:) forControlEvents:UIControlEventTouchUpInside];
-        tikButton.hidden = YES;
-        [cell.contentView addSubview:tikButton];
-        
-        UIView *colorBar = [[UIView alloc] initWithFrame:CGRectMake(cell.contentView.frame.size.width-5, 0, 5, cell.contentView.frame.size.height)];
-        colorBar.tag = 9;
-        [cell.contentView addSubview:colorBar];
-    }
-    
-    UILabel *index = (UILabel *)[cell.contentView viewWithTag:3];
-    index.text = [NSString stringWithFormat:@"%i", indexPath.row+1];
-    UILabel *title = (UILabel *)[cell.contentView viewWithTag:4];
     Playlist *playlist = [displayedPlaylists objectAtIndex:indexPath.section];
     Media *media = ((Media *)[playlist.media objectAtIndex:indexPath.row]);
-    title.text = media.title;
     
-    [cell.contentView viewWithTag:5].hidden = NO;
-    [cell.contentView viewWithTag:8].hidden = YES;
+    SongCell *cell = [SongCell cellForMedia:media tableView:tableView buttonAction:^{
+        if ([[LocalPlaylist sharedPlaylist] existsInPlaylist:media])
+            [[LocalPlaylist sharedPlaylist] removeFromPlaylist:media];
+        else
+            [[LocalPlaylist sharedPlaylist] addToPlaylist:media];
+        
+        [tableView reloadData];
+    }];
     
-    if ([[LocalPlaylist sharedPlaylist] existsInPlaylist:media]) {
-        [cell.contentView viewWithTag:5].hidden = YES;
-        [cell.contentView viewWithTag:8].hidden = NO;
-    }
-    
-    if (indexPath.row == plRow && indexPath.section == plSection) {
-        [cell.contentView viewWithTag:3].hidden = YES;
-        if (isPlaying) {
-            [cell.contentView viewWithTag:7].hidden = NO;
-            [(UIActivityIndicatorView *)[cell.contentView viewWithTag:6] stopAnimating];
-        }
-        else {
-            [cell.contentView viewWithTag:7].hidden = YES;
-            [(UIActivityIndicatorView *)[cell.contentView viewWithTag:6] startAnimating];
-        }
-    }
-    else {
-        [cell.contentView viewWithTag:3].hidden = NO;
-        [cell.contentView viewWithTag:7].hidden = YES;
-        [(UIActivityIndicatorView *)[cell.contentView viewWithTag:6] stopAnimating];
-    }
-    
-    [cell.contentView viewWithTag:5].frame = CGRectMake(self.view.bounds.size.width - 44, 0, 44, 44);
-    [cell.contentView viewWithTag:8].frame = CGRectMake(self.view.bounds.size.width - 33, 12, 22, 19);
-    title.frame = CGRectMake(52, 0, self.view.bounds.size.width - 100, 44);
-    
-    CGRect horizontalLineFrame = [cell.contentView viewWithTag:1].frame;
-    horizontalLineFrame.size.width = tableView.bounds.size.width;
-    [cell.contentView viewWithTag:1].frame = horizontalLineFrame;
+    cell.songIsSaved = [[LocalPlaylist sharedPlaylist] existsInPlaylist:media];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // revert previous cell changes
-    UILabel *index = (UILabel *)[selectedCell.contentView viewWithTag:3];
-    index.hidden = NO;
-    if (audioPlayer != nil) {
-        [audioPlayer pause];
-    }
-    UIButton *stop = (UIButton *)[selectedCell.contentView viewWithTag:7];
-    stop.hidden = YES;
-    UIActivityIndicatorView *spinner = (UIActivityIndicatorView *)[selectedCell.contentView viewWithTag:6];
-    [spinner stopAnimating];
-    isPlaying = NO;
-    
-    // change current cell views
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    index = (UILabel *)[cell.contentView viewWithTag:3];
-    index.hidden = YES;
-    spinner = (UIActivityIndicatorView *)[cell.contentView viewWithTag:6];
-    [spinner startAnimating];
-    selectedCell = cell;
-    plRow = indexPath.row;
-    plSection = indexPath.section;
-    
-    Playlist *playlist = [displayedPlaylists objectAtIndex:indexPath.section];
-    Media *media = [playlist.media objectAtIndex:indexPath.row];
-    playerItem = [[AVPlayerItem alloc] initWithURL:media.previewURL];
-    [playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
-    [playerItem addObserver:self forKeyPath:@"playbackLikelyToKeepUp" options:NSKeyValueObservingOptionNew context:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:playerItem];
-    audioPlayer = [[AVPlayer alloc] initWithPlayerItem:playerItem];
-    [table reloadData];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -922,14 +756,14 @@ NSTimer *rotateImagesTimer;
         art.image = playlist.image;
     [header addSubview:art];
     
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 260, 20)];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(65, 5, 255, 20)];
     title.textColor = [UIColor whiteColor];
     title.font = [UIFont boldSystemFontOfSize:16];
     title.backgroundColor = [UIColor clearColor];
     title.text = playlist.title;
     [header addSubview:title];
 
-    UILabel *description = [[UILabel alloc] initWithFrame:CGRectMake(60, 20, 260, 40)];
+    UILabel *description = [[UILabel alloc] initWithFrame:CGRectMake(65, 25, 255, 40)];
     description.textColor = [UIColor whiteColor];
     description.font = [UIFont systemFontOfSize:16];
     description.backgroundColor = [UIColor clearColor];
@@ -942,71 +776,5 @@ NSTimer *rotateImagesTimer;
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 60;
 }
-
-
-- (void)playerItemDidReachEnd:(NSNotification *)notification {
-    UIButton *stop = (UIButton *)[selectedCell.contentView viewWithTag:7];
-    stop.hidden = YES;
-    plRow = -1;
-    plSection = -1;
-    UILabel *index = (UILabel *)[selectedCell.contentView viewWithTag:3];
-    index.hidden = NO;
-    
-    [playerItem removeObserver:self forKeyPath:@"playbackLikelyToKeepUp"];
-    [playerItem removeObserver:self forKeyPath:@"status"];
-    playerItem = nil;
-    audioPlayer = nil;
-    [table reloadData];
-}
-
-- (void)stop {
-//    NSLog(@"start stop -- SHOULD NOT BE REACHED");
-
-    [audioPlayer pause];
-    [self playerItemDidReachEnd:nil];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-
-    AVPlayerItem *item = (AVPlayerItem *)object;
-    if ([keyPath isEqualToString:@"status"]) {
-        if ([item status] == AVPlayerItemStatusFailed) {
-            UIActivityIndicatorView *spinner = (UIActivityIndicatorView *)[selectedCell.contentView viewWithTag:6];
-            [spinner stopAnimating];
-
-            UILabel *index = (UILabel *)[selectedCell.contentView viewWithTag:3];
-            index.hidden = NO;
-            NSLog(@"Error:%@", [item.error description]);
-            
-            [playerItem removeObserver:self forKeyPath:@"playbackLikelyToKeepUp"];
-            [playerItem removeObserver:self forKeyPath:@"status"];
-            playerItem = nil;
-            audioPlayer = nil;
-            [table reloadData];
-            
-            // reload playlist
-            level = 3;
-            replaySong = YES;
-            [self loadPlaylist:thirdButton];
-        }
-        return;
-    }
-    if ([keyPath isEqualToString:@"playbackLikelyToKeepUp"]) {   
-        if (item.playbackLikelyToKeepUp) {
-            [audioPlayer play];
-            UIActivityIndicatorView *spinner = (UIActivityIndicatorView *)[selectedCell.contentView viewWithTag:6];
-            [spinner stopAnimating];
-            isPlaying = YES;
-            UIButton *stop = (UIButton *)[selectedCell.contentView viewWithTag:7];
-            stop.hidden = NO;
-            [table reloadData];
-        }
-        return;
-    }
-    
-    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-}
-
-
 
 @end
