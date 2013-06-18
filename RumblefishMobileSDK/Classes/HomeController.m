@@ -27,12 +27,16 @@
 #import "UIImage+RumblefishSDKResources.h"
 
 #pragma mark - HeaderView
-@interface HeaderView : UIView
+@interface HeaderView : UIView <UIScrollViewDelegate>
+
+@property (nonatomic, strong) NSArray *items;
 
 @property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) NSArray *items;
+@property (nonatomic, strong) UIPageControl *pageControl;
 @property (nonatomic, strong) UIView *blueLine;
 @property (nonatomic, strong) UIView *blackLine;
+
+@property (nonatomic) BOOL pageControlUsed;
 
 @end
 
@@ -54,7 +58,14 @@
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
         _scrollView.pagingEnabled = YES;
         _scrollView.backgroundColor = [UIColor purpleColor];
+        _scrollView.delegate = self;
         [self addSubview:_scrollView];
+        
+        _pageControl = [[UIPageControl alloc] init];
+        _pageControl.numberOfPages = items.count;
+        _pageControl.currentPage = 0;
+        [_pageControl addTarget:self action:@selector(changePage) forControlEvents:UIControlEventValueChanged];
+        [self addSubview:_pageControl];
         
         self.backgroundColor = [UIColor greenColor];
         _items = items;
@@ -71,13 +82,19 @@
 {
     [super layoutSubviews];
     
-    //add lines to the bottom
+    //Add lines to the bottom
     _blueLine.frame = CGRectMake(0, self.bounds.size.height - 2, self.bounds.size.width, 1);
     _blackLine.frame = CGRectMake(0, self.bounds.size.height - 1, self.bounds.size.width, 1);
-
+    
+    //Set up scroll view
     _scrollView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height - 2);
     
+
     [self populateScrollView];
+    
+    [_pageControl sizeToFit];
+    CGRect frame = _pageControl.frame;
+    frame.origin = CGPointMake(100, 100);
 }
 
 - (void)populateScrollView
@@ -108,8 +125,26 @@
                                              self.scrollView.frame.size.height);
 }
 
-@end
+#pragma mark UIScrollViewDelegate
+- (void)changePage
+{
+    _pageControlUsed = YES;
+    CGFloat pageWidth = _scrollView.contentSize.width /_pageControl.numberOfPages;
+    CGFloat x = _pageControl.currentPage * pageWidth;
+    [_scrollView scrollRectToVisible:CGRectMake(x, 0, pageWidth, _scrollView.frame.size.height) animated:YES];
+}
 
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    _pageControlUsed = NO;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if (!_pageControlUsed)
+        _pageControl.currentPage = lround(_scrollView.contentOffset.x /
+                                          (_scrollView.contentSize.width / _pageControl.numberOfPages));
+}
+
+@end
 
 #pragma mark - HomeController
 
@@ -119,26 +154,26 @@
 
 @implementation HomeController
 
-- (void)viewDidLoad
+
+- (void)loadView
 {
-#warning switch to loadView
-    [super viewDidLoad];
+    [super loadView];
     
 #warning DEV
     NSArray *featuredItems = @[
-                       @{@"Title": @"Skating",
-                         @"Subtitle": @"Shredding 101",
-                         @"ThumbnailURL": @"URLHERE"
-                         },
-                       @{@"Title": @"Party",
-                         @"Subtitle": @"Radical",
-                         @"ThumbnailURL": @"URLHERE"
-                         },
-                       @{@"Title": @"Sports",
-                         @"Subtitle": @"Super Sports",
-                         @"ThumbnailURL": @"URLHERE"
-                         }
-                       ];
+                               @{@"Title": @"Skating",
+                                 @"Subtitle": @"Shredding 101",
+                                 @"ThumbnailURL": @"URLHERE"
+                                 },
+                               @{@"Title": @"Party",
+                                 @"Subtitle": @"Radical",
+                                 @"ThumbnailURL": @"URLHERE"
+                                 },
+                               @{@"Title": @"Sports",
+                                 @"Subtitle": @"Super Sports",
+                                 @"ThumbnailURL": @"URLHERE"
+                                 }
+                               ];
     
     //Create header view
     HeaderView *headerView = [[HeaderView alloc] initWithItems:featuredItems];
@@ -153,9 +188,9 @@
     tableView.dataSource = self;
     tableView.delegate = self;
     tableView.alpha = 0.5;
+    tableView.separatorColor = [UIColor blackColor];
     [self.view addSubview:tableView];
 }
-
 
 #pragma mark UITableViewDataSource
 

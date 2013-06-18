@@ -27,14 +27,22 @@
 #define kCellLabelPadding 11
 #define kTitleSubtitlePadding 4
 #define kDisclosurePadding 30
+
+@interface HomeCell ()
+
+@property (nonatomic, strong) UIView *imageSeparator;
+
+@end
+
 @implementation HomeCell
 
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier]) {
-        
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
+        _imageSeparator = [[UIView alloc] init];
+        _imageSeparator.backgroundColor = [UIColor blackColor];
+        [self addSubview:_imageSeparator];
     }
     return self;
 }
@@ -42,6 +50,9 @@
 - (void)layoutSubviews
 {
    [super layoutSubviews];
+    
+    //add 1px border to image
+    _imageSeparator.frame = CGRectMake(self.imageView.bounds.size.width + 1, 0, 1, self.bounds.size.height);
 
     //Custom layout
 }
