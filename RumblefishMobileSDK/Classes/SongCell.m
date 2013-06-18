@@ -6,6 +6,7 @@
 
 @property (nonatomic, strong) UILabel *priceLabel;
 @property (nonatomic, copy) void(^buttonAction)();
+@property (nonatomic, strong) UIButton *accessoryButton;
 
 @end
 
@@ -31,13 +32,11 @@
         self.detailTextLabel.textColor = [UIColor lightGrayColor];
         self.detailTextLabel.backgroundColor = [UIColor clearColor];
 
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *i = [UIImage imageInResourceBundleNamed:@"btn_add.png"];
-        [button setImage:i forState:UIControlStateNormal];
-        [button setImage:[UIImage imageInResourceBundleNamed:@"song_check.png"] forState:UIControlStateSelected];
-        [button addTarget:self action:@selector(buttonTapped) forControlEvents:UIControlEventTouchUpInside];
-        [button sizeToFit];
-        self.accessoryView = button;
+        _accessoryButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_accessoryButton setImage:[UIImage imageInResourceBundleNamed:@"song_check.png"] forState:UIControlStateSelected];
+        [_accessoryButton addTarget:self action:@selector(buttonTapped) forControlEvents:UIControlEventTouchUpInside];
+        [_accessoryButton sizeToFit];
+        self.accessoryView = _accessoryButton;
         
         _priceLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _priceLabel.font = [RFFont fontWithSize:14];
@@ -83,11 +82,23 @@
     if (!cell)
         cell = [[SongCell alloc] initWithReuseIdentifier:ident];
     
+    [cell.accessoryButton setImage:[UIImage imageInResourceBundleNamed:@"btn_add.png"] forState:UIControlStateNormal];
+    [cell.accessoryButton sizeToFit];
+    
     cell.textLabel.text = media.title;
     cell.detailTextLabel.text = media.genre;
     cell.priceLabel.text = @"$0.99";
     cell.buttonAction = action;
     cell.songIsSaved = NO;
+    
+    return cell;
+}
+
++ (SongCell *)removeButtonCellForMedia:(Media *)media tableView:(UITableView *)tableView buttonAction:(void(^)())action {
+    SongCell *cell = [self cellForMedia:media tableView:tableView buttonAction:action];
+    
+    [cell.accessoryButton setImage:[UIImage imageInResourceBundleNamed:@"btn_remove.png"] forState:UIControlStateNormal];
+    [cell.accessoryButton sizeToFit];
     
     return cell;
 }

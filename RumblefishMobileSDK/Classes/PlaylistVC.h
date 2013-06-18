@@ -30,9 +30,4 @@
     
 }
 
-- (void)play;
-- (void)stop;
-- (void)removeAll;
-- (void)remove:(UIButton *)button;
-
 @end
