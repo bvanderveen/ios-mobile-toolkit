@@ -31,4 +31,7 @@
 - (BOOL)all:(BOOL(^)(id))predicate;
 - (void)each:(void(^)(id))each;
 
+- (NSArray *)take:(NSUInteger)howMany;
+- (NSArray *)skip:(NSUInteger)howMany;
+
 @end

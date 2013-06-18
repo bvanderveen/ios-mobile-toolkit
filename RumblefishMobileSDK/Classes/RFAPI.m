@@ -377,18 +377,28 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
         return makeRequest();
 }
 
-- (Producer)getHome {
+- (void)yieldHome:(ResultCallback)r {
+    
+    NSMutableArray *playlists = [NSMutableArray array];
+    
+    for (int i = 0; i < 20; i++) {
+        Playlist *playlist = [[Playlist alloc] init];
+        playlist.title = [NSString stringWithFormat:@"Title %i", i];
+        playlist.editorial = @"This is a subtitle";
+        [playlists addObject:playlist];
+    }
+    
+    id result = playlists;
+    r(result);
+}
+
+- (Producer)getHome
+{
     return ^ CancelCallback (ResultCallback r, ErrorCallback e) {
-        id result = @[
-          @{
-              @"Title": @"Skating",
-              @"Subtitle":@"Shredding 101",
-              @"ThumbnailURL": @"",
-              @"LargeImageURL": @"",
-              @"PlaylistID": @"1234"
-              }];
-        r(result);
-        return ^ {};
+        [self performSelector:@selector(yieldHome:) withObject:r afterDelay:1];
+        return ^ {
+            [NSObject cancelPreviousPerformRequestsWithTarget:self];
+        };
     };
 }
 

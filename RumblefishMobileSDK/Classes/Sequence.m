@@ -71,4 +71,13 @@
         each(obj);
 }
 
+- (NSArray *)take:(NSUInteger)howMany {
+    return [self subarrayWithRange:NSMakeRange(0, howMany)];
+}
+
+- (NSArray *)skip:(NSUInteger)howMany {
+    return [self subarrayWithRange:NSMakeRange(howMany, self.count - howMany)];
+}
+
+
 @end
