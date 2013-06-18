@@ -29,17 +29,67 @@
 #pragma mark - HeaderView
 @interface HeaderView : UIView
 
+@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) NSArray *items;
+
 @end
 
 @implementation HeaderView
 
--(id)initWithFrame:(CGRect)frame
+-(id)initWithItems:(NSArray *)items
 {
-    if (self = [super initWithFrame:frame])
+    if (self = [super initWithFrame:CGRectZero])
     {
         self.backgroundColor = [UIColor greenColor];
+        _items = items;
     }
     return self;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+    [_scrollView sizeToFit];
+    _scrollView.frame = self.frame;
+    _scrollView.pagingEnabled = YES;
+    _scrollView.backgroundColor = [UIColor purpleColor];
+    [self addSubview:_scrollView];
+    [self populateScrollView];
+}
+
+- (void)populateScrollView
+{
+//    @"Title": @"Skating",
+//    @"Subtitle":@"Shredding 101",
+//    @"ThumbnailURL": @"",
+//    @"LargeImageURL": @"",
+//    @"PlaylistID": @"1234"
+    
+    for (int i = 0; i < _items.count; i++) {
+        CGRect frame;
+        frame.origin.x = self.scrollView.frame.size.width * i;
+        frame.origin.y = 0;
+        frame.size = self.scrollView.frame.size;
+        
+        
+        UIView *subview = [[UIView alloc] initWithFrame:frame];
+        UIColor *backgroundColor;
+        if (i == 0)
+            backgroundColor = [UIColor brownColor];
+        else if (i == 1)
+            backgroundColor = [UIColor blueColor];
+        else
+            backgroundColor = [UIColor orangeColor];
+        
+        subview.backgroundColor = backgroundColor;
+        [self.scrollView addSubview:subview];
+    }
+    
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * _items.count, self.scrollView.frame.size.height);
+    
+    NSLog(@"scrollView frame:%@, contentSize:%@", NSStringFromCGRect(_scrollView.frame), NSStringFromCGSize(_scrollView.contentSize));
 }
 
 @end
@@ -55,11 +105,29 @@
 @implementation HomeController
 
 - (void)viewDidLoad
-{    
-    //Create header view
-    CGRect headerFrame = CGRectMake(0, 0, self.view.frame.size.width, 158);
-    HeaderView *headerView = [[HeaderView alloc] initWithFrame:headerFrame];
+{
+    [super viewDidLoad];
     
+    NSArray *featuredItems = @[
+                       @{@"Title": @"Skating",
+                         @"Subtitle": @"Shredding 101",
+                         @"ThumbnailURL": @"URLHERE"
+                         },
+                       @{@"Title": @"Party",
+                         @"Subtitle": @"Radical",
+                         @"ThumbnailURL": @"URLHERE"
+                         },
+                       @{@"Title": @"Sports",
+                         @"Subtitle": @"Super Sports",
+                         @"ThumbnailURL": @"URLHERE"
+                         }
+                       ];
+    
+    //Create header view
+    HeaderView *headerView = [[HeaderView alloc] initWithItems:featuredItems];
+    [headerView sizeToFit];
+    CGRect headerFrame = CGRectMake(0, 0, self.view.frame.size.width, 158);
+    headerView.frame = headerFrame;
     [self.view addSubview:headerView];
     
     //Create TableView
@@ -67,6 +135,7 @@
     UITableView *tableView = [[UITableView alloc] initWithFrame:tableViewFrame];
     tableView.dataSource = self;
     tableView.delegate = self;
+    tableView.alpha = 0.5;
     [self.view addSubview:tableView];
 }
 
