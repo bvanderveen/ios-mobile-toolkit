@@ -2,6 +2,8 @@
 
 @interface SongCell : UITableViewCell
 
-+ (SongCell *)cellForMedia:(Media *)media tableView:(UITableView *)tableView;
+@property (nonatomic, assign) BOOL songIsSaved;
+
++ (SongCell *)cellForMedia:(Media *)media tableView:(UITableView *)tableView buttonAction:(void(^)())action;
 
 @end

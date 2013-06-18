@@ -40,9 +40,6 @@
 
 @implementation AlbumVC
 
-NSString *srv;
-UITableViewCell *selectedCell;
-
 @synthesize playlist, activityIndicator;
 
 - (id)initWithPlaylist:(Playlist *)lePlaylist {
@@ -59,7 +56,7 @@ UITableViewCell *selectedCell;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(close)];
     
-    
+    self.tableView.rowHeight = 60;
     self.tableView.separatorColor = [UIColor colorWithRed:0.08f green:0.08f blue:0.08f alpha:1.0f];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.125f green:0.125f blue:0.125f alpha:1.0f];
     
@@ -105,11 +102,16 @@ UITableViewCell *selectedCell;
 {
     Media *currentMedia = [playlist.media objectAtIndex:indexPath.row];
     
-    SongCell *cell = [SongCell cellForMedia:currentMedia tableView:tableView];
+    SongCell *cell = [SongCell cellForMedia:currentMedia tableView:tableView buttonAction:^{
+        if ([[LocalPlaylist sharedPlaylist] existsInPlaylist:currentMedia])
+            [[LocalPlaylist sharedPlaylist] removeFromPlaylist:currentMedia];
+        else
+            [[LocalPlaylist sharedPlaylist] addToPlaylist:currentMedia];
+        
+        [tableView reloadData];
+    }];
     
-    if ([[LocalPlaylist sharedPlaylist] existsInPlaylist:currentMedia]) {
-        // XXX indicate
-    }
+    cell.songIsSaved = [[LocalPlaylist sharedPlaylist] existsInPlaylist:currentMedia];
     
     return cell;
 }
@@ -137,25 +139,5 @@ UITableViewCell *selectedCell;
     [self.view addSubview:p];
     [p startPlayback];
 }
-
-//- (void)addToPlaylist:(UIButton *)button {
-//    int row = [[self.tableView indexPathForCell:(UITableViewCell *)[[button superview] superview]] row];
-//    
-//    Media *currentMedia = [playlist.media objectAtIndex:row];
-//    [[LocalPlaylist sharedPlaylist] addToPlaylist:currentMedia];
-//    
-//    button.hidden = YES;
-//    [[button superview] viewWithTag:8].hidden = NO;
-//}
-//
-//- (void)removeFromPlaylist:(UIButton *)button {
-//    int row = [[self.tableView indexPathForCell:(UITableViewCell *)[[button superview] superview]] row];
-//    
-//    Media *currentMedia = [playlist.media objectAtIndex:row];
-//    [[LocalPlaylist sharedPlaylist] removeFromPlaylist:currentMedia];
-//    
-//    button.hidden = YES;
-//    [[button superview] viewWithTag:5].hidden = NO;    
-//}
 
 @end
