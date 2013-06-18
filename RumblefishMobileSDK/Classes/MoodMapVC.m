@@ -29,6 +29,7 @@
 #import "LocalPlaylist.h"
 #import "UIImage+RumblefishSDKResources.h"
 #import "NSBundle+RumblefishMobileSDKResources.h"
+#import "SongCell.h"
 
 @implementation MoodMapControllerView
 
@@ -58,6 +59,7 @@
 
 @property (nonatomic, strong) Playlist *playlist;
 @property (nonatomic, strong) MoodMapControllerView *controllerView;
+@property (nonatomic, strong) UIColor *selectedColor;
 
 @end
 
@@ -66,14 +68,6 @@
 @synthesize playlist, controllerView;
 
 UIColor *selectedColor;
-NSMutableArray *adjacentColors;
-NSString *srv;
-NSMutableData *serverData;
-int playingRow;
-AVPlayer *audioPlayer;
-AVPlayerItem *playerItem;
-bool isPlaying;
-bool playlistIsLoading;
 int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
                        0,  0,  4,  5,  6,  7, 34, 35, 36, 37,  0,  0,
                        0,  8,  9, 10, 11, 12, 38, 39, 40, 41, 42,  0,
@@ -100,12 +94,10 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
     self.controllerView = (MoodMapControllerView *)self.view;
     [super viewDidLoad];
     
-    adjacentColors = [[NSMutableArray alloc] init];
     tabView.separatorColor = [UIColor colorWithRed:0.08f green:0.08f blue:0.08f alpha:1.0f];
     glow.alpha = 0;
     ring.alpha = 0;
     selector.alpha = 0;
-    playingRow = -1;
     
     selectedColor = [[UIColor alloc] init];
     
@@ -118,11 +110,6 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
     else {
         welcome.hidden = YES;
     }
-    
-    // Registers this class as the delegate of the audio session.
-    [[AVAudioSession sharedInstance] setDelegate: self];    
-    // Allow the app sound to continue to play when the screen is locked.
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 }
 
 - (void)viewDidUnload
@@ -132,11 +119,6 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
 }
 
 - (void)dealloc {
-    if (playingRow >= 0) {
-        [self stop];
-    }
-    playlistIsLoading = NO;
-    
     selectedColor = nil;
 }
 
@@ -174,18 +156,10 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
 }
 
 - (IBAction)doneButtonPressed {
-    if (playingRow >= 0) {
-        [self stop];
-    }
-    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)playlistButtonPressed {
-    if (playingRow >= 0) {
-        [self stop];
-    }
-
     [self.navigationController pushViewController:[[PlaylistVC alloc] init] animated:YES];
 }
 
@@ -207,31 +181,6 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
     return;
 }
 
-- (void)addToPlaylist:(UIButton *)button {
-    int row = [[tabView indexPathForCell:(UITableViewCell *)[[button superview] superview]] row];
-    
-    Media *currentMedia = [playlist.media objectAtIndex:row];
-    [[LocalPlaylist sharedPlaylist] addToPlaylist:currentMedia];
-
-    button.hidden = YES;
-    [[button superview] viewWithTag:8].hidden = NO;
-    [playlistButton setImage:[UIImage imageInResourceBundleNamed:@"btn_playlist_ON.png"] forState:UIControlStateNormal];
-}
-
-- (void)removeFromPlaylist:(UIButton *)button {
-    int row = [[tabView indexPathForCell:(UITableViewCell *)[[button superview] superview]] row];
-    
-    Media *currentMedia = [playlist.media objectAtIndex:row];
-    [[LocalPlaylist sharedPlaylist] removeFromPlaylist:currentMedia];
-    
-    button.hidden = YES;
-    [[button superview] viewWithTag:5].hidden = NO;
-    
-    if (![LocalPlaylist sharedPlaylist].count)
-        [playlistButton setImage:[UIImage imageInResourceBundleNamed:@"btn_playlist_OFF.png"] forState:UIControlStateNormal];
-}
-
-
 #pragma mark - TableView methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -246,257 +195,26 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"MoodCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.contentView.backgroundColor = [UIColor colorWithRed:0.1686f green:0.1686f blue:0.1686f alpha:1.0f];
-        
-        UIImage *horImage = [UIImage imageInResourceBundleNamed:@"separator_horizontal.png"];
-        UIImageView *horSeparator = [[UIImageView alloc] initWithImage:horImage];
-        horSeparator.frame = CGRectMake(0, 0, horImage.size.width, horImage.size.height);
-        horSeparator.tag = 1;
-        [cell.contentView addSubview:horSeparator];
-        
-        UIImage *verImage = [UIImage imageInResourceBundleNamed:@"separator_vertical.png"];
-        UIImageView *verSeparator = [[UIImageView alloc] initWithImage:verImage];
-        verSeparator.frame = CGRectMake(45, 1, verImage.size.width, verImage.size.height);
-        verSeparator.tag = 2;
-        [cell.contentView addSubview:verSeparator];
-        
-        UILabel *indexLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 45, 44)];
-        indexLabel.tag = 3;
-        indexLabel.textColor = [UIColor whiteColor];
-        indexLabel.textAlignment = NSTextAlignmentCenter;
-        indexLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
-        indexLabel.backgroundColor = [UIColor clearColor];
-        [cell.contentView addSubview:indexLabel];
-        
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(49, 0, 232, 44)];
-        titleLabel.tag = 4;
-        titleLabel.textColor = [UIColor whiteColor];
-        titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
-        titleLabel.numberOfLines = 2;
-        titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        titleLabel.backgroundColor = [UIColor clearColor];
-        [cell.contentView addSubview:titleLabel];
-        
-        UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        addButton.tag = 5;
-        UIImage *addImage = [UIImage imageInResourceBundleNamed:@"btn_add.png"];
-        [addButton setImage:addImage forState:UIControlStateNormal];
-        [addButton addTarget:self action:@selector(addToPlaylist:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.contentView addSubview:addButton];
-        
-        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-        spinner.center = CGPointMake(22.5, 22);
-        spinner.hidesWhenStopped = YES;
-        spinner.tag = 6;
-        [cell.contentView addSubview:spinner];
-        
-        UIButton *stopButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        stopButton.tag = 7;
-        UIImage *stopImage = [UIImage imageInResourceBundleNamed:@"btn_stop.png"];
-        [stopButton setImage:stopImage forState:UIControlStateNormal];
-        [stopButton setFrame:CGRectMake(1, 0, 44, 44)];
-        [stopButton addTarget:self action:@selector(stop) forControlEvents:UIControlEventTouchUpInside];
-        stopButton.hidden = YES;
-        [cell.contentView addSubview:stopButton];
-        
-        UIButton *tikButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        tikButton.tag = 8;
-        UIImage *tikImage = [UIImage imageInResourceBundleNamed:@"song_check.png"];
-        [tikButton setImage:tikImage forState:UIControlStateNormal];
-        [tikButton addTarget:self action:@selector(removeFromPlaylist:) forControlEvents:UIControlEventTouchUpInside];
-        tikButton.hidden = YES;
-        [cell.contentView addSubview:tikButton];
-        
-        UIView *colorBar = [[UIView alloc] initWithFrame:CGRectMake(cell.contentView.frame.size.width-5, 0, 5, cell.contentView.frame.size.height)];
-        colorBar.tag = 9;
-        [cell.contentView addSubview:colorBar];
-    }
-    
     Media *currentMedia = (Media *)[playlist.media objectAtIndex:indexPath.row];
     
-    UILabel *index = (UILabel *)[cell.contentView viewWithTag:3];
-    index.text = [NSString stringWithFormat:@"%i", indexPath.row+1];
-    UILabel *title = (UILabel *)[cell.contentView viewWithTag:4];
-    title.text = currentMedia.title;
-    
-    CGFloat titleWidth = tableView.bounds.size.width - 44;
-    CGFloat titleX = 52;
-    
-    
-    // if we're in landscape, we're not showing the 'index' box
-    // and we only scoot the text over to display the spinner/stop button
-    
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-        if (indexPath.row == playingRow) {
-            titleX = 44;
-        }
+    SongCell *cell = [SongCell cellForMedia:currentMedia tableView:tableView buttonAction:^{
+        if ([[LocalPlaylist sharedPlaylist] existsInPlaylist:currentMedia])
+            [[LocalPlaylist sharedPlaylist] removeFromPlaylist:currentMedia];
         else
-            titleX = 5;
-    }
+            [[LocalPlaylist sharedPlaylist] addToPlaylist:currentMedia];
+        
+        [tableView reloadData];
+    }];
     
-    titleWidth -= titleX;
-    
-    title.frame = CGRectMake(titleX, 0, titleWidth, 44);
-    [cell.contentView viewWithTag:5].frame = CGRectMake(tableView.bounds.size.width - 44, 0, 44, 44);
-    [cell.contentView viewWithTag:8].frame = CGRectMake(tableView.bounds.size.width - 33, 12, 22, 19);
-    
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-        [cell.contentView viewWithTag:1].hidden = YES;
-        [cell.contentView viewWithTag:2].hidden = YES;
-        [cell.contentView viewWithTag:3].hidden = YES;
-    }
-    else {
-        [cell.contentView viewWithTag:1].hidden = NO;
-        [cell.contentView viewWithTag:2].hidden = NO;
-        [cell.contentView viewWithTag:3].hidden = NO;
-    }
-    
-    [cell.contentView viewWithTag:5].hidden = NO;
-    [cell.contentView viewWithTag:8].hidden = YES;
-
-    
-    if ([[LocalPlaylist sharedPlaylist] existsInPlaylist:currentMedia]) {
-        [cell.contentView viewWithTag:5].hidden = YES;
-        [cell.contentView viewWithTag:8].hidden = NO;
-    }
-    
-    
-    if (indexPath.row == playingRow) {
-        [cell.contentView viewWithTag:3].hidden = YES;
-        if (isPlaying) {
-            [cell.contentView viewWithTag:7].hidden = NO;
-            [(UIActivityIndicatorView *)[cell.contentView viewWithTag:6] stopAnimating];
-        }
-        else {
-            [cell.contentView viewWithTag:7].hidden = YES;
-            [(UIActivityIndicatorView *)[cell.contentView viewWithTag:6] startAnimating];
-        }
-    }
-    else {
-        if (!UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-            [cell.contentView viewWithTag:3].hidden = NO;
-        }
-        [cell.contentView viewWithTag:7].hidden = YES;
-        [(UIActivityIndicatorView *)[cell.contentView viewWithTag:6] stopAnimating];
-    }
-    
-    [cell.contentView viewWithTag:9].backgroundColor = selectedColor;
+    cell.songIsSaved = [[LocalPlaylist sharedPlaylist] existsInPlaylist:currentMedia];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // revert previous cell changes
-
-    NSIndexPath *ip = [NSIndexPath indexPathForRow:selectedCellID inSection:0];
-    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:ip];
-    UILabel *index = (UILabel *)[selectedCell.contentView viewWithTag:3];
-    index.hidden = NO;
-    if (audioPlayer != nil) {
-        [audioPlayer pause];
-    }
-    UIButton *stop = (UIButton *)[selectedCell.contentView viewWithTag:7];
-    stop.hidden = YES;
-    UIActivityIndicatorView *spinner = (UIActivityIndicatorView *)[selectedCell.contentView viewWithTag:6];
-    [spinner stopAnimating];
-    isPlaying = NO;
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-        [selectedCell.contentView viewWithTag:4].frame = CGRectMake(2, 0, 115, 44);
-    }
-
     
-    // change current cell views
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    index = (UILabel *)[cell.contentView viewWithTag:3];
-    index.hidden = YES;
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-        [cell.contentView viewWithTag:4].frame = CGRectMake(46, 0, 71, 44);
-    }
-    spinner = (UIActivityIndicatorView *)[cell.contentView viewWithTag:6];
-    [spinner startAnimating];
-    selectedCellID = indexPath.row;
-    playingRow = indexPath.row;
-    
-    Media *currentMedia = (Media *)[playlist.media objectAtIndex:indexPath.row];
-    playerItem = [[AVPlayerItem alloc] initWithURL:currentMedia.previewURL];
-    [playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
-    [playerItem addObserver:self forKeyPath:@"playbackLikelyToKeepUp" options:NSKeyValueObservingOptionNew context:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:playerItem];
-    audioPlayer = [[AVPlayer alloc] initWithPlayerItem:playerItem];
-    [tabView reloadData];
 }
-
-
-
-- (void)playerItemDidReachEnd:(NSNotification *)notification {
-    NSIndexPath *ip = [NSIndexPath indexPathForRow:selectedCellID inSection:0];
-    UITableViewCell *selectedCell = [tabView cellForRowAtIndexPath:ip];
-    
-    UIButton *stop = (UIButton *)[selectedCell.contentView viewWithTag:7];
-    stop.hidden = YES;
-    playingRow = -1;
-    UILabel *index = (UILabel *)[selectedCell.contentView viewWithTag:3];
-    index.hidden = NO;
-    
-    [playerItem removeObserver:self forKeyPath:@"playbackLikelyToKeepUp"];
-    [playerItem removeObserver:self forKeyPath:@"status"];
-    playerItem = nil;
-    audioPlayer = nil;
-    [tabView reloadData];
-}
-
-- (void)stop {
-    [audioPlayer pause];
-    [self playerItemDidReachEnd:nil];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    NSIndexPath *ip = [NSIndexPath indexPathForRow:selectedCellID inSection:0];
-    UITableViewCell *selectedCell = [tabView cellForRowAtIndexPath:ip];
-    AVPlayerItem *item = (AVPlayerItem *)object;
-    
-    if ([keyPath isEqualToString:@"status"]) {
-        if ([item status] == AVPlayerItemStatusFailed) {
-            UIActivityIndicatorView *spinner = (UIActivityIndicatorView *)[selectedCell.contentView viewWithTag:6];
-            [spinner stopAnimating];
-            UILabel *index = (UILabel *)[selectedCell.contentView viewWithTag:3];
-            index.hidden = NO;
-            NSLog(@"Error:%@", [item.error description]);
-            
-            [playerItem removeObserver:self forKeyPath:@"playbackLikelyToKeepUp"];
-            [playerItem removeObserver:self forKeyPath:@"status"];
-            playerItem = nil;
-            audioPlayer = nil;
-            [tabView reloadData];
-            [self getPlaylistFromServer];
-        }
-        return;
-    }
-    if ([keyPath isEqualToString:@"playbackLikelyToKeepUp"]) {   
-        if (item.playbackLikelyToKeepUp) {
-            [audioPlayer play];
-            UIActivityIndicatorView *spinner = (UIActivityIndicatorView *)[selectedCell.contentView viewWithTag:6];
-            [spinner stopAnimating];
-            isPlaying = YES;
-            UIButton *stop = (UIButton *)[selectedCell.contentView viewWithTag:7];
-            stop.hidden = NO;
-            [tabView reloadData];
-        }
-        return;
-    }
-    
-    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-}
-
-
-
 
 // image methods
 - (UIImage *)imageByFillingColor:(UIColor *)color inImage:(UIImage *)image
@@ -716,13 +434,6 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
     if (x >= 0 && x <= 11 && y >= 0 && y <= 11) {
         [array addObject:colors[y][x]];
     }
-    
-    [adjacentColors removeAllObjects];
-    for (NSObject *obj in array) {
-        if (obj != [NSNull null]) {
-            [adjacentColors addObject:obj];
-        }
-    }
 }
 
 
@@ -769,7 +480,6 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
         int x = point.x/20.166;
         int y = point.y/20.166;
         playlistID = idArray[y][x];
-        playingRow = -1;
         [self getPlaylistFromServer];
     }
 }
@@ -787,7 +497,6 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
 - (void)getPlaylistFromServer {
     Producer getMedia = [[RFAPI singleton] getPlaylist:playlistID + 187];
     
-    [self stop];
     self.playlist = nil;
     [tabView reloadData];
     
@@ -795,17 +504,8 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
     [self associateProducer:getMedia callback:^ (id result) {
         self.playlist = (Playlist *)result;
         [self.controllerView.activityIndicator stopAnimating];
-        // play first/current song
-        if (playlist.media.count) {
-            int row = playingRow == -1 ? 0 : playingRow;
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-            [tabView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-            [tabView.delegate tableView:tabView didSelectRowAtIndexPath:indexPath];
-            if (row == 0) {
-                [tabView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
-            }
-        }
         doneButton.enabled = YES;
+        [tabView reloadData];
     }];
 
 }
