@@ -88,13 +88,10 @@
     
     //Set up scroll view
     _scrollView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height - 2);
-    
-
     [self populateScrollView];
     
     [_pageControl sizeToFit];
-    CGRect frame = _pageControl.frame;
-    frame.origin = CGPointMake(100, 100);
+    _pageControl.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height - 10);
 }
 
 - (void)populateScrollView
@@ -102,23 +99,64 @@
     //Create a "page" for each item
     for (int i = 0; i < _items.count; i++) {
         
+        NSDictionary *item = _items[i];
+        
         CGRect frame;
         frame.origin.x = self.scrollView.frame.size.width * i;
         frame.origin.y = 0;
         frame.size = self.scrollView.frame.size;
         
         //Create image views for each cell
-        UIView *subview = [[UIView alloc] initWithFrame:frame];
-        UIColor *backgroundColor;
-        if (i == 0)
-            backgroundColor = [UIColor brownColor];
-        else if (i == 1)
-            backgroundColor = [UIColor blueColor];
-        else
-            backgroundColor = [UIColor orangeColor];
+        UIImageView *pageImageView = [[UIImageView alloc] initWithFrame:frame];
+        pageImageView.contentMode = UIViewContentModeScaleAspectFill;
+        pageImageView.backgroundColor = [UIColor blackColor];
+#warning DEV
+        pageImageView.image = [UIImage imageInResourceBundleNamed:@"moodmap@2x.png"];
+#warning endDEV
+        [self.scrollView addSubview:pageImageView];
         
-        subview.backgroundColor = backgroundColor;
-        [self.scrollView addSubview:subview];
+        //Create content box for words
+        UIView *contentBox = [[UIView alloc] initWithFrame:CGRectZero];
+        contentBox.backgroundColor = [UIColor colorWithWhite:0 alpha:0.33];
+        [pageImageView addSubview:contentBox];
+        CGFloat boxHeight = 80;
+        contentBox.frame = CGRectMake(0, 0, boxHeight * 3, boxHeight);
+        contentBox.center = CGPointMake(pageImageView.bounds.size.width / 2,
+                                        pageImageView.bounds.size.height - (boxHeight / 2));
+        
+        //Add labels inside content box
+        int padding = 2;
+        
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        titleLabel.adjustsFontSizeToFitWidth = YES;
+        titleLabel.textColor = [UIColor whiteColor];
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        titleLabel.font = [UIFont systemFontOfSize:34];
+        titleLabel.backgroundColor = [UIColor clearColor];
+        titleLabel.text = item[@"Title"];
+        titleLabel.shadowColor = [UIColor blackColor];
+        titleLabel.shadowOffset = CGSizeMake(0, 1);
+        [contentBox addSubview:titleLabel];
+        titleLabel.frame = CGRectMake(padding,
+                                      padding,
+                                      contentBox.bounds.size.width - (padding * 2),
+                                      titleLabel.font.lineHeight);
+        
+        UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        subtitleLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1];
+        subtitleLabel.textAlignment = NSTextAlignmentCenter;
+        subtitleLabel.font = [UIFont systemFontOfSize:18];
+        subtitleLabel.adjustsFontSizeToFitWidth = YES;
+        subtitleLabel.backgroundColor = [UIColor clearColor];
+        subtitleLabel.text = item[@"Subtitle"];
+        subtitleLabel.shadowColor = [UIColor blackColor];
+        subtitleLabel.shadowOffset = CGSizeMake(0, 1);
+        [contentBox addSubview:subtitleLabel];
+        subtitleLabel.frame = CGRectMake(padding,
+                                         titleLabel.bounds.size.height + titleLabel.frame.origin.y,
+                                         contentBox.bounds.size.width - (padding * 2),
+                                         subtitleLabel.font.lineHeight);
+        
     }
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * _items.count,
