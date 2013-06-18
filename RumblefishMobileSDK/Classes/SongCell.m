@@ -20,10 +20,16 @@
 
 - (id)initWithReuseIdentifier:(NSString *)identifier {
     if (self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier]) {
+        self.backgroundView = [[UIView alloc] init];
+        self.backgroundView.backgroundColor = [UIColor colorWithRed:0.1686f green:0.1686f blue:0.1686f alpha:1.0f];
+        
         self.textLabel.font = [RFFont fontWithSize:18];
         self.textLabel.textColor = [UIColor whiteColor];
+        self.textLabel.backgroundColor = [UIColor clearColor];
+        
         self.detailTextLabel.font = [RFFont fontWithSize:14];
         self.detailTextLabel.textColor = [UIColor lightGrayColor];
+        self.detailTextLabel.backgroundColor = [UIColor clearColor];
 
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *i = [UIImage imageInResourceBundleNamed:@"btn_add.png"];
