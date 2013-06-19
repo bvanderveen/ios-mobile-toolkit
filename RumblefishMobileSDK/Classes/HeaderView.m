@@ -8,10 +8,9 @@
 
 #import "HeaderView.h"
 #import "UIImage+RumblefishSDKResources.h"
+#import "HeaderPageView.h"
 
 @interface HeaderView () <UIScrollViewDelegate>
-
-@property (nonatomic, strong) NSArray *items;
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIPageControl *pageControl;
@@ -65,26 +64,38 @@
     
     //Set up scroll view
     _scrollView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height - 2);
-    [self populateScrollView];
     
     [_pageControl sizeToFit];
     _pageControl.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height - 10);
 }
 
+- (void)reloadData
+{
+    int numberOfPlaylists = [_dataSource numberOfPlaylists];
+    _pageControl.numberOfPages = numberOfPlaylists;
+    [self populateScrollView];
+}
+
 - (void)populateScrollView
 {
+    int numberOfPlaylists = [_dataSource numberOfPlaylists];
+    
     //Create a "page" for each item
-    for (int i = 0; i < _items.count; i++) {
+    for (int i = 0; i < numberOfPlaylists; i++) {
         
-        NSDictionary *item = _items[i];
+        Playlist *playlist = [_dataSource playlistForPageNumber:i];
         
-        CGRect frame;
-        frame.origin.x = self.scrollView.frame.size.width * i;
-        frame.origin.y = 0;
-        frame.size = self.scrollView.frame.size;
+        CGRect pageFrame;
+        pageFrame.origin.x = self.scrollView.frame.size.width * i;
+        pageFrame.origin.y = 0;
+        pageFrame.size = self.scrollView.frame.size;
+        
+        HeaderPageView *headerPageView = [[HeaderPageView alloc] initWithPlaylist:playlist];
+        headerPageView.frame = pageFrame;
+        
         
         //Create image views for each cell
-        UIImageView *pageImageView = [[UIImageView alloc] initWithFrame:frame];
+        UIImageView *pageImageView = [[UIImageView alloc] initWithFrame:pageFrame];
         pageImageView.contentMode = UIViewContentModeScaleAspectFill;
         pageImageView.backgroundColor = [UIColor blackColor];
 #warning DEV
@@ -110,7 +121,7 @@
         titleLabel.textAlignment = NSTextAlignmentCenter;
         titleLabel.font = [UIFont systemFontOfSize:34];
         titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.text = item[@"Title"];
+        titleLabel.text = playlist.title;
         titleLabel.shadowColor = [UIColor blackColor];
         titleLabel.shadowOffset = CGSizeMake(0, 1);
         [contentBox addSubview:titleLabel];
@@ -125,7 +136,7 @@
         subtitleLabel.font = [UIFont systemFontOfSize:18];
         subtitleLabel.adjustsFontSizeToFitWidth = YES;
         subtitleLabel.backgroundColor = [UIColor clearColor];
-        subtitleLabel.text = item[@"Subtitle"];
+        subtitleLabel.text = playlist.editorial;
         subtitleLabel.shadowColor = [UIColor blackColor];
         subtitleLabel.shadowOffset = CGSizeMake(0, 1);
         [contentBox addSubview:subtitleLabel];
@@ -136,8 +147,10 @@
         
     }
     
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * _items.count,
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * numberOfPlaylists,
                                              self.scrollView.frame.size.height);
+    
+    _pageControl.numberOfPages = numberOfPlaylists;
 }
 
 #pragma mark UIScrollViewDelegate

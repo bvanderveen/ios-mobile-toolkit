@@ -57,6 +57,7 @@
         _headerPlaylists = (NSArray *)[results take:kHeaderViewItemOffset];
         _tablePlaylists = (NSArray *)[results skip:kHeaderViewItemOffset];
         [self.view.tableView reloadData];
+        [self.view.headerView reloadData];
     }];
 }
 
@@ -97,5 +98,18 @@
 {
     cell.backgroundColor = [UIColor darkGrayColor];
 }
+
+#pragma mark HeaderViewDataSource
+
+- (Playlist *)playlistForPageNumber:(NSInteger)pageNumber
+{
+    return _headerPlaylists[pageNumber];
+}
+
+- (NSInteger)numberOfPlaylists
+{
+    return _headerPlaylists.count;
+}
+
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3458930017712CAC00BE3B8A /* HeaderPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 345892FF17712CAC00BE3B8A /* HeaderPageView.m */; };
 		34644CE5176F9237003DFAE1 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34644CE4176F9236003DFAE1 /* TabBarViewController.m */; };
 		34644CEA176F9651003DFAE1 /* TabBarViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 34644CE3176F9235003DFAE1 /* TabBarViewController.h */; };
 		34644D4017710499003DFAE1 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34644D3F17710499003DFAE1 /* HeaderView.m */; };
@@ -210,6 +211,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		345892FE17712CAC00BE3B8A /* HeaderPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeaderPageView.h; path = Classes/HeaderPageView.h; sourceTree = SOURCE_ROOT; };
+		345892FF17712CAC00BE3B8A /* HeaderPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeaderPageView.m; path = Classes/HeaderPageView.m; sourceTree = SOURCE_ROOT; };
 		34644CE3176F9235003DFAE1 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabBarViewController.h; path = Classes/TabBarViewController.h; sourceTree = SOURCE_ROOT; };
 		34644CE4176F9236003DFAE1 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabBarViewController.m; path = Classes/TabBarViewController.m; sourceTree = SOURCE_ROOT; };
 		34644D3E17710499003DFAE1 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeaderView.h; path = Classes/HeaderView.h; sourceTree = SOURCE_ROOT; };
@@ -622,6 +625,8 @@
 				34644D46177107A1003DFAE1 /* HomeView.m */,
 				34644D3E17710499003DFAE1 /* HeaderView.h */,
 				34644D3F17710499003DFAE1 /* HeaderView.m */,
+				345892FE17712CAC00BE3B8A /* HeaderPageView.h */,
+				345892FF17712CAC00BE3B8A /* HeaderPageView.m */,
 				41FE1A0D176F8048002E022D /* HomeCell.h */,
 				41FE1A0E176F8048002E022D /* HomeCell.m */,
 			);
@@ -882,6 +887,7 @@
 				41C16A7B1770D4CB00717ADF /* RFFont.m in Sources */,
 				34644D4017710499003DFAE1 /* HeaderView.m in Sources */,
 				34644D47177107A2003DFAE1 /* HomeView.m in Sources */,
+				3458930017712CAC00BE3B8A /* HeaderPageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

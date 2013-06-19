@@ -7,13 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RFAPI.h"
 
 @protocol HeaderViewDataSource <NSObject>
+
+@required
+- (NSInteger)numberOfPlaylists;
+- (Playlist *)playlistForPageNumber:(NSInteger)pageNumber;
 
 @end
 
 @interface HeaderView : UIView
 
 @property (nonatomic, weak) id<HeaderViewDataSource>dataSource;
+
+- (void)reloadData;
 
 @end
