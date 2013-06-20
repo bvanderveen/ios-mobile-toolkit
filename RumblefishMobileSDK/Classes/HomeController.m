@@ -27,6 +27,7 @@
 #import "HomeView.h"
 #import "HeaderView.h"
 #import "RFAPI.h"
+#import "RFFont.h"
 #import "Sequence.h"
 #import "NSObject+AssociateProducer.h"
 
@@ -110,6 +111,5 @@
 {
     return _headerPlaylists.count;
 }
-
 
 @end

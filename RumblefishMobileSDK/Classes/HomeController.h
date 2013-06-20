@@ -22,7 +22,6 @@
  this file requires a written agreement with Rumblefish, Inc.
  */
 
-
 @interface HomeController : UIViewController
 
 @end

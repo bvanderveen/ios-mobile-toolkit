@@ -23,6 +23,7 @@
  */
 
 #import "HomeCell.h"
+#import "RFFont.h"
 
 #define kCellLabelPadding 11
 #define kTitleSubtitlePadding 4
@@ -43,6 +44,9 @@
         _imageSeparator = [[UIView alloc] init];
         _imageSeparator.backgroundColor = [UIColor blackColor];
         [self addSubview:_imageSeparator];
+    
+        self.textLabel.font = [RFFont fontWithSize:18];
+        self.detailTextLabel.font = [RFFont fontWithSize:14];
     }
     return self;
 }
