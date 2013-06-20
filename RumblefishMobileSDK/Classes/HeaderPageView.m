@@ -7,10 +7,16 @@
 //
 
 #import "HeaderPageView.h"
+#import "UIImage+RumblefishSDKResources.h"
 
 @interface HeaderPageView ()
 
-@property (nonatomic, copy) Playlist *playlist;
+@property (nonatomic, strong) Playlist *playlist;
+
+@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIView *contentBox;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *subtitleLabel;
 
 @end
 
@@ -22,76 +28,67 @@
     self = [super initWithFrame:CGRectZero];
     if (self) {
         _playlist = playlist;
+        
+        NSLog(@"Creating View for playlist: %@", _playlist.title);
+        
+        //Create image views for each page
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        _imageView.contentMode = UIViewContentModeScaleAspectFill;
+        _imageView.backgroundColor = [UIColor blackColor];
+        _imageView.image = [UIImage imageInResourceBundleNamed:@"moodmap@2x.png"];
+        [self addSubview:_imageView];
+                
+        //Create content box for words
+        _contentBox = [[UIView alloc] initWithFrame:CGRectZero];
+        _contentBox.backgroundColor = [UIColor colorWithWhite:0 alpha:0.33];
+        [_imageView addSubview:_contentBox];
+        
+        //Title
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _titleLabel.adjustsFontSizeToFitWidth = YES;
+        _titleLabel.textColor = [UIColor whiteColor];
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.font = [UIFont systemFontOfSize:34];
+        _titleLabel.backgroundColor = [UIColor clearColor];
+        _titleLabel.shadowColor = [UIColor blackColor];
+        _titleLabel.shadowOffset = CGSizeMake(0, 1);
+        _titleLabel.text = playlist.title;
+        [_contentBox addSubview:_titleLabel];
+        
+        //Subtitle
+        _subtitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _subtitleLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1];
+        _subtitleLabel.textAlignment = NSTextAlignmentCenter;
+        _subtitleLabel.font = [UIFont systemFontOfSize:18];
+        _subtitleLabel.adjustsFontSizeToFitWidth = YES;
+        _subtitleLabel.backgroundColor = [UIColor clearColor];
+        _subtitleLabel.shadowColor = [UIColor blackColor];
+        _subtitleLabel.shadowOffset = CGSizeMake(0, 1);
+        _subtitleLabel.text = playlist.editorial;
+        [_contentBox addSubview:_subtitleLabel];
     }
     return self;
 }
 
 - (void)layoutSubviews
 {
-//    CGRect frame;
-//    frame.origin.x = self.scrollView.frame.size.width * i;
-//    frame.origin.y = 0;
-//    frame.size = self.scrollView.frame.size;
-//    
-//    //Create image views for each cell
-//    UIImageView *pageImageView = [[UIImageView alloc] initWithFrame:frame];
-//    pageImageView.contentMode = UIViewContentModeScaleAspectFill;
-//    pageImageView.backgroundColor = [UIColor blackColor];
-//#warning DEV
-//    pageImageView.image = [UIImage imageInResourceBundleNamed:@"moodmap@2x.png"];
-//#warning endDEV
-//    [self.scrollView addSubview:pageImageView];
-//    
-//    //Create content box for words
-//    UIView *contentBox = [[UIView alloc] initWithFrame:CGRectZero];
-//    contentBox.backgroundColor = [UIColor colorWithWhite:0 alpha:0.33];
-//    [pageImageView addSubview:contentBox];
-//    CGFloat boxHeight = 80;
-//    contentBox.frame = CGRectMake(0, 0, boxHeight * 3, boxHeight);
-//    contentBox.center = CGPointMake(pageImageView.bounds.size.width / 2,
-//                                    pageImageView.bounds.size.height - (boxHeight / 2));
-//    
-//    //Add labels inside content box
-//    int padding = 2;
-//    
-//    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-//    titleLabel.adjustsFontSizeToFitWidth = YES;
-//    titleLabel.textColor = [UIColor whiteColor];
-//    titleLabel.textAlignment = NSTextAlignmentCenter;
-//    titleLabel.font = [UIFont systemFontOfSize:34];
-//    titleLabel.backgroundColor = [UIColor clearColor];
-//    titleLabel.text = item[@"Title"];
-//    titleLabel.shadowColor = [UIColor blackColor];
-//    titleLabel.shadowOffset = CGSizeMake(0, 1);
-//    [contentBox addSubview:titleLabel];
-//    titleLabel.frame = CGRectMake(padding,
-//                                  padding,
-//                                  contentBox.bounds.size.width - (padding * 2),
-//                                  titleLabel.font.lineHeight);
-//    
-//    UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-//    subtitleLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1];
-//    subtitleLabel.textAlignment = NSTextAlignmentCenter;
-//    subtitleLabel.font = [UIFont systemFontOfSize:18];
-//    subtitleLabel.adjustsFontSizeToFitWidth = YES;
-//    subtitleLabel.backgroundColor = [UIColor clearColor];
-//    subtitleLabel.text = item[@"Subtitle"];
-//    subtitleLabel.shadowColor = [UIColor blackColor];
-//    subtitleLabel.shadowOffset = CGSizeMake(0, 1);
-//    [contentBox addSubview:subtitleLabel];
-//    subtitleLabel.frame = CGRectMake(padding,
-//                                     titleLabel.bounds.size.height + titleLabel.frame.origin.y,
-//                                     contentBox.bounds.size.width - (padding * 2),
-//                                     subtitleLabel.font.lineHeight);
+    _imageView.frame = self.bounds;
+    
+    CGFloat boxHeight = 80;
+    _contentBox.frame = CGRectMake(0, 0, boxHeight * 3, boxHeight);
+    _contentBox.center = CGPointMake(_imageView.bounds.size.width / 2,
+                                     _imageView.bounds.size.height - (boxHeight / 2));
+    
+    int padding = 2;
+    _titleLabel.frame = CGRectMake(padding,
+                                   padding,
+                                   _contentBox.bounds.size.width - (padding * 2),
+                                   _titleLabel.font.lineHeight);
+    
+    _subtitleLabel.frame = CGRectMake(padding,
+                                      _titleLabel.bounds.size.height + _titleLabel.frame.origin.y,
+                                      _contentBox.bounds.size.width - (padding * 2),
+                                      _subtitleLabel.font.lineHeight);
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

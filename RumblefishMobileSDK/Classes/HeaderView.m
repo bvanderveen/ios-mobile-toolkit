@@ -43,13 +43,11 @@
         [self addSubview:_scrollView];
         
         _pageControl = [[UIPageControl alloc] init];
-//        _pageControl.numberOfPages = items.count;
         _pageControl.currentPage = 0;
         [_pageControl addTarget:self action:@selector(changePage) forControlEvents:UIControlEventValueChanged];
         [self addSubview:_pageControl];
         
         self.backgroundColor = [UIColor blackColor];
-//        _items = items;
     }
     return self;
 }
@@ -82,69 +80,20 @@
     
     //Create a "page" for each item
     for (int i = 0; i < numberOfPlaylists; i++) {
-        
         Playlist *playlist = [_dataSource playlistForPageNumber:i];
         
         CGRect pageFrame;
         pageFrame.origin.x = self.scrollView.frame.size.width * i;
         pageFrame.origin.y = 0;
         pageFrame.size = self.scrollView.frame.size;
+        NSLog(@"Frame = %@", NSStringFromCGRect(pageFrame));
         
         HeaderPageView *headerPageView = [[HeaderPageView alloc] initWithPlaylist:playlist];
         headerPageView.frame = pageFrame;
+        [self.scrollView addSubview:headerPageView];
         
-        
-        //Create image views for each cell
-        UIImageView *pageImageView = [[UIImageView alloc] initWithFrame:pageFrame];
-        pageImageView.contentMode = UIViewContentModeScaleAspectFill;
-        pageImageView.backgroundColor = [UIColor blackColor];
-#warning DEV
-        pageImageView.image = [UIImage imageInResourceBundleNamed:@"moodmap@2x.png"];
-#warning endDEV
-        [self.scrollView addSubview:pageImageView];
-        
-        //Create content box for words
-        UIView *contentBox = [[UIView alloc] initWithFrame:CGRectZero];
-        contentBox.backgroundColor = [UIColor colorWithWhite:0 alpha:0.33];
-        [pageImageView addSubview:contentBox];
-        CGFloat boxHeight = 80;
-        contentBox.frame = CGRectMake(0, 0, boxHeight * 3, boxHeight);
-        contentBox.center = CGPointMake(pageImageView.bounds.size.width / 2,
-                                        pageImageView.bounds.size.height - (boxHeight / 2));
-        
-        //Add labels inside content box
-        int padding = 2;
-        
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        titleLabel.adjustsFontSizeToFitWidth = YES;
-        titleLabel.textColor = [UIColor whiteColor];
-        titleLabel.textAlignment = NSTextAlignmentCenter;
-        titleLabel.font = [UIFont systemFontOfSize:34];
-        titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.text = playlist.title;
-        titleLabel.shadowColor = [UIColor blackColor];
-        titleLabel.shadowOffset = CGSizeMake(0, 1);
-        [contentBox addSubview:titleLabel];
-        titleLabel.frame = CGRectMake(padding,
-                                      padding,
-                                      contentBox.bounds.size.width - (padding * 2),
-                                      titleLabel.font.lineHeight);
-        
-        UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        subtitleLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1];
-        subtitleLabel.textAlignment = NSTextAlignmentCenter;
-        subtitleLabel.font = [UIFont systemFontOfSize:18];
-        subtitleLabel.adjustsFontSizeToFitWidth = YES;
-        subtitleLabel.backgroundColor = [UIColor clearColor];
-        subtitleLabel.text = playlist.editorial;
-        subtitleLabel.shadowColor = [UIColor blackColor];
-        subtitleLabel.shadowOffset = CGSizeMake(0, 1);
-        [contentBox addSubview:subtitleLabel];
-        subtitleLabel.frame = CGRectMake(padding,
-                                         titleLabel.bounds.size.height + titleLabel.frame.origin.y,
-                                         contentBox.bounds.size.width - (padding * 2),
-                                         subtitleLabel.font.lineHeight);
-        
+        NSLog(@"Frame = %@", NSStringFromCGRect(headerPageView.frame));
+
     }
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * numberOfPlaylists,
@@ -154,6 +103,7 @@
 }
 
 #pragma mark UIScrollViewDelegate
+
 - (void)changePage
 {
     _pageControlUsed = YES;
@@ -162,11 +112,13 @@
     [_scrollView scrollRectToVisible:CGRectMake(x, 0, pageWidth, _scrollView.frame.size.height) animated:YES];
 }
 
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
     _pageControlUsed = NO;
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
     if (!_pageControlUsed)
         _pageControl.currentPage = lround(_scrollView.contentOffset.x /
                                           (_scrollView.contentSize.width / _pageControl.numberOfPages));
