@@ -27,6 +27,7 @@
 #import "HomeView.h"
 #import "HeaderView.h"
 #import "RFAPI.h"
+#import "RFColor.h"
 #import "RFFont.h"
 #import "Sequence.h"
 #import "NSObject+AssociateProducer.h"
@@ -97,7 +98,7 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    cell.backgroundColor = [UIColor darkGrayColor];
+    cell.backgroundColor = [RFColor darkGray];
 }
 
 #pragma mark HeaderViewDataSource

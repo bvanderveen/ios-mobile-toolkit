@@ -26,6 +26,7 @@
 #import "HeaderView.h"
 #import "UIImage+RumblefishSDKResources.h"
 #import "HeaderPageView.h"
+#import "RFColor.h"
 
 @interface HeaderView () <UIScrollViewDelegate>
 
@@ -46,7 +47,7 @@
     {
         //add lines to the bottom
         _blueLine = [[UIView alloc] init];
-        _blueLine.backgroundColor = [UIColor blueColor];
+        _blueLine.backgroundColor = [RFColor darkBlue];
         [self addSubview:_blueLine];
         
         _blackLine = [[UIView alloc] init];
