@@ -74,8 +74,8 @@
     
     Playlist *playlist = [_tablePlaylists objectAtIndex:indexPath.row];
     cell.textLabel.text = playlist.title;
-    cell.detailTextLabel.text = playlist.editorial;
-    cell.imageView.image = [UIImage imageInResourceBundleNamed:@"blank.jpg"];
+    cell.detailTextLabel.text = playlist.strippedEditorial;
+    cell.imageView.image = playlist.image;
     
     return cell;
 }

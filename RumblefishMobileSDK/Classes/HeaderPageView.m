@@ -52,7 +52,7 @@
         _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         _imageView.contentMode = UIViewContentModeScaleAspectFill;
         _imageView.backgroundColor = [UIColor blackColor];
-        _imageView.image = [UIImage imageInResourceBundleNamed:@"moodmap@2x.png"];
+        _imageView.image = playlist.image;
         [self addSubview:_imageView];
                 
         //Create content box for words
@@ -81,7 +81,7 @@
         _subtitleLabel.backgroundColor = [UIColor clearColor];
         _subtitleLabel.shadowColor = [UIColor blackColor];
         _subtitleLabel.shadowOffset = CGSizeMake(0, 1);
-        _subtitleLabel.text = playlist.editorial;
+        _subtitleLabel.text = playlist.strippedEditorial;
         [_contentBox addSubview:_subtitleLabel];
     }
     return self;
