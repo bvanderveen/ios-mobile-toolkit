@@ -25,6 +25,13 @@
 #import <UIKit/UIKit.h>
 #import "RFAPI.h"
 
+@protocol HeaderViewDelegate <NSObject>
+
+@required
+- (void)headerViewTappedWithPlaylist:(Playlist *)playlist;
+
+@end
+
 @protocol HeaderViewDataSource <NSObject>
 
 @required

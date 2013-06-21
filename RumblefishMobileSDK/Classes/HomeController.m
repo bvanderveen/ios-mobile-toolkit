@@ -31,8 +31,7 @@
 #import "RFFont.h"
 #import "Sequence.h"
 #import "NSObject+AssociateProducer.h"
-
-#import "UIImage+RumblefishSDKResources.h"
+#import "AlbumVC.h"
 
 #define kHeaderViewItemOffset 3
 
@@ -102,6 +101,18 @@
     cell.backgroundColor = [RFColor darkGray];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Playlist *playlist = [_tablePlaylists objectAtIndex:indexPath.row];
+    
+	AlbumVC *albumController = [[AlbumVC alloc] initWithPlaylist:playlist];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:albumController];
+    navigationController.navigationBar.tintColor = BAR_TINT_COLOR;
+    
+    [albumController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+    [self presentViewController:navigationController animated:YES completion:nil];
+}
+
 #pragma mark HeaderViewDataSource
 
 - (Playlist *)playlistForPageNumber:(NSInteger)pageNumber
@@ -112,6 +123,18 @@
 - (NSInteger)numberOfPlaylists
 {
     return _headerPlaylists.count;
+}
+
+#pragma mark HeaderViewDelegate
+
+- (void)headerViewTappedWithPlaylist:(Playlist *)playlist
+{
+	AlbumVC *albumController = [[AlbumVC alloc] initWithPlaylist:playlist];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:albumController];
+    navigationController.navigationBar.tintColor = BAR_TINT_COLOR;
+    
+    [albumController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 @end
