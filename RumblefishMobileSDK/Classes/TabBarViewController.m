@@ -73,26 +73,32 @@ typedef enum RFTabView {
 {
     UIViewController *viewController;
     NSString *title;
+    UIImage *tabBarImage;
     switch (tabView) {
         case RFTabViewHome:
             viewController = [[HomeController alloc] init];
             title = @"Home";
+            tabBarImage = [UIImage imageInResourceBundleNamed:@"homeIcon.png"];
             break;
         case RFTabViewMood:
             viewController = [[MoodMapVC alloc] init];
             title = @"Mood";
+            tabBarImage = [UIImage imageInResourceBundleNamed:@"moodIcon.png"];
             break;
         case RFTabViewOccasion:
             viewController = [[OccasionVC alloc] init];
             title = @"Occasion";
+            tabBarImage = [UIImage imageInResourceBundleNamed:@"occasionIcon.png"];
             break;
         case RFTabViewHot:
             viewController = [[CoverFlowVC alloc] init];
             title = @"Hot";
+            tabBarImage = [UIImage imageInResourceBundleNamed:@"fireIcon.png"];
             break;
         case RFTabViewSaved:
             viewController = [[PlaylistVC alloc] init];
             title = @"Saved";
+            tabBarImage = [UIImage imageInResourceBundleNamed:@"savedIcon.png"];
         default:
             break;
     }
@@ -105,6 +111,7 @@ typedef enum RFTabView {
                                                                     action:@selector(cancelModalView)];
     viewController.navigationItem.leftBarButtonItem = cancelButton;
     navController.tabBarItem.title = title;
+    navController.tabBarItem.image = tabBarImage;
     
     UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageInResourceBundleNamed:@"friendlymusic_logo.png"]];
     viewController.navigationItem.titleView = titleView;
