@@ -109,6 +109,8 @@
         
         HeaderPageView *headerPageView = [[HeaderPageView alloc] initWithPlaylist:playlist];
         headerPageView.frame = pageFrame;
+        headerPageView.displayAlbumButton.tag = i;
+        [headerPageView.displayAlbumButton addTarget:self action:@selector(displayAlbumButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.scrollView addSubview:headerPageView];
         
         NSLog(@"Frame = %@", NSStringFromCGRect(headerPageView.frame));
@@ -122,6 +124,11 @@
 }
 
 #pragma mark UIScrollViewDelegate
+
+- (void)displayAlbumButtonPressed:(UIButton *)button
+{
+    [_delegate headerViewTappedWithIndex:button.tag];
+}
 
 - (void)changePage
 {

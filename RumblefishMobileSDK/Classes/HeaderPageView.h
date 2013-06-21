@@ -28,6 +28,8 @@
 
 @interface HeaderPageView : UIView
 
+@property (nonatomic, strong) UIButton *displayAlbumButton;
+
 - (id)initWithPlaylist:(Playlist *)playlist;
 
 @end

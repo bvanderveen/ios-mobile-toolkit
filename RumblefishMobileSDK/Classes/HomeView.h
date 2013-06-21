@@ -31,7 +31,7 @@
 @property (nonatomic, strong) HeaderView *headerView;
 @property (nonatomic, strong) UITableView *tableView;
 
-- (id)initWithDataSource:(id)viewController;
+- (id)initWithViewController:(id)viewController;
 - (void)hideLoadingView;
 
 @end

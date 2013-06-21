@@ -25,13 +25,6 @@
 #import <UIKit/UIKit.h>
 #import "RFAPI.h"
 
-@protocol HeaderViewDelegate <NSObject>
-
-@required
-- (void)headerViewTappedWithPlaylist:(Playlist *)playlist;
-
-@end
-
 @protocol HeaderViewDataSource <NSObject>
 
 @required
@@ -40,9 +33,19 @@
 
 @end
 
+
+@protocol HeaderViewDelegate <NSObject>
+
+@required
+- (void)headerViewTappedWithIndex:(NSInteger)index;
+
+@end
+
+
 @interface HeaderView : UIView
 
 @property (nonatomic, weak) id<HeaderViewDataSource>dataSource;
+@property (nonatomic, weak) id<HeaderViewDelegate>delegate;
 
 - (void)reloadData;
 

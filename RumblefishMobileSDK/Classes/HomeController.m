@@ -50,7 +50,7 @@
 
 - (void)loadView
 {
-    self.view = [[HomeView alloc] initWithDataSource:self];
+    self.view = [[HomeView alloc] initWithViewController:self];
     self.view.headerView.dataSource = self;
     
     Producer getPlaylists = [[RFAPI singleton] getHome];
@@ -127,12 +127,11 @@
 
 #pragma mark HeaderViewDelegate
 
-- (void)headerViewTappedWithPlaylist:(Playlist *)playlist
+- (void)headerViewTappedWithIndex:(NSInteger)index
 {
-	AlbumVC *albumController = [[AlbumVC alloc] initWithPlaylist:playlist];
+	AlbumVC *albumController = [[AlbumVC alloc] initWithPlaylist:_headerPlaylists[index]];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:albumController];
     navigationController.navigationBar.tintColor = BAR_TINT_COLOR;
-    
     [albumController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
     [self presentViewController:navigationController animated:YES completion:nil];
 }

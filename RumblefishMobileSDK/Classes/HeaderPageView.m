@@ -83,6 +83,9 @@
         _subtitleLabel.shadowOffset = CGSizeMake(0, 1);
         _subtitleLabel.text = playlist.strippedEditorial;
         [_contentBox addSubview:_subtitleLabel];
+        
+        _displayAlbumButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self addSubview:_displayAlbumButton];
     }
     return self;
 }
@@ -106,6 +109,8 @@
                                       _titleLabel.bounds.size.height + _titleLabel.frame.origin.y,
                                       _contentBox.bounds.size.width - (padding * 2),
                                       _subtitleLabel.font.lineHeight);
+    
+    _displayAlbumButton.frame = self.bounds;
 }
 
 @end

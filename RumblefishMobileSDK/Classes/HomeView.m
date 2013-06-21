@@ -34,12 +34,14 @@
 @end
 @implementation HomeView
 
-- (id)initWithDataSource:(id)viewController
+- (id)initWithViewController:(id)viewController
 {
     self = [super initWithFrame:CGRectZero];
     if (self) {
         //Create header view
         _headerView = [[HeaderView alloc] initWithFrame:CGRectZero];
+        _headerView.dataSource = viewController;
+        _headerView.delegate = viewController;
         [self addSubview:_headerView];
         
         //Create TableView
