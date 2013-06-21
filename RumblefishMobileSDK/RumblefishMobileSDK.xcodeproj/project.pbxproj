@@ -21,7 +21,8 @@
 		34B61BF91773D20300D7E903 /* occasionIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 34B61BF01773D20300D7E903 /* occasionIcon.png */; };
 		34B61BFA1773D20300D7E903 /* occasionIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34B61BF11773D20300D7E903 /* occasionIcon@2x.png */; };
 		34B61BFB1773D20300D7E903 /* fireIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34B61BF21773D20300D7E903 /* fireIcon@2x.png */; };
-		34B61BFC1773D20300D7E903 /* moodIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34B61BF31773D20300D7E903 /* moodIcon@2x.png */; };
+		34B61C001773D3EA00D7E903 /* homeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34B61BFF1773D3EA00D7E903 /* homeIcon@2x.png */; };
+		34B61C021773D40200D7E903 /* moodIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34B61C011773D40200D7E903 /* moodIcon@2x.png */; };
 		34E487161772C135004D244F /* RFColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E487151772C135004D244F /* RFColor.m */; };
 		411FCEF11639F107000B1841 /* RumblefishMobileSDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 411FCEEB1639F0A8000B1841 /* RumblefishMobileSDK.h */; };
 		411FCF3C163AD205000B1841 /* occasion_image_cache.plist in Resources */ = {isa = PBXBuildFile; fileRef = 411FCF3B163AD1D0000B1841 /* occasion_image_cache.plist */; };
@@ -240,7 +241,8 @@
 		34B61BF01773D20300D7E903 /* occasionIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = occasionIcon.png; path = RumblefishMobileSDKResources/Images/occasionIcon.png; sourceTree = SOURCE_ROOT; };
 		34B61BF11773D20300D7E903 /* occasionIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "occasionIcon@2x.png"; path = "RumblefishMobileSDKResources/Images/occasionIcon@2x.png"; sourceTree = SOURCE_ROOT; };
 		34B61BF21773D20300D7E903 /* fireIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fireIcon@2x.png"; path = "RumblefishMobileSDKResources/Images/fireIcon@2x.png"; sourceTree = SOURCE_ROOT; };
-		34B61BF31773D20300D7E903 /* moodIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "moodIcon@2x.png"; path = "RumblefishMobileSDKResources/Images/moodIcon@2x.png"; sourceTree = SOURCE_ROOT; };
+		34B61BFF1773D3EA00D7E903 /* homeIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "homeIcon@2x.png"; path = "RumblefishMobileSDKResources/Images/homeIcon@2x.png"; sourceTree = SOURCE_ROOT; };
+		34B61C011773D40200D7E903 /* moodIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "moodIcon@2x.png"; path = "RumblefishMobileSDKResources/Images/moodIcon@2x.png"; sourceTree = SOURCE_ROOT; };
 		34E487141772C135004D244F /* RFColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFColor.h; path = Classes/RFColor.h; sourceTree = SOURCE_ROOT; };
 		34E487151772C135004D244F /* RFColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFColor.m; path = Classes/RFColor.m; sourceTree = SOURCE_ROOT; };
 		411FCED21639E922000B1841 /* RumblefishMobileSDKResources-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "RumblefishMobileSDKResources-Info.plist"; path = "RumblefishMobileSDKResources/RumblefishMobileSDKResources-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -408,15 +410,16 @@
 		34B61BB61773D0C900D7E903 /* Tab Bar Icons */ = {
 			isa = PBXGroup;
 			children = (
-				34B61BEB1773D20300D7E903 /* savedIcon@2x.png */,
-				34B61BEC1773D20300D7E903 /* savedIcon.png */,
 				34B61BED1773D20300D7E903 /* homeIcon.png */,
+				34B61BFF1773D3EA00D7E903 /* homeIcon@2x.png */,
 				34B61BEE1773D20300D7E903 /* moodIcon.png */,
+				34B61C011773D40200D7E903 /* moodIcon@2x.png */,
+				34B61BEC1773D20300D7E903 /* savedIcon.png */,
+				34B61BEB1773D20300D7E903 /* savedIcon@2x.png */,
 				34B61BEF1773D20300D7E903 /* fireIcon.png */,
+				34B61BF21773D20300D7E903 /* fireIcon@2x.png */,
 				34B61BF01773D20300D7E903 /* occasionIcon.png */,
 				34B61BF11773D20300D7E903 /* occasionIcon@2x.png */,
-				34B61BF21773D20300D7E903 /* fireIcon@2x.png */,
-				34B61BF31773D20300D7E903 /* moodIcon@2x.png */,
 			);
 			name = "Tab Bar Icons";
 			path = ../../RumblefishMobileSDK;
@@ -906,7 +909,8 @@
 				34B61BF91773D20300D7E903 /* occasionIcon.png in Resources */,
 				34B61BFA1773D20300D7E903 /* occasionIcon@2x.png in Resources */,
 				34B61BFB1773D20300D7E903 /* fireIcon@2x.png in Resources */,
-				34B61BFC1773D20300D7E903 /* moodIcon@2x.png in Resources */,
+				34B61C001773D3EA00D7E903 /* homeIcon@2x.png in Resources */,
+				34B61C021773D40200D7E903 /* moodIcon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

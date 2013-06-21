@@ -25,6 +25,13 @@
 
 #import "HomeView.h"
 
+@interface HomeView ()
+
+@property (nonatomic, strong) UIView *loadingView;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic) BOOL viewDoneLoading;
+
+@end
 @implementation HomeView
 
 - (id)initWithDataSource:(id)viewController
@@ -43,6 +50,16 @@
         _tableView.backgroundColor = [UIColor clearColor];
         [self addSubview:_tableView];
         
+        //Loading Views
+        _viewDoneLoading = NO;
+        _loadingView = [[UIView alloc] init];
+        _loadingView.backgroundColor = [UIColor blackColor];
+        [self addSubview:_loadingView];
+        
+        _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        [_activityIndicator startAnimating];
+        [_loadingView addSubview:_activityIndicator];
+        
         self.backgroundColor = [UIColor blackColor];
     }
     return self;
@@ -55,6 +72,25 @@
     
     CGRect tableViewFrame = CGRectMake(0, headerFrame.origin.y + headerFrame.size.height, self.frame.size.width, self.frame.size.height - headerFrame.size.height);
     _tableView.frame = tableViewFrame;
+    
+    if (!_viewDoneLoading) {
+        _loadingView.frame = self.bounds;
+        _activityIndicator.center = _loadingView.center;
+    }
+}
+
+- (void)hideLoadingView
+{
+    _viewDoneLoading = YES;
+    
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         _loadingView.alpha = 0;
+                     }
+                     completion:^(BOOL finished) {
+                         [_activityIndicator stopAnimating];
+                         [_loadingView removeFromSuperview];
+                     }];
 }
 
 @end

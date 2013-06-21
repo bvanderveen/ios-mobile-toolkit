@@ -32,5 +32,6 @@
 @property (nonatomic, strong) UITableView *tableView;
 
 - (id)initWithDataSource:(id)viewController;
+- (void)hideLoadingView;
 
 @end

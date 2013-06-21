@@ -60,6 +60,7 @@
         _tablePlaylists = (NSArray *)[results skip:kHeaderViewItemOffset];
         [self.view.tableView reloadData];
         [self.view.headerView reloadData];
+        [self.view hideLoadingView];
     }];
 }
 
