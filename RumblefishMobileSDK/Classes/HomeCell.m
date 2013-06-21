@@ -25,14 +25,46 @@
 #import "HomeCell.h"
 #import "RFFont.h"
 #import "RFColor.h"
+#import "DisclosureArrow.h"
 
 #define kCellLabelPadding 11
 #define kTitleSubtitlePadding 4
 #define kDisclosurePadding 30
 
+@interface ImageSeperator : UIControl
+
+@end
+
+@implementation ImageSeperator
+
+- (void)drawRect:(CGRect)rect
+{    
+    CGContextRef ctxt = UIGraphicsGetCurrentContext();
+    CGContextMoveToPoint(ctxt, 0, 0);
+    CGContextAddLineToPoint(ctxt, 0, CGRectGetHeight(self.bounds));
+    CGContextSetLineCap(ctxt, kCGLineCapSquare);
+    CGContextSetLineWidth(ctxt, 1);
+    CGContextSetStrokeColorWithColor(ctxt,
+                                     self.highlighted ?
+                                     [UIColor whiteColor].CGColor :
+                                     [UIColor blackColor].CGColor);
+    CGContextStrokePath(ctxt);
+}
+
+- (void)setHighlighted:(BOOL)highlighted
+{
+	[super setHighlighted:highlighted];
+	[self setNeedsDisplay];
+}
+
+@end
+
+#pragma mark -
+
 @interface HomeCell ()
 
-@property (nonatomic, strong) UIView *imageSeparator;
+@property (nonatomic, strong) ImageSeperator *imageSeparator;
+@property (nonatomic, strong) DisclosureArrow *arrow;
 
 @end
 
@@ -41,8 +73,10 @@
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier]) {
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        _imageSeparator = [[UIView alloc] init];
+        _arrow = [[DisclosureArrow alloc] initWithFrame:CGRectMake(0, 0, 11, 15)];
+        self.accessoryView = _arrow;
+        
+        _imageSeparator = [[ImageSeperator alloc] initWithFrame:CGRectZero];
         _imageSeparator.backgroundColor = [UIColor blackColor];
         [self addSubview:_imageSeparator];
     
@@ -60,9 +94,7 @@
    [super layoutSubviews];
     
     //add 1px border to image
-    _imageSeparator.frame = CGRectMake(self.imageView.bounds.size.width + 1, 0, 1, self.bounds.size.height);
-
-    //Custom layout
+    _imageSeparator.frame = CGRectMake(self.imageView.bounds.size.width, 0, 1, self.bounds.size.height);
 }
 
 @end

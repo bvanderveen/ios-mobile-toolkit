@@ -12,6 +12,7 @@
 		34644CEA176F9651003DFAE1 /* TabBarViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 34644CE3176F9235003DFAE1 /* TabBarViewController.h */; };
 		34644D4017710499003DFAE1 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34644D3F17710499003DFAE1 /* HeaderView.m */; };
 		34644D47177107A2003DFAE1 /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34644D46177107A1003DFAE1 /* HomeView.m */; };
+		34B61BAE1772D59A00D7E903 /* DisclosureArrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B61BAD1772D59A00D7E903 /* DisclosureArrow.m */; };
 		34E487161772C135004D244F /* RFColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E487151772C135004D244F /* RFColor.m */; };
 		411FCEF11639F107000B1841 /* RumblefishMobileSDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 411FCEEB1639F0A8000B1841 /* RumblefishMobileSDK.h */; };
 		411FCF3C163AD205000B1841 /* occasion_image_cache.plist in Resources */ = {isa = PBXBuildFile; fileRef = 411FCF3B163AD1D0000B1841 /* occasion_image_cache.plist */; };
@@ -220,6 +221,8 @@
 		34644D3F17710499003DFAE1 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeaderView.m; path = Classes/HeaderView.m; sourceTree = SOURCE_ROOT; };
 		34644D45177107A1003DFAE1 /* HomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeView.h; path = Classes/HomeView.h; sourceTree = SOURCE_ROOT; };
 		34644D46177107A1003DFAE1 /* HomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeView.m; path = Classes/HomeView.m; sourceTree = SOURCE_ROOT; };
+		34B61BAC1772D59A00D7E903 /* DisclosureArrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DisclosureArrow.h; path = Classes/DisclosureArrow.h; sourceTree = SOURCE_ROOT; };
+		34B61BAD1772D59A00D7E903 /* DisclosureArrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DisclosureArrow.m; path = Classes/DisclosureArrow.m; sourceTree = SOURCE_ROOT; };
 		34E487141772C135004D244F /* RFColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFColor.h; path = Classes/RFColor.h; sourceTree = SOURCE_ROOT; };
 		34E487151772C135004D244F /* RFColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFColor.m; path = Classes/RFColor.m; sourceTree = SOURCE_ROOT; };
 		411FCED21639E922000B1841 /* RumblefishMobileSDKResources-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "RumblefishMobileSDKResources-Info.plist"; path = "RumblefishMobileSDKResources/RumblefishMobileSDKResources-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -634,6 +637,8 @@
 				345892FF17712CAC00BE3B8A /* HeaderPageView.m */,
 				41FE1A0D176F8048002E022D /* HomeCell.h */,
 				41FE1A0E176F8048002E022D /* HomeCell.m */,
+				34B61BAC1772D59A00D7E903 /* DisclosureArrow.h */,
+				34B61BAD1772D59A00D7E903 /* DisclosureArrow.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -894,6 +899,7 @@
 				34644D47177107A2003DFAE1 /* HomeView.m in Sources */,
 				3458930017712CAC00BE3B8A /* HeaderPageView.m in Sources */,
 				34E487161772C135004D244F /* RFColor.m in Sources */,
+				34B61BAE1772D59A00D7E903 /* DisclosureArrow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

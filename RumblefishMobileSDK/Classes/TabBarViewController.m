@@ -26,6 +26,7 @@
 #import "MoodMapVC.h"
 #import "OccasionVC.h"
 #import "CoverFlowVC.h"
+#import "PlaylistVC.h"
 #import "HomeController.h"
 #import "UIImage+RumblefishSDKResources.h"
 
@@ -33,7 +34,8 @@ typedef enum RFTabView {
     RFTabViewHome = 0,
     RFTabViewMood,
     RFTabViewOccasion,
-    RFTabViewHot
+    RFTabViewHot,
+    RFTabViewSaved
 } RFTabView;
 
 @interface TabBarViewController ()
@@ -43,15 +45,6 @@ typedef enum RFTabView {
 @end
 
 @implementation TabBarViewController
-
-//- (id)init
-//{
-//    if (self = [super init])
-//    {
-//        self.view.backgroundColor = [UIColor redColor];
-//    }
-//    return self;
-//}
 
 - (void)loadView
 {
@@ -66,10 +59,13 @@ typedef enum RFTabView {
     
 
     //Set VCs
-    [_tabBarController setViewControllers:@[[self cancelableNavControllerWithTabView:RFTabViewHome],
+    [_tabBarController setViewControllers:@[
+                                            [self cancelableNavControllerWithTabView:RFTabViewHome],
                                             [self cancelableNavControllerWithTabView:RFTabViewMood],
                                             [self cancelableNavControllerWithTabView:RFTabViewOccasion],
-                                            [self cancelableNavControllerWithTabView:RFTabViewHot]]];
+                                            [self cancelableNavControllerWithTabView:RFTabViewHot],
+                                            [self cancelableNavControllerWithTabView:RFTabViewSaved]
+                                            ]];
     [self.view addSubview:_tabBarController.view];
 }
 
@@ -94,6 +90,9 @@ typedef enum RFTabView {
             viewController = [[CoverFlowVC alloc] init];
             title = @"Hot";
             break;
+        case RFTabViewSaved:
+            viewController = [[PlaylistVC alloc] init];
+            title = @"Saved";
         default:
             break;
     }
