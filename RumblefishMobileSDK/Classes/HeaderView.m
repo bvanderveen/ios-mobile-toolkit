@@ -81,6 +81,7 @@
     //Set up scroll view
     _scrollView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height - 2);
     
+    //Set up page control
     [_pageControl sizeToFit];
     _pageControl.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height - 10);
 }
