@@ -35,7 +35,10 @@
 @property (nonatomic, strong) UIView *blueLine;
 @property (nonatomic, strong) UIView *blackLine;
 
+@property (nonatomic, strong) NSTimer *autoscrollTimer;
+
 @property (nonatomic) BOOL pageControlUsed;
+@property (nonatomic) NSInteger currentPage;
 
 @end
 
@@ -45,6 +48,9 @@
 {
     if (self = [super initWithFrame:CGRectZero])
     {
+        
+        _currentPage = 0;
+        
         //add lines to the bottom
         _blueLine = [[UIView alloc] init];
         _blueLine.backgroundColor = [RFColor darkBlue];
@@ -56,7 +62,7 @@
         
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
         _scrollView.pagingEnabled = YES;
-        _scrollView.backgroundColor = [UIColor purpleColor];
+        _scrollView.backgroundColor = [UIColor blackColor];
         _scrollView.delegate = self;
         [self addSubview:_scrollView];
         
@@ -91,6 +97,7 @@
     int numberOfPlaylists = [_dataSource numberOfPlaylists];
     _pageControl.numberOfPages = numberOfPlaylists;
     [self populateScrollView];
+    [self startAutoscrollTimer];
 }
 
 - (void)populateScrollView
@@ -123,7 +130,43 @@
     _pageControl.numberOfPages = numberOfPlaylists;
 }
 
+- (void)startAutoscrollTimer
+{
+    _autoscrollTimer = [NSTimer scheduledTimerWithTimeInterval:4
+                                                        target:self
+                                                      selector:@selector(moveToNextPage)
+                                                      userInfo:nil
+                                                       repeats:YES];
+}
+
+- (void)moveToNextPage
+{
+    _currentPage ++;
+    if (_currentPage > _pageControl.numberOfPages - 1)
+        _currentPage = 0;
+    
+    //create rect
+    CGRect pageFrame;
+    pageFrame.origin.x = self.scrollView.frame.size.width * _currentPage;
+    pageFrame.origin.y = 0;
+    pageFrame.size = self.scrollView.frame.size;
+    
+    [_scrollView scrollRectToVisible:pageFrame animated:YES];
+    _pageControl.currentPage = _currentPage;
+}
+
 #pragma mark UIScrollViewDelegate
+
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [_autoscrollTimer invalidate];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [self startAutoscrollTimer];
+}
 
 - (void)displayAlbumButtonPressed:(UIButton *)button
 {
@@ -145,9 +188,11 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    if (!_pageControlUsed)
+    if (!_pageControlUsed) {
         _pageControl.currentPage = lround(_scrollView.contentOffset.x /
                                           (_scrollView.contentSize.width / _pageControl.numberOfPages));
+        _currentPage = _pageControl.currentPage;
+    }
 }
 
 @end

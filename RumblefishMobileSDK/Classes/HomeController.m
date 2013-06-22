@@ -63,6 +63,11 @@
     }];
 }
 
+- (void)startPagingThroughHeaderView
+{
+    
+}
+
 #pragma mark UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
