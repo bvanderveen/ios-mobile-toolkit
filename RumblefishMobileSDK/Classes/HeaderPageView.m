@@ -25,6 +25,7 @@
 
 #import "HeaderPageView.h"
 #import "UIImage+RumblefishSDKResources.h"
+#import "RFFont.h"
 
 @interface HeaderPageView ()
 
@@ -65,7 +66,7 @@
         _titleLabel.adjustsFontSizeToFitWidth = YES;
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.font = [UIFont systemFontOfSize:34];
+        _titleLabel.font = [RFFont fontWithSize:34];
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.shadowColor = [UIColor blackColor];
         _titleLabel.shadowOffset = CGSizeMake(0, 1);
@@ -76,7 +77,7 @@
         _subtitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _subtitleLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1];
         _subtitleLabel.textAlignment = NSTextAlignmentCenter;
-        _subtitleLabel.font = [UIFont systemFontOfSize:18];
+        _subtitleLabel.font = [RFFont fontWithSize:18];
         _subtitleLabel.adjustsFontSizeToFitWidth = YES;
         _subtitleLabel.backgroundColor = [UIColor clearColor];
         _subtitleLabel.shadowColor = [UIColor blackColor];
