@@ -27,14 +27,14 @@
 #import "LocalPlaylist.h"
 #import "NSObject+AssociateProducer.h"
 #import "UIImage+RumblefishSDKResources.h"
-#import "PreviewView.h"
+#import "PreviewController.h"
 #import "SongCell.h"
 
 @interface AlbumVC ()
 
 @property (nonatomic, strong) Playlist *playlist;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
-@property (nonatomic, strong) PreviewView *previewView;
+@property (nonatomic, strong) PreviewController *previewController;
 
 @end
 
@@ -133,11 +133,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Media *currentMedia = [playlist.media objectAtIndex:indexPath.row];
-    PreviewView *p = [[PreviewView alloc] initWithMovieURL:[RFAPI singleton].videoURL musicURL:currentMedia.previewURL];
-    p.frame = CGRectMake(0, 0, 320, 240);
+    _previewController = [[PreviewController alloc] initWithMovieURL:[RFAPI singleton].videoURL musicURL:currentMedia.previewURL];
     
-    [self.view addSubview:p];
-    [p startPlayback];
+    [_previewController presentInView:self.view withCompletion:^{
+        _previewController = nil;
+    }];
 }
 
 @end

@@ -40,7 +40,8 @@
     button.enabled = TRUE;
     
     // PLEASE SPECIFY A VALID public key and password. Contact developers@rumblefish.com for more info.
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"maiden_trashplane_1280x720" withExtension:@"mp4"];
+    // NSURL *url = [[NSBundle mainBundle] URLForResource:@"maiden_trashplane_1280x720" withExtension:@"mp4"];
+    NSURL *url = [NSURL URLWithString:@"http://vimeo.com/48931301/download?t=1371599214&v=116073593&s=1d4de25bc703d2c8eec8dbcd166d5e3c"];
     [RFAPI rumbleWithEnvironment:RFAPIEnvSandbox
                        publicKey:@"sandbox"
                         password:@"sandbox"

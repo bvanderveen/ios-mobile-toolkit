@@ -27,7 +27,6 @@
 		413FD95F1639C2EA002A9183 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 413FD95E1639C2EA002A9183 /* MapKit.framework */; };
 		41C16A7D1770D54800717ADF /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C16A7C1770D54800717ADF /* CoreText.framework */; };
 		41FE1A17176F9263002E022D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41FE1A16176F9263002E022D /* MediaPlayer.framework */; };
-		41FE1A23176FBEEF002E022D /* maiden_trashplane_1280x720.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 41FE1A22176FBEEF002E022D /* maiden_trashplane_1280x720.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,7 +78,6 @@
 		413FD95E1639C2EA002A9183 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		41C16A7C1770D54800717ADF /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		41FE1A16176F9263002E022D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		41FE1A22176FBEEF002E022D /* maiden_trashplane_1280x720.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = maiden_trashplane_1280x720.mp4; path = Resources/maiden_trashplane_1280x720.mp4; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,7 +161,6 @@
 		413FD93A1639BBD7002A9183 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				41FE1A22176FBEEF002E022D /* maiden_trashplane_1280x720.mp4 */,
 				413FD9311639BBD2002A9183 /* MainWindow.xib */,
 				413FD9321639BBD2002A9183 /* TestVC.xib */,
 				413FD92C1639BBD2002A9183 /* Default-568h@2x.png */,
@@ -265,7 +262,6 @@
 				413FD9391639BBD2002A9183 /* TestVC.xib in Resources */,
 				411FCECF1639E856000B1841 /* Icon.png in Resources */,
 				411FCED11639E85D000B1841 /* Icon@2x.png in Resources */,
-				41FE1A23176FBEEF002E022D /* maiden_trashplane_1280x720.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
