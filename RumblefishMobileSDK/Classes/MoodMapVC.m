@@ -129,6 +129,7 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES];
     [super viewWillAppear:animated];
     [self updateStatusBarForOrientation:self.interfaceOrientation];
     
