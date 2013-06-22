@@ -28,6 +28,10 @@
 #import "Sequence.h"
 #import "UIImage+Undeferred.h"
 
+#warning dev: for home screen testing
+#import "NSObject+AssociateProducer.h"
+
+
 @implementation Media
 
 @synthesize title, albumTitle, genre, isExplicit, ID, previewURL;
@@ -377,19 +381,30 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
         return makeRequest();
 }
 
+
 - (void)yieldHome:(ResultCallback)r {
     
-    NSMutableArray *playlists = [NSMutableArray array];
     
-    for (int i = 0; i < 20; i++) {
-        Playlist *playlist = [[Playlist alloc] init];
-        playlist.title = [NSString stringWithFormat:@"Title %i", i];
-        playlist.editorial = @"This is a subtitle";
-        [playlists addObject:playlist];
-    }
+#warning dev
+    __block id result;
+    Producer getPlaylists = [[RFAPI singleton] getPlaylistsWithOffset:0];
+    [self associateProducer:getPlaylists callback:^ (id results) {
+        result = [(NSArray *)results filter:^ BOOL (id p) { return ((Playlist *)p).imageURL != NULL; }];
+        r(result);
+    }];
     
-    id result = playlists;
-    r(result);
+    
+//    NSMutableArray *playlists = [NSMutableArray array];
+//    
+//    for (int i = 0; i < 20; i++) {
+//        Playlist *playlist = [[Playlist alloc] init];
+//        playlist.title = [NSString stringWithFormat:@"Title %i", i];
+//        playlist.editorial = @"<h3>This is a subtitle</h3>";
+//        [playlists addObject:playlist];
+//    }
+//    
+//    id result = playlists;
+//    r(result);
 }
 
 - (Producer)getHome

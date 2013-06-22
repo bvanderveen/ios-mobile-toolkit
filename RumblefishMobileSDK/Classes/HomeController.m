@@ -116,6 +116,8 @@
     
     [albumController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
     [self presentViewController:navigationController animated:YES completion:nil];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark HeaderViewDataSource
