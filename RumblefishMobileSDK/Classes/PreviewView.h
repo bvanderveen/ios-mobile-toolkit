@@ -1,9 +1,6 @@
 
 @interface PreviewView : UIView
 
-- (void)startPlayback;
-- (void)stopPlayback;
-
-- (id)initWithMovieURL:(NSURL *)movieURL musicURL:(NSURL *)musicURL;
+@property (nonatomic, strong) UIView *videoView;
 
 @end
