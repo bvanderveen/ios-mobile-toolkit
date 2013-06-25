@@ -42,10 +42,7 @@
     Playlist *playlist;
     int playlistID, selectedCellID;
 }
-
-@property (nonatomic, weak) TabBarViewController *tabBarVC;
-
+- (id)initWithTabBarVC:(TabBarViewController *)tabBarVC;
 - (IBAction)doneButtonPressed;
-- (IBAction)playlistButtonPressed;
 
 @end

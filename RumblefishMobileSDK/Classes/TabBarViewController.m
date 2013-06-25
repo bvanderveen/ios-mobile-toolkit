@@ -81,7 +81,7 @@ typedef enum RFTabView {
             tabBarImage = [UIImage imageInResourceBundleNamed:@"homeIcon.png"];
             break;
         case RFTabViewMood:
-            viewController = [[MoodMapVC alloc] init];
+            viewController = [[MoodMapVC alloc] initWithTabBarVC:self];
             title = @"Mood";
             tabBarImage = [UIImage imageInResourceBundleNamed:@"moodIcon.png"];
             break;

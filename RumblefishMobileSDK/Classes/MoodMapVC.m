@@ -30,6 +30,7 @@
 #import "UIImage+RumblefishSDKResources.h"
 #import "NSBundle+RumblefishMobileSDKResources.h"
 #import "SongCell.h"
+#import "TabBarViewController.h"
 
 @implementation MoodMapControllerView
 
@@ -60,6 +61,7 @@
 @property (nonatomic, strong) Playlist *playlist;
 @property (nonatomic, strong) MoodMapControllerView *controllerView;
 @property (nonatomic, strong) UIColor *selectedColor;
+@property (nonatomic, weak) TabBarViewController *tabBarVC;
 
 @end
 
@@ -81,8 +83,11 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
                        0,  0,114,115,116,117, 84, 85, 86, 87,  0,  0,
                        0,  0,  0,118,119,120, 88, 89, 90,  0,  0,  0};
 
-- (id)init {
+
+- (id)initWithTabBarVC:(TabBarViewController *)tabBarVC
+{
     if (self = [super initWithNibName:@"MoodMapVC" bundle:[NSBundle rumblefishResourcesBundle]]) {
+        _tabBarVC = tabBarVC;
     }
     return self;
 }
@@ -151,7 +156,7 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
 }
 
 - (IBAction)doneButtonPressed {
-    [self.navigationController popViewControllerAnimated:YES];
+    [_tabBarVC cancelModalView];
 }
 
 - (IBAction)filterButtonPressed {

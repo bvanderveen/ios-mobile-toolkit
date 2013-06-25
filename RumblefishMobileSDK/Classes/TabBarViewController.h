@@ -24,4 +24,6 @@
 
 @interface TabBarViewController : UIViewController
 
+- (void)cancelModalView;
+
 @end
