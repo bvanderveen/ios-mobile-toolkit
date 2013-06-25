@@ -26,6 +26,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "RFAPI.h"
 
+@class TabBarViewController;
 
 @interface MoodMapControllerView : UIView
 
@@ -36,11 +37,13 @@
 
 @interface MoodMapVC : UIViewController<UITableViewDelegate, UITableViewDataSource, NSURLConnectionDelegate> {
     IBOutlet UIImageView *glow, *ring, *selector, *moodmap, *welcome;
-    IBOutlet UIButton *doneButton, *playlistButton, *filterButton;
+    IBOutlet UIButton *doneButton, *filterButton;
     IBOutlet UITableView *tabView;
     Playlist *playlist;
     int playlistID, selectedCellID;
 }
+
+@property (nonatomic, weak) TabBarViewController *tabBarVC;
 
 - (IBAction)doneButtonPressed;
 - (IBAction)playlistButtonPressed;

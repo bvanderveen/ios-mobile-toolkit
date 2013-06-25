@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
-		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2843</string>
-		<string key="IBDocument.AppKitVersion">1187.34</string>
-		<string key="IBDocument.HIToolboxVersion">625.00</string>
+		<int key="IBDocument.SystemTarget">1552</int>
+		<string key="IBDocument.SystemVersion">12E55</string>
+		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
+		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1929</string>
+			<string key="NS.object.0">2083</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -75,7 +75,6 @@
 						<string key="NSFrame">{{0, 320}, {320, 140}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xNTY4NjI3NDUxIDAuMTUyOTQxMTc2NSAwLjE0NTA5ODAzOTIAA</bytes>
@@ -155,30 +154,6 @@
 						<reference key="IBUIFontDescription" ref="468654554"/>
 						<reference key="IBUIFont" ref="28519131"/>
 					</object>
-					<object class="IBUIButton" id="369080214">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{212, 214}, {107, 104}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="755640345"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIHighlightedTitleColor" ref="695595800"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="787550724"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btn_playlist_OFF.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="468654554"/>
-						<reference key="IBUIFont" ref="28519131"/>
-					</object>
 					<object class="IBUIImageView" id="51375571">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
@@ -226,7 +201,7 @@
 						<string key="NSFrame">{{137, 139}, {45, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="369080214"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -326,14 +301,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">playlistButton</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="369080214"/>
-					</object>
-					<int key="connectionID">52</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">selector</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="499188235"/>
@@ -414,15 +381,6 @@
 					</object>
 					<int key="connectionID">44</int>
 				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">playlistButtonPressed</string>
-						<reference key="source" ref="369080214"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">43</int>
-				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -444,8 +402,6 @@
 							<reference ref="355565800"/>
 							<reference ref="310184967"/>
 							<reference ref="941322192"/>
-							<reference ref="369080214"/>
-							<reference ref="51375571"/>
 							<reference ref="189801743"/>
 							<reference ref="533366320"/>
 							<reference ref="499188235"/>
@@ -453,6 +409,7 @@
 							<reference ref="548370669"/>
 							<reference ref="407078280"/>
 							<reference ref="114262488"/>
+							<reference ref="51375571"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -485,11 +442,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">47</int>
 						<reference key="object" ref="51375571"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">42</int>
-						<reference key="object" ref="369080214"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -549,7 +501,6 @@
 					<string>40.IBPluginDependency</string>
 					<string>40.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 					<string>41.IBPluginDependency</string>
-					<string>42.IBPluginDependency</string>
 					<string>47.IBPluginDependency</string>
 					<string>48.IBPluginDependency</string>
 					<string>49.IBPluginDependency</string>
@@ -571,7 +522,6 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<real value="3"/>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -662,7 +612,6 @@
 							<string>filterButton</string>
 							<string>glow</string>
 							<string>moodmap</string>
-							<string>playlistButton</string>
 							<string>ring</string>
 							<string>selector</string>
 							<string>tabView</string>
@@ -674,7 +623,6 @@
 							<string>UIButton</string>
 							<string>UIImageView</string>
 							<string>UIImageView</string>
-							<string>UIButton</string>
 							<string>UIImageView</string>
 							<string>UIImageView</string>
 							<string>UITableView</string>
@@ -689,7 +637,6 @@
 							<string>filterButton</string>
 							<string>glow</string>
 							<string>moodmap</string>
-							<string>playlistButton</string>
 							<string>ring</string>
 							<string>selector</string>
 							<string>tabView</string>
@@ -712,10 +659,6 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">moodmap</string>
 								<string key="candidateClassName">UIImageView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">playlistButton</string>
-								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">ring</string>
@@ -757,7 +700,6 @@
 				<string>bg_surround.png</string>
 				<string>btn_done.png</string>
 				<string>btn_filters_OFF.png</string>
-				<string>btn_playlist_OFF.png</string>
 				<string>crosshairs.png</string>
 				<string>logo.png</string>
 				<string>moodmap.png</string>
@@ -772,7 +714,6 @@
 				<string>{320, 320}</string>
 				<string>{107, 104}</string>
 				<string>{107, 104}</string>
-				<string>{107, 104}</string>
 				<string>{242, 242}</string>
 				<string>{103, 29}</string>
 				<string>{242, 242}</string>
@@ -783,6 +724,6 @@
 				<string>{195, 56}</string>
 			</object>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">1929</string>
+		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>

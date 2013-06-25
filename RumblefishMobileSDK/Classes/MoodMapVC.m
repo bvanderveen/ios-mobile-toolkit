@@ -132,12 +132,6 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
     [self.navigationController setNavigationBarHidden:YES];
     [super viewWillAppear:animated];
     [self updateStatusBarForOrientation:self.interfaceOrientation];
-    
-    
-    NSString *imageName = [NSString stringWithFormat:@"btn_playlist_%@.png", [LocalPlaylist sharedPlaylist].count ? @"ON" : @"OFF"];
-    
-    [playlistButton setImage:[UIImage imageInResourceBundleNamed:imageName] forState:UIControlStateNormal];
-
     [tabView reloadData];
 }
 
@@ -158,10 +152,6 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
 
 - (IBAction)doneButtonPressed {
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (IBAction)playlistButtonPressed {
-    [self.navigationController pushViewController:[[PlaylistVC alloc] init] animated:YES];
 }
 
 - (IBAction)filterButtonPressed {
