@@ -105,6 +105,8 @@
     
     cell.textLabel.text = media.title;
     cell.detailTextLabel.text = media.genre;
+    
+#warning update label with actual media price
     cell.priceLabel.text = @"$0.99";
     cell.buttonAction = action;
     cell.songIsSaved = NO;
