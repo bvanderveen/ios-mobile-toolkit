@@ -36,12 +36,11 @@
 @end
 
 @interface MoodMapVC : UIViewController <UITableViewDelegate, UITableViewDataSource, NSURLConnectionDelegate> {
-    IBOutlet UIImageView *glow, *ring, *selector, *moodmap, *welcome;
-    IBOutlet UIButton *doneButton, *filterButton;
     UITableView *tabView;
     Playlist *playlist;
     int playlistID, selectedCellID;
 }
+
 - (id)initWithTabBarVC:(TabBarViewController *)tabBarVC;
 - (IBAction)doneButtonPressed;
 
