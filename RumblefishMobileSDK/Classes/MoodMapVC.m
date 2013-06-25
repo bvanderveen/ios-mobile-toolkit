@@ -32,15 +32,17 @@
 #import "SongCell.h"
 #import "TabBarViewController.h"
 #import "MoodMapSelectorView.h"
+#import "RFColor.h"
 
 @implementation MoodMapControllerView
 
 - (id)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:CGRectZero]) {
+    if (self = [super initWithFrame:frame]) {
         self.activityIndicator = [[UIActivityIndicatorView alloc] init];
         [self addSubview:_activityIndicator];
         
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero];
+        _tableView.backgroundColor = [RFColor darkGray];
         [self addSubview:_tableView];
     }
     return self;
@@ -60,8 +62,8 @@
 @property (nonatomic, strong) Playlist *playlist;
 @property (nonatomic, strong) MoodMapControllerView *view;
 @property (nonatomic, strong) UIColor *selectedColor;
-@property (nonatomic, weak) TabBarViewController *tabBarVC;
 @property (nonatomic, strong) MoodMapSelectorView *moodmapSelectorView;
+@property (nonatomic, weak) TabBarViewController *tabBarVC;
 
 @end
 
@@ -93,8 +95,12 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
 
 - (void)viewDidLoad
 {
-    self.view = [[MoodMapControllerView alloc] init];
     [super viewDidLoad];
+
+    self.view = [[MoodMapControllerView alloc] initWithFrame:CGRectMake(0, 0, 320, 500)];
+    self.view.tableView.delegate = self;
+    self.view.tableView.dataSource = self;
+    tabView = self.view.tableView;
     
     tabView.separatorColor = [UIColor colorWithRed:0.08f green:0.08f blue:0.08f alpha:1.0f];
     glow.alpha = 0;
@@ -176,6 +182,21 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
 
 #pragma mark - TableView methods
 
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 320;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *coolView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 320)];
+    coolView.backgroundColor = [UIColor redColor];
+    return coolView;
+//            _moodmapSelectorView = [[[NSBundle rumblefishResourcesBundle] loadNibNamed:@"MoodMapSelectorView" owner:self options:nil] objectAtIndex:0];
+//    
+//    return _moodmapSelectorView;
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;

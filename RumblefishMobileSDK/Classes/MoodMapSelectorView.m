@@ -11,6 +11,13 @@
 
 @implementation MoodMapSelectorView
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder]) {
+        NSLog(@"I'm trying to init here!");
+    }
+    return self;
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
