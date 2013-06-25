@@ -10,8 +10,8 @@
 
 @interface MoodMapSelectorView : UIView
 
-@property (nonatomic, strong) IBOutlet UIImageView *backgroundSuround, *logo, *moodmapIcons, *moodmap, *crosshairs, *selector, *moodmapRing, *moodmapGlow, *startMessage;
+@property (nonatomic, strong) UIImageView *backgroundSuround, *logo, *moodmapIcons, *moodmap, *crosshairs, *selector, *moodmapRing, *moodmapGlow, *startMessage;
 
-@property (nonatomic, strong) IBOutlet UIButton *doneButton, *filtersButton;
+@property (nonatomic, strong) UIButton *doneButton, *filtersButton;
 
 @end

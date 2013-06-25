@@ -118,6 +118,8 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
     else {
         welcome.hidden = YES;
     }
+    
+    _moodmapSelectorView = [[MoodMapSelectorView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
 }
 
 - (void)viewDidUnload
@@ -190,13 +192,9 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *coolView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 320)];
-    coolView.backgroundColor = [UIColor redColor];
-    return coolView;
-//            _moodmapSelectorView = [[[NSBundle rumblefishResourcesBundle] loadNibNamed:@"MoodMapSelectorView" owner:self options:nil] objectAtIndex:0];
-//    
-//    return _moodmapSelectorView;
+    return _moodmapSelectorView;
 }
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
