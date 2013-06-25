@@ -104,8 +104,8 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
     tabView.separatorColor = [UIColor colorWithRed:0.08f green:0.08f blue:0.08f alpha:1.0f];
 
 
-    /* MoodMapSelector is put inside of the Footer of Section 0
-       This gives us the right scroll*/
+    /* Tableview is set up with an empty section 0 that has the MoodMapSelectionView as it's header view
+        This gives us the right scrolling mechanisms we desire */
     _moodmapSelectorView = [[MoodMapSelectorView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
     _moodmapSelectorView.delegate = self;
     
@@ -237,64 +237,12 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
     
 }
 
-
-
-//
-//// touches
-//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    CGPoint point = [[touches anyObject] locationInView:_moodmapSelectorView.moodmap];
-//    // see if touched point is on moodmap
-//    float d = sqrtf(powf(121.0f-point.x, 2) + powf(121.0f-point.y, 2));
-//    if (d <= 121.0f) {
-//        _moodmapSelectorView.startMessage.hidden = YES;
-//        [_moodmapSelectorView.selector setCenter:CGPointMake(point.x+_moodmapSelectorView.moodmap.frame.origin.x, point.y+_moodmapSelectorView.moodmap.frame.origin.y)];
-//        _moodmapSelectorView.selector.alpha = 1.0;
-//        [self colorOfPoint:point];
-//        [_moodmapSelectorView.moodmapRing setImage:[self imageByFillingColor:selectedColor inImage:_moodmapSelectorView.moodmapRing.image]];
-//        [UIView beginAnimations:@"glowAnimation" context:nil];
-//        [UIView setAnimationDuration:0.3];
-//        _moodmapSelectorView.moodmapGlow.alpha = 1.0;
-//        _moodmapSelectorView.moodmapRing.alpha = 1.0;
-//        [UIView commitAnimations];
-//    }
-//}
-//
-//- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-//    CGPoint point = [[touches anyObject] locationInView:_moodmapSelectorView.moodmap];
-//    float d = sqrtf(powf(121.0f-point.x, 2) + powf(121.0f-point.y, 2));
-//    if (d <= 121.0f) {
-//        [_moodmapSelectorView.selector setCenter:CGPointMake(point.x+_moodmapSelectorView.moodmap.frame.origin.x, point.y+_moodmapSelectorView.moodmap.frame.origin.y)];
-//        [self colorOfPoint:point];
-//        [_moodmapSelectorView.moodmapRing setImage:[self imageByFillingColor:selectedColor inImage:_moodmapSelectorView.moodmapRing.image]];
-//    }
-//}
-//
-//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-//    [UIView beginAnimations:@"glowAnimation" context:nil];
-//    [UIView setAnimationDuration:0.3];
-//    _moodmapSelectorView.moodmapGlow.alpha = 0;
-//    _moodmapSelectorView.moodmapRing.alpha = 0;
-//    [UIView commitAnimations];
-//    
-//    CGPoint point = [[touches anyObject] locationInView:_moodmapSelectorView.moodmap];
-//    float d = sqrtf(powf(121.0f-point.x, 2) + powf(121.0f-point.y, 2));
-//    if (d <= 121.0f) {
-//        // get the ID
-//        int x = point.x/20.166;
-//        int y = point.y/20.166;
-//        playlistID = idArray[y][x];
-//        [self getPlaylistFromServer];
-//    }
-//}
-
-
 // Alert delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
         [self getPlaylistFromServer];
     }
 }
-
 
 // server API
 - (void)getPlaylistFromServer {
