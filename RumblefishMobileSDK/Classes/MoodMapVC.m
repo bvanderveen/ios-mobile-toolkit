@@ -38,12 +38,12 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.activityIndicator = [[UIActivityIndicatorView alloc] init];
-        [self addSubview:_activityIndicator];
-        
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero];
         _tableView.backgroundColor = [RFColor darkGray];
         [self addSubview:_tableView];
+        
+        self.activityIndicator = [[UIActivityIndicatorView alloc] init];
+        [self addSubview:_activityIndicator];
     }
     return self;
 }
@@ -52,7 +52,7 @@
     [super layoutSubviews];
     _tableView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
     [_activityIndicator sizeToFit];
-    _activityIndicator.center = _tableView.center;
+    _activityIndicator.center = CGPointMake(_tableView.center.x, 320 + 22);
 }
 
 @end
