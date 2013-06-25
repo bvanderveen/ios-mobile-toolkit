@@ -43,7 +43,7 @@
     
     if (moviePlayable && musicPlayable) {
         [_moviePlayer play];
-//        [_musicPlayer play];
+        [_musicPlayer play];
 //        self.view.videoView = _moviePlayer.view;
         [self.view setNeedsLayout];
     }
@@ -72,7 +72,7 @@
     
     [_moviePlayer prepareToPlay];
     
-    self.view.videoView = _moviePlayer.view;
+//    self.view.videoView = _moviePlayer.view;
 }
 
 - (void)ejectMoviePlayer {
@@ -134,7 +134,6 @@
     NSAssert(completion != nil, @"Competion must not be nil");
     
 //    container = UIApplication.sharedApplication.keyWindow;
-    
     _completion = completion;
     UIView *v = self.view;
     assert(v != nil);
@@ -148,15 +147,7 @@
 }
 
 - (void)dismiss {
-    [UIView animateWithDuration:0.1
-                     animations:^{
-                        self.view.alpha = 0;
-                     }
-                     completion:^(BOOL finished) {
-                         [self.view removeFromSuperview];
-//                         [self dismissViewControllerAnimated:NO completion:nil];
-                     }];
-//    [self.view removeFromSuperview];
+    [self.view removeFromSuperview];
 //    _completion();
 }
 
