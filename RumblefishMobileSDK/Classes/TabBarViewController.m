@@ -105,7 +105,7 @@ typedef enum RFTabView {
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
     navController.navigationBar.barStyle = UIBarStyleBlack;
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Dismiss"
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
                                                                      style:UIBarButtonItemStyleBordered
                                                                     target:self
                                                                     action:@selector(cancelModalView)];

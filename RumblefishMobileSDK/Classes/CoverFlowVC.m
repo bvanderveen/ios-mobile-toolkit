@@ -186,7 +186,6 @@
 - (id)init {
     if (self = [super initWithNibName:nil bundle:nil]) {
         self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageInResourceBundleNamed:@"friendlymusic_logo.png"]];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Playlist" style: UIBarButtonItemStyleBordered target:self action:@selector(playlistTapped)];
         self.cache = [[SimpleImageCache alloc] init];
     }
     return self;

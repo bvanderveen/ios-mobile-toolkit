@@ -248,8 +248,6 @@ NSTimer *rotateImagesTimer;
     
     UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageInResourceBundleNamed:@"friendlymusic_logo.png"]];
     self.navigationItem.titleView = titleView;
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Playlist" style: UIBarButtonItemStyleBordered target:self action:@selector(gotoPlaylist)];
-    self.navigationItem.rightBarButtonItem = rightButton;
     
     firstButton = [UIButton buttonWithType:UIButtonTypeCustom];
     firstButton.autoresizingMask = UIViewAutoresizingFlexibleWidth;
