@@ -81,12 +81,13 @@
     
     
     [_saveLabel sizeToFit];
-    _saveLabel.center = CGPointMake(self.accessoryView.center.x, self.accessoryView.center.y + 18);
+    _saveLabel.center = CGPointMake(self.accessoryView.center.x, self.accessoryView.center.y + 19);
 }
 
 - (void)buttonTapped:(UIButton *)button {
     if (_buttonAction) {
         _saveLabel.text = (button.selected) ? @"SAVE" : @"SAVED";
+        [button sizeToFit];
         _buttonAction();
     }
 }
@@ -107,7 +108,6 @@
     cell.priceLabel.text = @"$0.99";
     cell.buttonAction = action;
     cell.songIsSaved = NO;
-//    cell.saveLabel.text = @"SAVE";
     
     return cell;
 }
