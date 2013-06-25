@@ -152,7 +152,7 @@ NSMutableArray *optionArray;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return YES;
+    return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 // Table methods

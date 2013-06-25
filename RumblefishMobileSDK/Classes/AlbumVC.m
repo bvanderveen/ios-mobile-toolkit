@@ -78,13 +78,13 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return YES;
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    // force cells to re-layout
-    [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0];
-}
+//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+//    // force cells to re-layout
+//    [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0];
+//}
 
 #pragma mark - Table view data source
 
