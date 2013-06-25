@@ -29,6 +29,7 @@
 
 - (void)loadView {
     self.view = [[PreviewView alloc] initWithFrame:CGRectZero];
+    [self.view.dismissButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
     [self.view setNeedsLayout];
 }
 
@@ -42,8 +43,8 @@
     
     if (moviePlayable && musicPlayable) {
         [_moviePlayer play];
-        [_musicPlayer play];
-        self.view.videoView = _moviePlayer.view;
+//        [_musicPlayer play];
+//        self.view.videoView = _moviePlayer.view;
         [self.view setNeedsLayout];
     }
 }
@@ -132,7 +133,7 @@
 - (void)presentInView:(UIView *)container withCompletion:(void(^)())completion {
     NSAssert(completion != nil, @"Competion must not be nil");
     
-    container = UIApplication.sharedApplication.keyWindow;
+//    container = UIApplication.sharedApplication.keyWindow;
     
     _completion = completion;
     UIView *v = self.view;
@@ -147,8 +148,16 @@
 }
 
 - (void)dismiss {
-    [self.view removeFromSuperview];
-    _completion();
+    [UIView animateWithDuration:0.1
+                     animations:^{
+                        self.view.alpha = 0;
+                     }
+                     completion:^(BOOL finished) {
+                         [self.view removeFromSuperview];
+//                         [self dismissViewControllerAnimated:NO completion:nil];
+                     }];
+//    [self.view removeFromSuperview];
+//    _completion();
 }
 
 @end
