@@ -31,27 +31,26 @@
 #import "NSBundle+RumblefishMobileSDKResources.h"
 #import "SongCell.h"
 #import "TabBarViewController.h"
+#import "MoodMapSelectorView.h"
 
 @implementation MoodMapControllerView
 
-@synthesize tableView, activityIndicator;
-
-- (void)awakeFromNib {
-    self.activityIndicator = [[UIActivityIndicatorView alloc] init];
-    [self addSubview:activityIndicator];
-    
+- (id)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:CGRectZero]) {
+        self.activityIndicator = [[UIActivityIndicatorView alloc] init];
+        [self addSubview:_activityIndicator];
+        
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero];
+        [self addSubview:_tableView];
+    }
+    return self;
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
-    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation))
-        tableView.frame = CGRectMake(320, 0, self.bounds.size.width - 320, self.bounds.size.height);
-    else
-        tableView.frame = CGRectMake(0, 320, self.bounds.size.width, self.bounds.size.height - 320);
-    
-    [activityIndicator sizeToFit];
-    activityIndicator.center = tableView.center;
+    _tableView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
+    [_activityIndicator sizeToFit];
+    _activityIndicator.center = _tableView.center;
 }
 
 @end
@@ -59,15 +58,14 @@
 @interface MoodMapVC ()
 
 @property (nonatomic, strong) Playlist *playlist;
-@property (nonatomic, strong) MoodMapControllerView *controllerView;
+@property (nonatomic, strong) MoodMapControllerView *view;
 @property (nonatomic, strong) UIColor *selectedColor;
 @property (nonatomic, weak) TabBarViewController *tabBarVC;
+@property (nonatomic, strong) MoodMapSelectorView *moodmapSelectorView;
 
 @end
 
 @implementation MoodMapVC
-
-@synthesize playlist, controllerView;
 
 UIColor *selectedColor;
 int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
@@ -83,10 +81,9 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
                        0,  0,114,115,116,117, 84, 85, 86, 87,  0,  0,
                        0,  0,  0,118,119,120, 88, 89, 90,  0,  0,  0};
 
-
 - (id)initWithTabBarVC:(TabBarViewController *)tabBarVC
 {
-    if (self = [super initWithNibName:@"MoodMapVC" bundle:[NSBundle rumblefishResourcesBundle]]) {
+    if (self = [super init]) {
         _tabBarVC = tabBarVC;
     }
     return self;
@@ -96,7 +93,7 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
 
 - (void)viewDidLoad
 {
-    self.controllerView = (MoodMapControllerView *)self.view;
+    self.view = [[MoodMapControllerView alloc] init];
     [super viewDidLoad];
     
     tabView.separatorColor = [UIColor colorWithRed:0.08f green:0.08f blue:0.08f alpha:1.0f];
@@ -119,7 +116,7 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
 
 - (void)viewDidUnload
 {
-    self.controllerView = nil;
+    self.view = nil;
     [super viewDidUnload];
 }
 
@@ -496,10 +493,10 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
     self.playlist = nil;
     [tabView reloadData];
     
-    [self.controllerView.activityIndicator startAnimating];
+    [self.view.activityIndicator startAnimating];
     [self associateProducer:getMedia callback:^ (id result) {
         self.playlist = (Playlist *)result;
-        [self.controllerView.activityIndicator stopAnimating];
+        [self.view.activityIndicator stopAnimating];
         doneButton.enabled = YES;
         [tabView reloadData];
     }];

@@ -23,6 +23,7 @@
 		34B61BFB1773D20300D7E903 /* fireIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34B61BF21773D20300D7E903 /* fireIcon@2x.png */; };
 		34B61C001773D3EA00D7E903 /* homeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34B61BFF1773D3EA00D7E903 /* homeIcon@2x.png */; };
 		34B61C021773D40200D7E903 /* moodIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34B61C011773D40200D7E903 /* moodIcon@2x.png */; };
+		34E3C9D51779205200112A78 /* MoodMapSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3C9D41779205100112A78 /* MoodMapSelectorView.m */; };
 		34E487161772C135004D244F /* RFColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E487151772C135004D244F /* RFColor.m */; };
 		411FCEF11639F107000B1841 /* RumblefishMobileSDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 411FCEEB1639F0A8000B1841 /* RumblefishMobileSDK.h */; };
 		411FCF3C163AD205000B1841 /* occasion_image_cache.plist in Resources */ = {isa = PBXBuildFile; fileRef = 411FCF3B163AD1D0000B1841 /* occasion_image_cache.plist */; };
@@ -51,7 +52,7 @@
 		413FD9561639BFA2002A9183 /* Async.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 413FD7BA1639AB2E002A9183 /* Async.h */; };
 		413FD9641639CBBB002A9183 /* NSBundle+RumblefishMobileSDKResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD9631639CBBB002A9183 /* NSBundle+RumblefishMobileSDKResources.m */; };
 		413FD9691639CFD0002A9183 /* FriendlyMusic.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413FD9661639CF8A002A9183 /* FriendlyMusic.xib */; };
-		413FD96A1639CFD0002A9183 /* MoodMapVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413FD9671639CF8A002A9183 /* MoodMapVC.xib */; };
+		413FD96A1639CFD0002A9183 /* MoodMapSelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413FD9671639CF8A002A9183 /* MoodMapSelectorView.xib */; };
 		413FD96B1639CFD0002A9183 /* OccasionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413FD9681639CF8A002A9183 /* OccasionVC.xib */; };
 		413FD96D1639D086002A9183 /* playlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 413FD96C1639D07E002A9183 /* playlist.plist */; };
 		413FD9B91639D828002A9183 /* bg_surround.png in Resources */ = {isa = PBXBuildFile; fileRef = 413FD96F1639D7DA002A9183 /* bg_surround.png */; };
@@ -244,6 +245,8 @@
 		34B61BF21773D20300D7E903 /* fireIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fireIcon@2x.png"; path = "RumblefishMobileSDKResources/Images/fireIcon@2x.png"; sourceTree = SOURCE_ROOT; };
 		34B61BFF1773D3EA00D7E903 /* homeIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "homeIcon@2x.png"; path = "RumblefishMobileSDKResources/Images/homeIcon@2x.png"; sourceTree = SOURCE_ROOT; };
 		34B61C011773D40200D7E903 /* moodIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "moodIcon@2x.png"; path = "RumblefishMobileSDKResources/Images/moodIcon@2x.png"; sourceTree = SOURCE_ROOT; };
+		34E3C9D31779205100112A78 /* MoodMapSelectorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoodMapSelectorView.h; path = Classes/MoodMapSelectorView.h; sourceTree = SOURCE_ROOT; };
+		34E3C9D41779205100112A78 /* MoodMapSelectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoodMapSelectorView.m; path = Classes/MoodMapSelectorView.m; sourceTree = SOURCE_ROOT; };
 		34E487141772C135004D244F /* RFColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFColor.h; path = Classes/RFColor.h; sourceTree = SOURCE_ROOT; };
 		34E487151772C135004D244F /* RFColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFColor.m; path = Classes/RFColor.m; sourceTree = SOURCE_ROOT; };
 		411FCED21639E922000B1841 /* RumblefishMobileSDKResources-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "RumblefishMobileSDKResources-Info.plist"; path = "RumblefishMobileSDKResources/RumblefishMobileSDKResources-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -292,7 +295,7 @@
 		413FD9621639CBBB002A9183 /* NSBundle+RumblefishMobileSDKResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSBundle+RumblefishMobileSDKResources.h"; path = "Classes/NSBundle+RumblefishMobileSDKResources.h"; sourceTree = SOURCE_ROOT; };
 		413FD9631639CBBB002A9183 /* NSBundle+RumblefishMobileSDKResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+RumblefishMobileSDKResources.m"; path = "Classes/NSBundle+RumblefishMobileSDKResources.m"; sourceTree = SOURCE_ROOT; };
 		413FD9661639CF8A002A9183 /* FriendlyMusic.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FriendlyMusic.xib; path = RumblefishMobileSDKResources/FriendlyMusic.xib; sourceTree = SOURCE_ROOT; };
-		413FD9671639CF8A002A9183 /* MoodMapVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MoodMapVC.xib; path = RumblefishMobileSDKResources/MoodMapVC.xib; sourceTree = SOURCE_ROOT; };
+		413FD9671639CF8A002A9183 /* MoodMapSelectorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MoodMapSelectorView.xib; path = RumblefishMobileSDKResources/MoodMapSelectorView.xib; sourceTree = SOURCE_ROOT; };
 		413FD9681639CF8A002A9183 /* OccasionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OccasionVC.xib; path = RumblefishMobileSDKResources/OccasionVC.xib; sourceTree = SOURCE_ROOT; };
 		413FD96C1639D07E002A9183 /* playlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = playlist.plist; path = RumblefishMobileSDKResources/playlist.plist; sourceTree = SOURCE_ROOT; };
 		413FD96F1639D7DA002A9183 /* bg_surround.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_surround.png; sourceTree = "<group>"; };
@@ -499,6 +502,8 @@
 				413FD7BD1639AB2E002A9183 /* CoverFlowVC.m */,
 				413FD7C41639AB2E002A9183 /* MoodMapVC.h */,
 				413FD7C51639AB2E002A9183 /* MoodMapVC.m */,
+				34E3C9D31779205100112A78 /* MoodMapSelectorView.h */,
+				34E3C9D41779205100112A78 /* MoodMapSelectorView.m */,
 				413FD7C81639AB2E002A9183 /* OccasionVC.h */,
 				413FD7C91639AB2E002A9183 /* OccasionVC.m */,
 				413FD7CC1639AB2E002A9183 /* PlaylistVC.h */,
@@ -564,7 +569,7 @@
 				413FD96C1639D07E002A9183 /* playlist.plist */,
 				411FCF3B163AD1D0000B1841 /* occasion_image_cache.plist */,
 				413FD9661639CF8A002A9183 /* FriendlyMusic.xib */,
-				413FD9671639CF8A002A9183 /* MoodMapVC.xib */,
+				413FD9671639CF8A002A9183 /* MoodMapSelectorView.xib */,
 				413FD9681639CF8A002A9183 /* OccasionVC.xib */,
 				413FD8331639B33C002A9183 /* Supporting Files */,
 			);
@@ -903,7 +908,7 @@
 				413FDA021639D828002A9183 /* themes@2x.png in Resources */,
 				413FD96D1639D086002A9183 /* playlist.plist in Resources */,
 				413FD9691639CFD0002A9183 /* FriendlyMusic.xib in Resources */,
-				413FD96A1639CFD0002A9183 /* MoodMapVC.xib in Resources */,
+				413FD96A1639CFD0002A9183 /* MoodMapSelectorView.xib in Resources */,
 				413FD96B1639CFD0002A9183 /* OccasionVC.xib in Resources */,
 				413FD8E01639B53F002A9183 /* InfoPlist.strings in Resources */,
 				34B61BF41773D20300D7E903 /* savedIcon@2x.png in Resources */,
@@ -955,6 +960,7 @@
 				34E487161772C135004D244F /* RFColor.m in Sources */,
 				34B61BAE1772D59A00D7E903 /* DisclosureArrow.m in Sources */,
 				4149C82617711BAE00A3998D /* PreviewController.m in Sources */,
+				34E3C9D51779205200112A78 /* MoodMapSelectorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

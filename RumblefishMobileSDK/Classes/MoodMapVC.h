@@ -30,15 +30,15 @@
 
 @interface MoodMapControllerView : UIView
 
-@property (nonatomic, assign) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 @end
 
-@interface MoodMapVC : UIViewController<UITableViewDelegate, UITableViewDataSource, NSURLConnectionDelegate> {
+@interface MoodMapVC : UIViewController <UITableViewDelegate, UITableViewDataSource, NSURLConnectionDelegate> {
     IBOutlet UIImageView *glow, *ring, *selector, *moodmap, *welcome;
     IBOutlet UIButton *doneButton, *filterButton;
-    IBOutlet UITableView *tabView;
+    UITableView *tabView;
     Playlist *playlist;
     int playlistID, selectedCellID;
 }
