@@ -108,6 +108,7 @@
     cell.priceLabel.text = @"$0.99";
     cell.buttonAction = action;
     cell.songIsSaved = NO;
+    cell.saveLabel.hidden = NO;
     
     return cell;
 }
@@ -117,6 +118,7 @@
     
     [cell.accessoryButton setImage:[UIImage imageInResourceBundleNamed:@"btn_remove.png"] forState:UIControlStateNormal];
     [cell.accessoryButton sizeToFit];
+    cell.saveLabel.hidden = YES;
 
     return cell;
 }
