@@ -1,10 +1,11 @@
 #import "SongCell.h"
 #import "RFFont.h"
+#import "RFColor.h"
 #import "UIImage+RumblefishSDKResources.h"
 
 @interface SongCell ()
 
-@property (nonatomic, strong) UILabel *priceLabel;
+@property (nonatomic, strong) UILabel *priceLabel, *saveLabel;
 @property (nonatomic, copy) void(^buttonAction)();
 @property (nonatomic, strong) UIButton *accessoryButton;
 
@@ -34,9 +35,16 @@
 
         _accessoryButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_accessoryButton setImage:[UIImage imageInResourceBundleNamed:@"song_check.png"] forState:UIControlStateSelected];
-        [_accessoryButton addTarget:self action:@selector(buttonTapped) forControlEvents:UIControlEventTouchUpInside];
+        [_accessoryButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
         [_accessoryButton sizeToFit];
         self.accessoryView = _accessoryButton;
+        
+        _saveLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _saveLabel.font = [RFFont fontWithSize:12];
+        _saveLabel.textColor = [RFColor mediumGray];
+        _saveLabel.backgroundColor = [UIColor clearColor];
+        _saveLabel.text = @"SAVE";
+        [self.contentView addSubview:_saveLabel];
         
         _priceLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _priceLabel.font = [RFFont fontWithSize:14];
@@ -66,12 +74,21 @@
         self.textLabel.frame = f;
     }
     
-    _priceLabel.frame = CGRectMake(self.contentView.bounds.size.width - _priceLabel.frame.size.width, (self.contentView.bounds.size.height - _priceLabel.frame.size.height) / 2, _priceLabel.frame.size.width, _priceLabel.frame.size.height);
+    _priceLabel.frame = CGRectMake(self.contentView.bounds.size.width - _priceLabel.frame.size.width,
+                                   (self.contentView.bounds.size.height - _priceLabel.frame.size.height) / 2,
+                                   _priceLabel.frame.size.width,
+                                   _priceLabel.frame.size.height);
+    
+    
+    [_saveLabel sizeToFit];
+    _saveLabel.center = CGPointMake(self.accessoryView.center.x, self.accessoryView.center.y + 18);
 }
 
-- (void)buttonTapped {
-    if (_buttonAction)
+- (void)buttonTapped:(UIButton *)button {
+    if (_buttonAction) {
+        _saveLabel.text = (button.selected) ? @"SAVE" : @"SAVED";
         _buttonAction();
+    }
 }
 
 + (SongCell *)cellForMedia:(Media *)media tableView:(UITableView *)tableView buttonAction:(void(^)())action {
@@ -90,6 +107,7 @@
     cell.priceLabel.text = @"$0.99";
     cell.buttonAction = action;
     cell.songIsSaved = NO;
+//    cell.saveLabel.text = @"SAVE";
     
     return cell;
 }
@@ -99,7 +117,7 @@
     
     [cell.accessoryButton setImage:[UIImage imageInResourceBundleNamed:@"btn_remove.png"] forState:UIControlStateNormal];
     [cell.accessoryButton sizeToFit];
-    
+
     return cell;
 }
 
