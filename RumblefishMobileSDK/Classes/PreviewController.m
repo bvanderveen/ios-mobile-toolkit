@@ -2,15 +2,18 @@
 #import "PreviewView.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
+#import "AVPlayerPlaybackView.h"
+
+NSString * const kPlayableKey = @"playable";
+NSString * const kStatusKey   = @"status";
 
 @interface PreviewController ()
 
 @property (nonatomic, strong) PreviewView *view;
 @property (nonatomic, strong) NSURL *movieURL, *musicURL;
 
-@property (nonatomic, strong) MPMoviePlayerController *moviePlayer;
-@property (nonatomic, strong) AVPlayerItem *musicPlayerItem;
-@property (nonatomic, strong) AVPlayer *musicPlayer;
+@property (nonatomic, strong) AVPlayerItem *musicPlayerItem, *moviePlayerItem;
+@property (nonatomic, strong) AVPlayer *musicPlayer, *moviePlayer;
 @property (nonatomic, strong) void(^completion)();
 
 @end
@@ -37,54 +40,75 @@
     [self startPlayback];
 }
 
-- (void)playIfPossible {
-    BOOL moviePlayable = (_moviePlayer.loadState & MPMovieLoadStatePlaythroughOK) > 0;
-    BOOL musicPlayable = _musicPlayerItem.playbackLikelyToKeepUp;
-    
-    if (moviePlayable && musicPlayable) {
-        [_moviePlayer play];
-        [_musicPlayer play];
-//        self.view.videoView = _moviePlayer.view;
-        [self.view setNeedsLayout];
-    }
-}
-
 - (void)startPlayback {
     [self loadMoviePlayer];
     [self loadMusicPlayer];
 }
 
+- (void)playIfPossible {
+    BOOL musicPlayable = _musicPlayerItem.playbackLikelyToKeepUp;
+    BOOL moviePlayable = _moviePlayerItem.playbackLikelyToKeepUp;
+    
+    if (musicPlayable && moviePlayable) {
+        [_musicPlayer play];
+        [_moviePlayer play];
+//        [self.view setNeedsLayout];
+    }
+}
+
 - (void)stopPlayback {
-    [_moviePlayer stop];
     [_musicPlayer pause];
     [self ejectMusicPlayer];
     [self ejectMoviePlayer];
 }
 
 - (void)loadMoviePlayer {
-    NSLog(@"Loading with movieURL = %@", _movieURL);
-    _moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:_movieURL];
-    _moviePlayer.controlStyle = MPMovieControlStyleNone;
-    _moviePlayer.shouldAutoplay = NO;
+    _moviePlayerItem = [[AVPlayerItem alloc] initWithURL:_movieURL];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerLoadStateDidChange:) name:MPMoviePlayerLoadStateDidChangeNotification object:_moviePlayer];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayerPlaybackStateDidChange:) name:MPMoviePlayerPlaybackStateDidChangeNotification object:_moviePlayer];
+    [_moviePlayerItem addObserver:self
+                       forKeyPath:@"status"
+                          options:NSKeyValueObservingOptionNew
+                          context:nil];
+    [_moviePlayerItem addObserver:self
+                       forKeyPath:@"playbackLikelyToKeepUp"
+                          options:NSKeyValueObservingOptionNew
+                          context:nil];
     
-    [_moviePlayer prepareToPlay];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playerItemDidReachEnd:)
+                                                 name:AVPlayerItemDidPlayToEndTimeNotification
+                                               object:_moviePlayerItem];
     
-//    self.view.videoView = _moviePlayer.view;
+    _moviePlayer = [[AVPlayer alloc] initWithPlayerItem:_moviePlayerItem];
+    [self.view.playbackView setPlayer:_moviePlayer];
+    
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 }
 
 - (void)ejectMoviePlayer {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerLoadStateDidChangeNotification object:_moviePlayer];
+    [_moviePlayerItem removeObserver:self forKeyPath:@"playbackLikelyToKeepUp"];
+    [_moviePlayerItem removeObserver:self forKeyPath:@"status"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:_moviePlayerItem];
+    _moviePlayerItem = nil;
     _moviePlayer = nil;
+    [self.view.playbackView setPlayer:nil];
 }
 
 - (void)loadMusicPlayer {
     _musicPlayerItem = [[AVPlayerItem alloc] initWithURL:_musicURL];
-    [_musicPlayerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
-    [_musicPlayerItem addObserver:self forKeyPath:@"playbackLikelyToKeepUp" options:NSKeyValueObservingOptionNew context:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:_musicPlayerItem];
+    
+    [_musicPlayerItem addObserver:self
+                       forKeyPath:@"status"
+                          options:NSKeyValueObservingOptionNew
+                          context:nil];
+    [_musicPlayerItem addObserver:self
+                       forKeyPath:@"playbackLikelyToKeepUp"
+                          options:NSKeyValueObservingOptionNew
+                          context:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playerItemDidReachEnd:)
+                                                 name:AVPlayerItemDidPlayToEndTimeNotification
+                                               object:_musicPlayerItem];
     
     _musicPlayer = [[AVPlayer alloc] initWithPlayerItem:_musicPlayerItem];
     
@@ -103,27 +127,21 @@
     AVPlayerItem *item = (AVPlayerItem *)object;
     if ([keyPath isEqualToString:@"status"]) {
         if ([item status] == AVPlayerItemStatusFailed) {
-            [self ejectMusicPlayer];
+            if ([item isEqual:_moviePlayerItem])
+                [self ejectMoviePlayer];
+            else
+                [self ejectMusicPlayer];
         }
     }
     else if ([keyPath isEqualToString:@"playbackLikelyToKeepUp"]) {
-        NSLog(@"_musicPlayerItem.playbackLikelyToKeepUp = %d", _musicPlayerItem.playbackLikelyToKeepUp);
+        if ([item isEqual:_moviePlayerItem])
+            NSLog(@"_moviePlayerItem.playbackLikelyToKeepUp = %d", _musicPlayerItem.playbackLikelyToKeepUp);
+        else
+            NSLog(@"_musicPlayerItem.playbackLikelyToKeepUp = %d", _musicPlayerItem.playbackLikelyToKeepUp);
         [self playIfPossible];
     }
     else
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-}
-
-- (void)moviePlayerLoadStateDidChange:(NSNotification *)notification {
-    NSLog(@"_moviePlayer.loadState = %d", _moviePlayer.loadState);
-    [self playIfPossible];
-}
-
-- (void)moviePlayerPlaybackStateDidChange:(NSNotification *)notification {
-    NSLog(@"_moviePlayer.playbackState = %d", _moviePlayer.playbackState);
-    if (_moviePlayer.playbackState == MPMoviePlaybackStateStopped || _moviePlayer.playbackState == MPMoviePlaybackStateInterrupted || _moviePlayer.playbackState == MPMoviePlaybackStatePaused) {
-        [self stopPlayback];
-    }
 }
 
 - (void)playerItemDidReachEnd:(NSNotification *)notification {

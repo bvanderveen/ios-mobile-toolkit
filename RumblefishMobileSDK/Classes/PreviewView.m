@@ -13,7 +13,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         
-        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.33];
+        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
         
         _auditionBackgroundView = [[UIView alloc] initWithFrame:CGRectZero];
         _auditionBackgroundView.backgroundColor = [RFColor lightBlue];
@@ -38,6 +38,9 @@
         _videoView = [[UIView alloc] initWithFrame:CGRectZero];
         _videoView.backgroundColor = [UIColor lightGrayColor];
         [_contentView addSubview:_videoView];
+        
+        _playbackView = [[AVPlayerPlaybackView alloc] initWithFrame:CGRectZero];
+        [_videoView addSubview:_playbackView];
         
         _songNameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _songNameLabel.text = @"Song Name Goes Here";
@@ -77,6 +80,8 @@
     _contentView.frame = CGRectMake(1, 26, _auditionBackgroundView.bounds.size.width - 2, _auditionBackgroundView.bounds.size.height - 26 - 1);
     
     _videoView.frame = CGRectMake(10, 10, _contentView.bounds.size.width - 20, 160);
+    
+    _playbackView.frame = _videoView.bounds;
     
     _buyButton.frame = CGRectMake(_contentView.bounds.size.width - 10 - 107, _videoView.frame.size.height + 18, 107, 27);
     
