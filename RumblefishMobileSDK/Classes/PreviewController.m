@@ -41,6 +41,8 @@ NSString * const kStatusKey   = @"status";
 }
 
 - (void)startPlayback {
+    [self.view.activityIndicator startAnimating];
+    self.view.playbackView.hidden = YES;
     [self loadMoviePlayer];
     [self loadMusicPlayer];
 }
@@ -50,9 +52,10 @@ NSString * const kStatusKey   = @"status";
     BOOL moviePlayable = _moviePlayerItem.playbackLikelyToKeepUp;
     
     if (musicPlayable && moviePlayable) {
+        [self.view.activityIndicator stopAnimating];
+        self.view.playbackView.hidden = NO;
         [_musicPlayer play];
         [_moviePlayer play];
-//        [self.view setNeedsLayout];
     }
 }
 

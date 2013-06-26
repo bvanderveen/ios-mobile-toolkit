@@ -36,11 +36,15 @@
         [_auditionBackgroundView addSubview:_contentView];
     
         _videoView = [[UIView alloc] initWithFrame:CGRectZero];
-        _videoView.backgroundColor = [UIColor lightGrayColor];
+        _videoView.backgroundColor = [UIColor blackColor];
         [_contentView addSubview:_videoView];
         
         _playbackView = [[AVPlayerPlaybackView alloc] initWithFrame:CGRectZero];
+        _playbackView.backgroundColor = [UIColor clearColor];
         [_videoView addSubview:_playbackView];
+        
+        _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        [_videoView addSubview:_activityIndicator];
         
         _songNameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _songNameLabel.text = @"Song Name Goes Here";
@@ -83,6 +87,8 @@
     
     _playbackView.frame = _videoView.bounds;
     
+    _activityIndicator.center = _playbackView.center;
+    
     _buyButton.frame = CGRectMake(_contentView.bounds.size.width - 10 - 107, _videoView.frame.size.height + 18, 107, 27);
     
     [_songNameLabel sizeToFit];
@@ -94,12 +100,6 @@
     CGRect artistNameFrame = _artistNameLabel.bounds;
     artistNameFrame.origin = CGPointMake(10, _songNameLabel.frame.origin.y + 20);
     _artistNameLabel.frame = artistNameFrame;
-}
-
-- (CGSize)sizeThatFits:(CGSize)size
-{
-    NSLog(@"sizeThatFits %@", NSStringFromCGSize(size));
-    return size;
 }
 
 @end

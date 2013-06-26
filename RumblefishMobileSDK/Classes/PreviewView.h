@@ -7,5 +7,5 @@
 @property (nonatomic, strong) UIButton *dismissButton, *buyButton;
 @property (nonatomic, strong) UILabel *titleLabel, *songNameLabel, *artistNameLabel;
 @property (nonatomic, strong) AVPlayerPlaybackView *playbackView;
-
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @end
