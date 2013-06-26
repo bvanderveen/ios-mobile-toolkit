@@ -9,6 +9,7 @@ NSString * const kStatusKey   = @"status";
 
 @interface PreviewController ()
 
+@property (nonatomic, strong) Media *media;
 @property (nonatomic, strong) PreviewView *view;
 @property (nonatomic, strong) NSURL *movieURL, *musicURL;
 
@@ -22,16 +23,17 @@ NSString * const kStatusKey   = @"status";
 
 @dynamic view;
 
-- (id)initWithMovieURL:(NSURL *)movieURL musicURL:(NSURL *)musicURL {
+- (id)initWithMedia:(Media *)media {
     if (self = [super init]) {
-        _movieURL = movieURL;
-        _musicURL = musicURL;
+        _movieURL = [RFAPI singleton].videoURL;
+        _musicURL = media.previewURL;
+        _media = media;
     }
     return self;
 }
 
 - (void)loadView {
-    self.view = [[PreviewView alloc] initWithFrame:CGRectZero];
+    self.view = [[PreviewView alloc] initWithMedia:_media];
     [self.view.dismissButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
     [self.view setNeedsLayout];
 }
@@ -61,6 +63,7 @@ NSString * const kStatusKey   = @"status";
 
 - (void)stopPlayback {
     [_musicPlayer pause];
+    [_moviePlayer pause];
     [self ejectMusicPlayer];
     [self ejectMoviePlayer];
 }
@@ -138,7 +141,7 @@ NSString * const kStatusKey   = @"status";
     }
     else if ([keyPath isEqualToString:@"playbackLikelyToKeepUp"]) {
         if ([item isEqual:_moviePlayerItem])
-            NSLog(@"_moviePlayerItem.playbackLikelyToKeepUp = %d", _musicPlayerItem.playbackLikelyToKeepUp);
+            NSLog(@"_moviePlayerItem.playbackLikelyToKeepUp = %d", _moviePlayerItem.playbackLikelyToKeepUp);
         else
             NSLog(@"_musicPlayerItem.playbackLikelyToKeepUp = %d", _musicPlayerItem.playbackLikelyToKeepUp);
         [self playIfPossible];
@@ -151,6 +154,7 @@ NSString * const kStatusKey   = @"status";
     [self stopPlayback];
 }
 
+/*
 - (void)presentInView:(UIView *)container withCompletion:(void(^)())completion {
     NSAssert(completion != nil, @"Competion must not be nil");
     
@@ -166,6 +170,7 @@ NSString * const kStatusKey   = @"status";
     [container addSubview:v];
     [container bringSubviewToFront:v];
 }
+ */
 
 - (void)dismiss {
     [self.view removeFromSuperview];

@@ -1,7 +1,8 @@
+#import "RFAPI.h"
 
 @interface PreviewController : UIViewController
 
-- (id)initWithMovieURL:(NSURL *)movieURL musicURL:(NSURL *)musicURL;
-- (void)presentInView:(UIView *)view withCompletion:(void(^)())completion;
+- (id)initWithMedia:(Media *)media;
+//- (void)presentInView:(UIView *)view withCompletion:(void(^)())completion;
 
 @end

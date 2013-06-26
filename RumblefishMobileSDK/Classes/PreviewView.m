@@ -9,9 +9,9 @@
 
 @implementation PreviewView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithMedia:(Media *)media;
 {
-    if (self = [super initWithFrame:frame]) {
+    if (self = [super initWithFrame:CGRectZero]) {
         
         self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
         
@@ -47,7 +47,7 @@
         [_videoView addSubview:_activityIndicator];
         
         _songNameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _songNameLabel.text = @"Song Name Goes Here";
+        _songNameLabel.text = media.title;
         _songNameLabel.font = [RFFont fontWithSize:18];
         _songNameLabel.textColor = [UIColor whiteColor];
         _songNameLabel.backgroundColor = [UIColor clearColor];
@@ -76,29 +76,37 @@
     _auditionBackgroundView.center = self.center;
     
     [_titleLabel sizeToFit];
-    _titleLabel.center = CGPointMake(_auditionBackgroundView.center.x, 14);
+    _titleLabel.center = CGPointMake(_auditionBackgroundView.center.x - 10,
+                                     14);
     
     [_dismissButton sizeToFit];
-    _dismissButton.center = CGPointMake(_auditionBackgroundView.bounds.size.width - 14, 14);
+    _dismissButton.center = CGPointMake(_auditionBackgroundView.bounds.size.width - 14,
+                                        14);
     
     _contentView.frame = CGRectMake(1, 26, _auditionBackgroundView.bounds.size.width - 2, _auditionBackgroundView.bounds.size.height - 26 - 1);
     
-    _videoView.frame = CGRectMake(10, 10, _contentView.bounds.size.width - 20, 160);
+    _videoView.frame = CGRectMake(10,
+                                  10,
+                                  _contentView.bounds.size.width - 20,
+                                  160);
     
     _playbackView.frame = _videoView.bounds;
     
     _activityIndicator.center = _playbackView.center;
     
-    _buyButton.frame = CGRectMake(_contentView.bounds.size.width - 10 - 107, _videoView.frame.size.height + 18, 107, 27);
+    _buyButton.frame = CGRectMake(_contentView.bounds.size.width - 10 - 107,
+                                  _videoView.frame.size.height + 18, 107, 27);
     
     [_songNameLabel sizeToFit];
     CGRect songNameFrame = _songNameLabel.bounds;
-    songNameFrame.origin = CGPointMake(10, _videoView.frame.size.height + 12);
+    songNameFrame.origin = CGPointMake(10,
+                                       _videoView.frame.size.height + 12);
     _songNameLabel.frame = songNameFrame;
     
     [_artistNameLabel sizeToFit];
     CGRect artistNameFrame = _artistNameLabel.bounds;
-    artistNameFrame.origin = CGPointMake(10, _songNameLabel.frame.origin.y + 20);
+    artistNameFrame.origin = CGPointMake(10,
+                                         _songNameLabel.frame.origin.y + 20);
     _artistNameLabel.frame = artistNameFrame;
 }
 

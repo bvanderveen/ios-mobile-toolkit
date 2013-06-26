@@ -133,17 +133,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Media *currentMedia = [playlist.media objectAtIndex:indexPath.row];
-    _previewController = [[PreviewController alloc] initWithMovieURL:[RFAPI singleton].videoURL musicURL:currentMedia.previewURL];
+    _previewController = [[PreviewController alloc] initWithMedia:currentMedia];
     _previewController.view.frame = self.view.bounds;
     [self.view addSubview:_previewController.view];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-//    [self presentModalViewController:_previewController animated:YES];
-
-//    [_previewController presentInView:self.view withCompletion:^{
-//        _previewController = nil;
-//    }];
 }
 
 @end
