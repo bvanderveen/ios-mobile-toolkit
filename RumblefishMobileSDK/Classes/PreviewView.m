@@ -3,6 +3,8 @@
 #import "RFFont.h"
 #import "UIImage+RumblefishSDKResources.h"
 
+#define PADDING 10
+
 @interface PreviewView ()
 
 @end
@@ -53,13 +55,13 @@
         _songNameLabel.backgroundColor = [UIColor clearColor];
         [_contentView addSubview:_songNameLabel];
         
-        _artistNameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _artistNameLabel.text = @"Artist Name Here";
-        _artistNameLabel.font = [RFFont fontWithSize:14];
-        _artistNameLabel.textColor = [RFColor lightGray];
-        _artistNameLabel.backgroundColor = [UIColor clearColor];
-        [_contentView addSubview:_artistNameLabel];
-        
+        _genreLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _genreLabel.text = media.genre;
+        _genreLabel.font = [RFFont fontWithSize:14];
+        _genreLabel.textColor = [RFColor lightGray];
+        _genreLabel.backgroundColor = [UIColor clearColor];
+        [_contentView addSubview:_genreLabel];
+    
         _buyButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         _buyButton.titleLabel.text = @"$0.99 | BUY";
         [_contentView addSubview:_buyButton];
@@ -71,12 +73,12 @@
 {
     _auditionBackgroundView.frame = CGRectMake(0,
                                                0,
-                                               self.bounds.size.width - 20,
+                                               self.bounds.size.width - PADDING*2,
                                                240);
     _auditionBackgroundView.center = self.center;
     
     [_titleLabel sizeToFit];
-    _titleLabel.center = CGPointMake(_auditionBackgroundView.center.x - 10,
+    _titleLabel.center = CGPointMake(_auditionBackgroundView.center.x - PADDING,
                                      14);
     
     [_dismissButton sizeToFit];
@@ -85,29 +87,33 @@
     
     _contentView.frame = CGRectMake(1, 26, _auditionBackgroundView.bounds.size.width - 2, _auditionBackgroundView.bounds.size.height - 26 - 1);
     
-    _videoView.frame = CGRectMake(10,
-                                  10,
-                                  _contentView.bounds.size.width - 20,
+    _videoView.frame = CGRectMake(PADDING,
+                                  PADDING,
+                                  _contentView.bounds.size.width - PADDING*2,
                                   160);
     
     _playbackView.frame = _videoView.bounds;
     
     _activityIndicator.center = _playbackView.center;
     
-    _buyButton.frame = CGRectMake(_contentView.bounds.size.width - 10 - 107,
-                                  _videoView.frame.size.height + 18, 107, 27);
+    _buyButton.frame = CGRectMake(_contentView.bounds.size.width - PADDING - 107,
+                                  _videoView.frame.size.height + 18,
+                                  107,
+                                  27);
     
     [_songNameLabel sizeToFit];
     CGRect songNameFrame = _songNameLabel.bounds;
-    songNameFrame.origin = CGPointMake(10,
+    songNameFrame.origin = CGPointMake(PADDING,
                                        _videoView.frame.size.height + 12);
+    songNameFrame.size.width = _contentView.bounds.size.width - PADDING*2 - _buyButton.bounds.size.width;
     _songNameLabel.frame = songNameFrame;
     
-    [_artistNameLabel sizeToFit];
-    CGRect artistNameFrame = _artistNameLabel.bounds;
-    artistNameFrame.origin = CGPointMake(10,
-                                         _songNameLabel.frame.origin.y + 20);
-    _artistNameLabel.frame = artistNameFrame;
+    [_genreLabel sizeToFit];
+    CGRect genreFrame = _genreLabel.bounds;
+    genreFrame.origin = CGPointMake(PADDING,
+                                    _songNameLabel.frame.origin.y + PADDING*2);
+    genreFrame.size.width = _contentView.bounds.size.width - PADDING*2 - _buyButton.bounds.size.width;
+    _genreLabel.frame = genreFrame;
 }
 
 @end

@@ -46,6 +46,7 @@
 }
 
 - (void)dismiss {
+    [self stopPlayback];
     [self.view removeFromSuperview];
 }
 
