@@ -37,16 +37,28 @@
         _contentView.backgroundColor = [UIColor blackColor];
         [_auditionBackgroundView addSubview:_contentView];
     
-        _videoView = [[UIView alloc] initWithFrame:CGRectZero];
-        _videoView.backgroundColor = [UIColor blackColor];
-        [_contentView addSubview:_videoView];
+        _videoContainerView = [[UIView alloc] initWithFrame:CGRectZero];
+        _videoContainerView.backgroundColor = [UIColor blackColor];
+        [_contentView addSubview:_videoContainerView];
         
         _playbackView = [[AVPlayerPlaybackView alloc] initWithFrame:CGRectZero];
         _playbackView.backgroundColor = [UIColor clearColor];
-        [_videoView addSubview:_playbackView];
+        [_videoContainerView addSubview:_playbackView];
+        
+        _sliderContainerView = [[UIView alloc] initWithFrame:CGRectZero];
+        _sliderContainerView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.6];
+        [_playbackView addSubview:_sliderContainerView];
+        
+        _volumeSlider = [[UISlider alloc] initWithFrame:CGRectZero];
+        _volumeSlider.minimumValue = 0;
+        _volumeSlider.maximumValue = 200;
+        _volumeSlider.minimumValueImage = [UIImage imageInResourceBundleNamed:@"btn_add.png"];
+        _volumeSlider.maximumValueImage = [UIImage imageInResourceBundleNamed:@"btn_remove.png"];
+        _volumeSlider.value = 100;
+        [_sliderContainerView addSubview:_volumeSlider];
         
         _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        [_videoView addSubview:_activityIndicator];
+        [_videoContainerView addSubview:_activityIndicator];
         
         _songNameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _songNameLabel.text = media.title;
@@ -87,24 +99,37 @@
     
     _contentView.frame = CGRectMake(1, 26, _auditionBackgroundView.bounds.size.width - 2, _auditionBackgroundView.bounds.size.height - 26 - 1);
     
-    _videoView.frame = CGRectMake(PADDING,
+    _videoContainerView.frame = CGRectMake(PADDING,
                                   PADDING,
                                   _contentView.bounds.size.width - PADDING*2,
                                   160);
     
-    _playbackView.frame = _videoView.bounds;
+    _playbackView.frame = _videoContainerView.bounds;
+    
+    _sliderContainerView.frame = CGRectMake(0,
+                                            _videoContainerView.bounds.size.height * .75 - 2,
+                                            _videoContainerView.bounds.size.width,
+                                            _videoContainerView.bounds.size.height * .25);
+    
+    _volumeSlider.frame = CGRectMake(0,
+                                     0,
+                                     _sliderContainerView.bounds.size.width,
+                                     20);
+    
+    _volumeSlider.center = CGPointMake(_sliderContainerView.center.x,
+                                       _sliderContainerView.bounds.size.height/2);
     
     _activityIndicator.center = _playbackView.center;
     
     _buyButton.frame = CGRectMake(_contentView.bounds.size.width - PADDING - 107,
-                                  _videoView.frame.size.height + 18,
+                                  _videoContainerView.frame.size.height + 18,
                                   107,
                                   27);
     
     [_songNameLabel sizeToFit];
     CGRect songNameFrame = _songNameLabel.bounds;
     songNameFrame.origin = CGPointMake(PADDING,
-                                       _videoView.frame.size.height + 12);
+                                       _videoContainerView.frame.size.height + 12);
     songNameFrame.size.width = _contentView.bounds.size.width - PADDING*2 - _buyButton.bounds.size.width;
     _songNameLabel.frame = songNameFrame;
     
