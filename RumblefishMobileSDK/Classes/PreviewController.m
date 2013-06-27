@@ -32,6 +32,9 @@
     [self.view.dismissButton addTarget:self
                                 action:@selector(dismiss)
                       forControlEvents:UIControlEventTouchUpInside];
+    [self.view.volumeSlider addTarget:self
+                               action:@selector(volumeSliderChanged:)
+                     forControlEvents:UIControlEventValueChanged];
     [self.view setNeedsLayout];
 }
 
@@ -45,9 +48,19 @@
     [self.view.playbackView setPlayer:_moviePlayer.player];
 }
 
+#pragma mark - Button Methods
+
 - (void)dismiss {
     [self stopPlayback];
     [self.view removeFromSuperview];
+}
+
+- (void)volumeSliderChanged:(UISlider *)slider {
+    float val = slider.value;
+    float musicVolume = (val > 100) ? 200 - val : 100;
+    float movieVolume = (val <= 100) ? val : 100;
+    [_musicPlayer updateVolume:musicVolume];
+    [_moviePlayer updateVolume:movieVolume];
 }
 
 #pragma mark - PlayerDelegate

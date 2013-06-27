@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34F38773177CBD2300312BD1 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F38772177CBD2300312BD1 /* CoreMedia.framework */; };
 		411FCECF1639E856000B1841 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 411FCECE1639E856000B1841 /* Icon.png */; };
 		411FCED11639E85D000B1841 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 411FCED01639E85D000B1841 /* Icon@2x.png */; };
 		411FCEF71639F5D4000B1841 /* libRumblefishMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 413FD94C1639BF2D002A9183 /* libRumblefishMobileSDK.a */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		34F38772177CBD2300312BD1 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		411FCECE1639E856000B1841 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		411FCED01639E85D000B1841 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		413FD8FC1639B787002A9183 /* RumblefishMobileSDKDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RumblefishMobileSDKDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34F38773177CBD2300312BD1 /* CoreMedia.framework in Frameworks */,
 				41C16A7D1770D54800717ADF /* CoreText.framework in Frameworks */,
 				41FE1A17176F9263002E022D /* MediaPlayer.framework in Frameworks */,
 				411FCEF71639F5D4000B1841 /* libRumblefishMobileSDK.a in Frameworks */,
@@ -103,6 +106,7 @@
 		413FD8F11639B787002A9183 = {
 			isa = PBXGroup;
 			children = (
+				34F38772177CBD2300312BD1 /* CoreMedia.framework */,
 				41C16A7C1770D54800717ADF /* CoreText.framework */,
 				41FE1A16176F9263002E022D /* MediaPlayer.framework */,
 				411FCED01639E85D000B1841 /* Icon@2x.png */,

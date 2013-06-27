@@ -49,6 +49,26 @@
     _player = nil;
 }
 
+- (void)updateVolume:(float)volume;
+{
+    NSArray *audioTracks = [_playerItem.asset tracksWithMediaType:AVMediaTypeAudio];
+
+    NSMutableArray *allAudioParams = [NSMutableArray array];
+    for (AVAssetTrack *track in audioTracks) {
+        AVMutableAudioMixInputParameters *audioInputParams =
+        [AVMutableAudioMixInputParameters audioMixInputParameters];
+        [audioInputParams setVolume:volume/100 atTime:kCMTimeZero];
+        [audioInputParams setTrackID:[track trackID]];
+        [allAudioParams addObject:audioInputParams];
+    }
+    
+    AVMutableAudioMix *audioMix = [AVMutableAudioMix audioMix];
+    [audioMix setInputParameters:allAudioParams];
+    
+    [_playerItem setAudioMix:audioMix];
+}
+
+#pragma mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     AVPlayerItem *item = (AVPlayerItem *)object;
     if ([keyPath isEqualToString:@"status"]) {

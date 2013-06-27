@@ -27,5 +27,6 @@
 
 - (id)initWithMediaURL:(NSURL *)url isVideo:(BOOL)isVideo;
 - (void)ejectPlayer;
+- (void)updateVolume:(float)volume;
 
 @end
