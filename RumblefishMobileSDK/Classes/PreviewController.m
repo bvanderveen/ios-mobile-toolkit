@@ -27,6 +27,14 @@
     return self;
 }
 
+- (void)show
+{
+    UIView *newParentView = [UIApplication sharedApplication].keyWindow.rootViewController.view;  // This appears to be the same thing MPMoviePlayerController uses.
+    self.view.frame = newParentView.bounds;
+    [newParentView addSubview:self.view];
+    [self startPlayback];
+}
+
 - (void)loadView {
     self.view = [[PreviewView alloc] initWithMedia:_media];
     [self.view.dismissButton addTarget:self
@@ -39,7 +47,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self startPlayback];
 }
 
 - (void)startPlayback {

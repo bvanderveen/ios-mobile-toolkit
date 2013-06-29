@@ -35,9 +35,10 @@
 
         _accessoryButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_accessoryButton setImage:[UIImage imageInResourceBundleNamed:@"song_check.png"] forState:UIControlStateSelected];
+        [_accessoryButton setImage:[UIImage imageInResourceBundleNamed:@"btn_add.png"] forState:UIControlStateNormal];
         [_accessoryButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
-        [_accessoryButton sizeToFit];
         self.accessoryView = _accessoryButton;
+        [_accessoryButton sizeToFit];
         
         _saveLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _saveLabel.font = [RFFont fontWithSize:12];
@@ -87,7 +88,6 @@
 - (void)buttonTapped:(UIButton *)button {
     if (_buttonAction) {
         _saveLabel.text = (button.selected) ? @"SAVE" : @"SAVED";
-        [button sizeToFit];
         _buttonAction();
     }
 }
@@ -99,9 +99,6 @@
     
     if (!cell)
         cell = [[SongCell alloc] initWithReuseIdentifier:ident];
-    
-    [cell.accessoryButton setImage:[UIImage imageInResourceBundleNamed:@"btn_add.png"] forState:UIControlStateNormal];
-    [cell.accessoryButton sizeToFit];
     
     cell.textLabel.text = media.title;
     cell.detailTextLabel.text = media.genre;

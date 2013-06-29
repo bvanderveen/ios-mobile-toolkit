@@ -134,10 +134,8 @@
 {
     Media *currentMedia = [playlist.media objectAtIndex:indexPath.row];
     _previewController = [[PreviewController alloc] initWithMedia:currentMedia];
-    CGRect frame = self.tableView.bounds;
-    frame.origin = CGPointMake(0, frame.origin.y - self.tableView.contentOffset.y);
-    _previewController.view.frame = frame;
-    [self.view addSubview:_previewController.view];
+    _previewController.view.frame = self.view.bounds;
+    [_previewController show];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

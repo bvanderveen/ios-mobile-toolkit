@@ -55,6 +55,8 @@
         _volumeSlider.minimumValueImage = [UIImage imageInResourceBundleNamed:@"btn_add.png"];
         _volumeSlider.maximumValueImage = [UIImage imageInResourceBundleNamed:@"btn_remove.png"];
         _volumeSlider.value = 100;
+        _volumeSlider.minimumTrackTintColor = [UIColor whiteColor];
+        _volumeSlider.maximumTrackTintColor = [UIColor whiteColor];
         [_sliderContainerView addSubview:_volumeSlider];
         
         _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
