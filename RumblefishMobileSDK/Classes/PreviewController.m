@@ -9,7 +9,7 @@
 @property (nonatomic, strong) Media *media;
 @property (nonatomic, strong) PreviewView *view;
 @property (nonatomic, strong) Player *moviePlayer, *musicPlayer;
-@property (nonatomic) BOOL volControlsShown;
+@property (nonatomic) BOOL volControlsShown, playing;
 
 @end
 
@@ -19,19 +19,15 @@
 
 - (id)initWithMedia:(Media *)media {
     if (self = [super init]) {
-        [self setUpPlayersForMedia:media];
+        _moviePlayer = [[Player alloc] initWithMediaURL:[RFAPI singleton].videoURL isVideo:YES];
+        _musicPlayer = [[Player alloc] initWithMediaURL:media.previewURL isVideo:NO];
+        _moviePlayer.delegate = self;
+        _musicPlayer.delegate = self;
         _media = media;
         _volControlsShown = NO;
+        _playing = NO;
     }
     return self;
-}
-
-- (void)setUpPlayersForMedia:(Media *)media
-{
-    _moviePlayer = [[Player alloc] initWithMediaURL:[RFAPI singleton].videoURL isVideo:YES];
-    _musicPlayer = [[Player alloc] initWithMediaURL:media.previewURL isVideo:NO];
-    _moviePlayer.delegate = self;
-    _musicPlayer.delegate = self;
 }
 
 - (void)show
@@ -62,9 +58,7 @@
                                              selector:@selector(hideVolumeControls)
                                                object:nil];
     
-    if (self.view.sliderContainerView.alpha == 0) {
-        [self showVolumeControls];
-    }
+    [self showVolumeControls];
 }
 
 - (void)showVolumeControls
@@ -74,7 +68,7 @@
                          self.view.sliderContainerView.alpha = 1;
                      }
                      completion:^(BOOL finished) {
-                         [self performSelector:@selector(hideVolumeControls) withObject:nil afterDelay:2];
+                         [self performSelector:@selector(hideVolumeControls) withObject:nil afterDelay:2.25];
                      }];
 }
 
@@ -102,7 +96,8 @@
 
 - (void)dismiss {
     [self stopPlayback];
-
+    [_moviePlayer ejectPlayer];
+    [_musicPlayer ejectPlayer];
     [self.view removeFromSuperview];
 }
 
@@ -120,7 +115,8 @@
     BOOL musicPlayable = _musicPlayer.playerItem.playbackLikelyToKeepUp;
     BOOL moviePlayable = _moviePlayer.playerItem.playbackLikelyToKeepUp;
     
-    if (musicPlayable && moviePlayable) {
+    if (musicPlayable && moviePlayable && !_playing) {
+        _playing = YES;
         [self.view.activityIndicator stopAnimating];
         self.view.playbackView.hidden = NO;
         [_musicPlayer.player play];
@@ -132,10 +128,17 @@
 }
 
 - (void)stopPlayback {
-    self.view.replayButton.hidden = NO;
-    [_moviePlayer ejectPlayer];
-    [_musicPlayer ejectPlayer];
-    [self.view.playbackView setPlayer:nil];
+    _playing = NO;
+//    self.view.replayButton.hidden = NO;
+    [_moviePlayer.player pause];
+    [_moviePlayer.player seekToTime:kCMTimeZero completionHandler:^(BOOL finished) {
+        NSLog(@"Movie Player Seeked");
+    }];
+    [_musicPlayer.player pause];
+    [_musicPlayer.player seekToTime:kCMTimeZero completionHandler:^(BOOL finished) {
+        NSLog(@"Music Player Seeked");
+    }];
+//    [self.view.playbackView setPlayer:nil];
 }
 
 @end
