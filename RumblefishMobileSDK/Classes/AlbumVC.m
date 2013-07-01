@@ -134,9 +134,7 @@
 {
     Media *currentMedia = [playlist.media objectAtIndex:indexPath.row];
     _previewController = [[PreviewController alloc] initWithMedia:currentMedia];
-    _previewController.view.frame = self.view.bounds;
-    [_previewController show];
-    
+    [_previewController show];    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
