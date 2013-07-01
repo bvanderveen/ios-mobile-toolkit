@@ -4,6 +4,7 @@
 #import "UIImage+RumblefishSDKResources.h"
 
 #define PADDING 10
+#define SLIDERIMAGEWIDTH 22
 
 @interface PreviewView ()
 
@@ -50,12 +51,19 @@
         _sliderContainerView.alpha = 0;
         [_playbackView addSubview:_sliderContainerView];
         
+        _minimumSliderImageView = [[UIImageView alloc] initWithImage:[UIImage imageInResourceBundleNamed:@"volume_music.png"]];
+        [_sliderContainerView addSubview:_minimumSliderImageView];
+        
+        _maximumSliderImageView = [[UIImageView alloc] initWithImage:[UIImage imageInResourceBundleNamed:@"volume_film.png"]];
+        [_sliderContainerView addSubview:_maximumSliderImageView];
+        
         _volumeSlider = [[UISlider alloc] initWithFrame:CGRectZero];
         _volumeSlider.minimumValue = 0;
         _volumeSlider.maximumValue = 200;
-        _volumeSlider.minimumValueImage = [UIImage imageInResourceBundleNamed:@"volume_music.png"];
-        _volumeSlider.maximumValueImage = [UIImage imageInResourceBundleNamed:@"volume_film.png"];
-        [_volumeSlider setThumbImage:[UIImage imageInResourceBundleNamed:@"volume_thumb.png"] forState:UIControlStateNormal];
+//        _volumeSlider.minimumValueImage = [UIImage imageInResourceBundleNamed:@"volume_music.png"];
+//        _volumeSlider.maximumValueImage = [UIImage imageInResourceBundleNamed:@"volume_film.png"];
+        [_volumeSlider setThumbImage:[UIImage imageInResourceBundleNamed:@"volume_thumb.png"]
+                            forState:UIControlStateNormal];
         _volumeSlider.value = 100;
         _volumeSlider.minimumTrackTintColor = [UIColor whiteColor];
         _volumeSlider.maximumTrackTintColor = [UIColor whiteColor];
@@ -98,6 +106,7 @@
 
 - (void)layoutSubviews
 {
+    
     _auditionBackgroundView.frame = CGRectMake(0,
                                                0,
                                                self.bounds.size.width - PADDING*2,
@@ -127,13 +136,33 @@
                                             _videoContainerView.bounds.size.width,
                                             _videoContainerView.bounds.size.height * .25);
     
-    _volumeSlider.frame = CGRectMake(0,
+//    [_minimumSliderImageView sizeToFit];
+
+    _minimumSliderImageView.frame = CGRectMake(PADDING,
+                                               PADDING,
+                                               SLIDERIMAGEWIDTH,
+                                               SLIDERIMAGEWIDTH);
+    
+    _minimumSliderImageView.center = CGPointMake(_minimumSliderImageView.center.x,
+                                                 _sliderContainerView.bounds.size.height/2);
+    
+    NSLog(@"Min frame: %@", NSStringFromCGRect(_minimumSliderImageView.frame));
+    _volumeSlider.frame = CGRectMake(PADDING * 2 + _minimumSliderImageView.frame.size.width,
                                      0,
-                                     _sliderContainerView.bounds.size.width,
+                                     _sliderContainerView.bounds.size.width - (SLIDERIMAGEWIDTH*2 +PADDING*4),
                                      20);
     
     _volumeSlider.center = CGPointMake(_sliderContainerView.center.x,
                                        _sliderContainerView.bounds.size.height/2);
+    
+    _maximumSliderImageView.frame = CGRectMake(_sliderContainerView.bounds.size.width - PADDING - SLIDERIMAGEWIDTH,
+                                               PADDING,
+                                               SLIDERIMAGEWIDTH,
+                                               SLIDERIMAGEWIDTH);
+
+    _maximumSliderImageView.center = CGPointMake(_maximumSliderImageView.center.x,
+                                                  _sliderContainerView.bounds.size.height/2);
+    NSLog(@"Max frame: %@", NSStringFromCGRect(_maximumSliderImageView.frame));
     
     _activityIndicator.center = _playbackView.center;
     
@@ -141,8 +170,6 @@
     _replayButton.frame = CGRectMake(0, 0, 100, 40);
     _replayButton.center = _playbackView.center;
     
-    NSLog(NSStringFromCGRect(_replayButton.frame));
-
     _buyButton.frame = CGRectMake(_contentView.bounds.size.width - PADDING - 107,
                                   _videoContainerView.frame.size.height + 18,
                                   107,

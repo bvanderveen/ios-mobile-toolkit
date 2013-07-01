@@ -9,6 +9,7 @@
 @property (nonatomic, strong) AVPlayerPlaybackView *playbackView;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) UISlider *volumeSlider;
+@property (nonatomic, strong) UIImageView *minimumSliderImageView, *maximumSliderImageView;
 
 - (id)initWithMedia:(Media *)media;
 
