@@ -18,6 +18,8 @@
 		3473A7CD17810FB900FD1D8E /* volume_music@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3473A7C717810FB900FD1D8E /* volume_music@2x.png */; };
 		3473A7CE17810FB900FD1D8E /* volume_thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 3473A7C817810FB900FD1D8E /* volume_thumb.png */; };
 		3473A7CF17810FB900FD1D8E /* volume_thumb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3473A7C917810FB900FD1D8E /* volume_thumb@2x.png */; };
+		3473A7D217811CE300FD1D8E /* preview_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 3473A7D017811CE300FD1D8E /* preview_close.png */; };
+		3473A7D317811CE300FD1D8E /* preview_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3473A7D117811CE300FD1D8E /* preview_close@2x.png */; };
 		34B61BAE1772D59A00D7E903 /* DisclosureArrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B61BAD1772D59A00D7E903 /* DisclosureArrow.m */; };
 		34B61BF41773D20300D7E903 /* savedIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34B61BEB1773D20300D7E903 /* savedIcon@2x.png */; };
 		34B61BF51773D20300D7E903 /* savedIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 34B61BEC1773D20300D7E903 /* savedIcon.png */; };
@@ -247,6 +249,8 @@
 		3473A7C717810FB900FD1D8E /* volume_music@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume_music@2x.png"; sourceTree = "<group>"; };
 		3473A7C817810FB900FD1D8E /* volume_thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volume_thumb.png; sourceTree = "<group>"; };
 		3473A7C917810FB900FD1D8E /* volume_thumb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume_thumb@2x.png"; sourceTree = "<group>"; };
+		3473A7D017811CE300FD1D8E /* preview_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preview_close.png; sourceTree = "<group>"; };
+		3473A7D117811CE300FD1D8E /* preview_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preview_close@2x.png"; sourceTree = "<group>"; };
 		34B61BAC1772D59A00D7E903 /* DisclosureArrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DisclosureArrow.h; path = Classes/DisclosureArrow.h; sourceTree = SOURCE_ROOT; };
 		34B61BAD1772D59A00D7E903 /* DisclosureArrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DisclosureArrow.m; path = Classes/DisclosureArrow.m; sourceTree = SOURCE_ROOT; };
 		34B61BEB1773D20300D7E903 /* savedIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "savedIcon@2x.png"; path = "RumblefishMobileSDKResources/Images/savedIcon@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -431,9 +435,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3473A7BF17810FAD00FD1D8E /* Volume Icons */ = {
+		3473A7BF17810FAD00FD1D8E /* Preview Icons */ = {
 			isa = PBXGroup;
 			children = (
+				3473A7D017811CE300FD1D8E /* preview_close.png */,
+				3473A7D117811CE300FD1D8E /* preview_close@2x.png */,
 				3473A7C417810FB900FD1D8E /* volume_film@2x.png */,
 				3473A7C517810FB900FD1D8E /* volume_film.png */,
 				3473A7C617810FB900FD1D8E /* volume_music.png */,
@@ -441,7 +447,7 @@
 				3473A7C817810FB900FD1D8E /* volume_thumb.png */,
 				3473A7C917810FB900FD1D8E /* volume_thumb@2x.png */,
 			);
-			name = "Volume Icons";
+			name = "Preview Icons";
 			sourceTree = "<group>";
 		};
 		34B61BB61773D0C900D7E903 /* Tab Bar Icons */ = {
@@ -620,7 +626,7 @@
 		413FD96E1639D7DA002A9183 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				3473A7BF17810FAD00FD1D8E /* Volume Icons */,
+				3473A7BF17810FAD00FD1D8E /* Preview Icons */,
 				34B61BB61773D0C900D7E903 /* Tab Bar Icons */,
 				413FD96F1639D7DA002A9183 /* bg_surround.png */,
 				413FD9701639D7DA002A9183 /* bg_surround@2x.png */,
@@ -963,6 +969,8 @@
 				3473A7CD17810FB900FD1D8E /* volume_music@2x.png in Resources */,
 				3473A7CE17810FB900FD1D8E /* volume_thumb.png in Resources */,
 				3473A7CF17810FB900FD1D8E /* volume_thumb@2x.png in Resources */,
+				3473A7D217811CE300FD1D8E /* preview_close.png in Resources */,
+				3473A7D317811CE300FD1D8E /* preview_close@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

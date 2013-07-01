@@ -31,7 +31,7 @@
         [_auditionBackgroundView addSubview:_titleLabel];
         
         _dismissButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_dismissButton setImage:[UIImage imageInResourceBundleNamed:@"btn_add.png"] forState:UIControlStateNormal];
+        [_dismissButton setImage:[UIImage imageInResourceBundleNamed:@"preview_close.png"] forState:UIControlStateNormal];
         [_auditionBackgroundView addSubview:_dismissButton];
         
         _contentView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -117,7 +117,7 @@
     _titleLabel.center = CGPointMake(_auditionBackgroundView.center.x - PADDING,
                                      14);
     
-    [_dismissButton sizeToFit];
+    _dismissButton.frame = CGRectMake(0,0,30,30);
     _dismissButton.center = CGPointMake(_auditionBackgroundView.bounds.size.width - 14,
                                         14);
     
