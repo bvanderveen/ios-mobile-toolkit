@@ -46,7 +46,8 @@
         [_videoContainerView addSubview:_playbackView];
         
         _sliderContainerView = [[UIView alloc] initWithFrame:CGRectZero];
-        _sliderContainerView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.6];
+        _sliderContainerView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.6];
+        _sliderContainerView.alpha = 0;
         [_playbackView addSubview:_sliderContainerView];
         
         _volumeSlider = [[UISlider alloc] initWithFrame:CGRectZero];
@@ -61,6 +62,13 @@
         
         _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         [_videoContainerView addSubview:_activityIndicator];
+        
+        _replayButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_replayButton setTitle:@"REPLAY" forState:UIControlStateNormal];
+        _replayButton.titleLabel.font = [RFFont fontWithSize:22];
+        _replayButton.titleLabel.textColor = [UIColor whiteColor];
+        _replayButton.backgroundColor = [UIColor clearColor];
+        [_videoContainerView addSubview:_replayButton];
         
         _songNameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _songNameLabel.text = media.title;
@@ -108,6 +116,7 @@
     
     _playbackView.frame = _videoContainerView.bounds;
     
+    
     _sliderContainerView.frame = CGRectMake(0,
                                             _videoContainerView.bounds.size.height * .75 - 2,
                                             _videoContainerView.bounds.size.width,
@@ -123,6 +132,12 @@
     
     _activityIndicator.center = _playbackView.center;
     
+    [_replayButton sizeToFit];
+    _replayButton.frame = CGRectMake(0, 0, 100, 40);
+    _replayButton.center = _playbackView.center;
+    
+    NSLog(NSStringFromCGRect(_replayButton.frame));
+
     _buyButton.frame = CGRectMake(_contentView.bounds.size.width - PADDING - 107,
                                   _videoContainerView.frame.size.height + 18,
                                   107,
