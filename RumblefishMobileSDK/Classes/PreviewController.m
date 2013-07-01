@@ -92,9 +92,10 @@
     [UIView animateWithDuration:0.2
                      animations:^{
                          self.view.sliderContainerView.alpha = 1;
-                     }
-                     completion:^(BOOL finished) {
-                         [self performSelector:@selector(hideVolumeControls) withObject:nil afterDelay:2.25];
+                     } completion:^(BOOL finished) {
+                         [self performSelector:@selector(hideVolumeControls)
+                                    withObject:nil
+                                    afterDelay:2.25];
                      }];
 }
 
@@ -102,8 +103,7 @@
     [UIView animateWithDuration:0.2
                      animations:^{
                          self.view.sliderContainerView.alpha = 0;
-                     }
-                     completion:nil];
+                     } completion:nil];
 }
 
 #pragma mark - Button Methods
@@ -116,7 +116,15 @@
     [self stopPlayback];
     [_moviePlayer ejectPlayer];
     [_musicPlayer ejectPlayer];
-    [self.view removeFromSuperview];
+    [UIView animateWithDuration:0.05 animations:^{
+        self.view.auditionBackgroundView.alpha = 0;
+    }];
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         self.view.alpha = 0;
+                     } completion:^(BOOL finished) {
+                         [self.view removeFromSuperview];
+                     }];
 }
 
 - (void)volumeSliderTouched {
@@ -159,13 +167,9 @@
 - (void)stopPlayback {
     _playing = NO;
     [_moviePlayer.player pause];
-    [_moviePlayer.player seekToTime:kCMTimeZero completionHandler:^(BOOL finished) {
-        NSLog(@"Movie Player Seeked");
-    }];
     [_musicPlayer.player pause];
-    [_musicPlayer.player seekToTime:kCMTimeZero completionHandler:^(BOOL finished) {
-        NSLog(@"Music Player Seeked");
-    }];
+    [_moviePlayer.player seekToTime:kCMTimeZero completionHandler:nil];
+    [_musicPlayer.player seekToTime:kCMTimeZero completionHandler:nil];
 }
 
 @end
