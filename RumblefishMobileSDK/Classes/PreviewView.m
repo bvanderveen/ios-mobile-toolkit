@@ -53,11 +53,16 @@
         _volumeSlider = [[UISlider alloc] initWithFrame:CGRectZero];
         _volumeSlider.minimumValue = 0;
         _volumeSlider.maximumValue = 200;
-        _volumeSlider.minimumValueImage = [UIImage imageInResourceBundleNamed:@"btn_add.png"];
-        _volumeSlider.maximumValueImage = [UIImage imageInResourceBundleNamed:@"btn_remove.png"];
+        _volumeSlider.minimumValueImage = [UIImage imageInResourceBundleNamed:@"volume_music.png"];
+        _volumeSlider.maximumValueImage = [UIImage imageInResourceBundleNamed:@"volume_film.png"];
+        [_volumeSlider setThumbImage:[UIImage imageInResourceBundleNamed:@"volume_thumb.png"] forState:UIControlStateNormal];
         _volumeSlider.value = 100;
         _volumeSlider.minimumTrackTintColor = [UIColor whiteColor];
         _volumeSlider.maximumTrackTintColor = [UIColor whiteColor];
+        
+        [_volumeSlider minimumValueImageRectForBounds:CGRectMake(0, 0, 25, 25)];
+        [_volumeSlider maximumValueImageRectForBounds:CGRectMake(0, 0, 25, 25)];
+        
         [_sliderContainerView addSubview:_volumeSlider];
         
         _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
