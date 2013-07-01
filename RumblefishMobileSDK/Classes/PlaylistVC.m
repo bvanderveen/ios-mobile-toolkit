@@ -26,6 +26,13 @@
 #import "SBJson/SBJson.h"
 #import "LocalPlaylist.h"
 #import "SongCell.h"
+#import "PreviewController.h"
+
+@interface PlaylistVC ()
+
+@property (nonatomic, strong) PreviewController *previewController;
+
+@end
 
 @implementation PlaylistVC
 
@@ -91,7 +98,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    Media *currentMedia = [[LocalPlaylist sharedPlaylist] mediaAtIndex:indexPath.row];
+    _previewController = [[PreviewController alloc] initWithMedia:currentMedia];
+    [_previewController show];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
