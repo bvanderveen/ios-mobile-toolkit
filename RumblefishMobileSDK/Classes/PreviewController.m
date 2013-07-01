@@ -32,9 +32,20 @@
 
 - (void)show
 {
-    UIView *newParentView = [UIApplication sharedApplication].keyWindow.rootViewController.view;  // This appears to be the same thing MPMoviePlayerController uses.
+    UIView *newParentView = [UIApplication sharedApplication].keyWindow.rootViewController.view;
     self.view.frame = newParentView.bounds;
+    self.view.auditionBackgroundView.alpha = 0;
+    self.view.alpha = 0;
     [newParentView addSubview:self.view];
+    [UIView animateWithDuration:0.125
+                     animations:^{
+                         self.view.alpha = 1;
+                     } completion:^(BOOL finished) {
+                         [UIView animateWithDuration:0.05
+                                          animations:^{
+                                              self.view.auditionBackgroundView.alpha = 1;
+                                          } completion:nil];
+                     }];
     [self startPlayback];
 }
 
@@ -44,45 +55,22 @@
                                 action:@selector(dismiss)
                       forControlEvents:UIControlEventTouchUpInside];
     [self.view.volumeSlider addTarget:self
+                               action:@selector(volumeSliderTouched)
+                     forControlEvents:UIControlEventTouchDown];
+    [self.view.volumeSlider addTarget:self
                                action:@selector(volumeSliderChanged:)
                      forControlEvents:UIControlEventValueChanged];
+    
+    [self.view.volumeSlider addTarget:self
+                               action:@selector(volumeSliderDoneBeingTouched)
+                     forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
     [self.view.replayButton addTarget:self
                                action:@selector(startPlayback)
-                     forControlEvents:UIControlEventTouchUpInside];    
+                     forControlEvents:UIControlEventTouchUpInside];
+    [self.view.buyButton addTarget:self
+                            action:@selector(buySong)
+                  forControlEvents:UIControlEventTouchUpInside];
     [self.view setNeedsLayout];
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [NSObject cancelPreviousPerformRequestsWithTarget:self
-                                             selector:@selector(hideVolumeControls)
-                                               object:nil];
-    
-    [self showVolumeControls];
-}
-
-- (void)showVolumeControls
-{
-    [UIView animateWithDuration:0.2
-                     animations:^{
-                         self.view.sliderContainerView.alpha = 1;
-                     }
-                     completion:^(BOOL finished) {
-                         [self performSelector:@selector(hideVolumeControls) withObject:nil afterDelay:2.25];
-                     }];
-}
-
-- (void)hideVolumeControls
-{
-    [UIView animateWithDuration:0.2
-                     animations:^{
-                         self.view.sliderContainerView.alpha = 0;
-                     }
-                     completion:nil];
-}
-
-
-- (void)viewWillAppear:(BOOL)animated {
 }
 
 - (void)startPlayback {
@@ -92,7 +80,37 @@
     [self.view.playbackView setPlayer:_moviePlayer.player];
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self
+                                             selector:@selector(hideVolumeControls)
+                                               object:nil];
+    
+    [self showVolumeControls];
+}
+
+- (void)showVolumeControls {
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         self.view.sliderContainerView.alpha = 1;
+                     }
+                     completion:^(BOOL finished) {
+                         [self performSelector:@selector(hideVolumeControls) withObject:nil afterDelay:2.25];
+                     }];
+}
+
+- (void)hideVolumeControls {
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         self.view.sliderContainerView.alpha = 0;
+                     }
+                     completion:nil];
+}
+
 #pragma mark - Button Methods
+
+- (void)buySong {
+    NSLog(@"Buy Song!");
+}
 
 - (void)dismiss {
     [self stopPlayback];
@@ -101,12 +119,23 @@
     [self.view removeFromSuperview];
 }
 
+- (void)volumeSliderTouched {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self
+                                             selector:@selector(hideVolumeControls)
+                                               object:nil];
+}
+
 - (void)volumeSliderChanged:(UISlider *)slider {
     float val = slider.value;
     float musicVolume = (val > 100) ? 200 - val : 100;
     float movieVolume = (val <= 100) ? val : 100;
     [_musicPlayer updateVolume:musicVolume];
     [_moviePlayer updateVolume:movieVolume];
+    
+}
+
+- (void)volumeSliderDoneBeingTouched {
+    [self performSelector:@selector(hideVolumeControls) withObject:nil afterDelay:0.8];
 }
 
 #pragma mark - PlayerDelegate
@@ -129,7 +158,6 @@
 
 - (void)stopPlayback {
     _playing = NO;
-//    self.view.replayButton.hidden = NO;
     [_moviePlayer.player pause];
     [_moviePlayer.player seekToTime:kCMTimeZero completionHandler:^(BOOL finished) {
         NSLog(@"Movie Player Seeked");
@@ -138,7 +166,6 @@
     [_musicPlayer.player seekToTime:kCMTimeZero completionHandler:^(BOOL finished) {
         NSLog(@"Music Player Seeked");
     }];
-//    [self.view.playbackView setPlayer:nil];
 }
 
 @end

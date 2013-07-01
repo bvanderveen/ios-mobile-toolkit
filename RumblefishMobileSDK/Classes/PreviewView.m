@@ -16,7 +16,7 @@
 {
     if (self = [super initWithFrame:CGRectZero]) {
         
-        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
+        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.75];
         
         _auditionBackgroundView = [[UIView alloc] initWithFrame:CGRectZero];
         _auditionBackgroundView.backgroundColor = [RFColor lightBlue];
@@ -60,17 +60,11 @@
         _volumeSlider = [[UISlider alloc] initWithFrame:CGRectZero];
         _volumeSlider.minimumValue = 0;
         _volumeSlider.maximumValue = 200;
-//        _volumeSlider.minimumValueImage = [UIImage imageInResourceBundleNamed:@"volume_music.png"];
-//        _volumeSlider.maximumValueImage = [UIImage imageInResourceBundleNamed:@"volume_film.png"];
         [_volumeSlider setThumbImage:[UIImage imageInResourceBundleNamed:@"volume_thumb.png"]
                             forState:UIControlStateNormal];
         _volumeSlider.value = 100;
         _volumeSlider.minimumTrackTintColor = [UIColor whiteColor];
         _volumeSlider.maximumTrackTintColor = [UIColor whiteColor];
-        
-        [_volumeSlider minimumValueImageRectForBounds:CGRectMake(0, 0, 25, 25)];
-        [_volumeSlider maximumValueImageRectForBounds:CGRectMake(0, 0, 25, 25)];
-        
         [_sliderContainerView addSubview:_volumeSlider];
         
         _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -98,7 +92,12 @@
         [_contentView addSubview:_genreLabel];
     
         _buyButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        _buyButton.titleLabel.text = @"$0.99 | BUY";
+        [_buyButton setTitle:@"$0.99 | Buy" forState:UIControlStateNormal];
+        _buyButton.titleLabel.font = [RFFont fontWithSize:18];
+        [_buyButton setTitleColor:[RFColor lightBlue] forState:UIControlStateNormal];
+        [_buyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        _buyButton.titleLabel.textColor = [RFColor darkBlue];
+        
         [_contentView addSubview:_buyButton];
     }
     return self;
@@ -136,8 +135,6 @@
                                             _videoContainerView.bounds.size.width,
                                             _videoContainerView.bounds.size.height * .25);
     
-//    [_minimumSliderImageView sizeToFit];
-
     _minimumSliderImageView.frame = CGRectMake(PADDING,
                                                PADDING,
                                                SLIDERIMAGEWIDTH,
@@ -170,10 +167,10 @@
     _replayButton.frame = CGRectMake(0, 0, 100, 40);
     _replayButton.center = _playbackView.center;
     
-    _buyButton.frame = CGRectMake(_contentView.bounds.size.width - PADDING - 107,
-                                  _videoContainerView.frame.size.height + 18,
-                                  107,
-                                  27);
+    _buyButton.frame = CGRectMake(_contentView.bounds.size.width - PADDING - 100,
+                                  _videoContainerView.frame.size.height + 16,
+                                  100,
+                                  30);
     
     [_songNameLabel sizeToFit];
     CGRect songNameFrame = _songNameLabel.bounds;
