@@ -91,7 +91,7 @@
     CGFloat itemsFittingH = MIN(3, floorf(self.bounds.size.width / itemWidth));
     
     CGFloat itemHeight = imageHeight + imageMargin * 2;
-    CGFloat itemsFittingV = MIN(3, floorf(self.bounds.size.height / itemHeight));
+    CGFloat itemsFittingV = MIN(3, floorf(self.bounds.size.height - 40 / itemHeight));
     
     itemWidth = self.bounds.size.width / itemsFittingH;
     CGFloat calculatedXmargin = (self.bounds.size.width - (imageWidth * itemsFittingH)) / (itemsFittingH * 2 + 2);
