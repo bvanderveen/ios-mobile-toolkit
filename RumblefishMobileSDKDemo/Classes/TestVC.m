@@ -24,6 +24,11 @@
 
 #import "TestVC.h"
 #import "RumblefishMobileSDK/RumblefishMobileSDK.h"
+#import <MobileCoreServices/MobileCoreServices.h>
+
+@interface TestVC () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
+@end
 
 @implementation TestVC
 
@@ -41,22 +46,50 @@
     
     // PLEASE SPECIFY A VALID public key and password. Contact developers@rumblefish.com for more info.
     // NSURL *url = [[NSBundle mainBundle] URLForResource:@"maiden_trashplane_1280x720" withExtension:@"mp4"];
-    NSURL *url = [NSURL URLWithString:@"http://vimeo.com/48931301/download?t=1371599214&v=116073593&s=1d4de25bc703d2c8eec8dbcd166d5e3c"];
-    [RFAPI rumbleWithEnvironment:RFAPIEnvSandbox
-                       publicKey:@"sandbox"
-                        password:@"sandbox"
-                        videoURL:url];
+//    NSURL *url = [NSURL URLWithString:@"http://vimeo.com/48931301/download?t=1371599214&v=116073593&s=1d4de25bc703d2c8eec8dbcd166d5e3c"];
+
 }
 
 - (IBAction)start {
     
-    TabBarViewController *tabController = [[TabBarViewController alloc] init];
-    [self.navigationController pushViewController:tabController animated:YES];
-    [tabController release];
-//    FriendlyMusic *friendlyMusic = [[FriendlyMusic alloc] init];
-//    [friendlyMusic setOptions:friendlyMusic.FMMOODMAP | friendlyMusic.FMOCCASION | friendlyMusic.FMEDITORSPICKS];
-//    [self.navigationController pushViewController:friendlyMusic animated:YES];
-//    [friendlyMusic release];
+#warning DEVELOPMENT ONLY
+//    NSURL *url = [NSURL URLWithString:@"http://vimeo.com/48931301/download?t=1371599214&v=116073593&s=1d4de25bc703d2c8eec8dbcd166d5e3c"];
+//    [RFAPI rumbleWithEnvironment:RFAPIEnvSandbox
+//                       publicKey:@"sandbox"
+//                        password:@"sandbox"
+//                        videoURL:url];
+//    TabBarViewController *tabController = [[TabBarViewController alloc] init];
+//    [self.navigationController pushViewController:tabController animated:YES];
+//    [tabController release];
+#warning END DEV
+
+#warning Uncomment for production
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentModalViewController:imagePickerController animated:YES];
+    imagePickerController.mediaTypes = @[(NSString *)kUTTypeMovie];
+    imagePickerController.delegate = self;
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    NSLog(@"Found url %@", info[@"UIImagePickerControllerMediaURL"]);
+    
+    [RFAPI rumbleWithEnvironment:RFAPIEnvSandbox
+                       publicKey:@"sandbox"
+                        password:@"sandbox"
+                        videoURL:info[@"UIImagePickerControllerMediaURL"]];
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        TabBarViewController *tabController = [[TabBarViewController alloc] init];
+        [self.navigationController pushViewController:tabController animated:YES];
+        [tabController release];
+    }];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    NSLog(@"Canceled");
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
