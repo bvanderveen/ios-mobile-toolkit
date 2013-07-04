@@ -56,7 +56,6 @@ typedef enum RFTabView {
     //Create an empty tab controller and set it to fill the screen minus the top title bar
     _tabBarController = [[UITabBarController alloc] init];
 	_tabBarController.view.frame = self.view.bounds;
-    
 
     //Set VCs
     [_tabBarController setViewControllers:@[
@@ -122,6 +121,7 @@ typedef enum RFTabView {
 - (void)cancelModalView
 {
     NSLog(@"Cancel");
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
