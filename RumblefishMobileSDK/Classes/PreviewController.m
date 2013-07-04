@@ -113,9 +113,6 @@
 }
 
 - (void)dismiss {
-    [self stopPlayback];
-    [_moviePlayer ejectPlayer];
-    [_musicPlayer ejectPlayer];
     [UIView animateWithDuration:0.05 animations:^{
         self.view.auditionBackgroundView.alpha = 0;
     }];
@@ -148,7 +145,7 @@
 
 #pragma mark - PlayerDelegate
 
-- (void)playIfPossible {
+- (void)playerIsReadyToPlay {
     BOOL musicPlayable = _musicPlayer.playerItem.playbackLikelyToKeepUp;
     BOOL moviePlayable = _moviePlayer.playerItem.playbackLikelyToKeepUp;
     
@@ -164,7 +161,7 @@
     }
 }
 
-- (void)stopPlayback {
+- (void)playerDidReachEnd {
     _playing = NO;
     [_moviePlayer.player pause];
     [_musicPlayer.player pause];

@@ -1,12 +1,13 @@
-//
-//  Player.m
-//  RumblefishMobileSDK
-//
-//  Created by Matthew Ward on 6/26/13.
-//  Copyright (c) 2013 Rumblefish, Inc. All rights reserved.
-//
 
 #import "Player.h"
+
+@interface Player ()
+
+@property (nonatomic) BOOL isVideo;
+
+@end
+
+
 @implementation Player
 
 - (id)initWithMediaURL:(NSURL *)url isVideo:(BOOL)isVideo
@@ -38,8 +39,8 @@
 }
 
 
-
-- (void)ejectPlayer {
+- (void)dealloc
+{
     [_playerItem removeObserver:self forKeyPath:@"playbackLikelyToKeepUp"];
     [_playerItem removeObserver:self forKeyPath:@"status"];
     [[NSNotificationCenter defaultCenter] removeObserver:self
@@ -73,18 +74,18 @@
     AVPlayerItem *item = (AVPlayerItem *)object;
     if ([keyPath isEqualToString:@"status"]) {
         if ([item status] == AVPlayerItemStatusFailed) {
-            [self ejectPlayer];
-        }
+//            [self ejectPlayer];
+        }   
     }
     else if ([keyPath isEqualToString:@"playbackLikelyToKeepUp"]) {
-        [_delegate playIfPossible];
+        [_delegate playerIsReadyToPlay];
     }
     else
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
 
 - (void)playerItemDidReachEnd:(NSNotification *)notification {
-    [_delegate stopPlayback];
+    [_delegate playerDidReachEnd];
 }
 
 @end
