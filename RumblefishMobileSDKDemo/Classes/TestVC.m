@@ -53,22 +53,22 @@
 - (IBAction)start {
     
 #warning DEVELOPMENT ONLY
-//    NSURL *url = [NSURL URLWithString:@"http://vimeo.com/48931301/download?t=1371599214&v=116073593&s=1d4de25bc703d2c8eec8dbcd166d5e3c"];
-//    [RFAPI rumbleWithEnvironment:RFAPIEnvSandbox
-//                       publicKey:@"sandbox"
-//                        password:@"sandbox"
-//                        videoURL:url];
-//    TabBarViewController *tabController = [[TabBarViewController alloc] init];
-//    [self.navigationController pushViewController:tabController animated:YES];
-//    [tabController release];
+    NSURL *url = [NSURL URLWithString:@"http://vimeo.com/48931301/download?t=1371599214&v=116073593&s=1d4de25bc703d2c8eec8dbcd166d5e3c"];
+    [RFAPI rumbleWithEnvironment:RFAPIEnvSandbox
+                       publicKey:@"sandbox"
+                        password:@"sandbox"
+                        videoURL:url];
+    TabBarViewController *tabController = [[TabBarViewController alloc] init];
+    [self.navigationController pushViewController:tabController animated:YES];
+    [tabController release];
 #warning END DEV
 
 #warning Uncomment for production
-    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    [self presentModalViewController:imagePickerController animated:YES];
-    imagePickerController.mediaTypes = @[(NSString *)kUTTypeMovie];
-    imagePickerController.delegate = self;
+//    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+//    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//    [self presentModalViewController:imagePickerController animated:YES];
+//    imagePickerController.mediaTypes = @[(NSString *)kUTTypeMovie];
+//    imagePickerController.delegate = self;
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {

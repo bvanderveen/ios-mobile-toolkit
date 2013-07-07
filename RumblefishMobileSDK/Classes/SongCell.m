@@ -34,9 +34,17 @@
         self.detailTextLabel.backgroundColor = [UIColor clearColor];
 
         _accessoryButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_accessoryButton setImage:[UIImage imageInResourceBundleNamed:@"song_check.png"] forState:UIControlStateSelected];
-        [_accessoryButton setImage:[UIImage imageInResourceBundleNamed:@"btn_add.png"] forState:UIControlStateNormal];
-        [_accessoryButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [_accessoryButton setImage:[UIImage imageInResourceBundleNamed:@"song_check.png"]
+                          forState:UIControlStateSelected | UIControlStateHighlighted];
+        [_accessoryButton setImage:[UIImage imageInResourceBundleNamed:@"song_check.png"]
+                          forState:UIControlStateSelected];
+        [_accessoryButton setImage:[UIImage imageInResourceBundleNamed:@"btn_add.png"]
+                          forState:UIControlStateNormal];
+        [_accessoryButton setImage:[UIImage imageInResourceBundleNamed:@"btn_add_highlighted.png"]
+                          forState:UIControlStateHighlighted];
+        [_accessoryButton addTarget:self
+                             action:@selector(buttonTapped:)
+                   forControlEvents:UIControlEventTouchUpInside];
         self.accessoryView = _accessoryButton;
         [_accessoryButton sizeToFit];
         
@@ -45,12 +53,14 @@
         _saveLabel.textColor = [RFColor mediumGray];
         _saveLabel.backgroundColor = [UIColor clearColor];
         _saveLabel.text = @"SAVE";
+        _saveLabel.highlightedTextColor = [UIColor whiteColor];
         [self.contentView addSubview:_saveLabel];
         
         _priceLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _priceLabel.font = [RFFont fontWithSize:14];
         _priceLabel.textColor = [UIColor lightGrayColor];
         _priceLabel.backgroundColor = [UIColor clearColor];
+        _priceLabel.highlightedTextColor = [UIColor whiteColor];
         [self.contentView addSubview:_priceLabel];
     }
     return self;
