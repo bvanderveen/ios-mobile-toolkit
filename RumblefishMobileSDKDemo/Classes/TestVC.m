@@ -57,13 +57,22 @@
     [RFAPI rumbleWithEnvironment:RFAPIEnvSandbox
                        publicKey:@"sandbox"
                         password:@"sandbox"
-                        videoURL:url];
+                        videoURL:url
+                        didInitiatePurchase:^License *(License *license) {
+                            NSLog(@"Did Initiate Purchase: %@", license);
+                            return license;
+                        } didCompletePurchase:^(License *license) {
+                            NSLog(@"Did complete Purchases: %@", license);
+                        } didFailToCompletePurchase:^(License *license, NSError *error) {
+                            NSLog(@"Did Fail to complete Purchase: %@, Error: %@", license, error);
+                        }];
+
     TabBarViewController *tabController = [[TabBarViewController alloc] init];
     [self.navigationController pushViewController:tabController animated:YES];
     [tabController release];
 #warning END DEV
 
-#warning Uncomment for production
+#warning Uncomment for productio
 //    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
 //    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 //    [self presentModalViewController:imagePickerController animated:YES];

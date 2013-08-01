@@ -109,6 +109,16 @@
 #pragma mark - Button Methods
 
 - (void)buySong {
+    License *license = nil;
+    license = [RFAPI singleton].didInitiatePurchase(license);
+    if (license) {
+        Producer postLicense = [[RFAPI singleton] postLicense:license];
+        postLicense(^(id result) {
+            [RFAPI singleton].didCompletePurchase(license);
+        }, ^(NSError *error) {
+            [RFAPI singleton].didFailToCompletePurchase(license, error);
+        });
+    }
     NSLog(@"Buy Song!");
 }
 

@@ -26,6 +26,12 @@
 #import <UIKit/UIKit.h>
 #import "Async.h"
 
+@interface License : NSObject
+@property (nonatomic, strong) NSString *mediaId, *token, *licenseType, *projectReference, *transactionReference, *invoiceId, *email, *firstname, *lastname, *company, *address1, *address2, *city, *state, *postalCode, *country, *phone, *licenseeReference;
+@property (nonatomic, assign) BOOL sendLicense;
+
+@end
+
 @interface Media : NSObject
 
 @property (nonatomic, copy) NSString *title, *albumTitle, *genre;
@@ -101,8 +107,17 @@ typedef enum RFAPIMethod {
 @property (nonatomic,strong) NSError *lastError;
 @property (nonatomic, strong) NSURL *videoURL;
 @property (nonatomic,strong) NSHTTPURLResponse *lastResponse;
+@property (nonatomic, copy) License *(^didInitiatePurchase)(License *);
+@property (nonatomic, copy) void(^didCompletePurchase)(License *);
+@property (nonatomic, copy) void(^didFailToCompletePurchase)(License *, NSError *);
 
-+ (void)rumbleWithEnvironment:(RFAPIEnv)env publicKey:(NSString *)publicKey password:(NSString *)password videoURL:(NSURL *)url;
++ (void)rumbleWithEnvironment:(RFAPIEnv)env
+                    publicKey:(NSString *)publicKey
+                     password:(NSString *)password
+                     videoURL:(NSURL *)url
+          didInitiatePurchase:(License *(^)(License *license))didInitiatePurchase
+          didCompletePurchase:(void (^)(License *license))didCompletePurchase
+    didFailToCompletePurchase:(void (^)(License *license, NSError *error))didFailToCompletePurchase;
 
 + (RFAPI *)singleton;
 
@@ -114,5 +129,6 @@ typedef enum RFAPIMethod {
 - (Producer)getOccasion:(NSInteger)occasionID;
 
 - (Producer)getImageAtURL:(NSURL *)url;
+- (Producer)postLicense:(License *)license;
 
 @end

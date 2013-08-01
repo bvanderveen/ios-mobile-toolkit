@@ -31,6 +31,32 @@
 #warning dev: for home screen testing
 #import "NSObject+AssociateProducer.h"
 
+@implementation License
+
+- (NSDictionary *)dictionaryRepresentation {
+    return @{@"media_id" : _mediaId,
+             @"token" : _token,
+             @"license_type" : _licenseType,
+             @"project_reference" : _projectReference,
+             @"transaction_reference" : _transactionReference,
+             @"invoice_id" : _invoiceId,
+             @"email" : _email,
+             @"firstname" : _firstname,
+             @"lastname" : _lastname,
+             @"company" : _company,
+             @"address1" : _address1,
+             @"address2" : _address2,
+             @"city" : _city,
+             @"state" : _state,
+             @"postal_code" : _postalCode,
+             @"country" : _country,
+             @"phone" : _phone,
+             @"licensee_reference" : _licenseeReference,
+             @"send_license" : @(_sendLicense)
+             };
+}
+
+@end
 
 @implementation Media
 
@@ -150,6 +176,7 @@
 
 @end
 
+
 @implementation RFAPI
 
 @synthesize environment = _environment;
@@ -198,19 +225,36 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
     }];
 }
 
-+ (RFAPI *)apiWithEnvironment:(RFAPIEnv)environment version:(RFAPIVersion)version publicKey:(NSString *)publicKey password:(NSString *)password videoURL:(NSURL *)videoURL {
++ (RFAPI *)apiWithEnvironment:(RFAPIEnv)environment
+                      version:(RFAPIVersion)version
+                    publicKey:(NSString *)publicKey
+                     password:(NSString *)password
+                     videoURL:(NSURL *)videoURL
+          didInitiatePurchase:(License *(^)(License *license))didInitiatePurchase
+          didCompletePurchase:(void (^)(License *license))didCompletePurchase
+    didFailToCompletePurchase:(void (^)(License *license, NSError *error))didFailToCompletePurchase {
+    
     RFAPI *api = [[RFAPI alloc] init];
     api.environment = environment;
     api.publicKey = publicKey;
     api.password = password;
     api.version = version;
     api.videoURL = videoURL;
+    api.didInitiatePurchase = didInitiatePurchase;
+    api.didCompletePurchase = didCompletePurchase;
+    api.didFailToCompletePurchase = didFailToCompletePurchase;
     return api;
-    
 }
 
-+ (void)rumbleWithEnvironment:(RFAPIEnv)env publicKey:(NSString *)publicKey password:(NSString *)password videoURL:(NSURL *)videoURL {
-    rfAPIObject = [self apiWithEnvironment:env version:RFAPIVersion2 publicKey:publicKey password:password videoURL:videoURL];
++ (void)rumbleWithEnvironment:(RFAPIEnv)env
+                    publicKey:(NSString *)publicKey
+                     password:(NSString *)password
+                     videoURL:(NSURL *)videoURL
+          didInitiatePurchase:(License *(^)(License *license))didInitiatePurchase
+          didCompletePurchase:(void (^)(License *license))didCompletePurchase
+    didFailToCompletePurchase:(void (^)(License *license, NSError *error))didFailToCompletePurchase {
+    
+    rfAPIObject = [self apiWithEnvironment:env version:RFAPIVersion2 publicKey:publicKey password:password videoURL:videoURL didInitiatePurchase:didInitiatePurchase didCompletePurchase:didCompletePurchase didFailToCompletePurchase:didFailToCompletePurchase];
 }
 
 
@@ -458,6 +502,10 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
     return [SMWebRequest producerWithURLRequest:[NSURLRequest requestWithURL:url] dataParser:^ id (NSData *data) {
         return [UIImage imageInVideoRamWithData:data];
     }];
+}
+
+- (Producer)postLicense:(License *)license {
+    
 }
 
 @end
