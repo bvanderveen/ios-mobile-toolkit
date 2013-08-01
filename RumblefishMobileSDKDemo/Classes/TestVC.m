@@ -64,6 +64,7 @@
                             
                             LogoViewController *logoViewController = [[LogoViewController alloc] init];
                             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:logoViewController];
+                            navController.navigationBar.barStyle = UIBarStyleBlack;
                             [self.navigationController presentModalViewController:navController animated:YES];
                             
                             return license;
