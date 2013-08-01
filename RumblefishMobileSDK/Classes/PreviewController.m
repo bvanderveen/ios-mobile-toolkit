@@ -130,6 +130,8 @@
                      animations:^{
                          self.view.alpha = 0;
                      } completion:^(BOOL finished) {
+                         [_musicPlayer.player pause];
+                         [_moviePlayer.player pause];
                          [self.view removeFromSuperview];
                      }];
 }
