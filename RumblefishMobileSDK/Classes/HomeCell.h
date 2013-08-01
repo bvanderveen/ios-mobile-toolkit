@@ -24,6 +24,8 @@
 
 @interface HomeCell : UITableViewCell
 
+@property (nonatomic, strong) NSURL *imageURL;
+
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier;
 
 @end

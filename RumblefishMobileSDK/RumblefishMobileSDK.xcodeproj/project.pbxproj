@@ -37,6 +37,7 @@
 		34E5C523178A318900730FEC /* btn_add_highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E5C521178A318900730FEC /* btn_add_highlighted@2x.png */; };
 		34F3876A177B84A700312BD1 /* AVPlayerPlaybackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F38769177B84A700312BD1 /* AVPlayerPlaybackView.m */; };
 		34F38771177BCF6000312BD1 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F38770177BCF6000312BD1 /* Player.m */; };
+		411323EA17A1B83700B790F0 /* UIImage+Cached.m in Sources */ = {isa = PBXBuildFile; fileRef = 411323E917A1B83700B790F0 /* UIImage+Cached.m */; };
 		411FCEF11639F107000B1841 /* RumblefishMobileSDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 411FCEEB1639F0A8000B1841 /* RumblefishMobileSDK.h */; };
 		411FCF3C163AD205000B1841 /* occasion_image_cache.plist in Resources */ = {isa = PBXBuildFile; fileRef = 411FCF3B163AD1D0000B1841 /* occasion_image_cache.plist */; };
 		413FD7AA1639A84A002A9183 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 413FD7A91639A84A002A9183 /* Foundation.framework */; };
@@ -275,6 +276,8 @@
 		34F38769177B84A700312BD1 /* AVPlayerPlaybackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVPlayerPlaybackView.m; sourceTree = SOURCE_ROOT; };
 		34F3876F177BCF6000312BD1 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = SOURCE_ROOT; };
 		34F38770177BCF6000312BD1 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = SOURCE_ROOT; };
+		411323E817A1B83700B790F0 /* UIImage+Cached.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Cached.h"; path = "Classes/UIImage+Cached.h"; sourceTree = SOURCE_ROOT; };
+		411323E917A1B83700B790F0 /* UIImage+Cached.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Cached.m"; path = "Classes/UIImage+Cached.m"; sourceTree = SOURCE_ROOT; };
 		411FCED21639E922000B1841 /* RumblefishMobileSDKResources-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "RumblefishMobileSDKResources-Info.plist"; path = "RumblefishMobileSDKResources/RumblefishMobileSDKResources-Info.plist"; sourceTree = SOURCE_ROOT; };
 		411FCEEB1639F0A8000B1841 /* RumblefishMobileSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RumblefishMobileSDK.h; path = Classes/RumblefishMobileSDK.h; sourceTree = SOURCE_ROOT; };
 		411FCF3B163AD1D0000B1841 /* occasion_image_cache.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = occasion_image_cache.plist; path = RumblefishMobileSDKResources/occasion_image_cache.plist; sourceTree = SOURCE_ROOT; };
@@ -578,6 +581,8 @@
 				41C16A7A1770D4CB00717ADF /* RFFont.m */,
 				34E487141772C135004D244F /* RFColor.h */,
 				34E487151772C135004D244F /* RFColor.m */,
+				411323E817A1B83700B790F0 /* UIImage+Cached.h */,
+				411323E917A1B83700B790F0 /* UIImage+Cached.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1021,6 +1026,7 @@
 				34E3C9D51779205200112A78 /* MoodMapSelectorView.m in Sources */,
 				34F3876A177B84A700312BD1 /* AVPlayerPlaybackView.m in Sources */,
 				34F38771177BCF6000312BD1 /* Player.m in Sources */,
+				411323EA17A1B83700B790F0 /* UIImage+Cached.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

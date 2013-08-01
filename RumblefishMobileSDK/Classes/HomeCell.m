@@ -26,6 +26,9 @@
 #import "RFFont.h"
 #import "RFColor.h"
 #import "DisclosureArrow.h"
+#import "SMWebRequest+Async.h"
+#import "UIImage+Undeferred.h"
+#import "UIImage+Cached.h"
 
 #define kCellLabelPadding 11
 #define kTitleSubtitlePadding 4
@@ -65,10 +68,37 @@
 
 @property (nonatomic, strong) ImageSeperator *imageSeparator;
 @property (nonatomic, strong) DisclosureArrow *arrow;
+@property (nonatomic, copy) CancelCallback cancelImage;
 
 @end
 
 @implementation HomeCell
+
+- (void)setCancelImage:(CancelCallback)cancelImage {
+    if (_cancelImage)
+        _cancelImage();
+    
+    _cancelImage = [cancelImage copy];
+}
+
+- (void)setImageURL:(NSURL *)imageURL {
+    _imageURL = imageURL;
+    
+    if (_imageURL) {
+        Producer p = [UIImage cachedImageWithURL:imageURL];
+        
+        self.imageView.image = nil;
+        self.cancelImage = p(^ void (UIImage *result) {
+            self.imageView.image = result;
+            [self setNeedsLayout];
+        }, ^ void (NSError *e) { });
+    }
+    else {
+        self.imageView.image = nil;
+        self.cancelImage = nil;
+        [self setNeedsLayout];
+    }
+}
 
 - (id)initWithReuseIdentifier:(NSString *)reuseIdentifier
 {
