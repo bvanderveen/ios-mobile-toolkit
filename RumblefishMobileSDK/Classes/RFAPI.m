@@ -453,6 +453,12 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
 
 - (Producer)getHome
 {
+//    return [[@[@415, @883, @11761, @371, @427, @879, @425, @932, @397, @859, @417, @378] map:^id(NSNumber *n) {
+//        return [SMWebRequest producerWithURLRequest:[self requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://megabass.rumblefish.com/playlists/%@", n]] method:RFAPIMethodGET] dataParser:^id(NSData *d) {
+//            return [[Playlist alloc] initWithDictionary:[d JSONValue]];
+//        }];
+//    }] parallelProducer];
+    
     return ^ CancelCallback (ResultCallback r, ErrorCallback e) {
         [self performSelector:@selector(yieldHome:) withObject:r afterDelay:1];
         return ^ {
