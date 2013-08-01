@@ -20,4 +20,7 @@
 - (id)initWithMediaURL:(NSURL *)url isVideo:(BOOL)isVideo;
 - (void)updateVolume:(float)volume;
 
+- (void)play;
+- (void)pause;
+
 @end

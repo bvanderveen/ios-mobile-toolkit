@@ -108,7 +108,18 @@
 
 #pragma mark - Button Methods
 
+- (void)pausePlayers {
+    [_musicPlayer pause];
+    [_moviePlayer pause];
+}
+
+- (void)playPlayers {
+    [_musicPlayer play];
+    [_moviePlayer play];
+}
+
 - (void)buySong {
+    [self pausePlayers];
     License *license = nil;
     license = [RFAPI singleton].didInitiatePurchase(license);
     if (license) {
@@ -119,11 +130,11 @@
             [RFAPI singleton].didFailToCompletePurchase(license, error);
         });
         [self dismiss];
-    }
-    NSLog(@"Buy Song!");
+    };
 }
 
 - (void)dismiss {
+    [self pausePlayers];
     [UIView animateWithDuration:0.05 animations:^{
         self.view.auditionBackgroundView.alpha = 0;
     }];
@@ -131,8 +142,6 @@
                      animations:^{
                          self.view.alpha = 0;
                      } completion:^(BOOL finished) {
-                         [_musicPlayer.player pause];
-                         [_moviePlayer.player pause];
                          [self.view removeFromSuperview];
                      }];
 }
@@ -166,8 +175,7 @@
         _playing = YES;
         [self.view.activityIndicator stopAnimating];
         self.view.playbackView.hidden = NO;
-        [_musicPlayer.player play];
-        [_moviePlayer.player play];
+        [self playPlayers];
         if (!_volControlsShown)
             [self showVolumeControls];
         _volControlsShown = YES;
@@ -176,8 +184,7 @@
 
 - (void)playerDidReachEnd {
     _playing = NO;
-    [_moviePlayer.player pause];
-    [_musicPlayer.player pause];
+    [self pausePlayers];
     [_moviePlayer.player seekToTime:kCMTimeZero completionHandler:nil];
     [_musicPlayer.player seekToTime:kCMTimeZero completionHandler:nil];
 }

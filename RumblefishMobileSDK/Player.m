@@ -38,6 +38,13 @@
     return self;
 }
 
+- (void)play {
+    [_player play];
+}
+
+- (void)pause {
+    [_player pause];
+}
 
 - (void)dealloc
 {
