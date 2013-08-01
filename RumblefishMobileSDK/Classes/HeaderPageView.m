@@ -26,6 +26,7 @@
 #import "HeaderPageView.h"
 #import "UIImage+RumblefishSDKResources.h"
 #import "RFFont.h"
+#import "UIImage+Cached.h"
 
 @interface HeaderPageView ()
 
@@ -35,11 +36,19 @@
 @property (nonatomic, strong) UIView *contentBox;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *subtitleLabel;
+@property (nonatomic, copy) CancelCallback cancelImage;
 
 @end
 
 
 @implementation HeaderPageView
+
+- (void)setCancelImage:(CancelCallback)cancelImage {
+    if (_cancelImage)
+        _cancelImage();
+    
+    _cancelImage = [cancelImage copy];
+}
 
 - (id)initWithPlaylist:(Playlist *)playlist
 {
@@ -52,8 +61,7 @@
         //Create image views for each page
         _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         _imageView.contentMode = UIViewContentModeScaleAspectFill;
-        _imageView.backgroundColor = [UIColor blackColor];
-        _imageView.image = playlist.image;
+        _imageView.backgroundColor = [UIColor blackColor];  
         [self addSubview:_imageView];
                 
         //Create content box for words
@@ -89,6 +97,15 @@
         [self addSubview:_displayAlbumButton];
     }
     return self;
+}
+
+- (void)didMoveToWindow {
+    self.cancelImage = [UIImage cachedImageWithURL:_playlist.imageURL]
+    (^ (id result) {
+        _imageView.image = result;
+    },
+    ^ (NSError *e) {
+    });
 }
 
 - (void)layoutSubviews
