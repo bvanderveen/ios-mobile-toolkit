@@ -58,6 +58,45 @@
 
 @end
 
+@interface RFPurchase ()
+
+@property (nonatomic, copy) void(^completion)();
+@property (nonatomic, strong) Media *media;
+
+@end
+
+@implementation RFPurchase
+
+- (id)initWithMedia:(Media *)media completion:(void(^)())completion
+{
+    if (self = [super init]) {
+        _media = media;
+        _completion = completion;
+    }
+    
+    return self;
+}
+
+- (void)commitPurchase {    
+    NSLog(@"Commit!");
+    
+    License *license = [[License alloc] init];
+    Producer producer = [[RFAPI singleton] postLicense:license];
+    producer(^(id result) {
+        _completion();
+        if (self.didCompletePurchase) {
+            self.didCompletePurchase();
+        }
+    }, ^(NSError *error) {
+        if (self.didFailToCopletePurchase) {
+            self.didFailToCopletePurchase(error);
+        }
+    });
+
+}
+
+@end
+
 @implementation Media
 
 @synthesize title, albumTitle, genre, isExplicit, ID, previewURL;
@@ -230,9 +269,7 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
                     publicKey:(NSString *)publicKey
                      password:(NSString *)password
                      videoURL:(NSURL *)videoURL
-          didInitiatePurchase:(License *(^)(License *license))didInitiatePurchase
-          didCompletePurchase:(void (^)(License *license))didCompletePurchase
-    didFailToCompletePurchase:(void (^)(License *license, NSError *error))didFailToCompletePurchase {
+          didInitiatePurchase:(void (^)(RFPurchase *purchase))didInitiatePurchase {
     
     RFAPI *api = [[RFAPI alloc] init];
     api.environment = environment;
@@ -241,8 +278,6 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
     api.version = version;
     api.videoURL = videoURL;
     api.didInitiatePurchase = didInitiatePurchase;
-    api.didCompletePurchase = didCompletePurchase;
-    api.didFailToCompletePurchase = didFailToCompletePurchase;
     return api;
 }
 
@@ -250,13 +285,15 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
                     publicKey:(NSString *)publicKey
                      password:(NSString *)password
                      videoURL:(NSURL *)videoURL
-          didInitiatePurchase:(License *(^)(License *license))didInitiatePurchase
-          didCompletePurchase:(void (^)(License *license))didCompletePurchase
-    didFailToCompletePurchase:(void (^)(License *license, NSError *error))didFailToCompletePurchase {
+          didInitiatePurchase:(void (^)(RFPurchase *purchase))didInitiatePurchase {
     
-    rfAPIObject = [self apiWithEnvironment:env version:RFAPIVersion2 publicKey:publicKey password:password videoURL:videoURL didInitiatePurchase:didInitiatePurchase didCompletePurchase:didCompletePurchase didFailToCompletePurchase:didFailToCompletePurchase];
+    rfAPIObject = [self apiWithEnvironment:env
+                                   version:RFAPIVersion2
+                                 publicKey:publicKey
+                                  password:password
+                                  videoURL:videoURL
+                       didInitiatePurchase:didInitiatePurchase];
 }
-
 
 + (RFAPI *)singleton {
     if (!rfAPIObject)
@@ -511,6 +548,7 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
 }
 
 - (Producer)postLicense:(License *)license {
+    
     
 }
 

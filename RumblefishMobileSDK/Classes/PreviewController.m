@@ -120,17 +120,10 @@
 
 - (void)buySong {
     [self pausePlayers];
-    License *license = nil;
-    license = [RFAPI singleton].didInitiatePurchase(license);
-    if (license) {
-        Producer postLicense = [[RFAPI singleton] postLicense:license];
-        postLicense(^(id result) {
-            [RFAPI singleton].didCompletePurchase(license);
-        }, ^(NSError *error) {
-            [RFAPI singleton].didFailToCompletePurchase(license, error);
-        });
+    RFPurchase *purchase = [[RFPurchase alloc] initWithMedia:_media completion:^{
         [self dismiss];
-    };
+    }];
+    [RFAPI singleton].didInitiatePurchase(purchase);
 }
 
 - (void)dismiss {

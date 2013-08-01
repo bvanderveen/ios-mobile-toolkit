@@ -59,20 +59,11 @@
                        publicKey:@"sandbox"
                         password:@"sandbox"
                         videoURL:url
-                        didInitiatePurchase:^License *(License *license) {
-                            NSLog(@"Did Initiate Purchase: %@", license);
-                            
+                        didInitiatePurchase:^ (RFPurchase *purchase) {
                             LogoViewController *logoViewController = [[LogoViewController alloc] init];
                             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:logoViewController];
                             navController.navigationBar.barStyle = UIBarStyleBlack;
                             [self.navigationController presentModalViewController:navController animated:YES];
-                            
-                            return license;
-                            
-                        } didCompletePurchase:^(License *license) {
-                            NSLog(@"Did complete Purchases: %@", license);
-                        } didFailToCompletePurchase:^(License *license, NSError *error) {
-                            NSLog(@"Did Fail to complete Purchase: %@, Error: %@", license, error);
                         }];
 
     TabBarViewController *tabController = [[TabBarViewController alloc] init];

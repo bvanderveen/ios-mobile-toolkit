@@ -44,6 +44,17 @@
 
 @end
 
+@interface RFPurchase : NSObject
+
+@property (nonatomic, strong) License *license;
+@property (nonatomic, copy) void(^didCompletePurchase)();
+@property (nonatomic, copy) void(^didFailToCopletePurchase)();
+
+- (id)initWithMedia:(Media *)media completion:(void(^)())completion;
+- (void)commitPurchase;
+
+@end
+
 @interface Playlist : NSObject
 
 @property (nonatomic, assign) NSInteger ID;
@@ -107,27 +118,21 @@ typedef enum RFAPIMethod {
 @property (nonatomic,strong) NSError *lastError;
 @property (nonatomic, strong) NSURL *videoURL;
 @property (nonatomic,strong) NSHTTPURLResponse *lastResponse;
-@property (nonatomic, copy) License *(^didInitiatePurchase)(License *);
-@property (nonatomic, copy) void(^didCompletePurchase)(License *);
-@property (nonatomic, copy) void(^didFailToCompletePurchase)(License *, NSError *);
+@property (nonatomic, copy) void(^didInitiatePurchase)(RFPurchase *);
 
 + (void)rumbleWithEnvironment:(RFAPIEnv)env
                     publicKey:(NSString *)publicKey
                      password:(NSString *)password
                      videoURL:(NSURL *)url
-          didInitiatePurchase:(License *(^)(License *license))didInitiatePurchase
-          didCompletePurchase:(void (^)(License *license))didCompletePurchase
-    didFailToCompletePurchase:(void (^)(License *license, NSError *error))didFailToCompletePurchase;
+          didInitiatePurchase:(void (^)(RFPurchase *purchase))didInitiatePurchase;
 
 + (RFAPI *)singleton;
 
 - (Producer)getHome;
-
 - (Producer)getPlaylistsWithOffset:(NSInteger)offset;
 - (Producer)getPlaylist:(NSInteger)playlistID;
 - (Producer)getOccasions;
 - (Producer)getOccasion:(NSInteger)occasionID;
-
 - (Producer)getImageAtURL:(NSURL *)url;
 - (Producer)postLicense:(License *)license;
 
