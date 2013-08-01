@@ -27,6 +27,7 @@
 		413FD9591639BFD9002A9183 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 413FD9581639BFD9002A9183 /* QuartzCore.framework */; };
 		413FD95B1639BFE5002A9183 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 413FD95A1639BFE5002A9183 /* AVFoundation.framework */; };
 		413FD95F1639C2EA002A9183 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 413FD95E1639C2EA002A9183 /* MapKit.framework */; };
+		41BCF6F117AAFC0E00C66C76 /* LogoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BCF6F017AAFC0E00C66C76 /* LogoViewController.m */; };
 		41C16A7D1770D54800717ADF /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C16A7C1770D54800717ADF /* CoreText.framework */; };
 		41FE1A17176F9263002E022D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41FE1A16176F9263002E022D /* MediaPlayer.framework */; };
 /* End PBXBuildFile section */
@@ -80,6 +81,8 @@
 		413FD95A1639BFE5002A9183 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		413FD95C1639C15F002A9183 /* RumblefishMobileSDKDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RumblefishMobileSDKDemo-Info.plist"; sourceTree = SOURCE_ROOT; };
 		413FD95E1639C2EA002A9183 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		41BCF6EF17AAFC0E00C66C76 /* LogoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogoViewController.h; path = Classes/LogoViewController.h; sourceTree = SOURCE_ROOT; };
+		41BCF6F017AAFC0E00C66C76 /* LogoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogoViewController.m; path = Classes/LogoViewController.m; sourceTree = SOURCE_ROOT; };
 		41C16A7C1770D54800717ADF /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		41FE1A16176F9263002E022D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -151,6 +154,8 @@
 				413FD9221639BA9F002A9183 /* TestFMAppDelegate.m */,
 				413FD9231639BA9F002A9183 /* TestVC.h */,
 				413FD9241639BA9F002A9183 /* TestVC.m */,
+				41BCF6EF17AAFC0E00C66C76 /* LogoViewController.h */,
+				41BCF6F017AAFC0E00C66C76 /* LogoViewController.m */,
 				413FD9071639B787002A9183 /* Supporting Files */,
 				413FD93A1639BBD7002A9183 /* Resources */,
 			);
@@ -283,6 +288,7 @@
 				413FD9261639BA9F002A9183 /* main.m in Sources */,
 				413FD9271639BA9F002A9183 /* TestFMAppDelegate.m in Sources */,
 				413FD9281639BA9F002A9183 /* TestVC.m in Sources */,
+				41BCF6F117AAFC0E00C66C76 /* LogoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

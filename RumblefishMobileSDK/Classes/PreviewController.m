@@ -118,6 +118,7 @@
         }, ^(NSError *error) {
             [RFAPI singleton].didFailToCompletePurchase(license, error);
         });
+        [self dismiss];
     }
     NSLog(@"Buy Song!");
 }

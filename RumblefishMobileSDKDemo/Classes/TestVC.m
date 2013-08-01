@@ -25,6 +25,7 @@
 #import "TestVC.h"
 #import "RumblefishMobileSDK/RumblefishMobileSDK.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "LogoViewController.h"
 
 @interface TestVC () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -60,7 +61,13 @@
                         videoURL:url
                         didInitiatePurchase:^License *(License *license) {
                             NSLog(@"Did Initiate Purchase: %@", license);
+                            
+                            LogoViewController *logoViewController = [[LogoViewController alloc] init];
+                            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:logoViewController];
+                            [self.navigationController presentModalViewController:navController animated:YES];
+                            
                             return license;
+                            
                         } didCompletePurchase:^(License *license) {
                             NSLog(@"Did complete Purchases: %@", license);
                         } didFailToCompletePurchase:^(License *license, NSError *error) {
