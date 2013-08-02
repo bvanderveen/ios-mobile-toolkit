@@ -22,11 +22,25 @@
  this file requires a written agreement with Rumblefish, Inc.
  */
 
-@interface RFRootController : UIViewController
+#import "RFAPI.h"
 
-+ (RFRootController *)controller;
+@interface RFMedia ()
 
-- (void)presentWithParentController:(UIViewController *)parentController animated:(BOOL)animated;
-- (void)dismissAnimated:(BOOL)animated;
+- (id)initWithDictionary:(NSDictionary *)dictionary;
+- (NSDictionary *)dictionaryRepresentation;
+
+@end
+
+@interface RFPurchase ()
+
+- (id)initWithMedia:(RFMedia *)media completion:(void(^)())completion;
+
+@end
+
+@interface RFPlaylist ()
+
+// note: accessing this performs a synchronous network request.
+// probably you should not do it on the main thread.
+@property (nonatomic, readonly) UIImage *image;
 
 @end

@@ -40,9 +40,6 @@
 @property (nonatomic, assign) NSInteger ID;
 @property (nonatomic, strong) NSURL *previewURL;
 
-- (id)initWithDictionary:(NSDictionary *)dictionary;
-- (NSDictionary *)dictionaryRepresentation;
-
 @end
 
 @interface RFPurchase : NSObject
@@ -51,7 +48,6 @@
 @property (nonatomic, copy) void(^didCompletePurchase)();
 @property (nonatomic, copy) void(^didFailToCompletePurchase)();
 
-- (id)initWithMedia:(RFMedia *)media completion:(void(^)())completion;
 - (void)commitPurchase;
 
 @end
@@ -64,10 +60,6 @@
 @property (nonatomic, strong) NSURL *imageURL;
 @property (nonatomic, copy) NSArray *media;
 
-// note: accessing this performs a synchronous network request. 
-// probably you should not do it on the main thread.
-@property (nonatomic, readonly) UIImage *image;
-
 @end
 
 @interface RFOccasion : NSObject
@@ -75,8 +67,8 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, assign) NSInteger ID;
 @property (nonatomic, copy) NSArray 
-    *children, // of Occasion
-    *playlists; // of Playlist
+    *children, // of RFOccasion
+    *playlists; // of RFPlaylist
 
 @end
 
@@ -85,28 +77,9 @@ typedef enum RFAPIEnv {
     RFAPIEnvProduction
 } RFAPIEnv;
 
-typedef enum RFAPIResource {
-    RFAPIResourceArtist = 0,
-    RFAPIResourceAuthenticate,
-    RFAPIResourceCatalog,
-    RFAPIResourceClear,
-    RFAPIResourceLicense,
-    RFAPIResourceMedia,
-    RFAPIResourceOccasion,
-    RFAPIResourcePlaylist,
-    RFAPIResourcePortal,
-    RFAPIResourceSearch,
-    RFAPIResourceSFXCategory
-} RFAPIResource;
-
 typedef enum RFAPIVersion {
     RFAPIVersion2 = 2
 } RFAPIVersion;
-
-typedef enum RFAPIMethod {
-    RFAPIMethodGET = 0,
-    RFAPIMethodPOST
-} RFAPIMethod;
 
 @interface RFAPI : NSObject
 

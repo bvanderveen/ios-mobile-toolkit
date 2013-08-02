@@ -46,6 +46,14 @@ typedef enum RFTabView {
 
 @implementation RFRootController
 
++ (RFRootController *)controller {
+    return [[self alloc] init];
+}
+
+- (id)init {
+    return [super initWithNibName:nil bundle:nil];
+}
+
 - (void)loadView
 {
     //Set up the content view

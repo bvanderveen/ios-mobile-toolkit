@@ -255,6 +255,7 @@
 		3473A7C917810FB900FD1D8E /* volume_thumb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume_thumb@2x.png"; sourceTree = "<group>"; };
 		3473A7D017811CE300FD1D8E /* preview_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preview_close.png; sourceTree = "<group>"; };
 		3473A7D117811CE300FD1D8E /* preview_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preview_close@2x.png"; sourceTree = "<group>"; };
+		349F9BD717AC4B3400A93B3F /* RFAPI+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RFAPI+Private.h"; path = "Classes/RFAPI+Private.h"; sourceTree = SOURCE_ROOT; };
 		34B61BAC1772D59A00D7E903 /* RFDisclosureArrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFDisclosureArrow.h; path = Classes/RFDisclosureArrow.h; sourceTree = SOURCE_ROOT; };
 		34B61BAD1772D59A00D7E903 /* RFDisclosureArrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFDisclosureArrow.m; path = Classes/RFDisclosureArrow.m; sourceTree = SOURCE_ROOT; };
 		34B61BEB1773D20300D7E903 /* savedIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "savedIcon@2x.png"; path = "RumblefishMobileSDKResources/Images/savedIcon@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -508,7 +509,7 @@
 		413FD7AB1639A84A002A9183 /* RumblefishMobileSDK */ = {
 			isa = PBXGroup;
 			children = (
-				411FCEEB1639F0A8000B1841 /* RumblefishMobileSDK.h */,
+				349F9BD717AC4B3400A93B3F /* RFAPI+Private.h */,
 				413FD7CE1639AB2E002A9183 /* RFAPI.h */,
 				413FD7CF1639AB2E002A9183 /* RFAPI.m */,
 				413FD7C21639AB2E002A9183 /* RFLocalPlaylist.h */,
@@ -524,6 +525,7 @@
 		413FD7AC1639A84A002A9183 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				411FCEEB1639F0A8000B1841 /* RumblefishMobileSDK.h */,
 				413FD7B71639A970002A9183 /* RumblefishMobileSDK-Prefix.pch */,
 			);
 			name = "Supporting Files";

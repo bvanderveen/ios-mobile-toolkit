@@ -40,7 +40,7 @@
 }
 
 - (void)displayRumblefishSDK {
-    RFRootController *rootController = [[RFRootController alloc] init];
+    RFRootController *rootController = [RFRootController controller];
     [rootController presentWithParentController:self animated:YES];
 }
 

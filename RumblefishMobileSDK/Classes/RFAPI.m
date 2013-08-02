@@ -28,6 +28,25 @@
 #import "Sequence.h"
 #import "UIImage+Undeferred.h"
 
+typedef enum RFAPIResource {
+    RFAPIResourceArtist = 0,
+    RFAPIResourceAuthenticate,
+    RFAPIResourceCatalog,
+    RFAPIResourceClear,
+    RFAPIResourceLicense,
+    RFAPIResourceMedia,
+    RFAPIResourceOccasion,
+    RFAPIResourcePlaylist,
+    RFAPIResourcePortal,
+    RFAPIResourceSearch,
+    RFAPIResourceSFXCategory
+} RFAPIResource;
+
+typedef enum RFAPIMethod {
+    RFAPIMethodGET = 0,
+    RFAPIMethodPOST
+} RFAPIMethod;
+
 #warning dev: for home screen testing
 #import "NSObject+AssociateProducer.h"
 
