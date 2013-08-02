@@ -22,14 +22,29 @@
  this file requires a written agreement with Rumblefish, Inc.
  */
 
-#import <UIKit/UIKit.h>
+#import "AppDelegate.h"
+#import "TestFlight.h"
 
-@interface TestFMAppDelegate : NSObject <UIApplicationDelegate> {
+@implementation AppDelegate
 
+
+@synthesize window=_window;
+
+@synthesize navigationController=_navigationController;
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    // [TestFlight takeOff:@"YOUR_TOKEN"];
+    self.window.rootViewController = self.navigationController;
+    [self.window makeKeyAndVisible];
+    return YES;
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-
-@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+- (void)dealloc
+{
+    [_window release];
+    [_navigationController release];
+    [super dealloc];
+}
 
 @end

@@ -22,17 +22,17 @@
  this file requires a written agreement with Rumblefish, Inc.
  */
 
-#import "TestVC.h"
+#import "DemoController.h"
 #import "RumblefishMobileSDK/RumblefishMobileSDK.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "LogoViewController.h"
 #include "TargetConditionals.h"
 
-@interface TestVC () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface DemoController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @end
 
-@implementation TestVC
+@implementation DemoController
 
 - (void)emailLinkClicked {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"mailto:%@?subject=%@", [@"info@rumblefish.com" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], [@"Friendly Music Info" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];

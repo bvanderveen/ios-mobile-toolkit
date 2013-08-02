@@ -25,7 +25,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface TestVC : UIViewController {
+@interface DemoController : UIViewController {
     IBOutlet UIButton *button;    
 }
 
