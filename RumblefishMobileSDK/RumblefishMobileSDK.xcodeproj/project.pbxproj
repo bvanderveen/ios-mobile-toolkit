@@ -46,7 +46,6 @@
 		413FD7DA1639AB2E002A9183 /* AlbumVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7B91639AB2E002A9183 /* AlbumVC.m */; };
 		413FD7DB1639AB2E002A9183 /* Async.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7BB1639AB2E002A9183 /* Async.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		413FD7DC1639AB2E002A9183 /* CoverFlowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7BD1639AB2E002A9183 /* CoverFlowVC.m */; };
-		413FD7DE1639AB2E002A9183 /* FriendlyMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7C11639AB2E002A9183 /* FriendlyMusic.m */; };
 		413FD7DF1639AB2E002A9183 /* LocalPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7C31639AB2E002A9183 /* LocalPlaylist.m */; };
 		413FD7E01639AB2E002A9183 /* MoodMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7C51639AB2E002A9183 /* MoodMapVC.m */; };
 		413FD7E11639AB2E002A9183 /* NSObject+AssociateProducer.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7C71639AB2E002A9183 /* NSObject+AssociateProducer.m */; };
@@ -61,7 +60,6 @@
 		413FD8171639AFD7002A9183 /* libsbjson-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 413FD8031639AEB2002A9183 /* libsbjson-ios.a */; };
 		413FD8181639AFD7002A9183 /* libTapkuLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 413FD80F1639AEFD002A9183 /* libTapkuLibrary.a */; };
 		413FD8191639B293002A9183 /* RFAPI.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 413FD7CE1639AB2E002A9183 /* RFAPI.h */; };
-		413FD81A1639B293002A9183 /* FriendlyMusic.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 413FD7C01639AB2E002A9183 /* FriendlyMusic.h */; };
 		413FD8311639B33C002A9183 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 413FD8201639B2E3002A9183 /* CoreFoundation.framework */; };
 		413FD8E01639B53F002A9183 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 413FD8DE1639B53F002A9183 /* InfoPlist.strings */; };
 		413FD9561639BFA2002A9183 /* Async.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 413FD7BA1639AB2E002A9183 /* Async.h */; };
@@ -233,7 +231,6 @@
 				411FCEF11639F107000B1841 /* RumblefishMobileSDK.h in CopyFiles */,
 				413FD9561639BFA2002A9183 /* Async.h in CopyFiles */,
 				413FD8191639B293002A9183 /* RFAPI.h in CopyFiles */,
-				413FD81A1639B293002A9183 /* FriendlyMusic.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,8 +291,6 @@
 		413FD7BB1639AB2E002A9183 /* Async.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Async.m; path = Classes/Async.m; sourceTree = SOURCE_ROOT; };
 		413FD7BC1639AB2E002A9183 /* CoverFlowVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoverFlowVC.h; path = Classes/CoverFlowVC.h; sourceTree = SOURCE_ROOT; };
 		413FD7BD1639AB2E002A9183 /* CoverFlowVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoverFlowVC.m; path = Classes/CoverFlowVC.m; sourceTree = SOURCE_ROOT; };
-		413FD7C01639AB2E002A9183 /* FriendlyMusic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FriendlyMusic.h; path = Classes/FriendlyMusic.h; sourceTree = SOURCE_ROOT; };
-		413FD7C11639AB2E002A9183 /* FriendlyMusic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FriendlyMusic.m; path = Classes/FriendlyMusic.m; sourceTree = SOURCE_ROOT; };
 		413FD7C21639AB2E002A9183 /* LocalPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalPlaylist.h; path = Classes/LocalPlaylist.h; sourceTree = SOURCE_ROOT; };
 		413FD7C31639AB2E002A9183 /* LocalPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalPlaylist.m; path = Classes/LocalPlaylist.m; sourceTree = SOURCE_ROOT; };
 		413FD7C41639AB2E002A9183 /* MoodMapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoodMapVC.h; path = Classes/MoodMapVC.h; sourceTree = SOURCE_ROOT; };
@@ -516,8 +511,6 @@
 				411FCEEB1639F0A8000B1841 /* RumblefishMobileSDK.h */,
 				413FD7CE1639AB2E002A9183 /* RFAPI.h */,
 				413FD7CF1639AB2E002A9183 /* RFAPI.m */,
-				413FD7C01639AB2E002A9183 /* FriendlyMusic.h */,
-				413FD7C11639AB2E002A9183 /* FriendlyMusic.m */,
 				413FD7C21639AB2E002A9183 /* LocalPlaylist.h */,
 				413FD7C31639AB2E002A9183 /* LocalPlaylist.m */,
 				41FE1A10176F8B27002E022D /* Preview */,
@@ -1004,7 +997,6 @@
 			files = (
 				413FD7DA1639AB2E002A9183 /* AlbumVC.m in Sources */,
 				413FD7DC1639AB2E002A9183 /* CoverFlowVC.m in Sources */,
-				413FD7DE1639AB2E002A9183 /* FriendlyMusic.m in Sources */,
 				413FD7DF1639AB2E002A9183 /* LocalPlaylist.m in Sources */,
 				413FD7E01639AB2E002A9183 /* MoodMapVC.m in Sources */,
 				413FD7E11639AB2E002A9183 /* NSObject+AssociateProducer.m in Sources */,

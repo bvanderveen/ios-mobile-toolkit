@@ -153,7 +153,6 @@
 		413FD9061639B787002A9183 /* RumblefishMobileSDKDemo */ = {
 			isa = PBXGroup;
 			children = (
-				413FD9201639BA9F002A9183 /* RumblefishMobileSDKDemo-Prefix.pch */,
 				413FD9211639BA9F002A9183 /* AppDelegate.h */,
 				413FD9221639BA9F002A9183 /* AppDelegate.m */,
 				413FD9231639BA9F002A9183 /* DemoController.h */,
@@ -169,6 +168,7 @@
 		413FD9071639B787002A9183 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				413FD9201639BA9F002A9183 /* RumblefishMobileSDKDemo-Prefix.pch */,
 				413FD95C1639C15F002A9183 /* RumblefishMobileSDKDemo-Info.plist */,
 				413FD91F1639BA9F002A9183 /* main.m */,
 			);
