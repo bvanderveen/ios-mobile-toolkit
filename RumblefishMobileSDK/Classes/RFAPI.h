@@ -48,7 +48,7 @@
 
 @property (nonatomic, strong) License *license;
 @property (nonatomic, copy) void(^didCompletePurchase)();
-@property (nonatomic, copy) void(^didFailToCopletePurchase)();
+@property (nonatomic, copy) void(^didFailToCompletePurchase)();
 
 - (id)initWithMedia:(Media *)media completion:(void(^)())completion;
 - (void)commitPurchase;

@@ -55,6 +55,16 @@
                  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:logoViewController];
                  navController.navigationBar.barStyle = UIBarStyleBlack;
                  [self.navigationController presentModalViewController:navController animated:YES];
+                 
+                 purchase.license.firstname = @"Butts";
+                 purchase.license.lastname = @"McGee";
+                 purchase.didCompletePurchase = ^ {
+                     NSLog(@"Puchase completed sucessfully!");
+                 };
+                 purchase.didFailToCompletePurchase = ^ (NSError *e) {
+                     NSLog(@"Did fail to complete purchase: %@", e);
+                 };
+                 [purchase commitPurchase];
              }];
     
 }

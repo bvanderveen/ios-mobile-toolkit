@@ -31,28 +31,30 @@
 #warning dev: for home screen testing
 #import "NSObject+AssociateProducer.h"
 
+#define StringOrEmpty(X) ([(X) isKindOfClass:[NSString class]] ? (X) : @"")
+
 @implementation License
 
 - (NSDictionary *)dictionaryRepresentation {
-    return @{@"media_id" : _mediaId,
-             @"token" : _token,
-             @"license_type" : _licenseType,
-             @"project_reference" : _projectReference,
-             @"transaction_reference" : _transactionReference,
-             @"invoice_id" : _invoiceId,
-             @"email" : _email,
-             @"firstname" : _firstname,
-             @"lastname" : _lastname,
-             @"company" : _company,
-             @"address1" : _address1,
-             @"address2" : _address2,
-             @"city" : _city,
-             @"state" : _state,
-             @"postal_code" : _postalCode,
-             @"country" : _country,
-             @"phone" : _phone,
-             @"licensee_reference" : _licenseeReference,
-             @"send_license" : @(_sendLicense)
+    return @{@"media_id" : StringOrEmpty(_mediaId),
+             @"token" : StringOrEmpty(_token),
+             @"license_type" : StringOrEmpty(_licenseType),
+             @"project_reference" : StringOrEmpty(_projectReference),
+             @"transaction_reference" : StringOrEmpty(_transactionReference),
+             @"invoice_id" : StringOrEmpty(_invoiceId),
+             @"email" : StringOrEmpty(_email),
+             @"firstname" : StringOrEmpty(_firstname),
+             @"lastname" : StringOrEmpty(_lastname),
+             @"company" : StringOrEmpty(_company),
+             @"address1" : StringOrEmpty(_address1),
+             @"address2" : StringOrEmpty(_address2),
+             @"city" : StringOrEmpty(_city),
+             @"state" : StringOrEmpty(_state),
+             @"postal_code" : StringOrEmpty(_postalCode),
+             @"country" : StringOrEmpty(_country),
+             @"phone" : StringOrEmpty(_phone),
+             @"licensee_reference" : StringOrEmpty(_licenseeReference),
+             @"send_license" : _sendLicense ? @"true" : @"face"
              };
 }
 
@@ -62,34 +64,40 @@
 
 @property (nonatomic, copy) void(^completion)();
 @property (nonatomic, strong) Media *media;
+@property (nonatomic, copy) CancelCallback cancelCallback;
 
 @end
 
 @implementation RFPurchase
 
-- (id)initWithMedia:(Media *)media completion:(void(^)())completion
-{
+- (void)setCancelCallback:(CancelCallback)cancelCallback {
+    if (_cancelCallback)
+        _cancelCallback();
+    
+    _cancelCallback = [cancelCallback copy];
+}
+
+- (id)initWithMedia:(Media *)media completion:(void(^)())completion {
     if (self = [super init]) {
+        assert(completion);
         _media = media;
         _completion = completion;
     }
-    
     return self;
 }
 
-- (void)commitPurchase {    
-    NSLog(@"Commit!");
-    
+- (void)commitPurchase {
     License *license = [[License alloc] init];
+    license.mediaId = [@(_media.ID) stringValue];
     Producer producer = [[RFAPI singleton] postLicense:license];
-    producer(^(id result) {
+    self.cancelCallback = producer(^(id result) {
         _completion();
         if (self.didCompletePurchase) {
             self.didCompletePurchase();
         }
     }, ^(NSError *error) {
-        if (self.didFailToCopletePurchase) {
-            self.didFailToCopletePurchase(error);
+        if (self.didFailToCompletePurchase) {
+            self.didFailToCompletePurchase(error);
         }
     });
 
@@ -527,7 +535,7 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
 - (Producer)getOccasions {
     return [self performRequestWithMethod:RFAPIMethodGET resource:RFAPIResourceOccasion parameters:nil handler:^id(id json) {
         NSArray *occasions = [json objectForKey:@"occasions"];
-        return [occasions map: ^ id (id o) { return [[Occasion alloc] initWithDictionary:o]; }];
+        return [occasions map:^ id (id o) { return [[Occasion alloc] initWithDictionary:o]; }];
     }];
 }
 
@@ -548,8 +556,9 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
 }
 
 - (Producer)postLicense:(License *)license {
-    
-    
+    return [self performRequestWithMethod:RFAPIMethodPOST resource:RFAPIResourceLicense parameters:license.dictionaryRepresentation handler:^id(id _) {
+        return @0;
+    }];
 }
 
 @end
