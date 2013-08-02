@@ -30,7 +30,7 @@
 #import "UIImage+RumblefishSDKResources.h"
 #import "NSBundle+RumblefishMobileSDKResources.h"
 #import "SongCell.h"
-#import "TabBarViewController.h"
+#import "RFRootController.h"
 #import "MoodMapSelectorView.h"
 #import "RFColor.h"
 #import "PreviewController.h"
@@ -65,7 +65,7 @@
 @property (nonatomic, strong) MoodMapControllerView *view;
 @property (nonatomic, strong) UIColor *selectedColor;
 @property (nonatomic, strong) MoodMapSelectorView *moodmapSelectorView;
-@property (nonatomic, weak) TabBarViewController *tabBarVC;
+@property (nonatomic, weak) RFRootController *tabBarVC;
 @property (nonatomic, strong) PreviewController *previewController;
 
 @end
@@ -86,7 +86,7 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
                        0,  0,114,115,116,117, 84, 85, 86, 87,  0,  0,
                        0,  0,  0,118,119,120, 88, 89, 90,  0,  0,  0};
 
-- (id)initWithTabBarVC:(TabBarViewController *)tabBarVC
+- (id)initWithTabBarVC:(RFRootController *)tabBarVC
 {
     if (self = [super init]) {
         _tabBarVC = tabBarVC;

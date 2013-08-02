@@ -26,7 +26,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "RFAPI.h"
 
-@class TabBarViewController;
+@class RFRootController;
 
 @interface MoodMapControllerView : UIView
 
@@ -41,7 +41,7 @@
     int playlistID, selectedCellID;
 }
 
-- (id)initWithTabBarVC:(TabBarViewController *)tabBarVC;
+- (id)initWithTabBarVC:(RFRootController *)tabBarVC;
 - (IBAction)doneButtonPressed;
 
 @end

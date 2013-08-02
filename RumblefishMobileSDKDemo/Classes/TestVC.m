@@ -40,8 +40,8 @@
 }
 
 - (void)displayRumblfishSDK {
-    TabBarViewController *tabController = [[TabBarViewController alloc] init];
-    [self.navigationController pushViewController:tabController animated:YES];
+    RFRootController *rootController = [[RFRootController alloc] init];
+    [self.navigationController pushViewController:rootController animated:YES];
 }
 
 - (void)setupRumblefishSDKWithVideoURL:(NSURL *)videoUrl {

@@ -22,7 +22,7 @@
  this file requires a written agreement with Rumblefish, Inc.
  */
 
-#import "TabBarViewController.h"
+#import "RFRootController.h"
 #import "MoodMapVC.h"
 #import "OccasionVC.h"
 #import "CoverFlowVC.h"
@@ -38,13 +38,13 @@ typedef enum RFTabView {
     RFTabViewSaved
 } RFTabView;
 
-@interface TabBarViewController ()
+@interface RFRootController ()
 
 @property (nonatomic, strong) UITabBarController *tabBarController;
 
 @end
 
-@implementation TabBarViewController
+@implementation RFRootController
 
 - (void)loadView
 {

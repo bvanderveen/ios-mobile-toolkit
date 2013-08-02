@@ -22,7 +22,7 @@
  this file requires a written agreement with Rumblefish, Inc.
  */
 
-@interface TabBarViewController : UIViewController
+@interface RFRootController : UIViewController
 
 - (void)cancelModalView;
 

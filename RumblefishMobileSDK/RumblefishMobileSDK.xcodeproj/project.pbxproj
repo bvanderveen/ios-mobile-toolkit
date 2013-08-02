@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3458930017712CAC00BE3B8A /* HeaderPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 345892FF17712CAC00BE3B8A /* HeaderPageView.m */; };
-		34644CE5176F9237003DFAE1 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34644CE4176F9236003DFAE1 /* TabBarViewController.m */; };
-		34644CEA176F9651003DFAE1 /* TabBarViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 34644CE3176F9235003DFAE1 /* TabBarViewController.h */; };
+		34644CE5176F9237003DFAE1 /* RFRootController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34644CE4176F9236003DFAE1 /* RFRootController.m */; };
+		34644CEA176F9651003DFAE1 /* RFRootController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 34644CE3176F9235003DFAE1 /* RFRootController.h */; };
 		34644D4017710499003DFAE1 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34644D3F17710499003DFAE1 /* HeaderView.m */; };
 		34644D47177107A2003DFAE1 /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34644D46177107A1003DFAE1 /* HomeView.m */; };
 		3473A7CA17810FB900FD1D8E /* volume_film@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3473A7C417810FB900FD1D8E /* volume_film@2x.png */; };
@@ -227,7 +227,7 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
-				34644CEA176F9651003DFAE1 /* TabBarViewController.h in CopyFiles */,
+				34644CEA176F9651003DFAE1 /* RFRootController.h in CopyFiles */,
 				411FCEF11639F107000B1841 /* RumblefishMobileSDK.h in CopyFiles */,
 				413FD9561639BFA2002A9183 /* Async.h in CopyFiles */,
 				413FD8191639B293002A9183 /* RFAPI.h in CopyFiles */,
@@ -240,8 +240,8 @@
 /* Begin PBXFileReference section */
 		345892FE17712CAC00BE3B8A /* HeaderPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeaderPageView.h; path = Classes/HeaderPageView.h; sourceTree = SOURCE_ROOT; };
 		345892FF17712CAC00BE3B8A /* HeaderPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeaderPageView.m; path = Classes/HeaderPageView.m; sourceTree = SOURCE_ROOT; };
-		34644CE3176F9235003DFAE1 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabBarViewController.h; path = Classes/TabBarViewController.h; sourceTree = SOURCE_ROOT; };
-		34644CE4176F9236003DFAE1 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabBarViewController.m; path = Classes/TabBarViewController.m; sourceTree = SOURCE_ROOT; };
+		34644CE3176F9235003DFAE1 /* RFRootController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFRootController.h; path = Classes/RFRootController.h; sourceTree = SOURCE_ROOT; };
+		34644CE4176F9236003DFAE1 /* RFRootController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFRootController.m; path = Classes/RFRootController.m; sourceTree = SOURCE_ROOT; };
 		34644D3E17710499003DFAE1 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeaderView.h; path = Classes/HeaderView.h; sourceTree = SOURCE_ROOT; };
 		34644D3F17710499003DFAE1 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeaderView.m; path = Classes/HeaderView.m; sourceTree = SOURCE_ROOT; };
 		34644D45177107A1003DFAE1 /* HomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeView.h; path = Classes/HomeView.h; sourceTree = SOURCE_ROOT; };
@@ -536,8 +536,8 @@
 			isa = PBXGroup;
 			children = (
 				41FE1A05176F7FAF002E022D /* Home */,
-				34644CE3176F9235003DFAE1 /* TabBarViewController.h */,
-				34644CE4176F9236003DFAE1 /* TabBarViewController.m */,
+				34644CE3176F9235003DFAE1 /* RFRootController.h */,
+				34644CE4176F9236003DFAE1 /* RFRootController.m */,
 				41FE1A1C176FAA8E002E022D /* SongCell.h */,
 				41FE1A1D176FAA8F002E022D /* SongCell.m */,
 				413FD7B81639AB2E002A9183 /* AlbumVC.h */,
@@ -1013,7 +1013,7 @@
 				413FDA051639DC49002A9183 /* UIImage+RumblefishSDKResources.m in Sources */,
 				41FE1A0C176F7FC5002E022D /* HomeController.m in Sources */,
 				41FE1A0F176F8048002E022D /* HomeCell.m in Sources */,
-				34644CE5176F9237003DFAE1 /* TabBarViewController.m in Sources */,
+				34644CE5176F9237003DFAE1 /* RFRootController.m in Sources */,
 				41FE1A13176F8B4F002E022D /* PreviewView.m in Sources */,
 				41FE1A1E176FAA90002E022D /* SongCell.m in Sources */,
 				41C16A7B1770D4CB00717ADF /* RFFont.m in Sources */,
