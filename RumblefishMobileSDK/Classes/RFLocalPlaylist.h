@@ -24,11 +24,11 @@
 
 #import "RFAPI.h"
 
-@interface LocalPlaylist : NSObject {
+@interface RFLocalPlaylist : NSObject {
     NSArray *contents;
 }
 
-+ (LocalPlaylist *)sharedPlaylist;
++ (RFLocalPlaylist *)sharedPlaylist;
 
 @property (nonatomic, readonly) NSUInteger count;
 

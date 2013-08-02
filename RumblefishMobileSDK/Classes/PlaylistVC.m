@@ -24,7 +24,7 @@
 
 #import "PlaylistVC.h"
 #import "SBJson/SBJson.h"
-#import "LocalPlaylist.h"
+#import "RFLocalPlaylist.h"
 #import "SongCell.h"
 #import "PreviewController.h"
 
@@ -66,7 +66,7 @@
 }
 
 - (void)removeAll {
-    [[LocalPlaylist sharedPlaylist] clear];
+    [[RFLocalPlaylist sharedPlaylist] clear];
     [self.tableView reloadData];
 }
 
@@ -79,15 +79,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [LocalPlaylist sharedPlaylist].count;
+    return [RFLocalPlaylist sharedPlaylist].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RFMedia *media = [[LocalPlaylist sharedPlaylist] mediaAtIndex:indexPath.row];
+    RFMedia *media = [[RFLocalPlaylist sharedPlaylist] mediaAtIndex:indexPath.row];
     
     SongCell *cell = [SongCell removeButtonCellForMedia:media tableView:tableView buttonAction:^{
-        [[LocalPlaylist sharedPlaylist] removeFromPlaylist:media];
+        [[RFLocalPlaylist sharedPlaylist] removeFromPlaylist:media];
         [tableView reloadData];
     }];
     
@@ -98,7 +98,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RFMedia *currentMedia = [[LocalPlaylist sharedPlaylist] mediaAtIndex:indexPath.row];
+    RFMedia *currentMedia = [[RFLocalPlaylist sharedPlaylist] mediaAtIndex:indexPath.row];
     _previewController = [[PreviewController alloc] initWithMedia:currentMedia];
     [_previewController show];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

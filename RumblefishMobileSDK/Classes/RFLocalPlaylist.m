@@ -22,20 +22,20 @@
  this file requires a written agreement with Rumblefish, Inc.
  */
 
-#import "LocalPlaylist.h"
+#import "RFLocalPlaylist.h"
 #import "Sequence.h"
 #import "RFAPI.h"
 
 static NSString *playlistFilePath;
-static LocalPlaylist *shared;
+static RFLocalPlaylist *shared;
 
-@interface LocalPlaylist ()
+@interface RFLocalPlaylist ()
 
 @property (nonatomic, strong) NSArray *contents;
 
 @end
 
-@implementation LocalPlaylist
+@implementation RFLocalPlaylist
 
 @synthesize contents;
 
@@ -45,9 +45,9 @@ static LocalPlaylist *shared;
     playlistFilePath = [documentsDirectory stringByAppendingPathComponent:@"playlist.plist"];
 }
 
-+ (LocalPlaylist *)sharedPlaylist {
++ (RFLocalPlaylist *)sharedPlaylist {
     if (!shared)
-        shared = [LocalPlaylist new];
+        shared = [RFLocalPlaylist new];
     return shared;
 }
 

@@ -29,7 +29,7 @@
 #import "PlaylistVC.h"
 #import "NSObject+AssociateProducer.h"
 #import "Sequence.h"
-#import "LocalPlaylist.h"
+#import "RFLocalPlaylist.h"
 #import "NSBundle+RumblefishMobileSDKResources.h"
 #import "UIImage+RumblefishSDKResources.h"
 #import "SongCell.h"
@@ -655,7 +655,7 @@ NSTimer *rotateImagesTimer;
     int section = [[table indexPathForCell:(UITableViewCell *)[[button superview] superview]] section];
     
     RFMedia *currentMedia = [((RFPlaylist *)[displayedPlaylists objectAtIndex:section]).media objectAtIndex:row];
-    [[LocalPlaylist sharedPlaylist] addToPlaylist:currentMedia];
+    [[RFLocalPlaylist sharedPlaylist] addToPlaylist:currentMedia];
     
     button.hidden = YES;
     [[button superview] viewWithTag:8].hidden = NO;
@@ -666,7 +666,7 @@ NSTimer *rotateImagesTimer;
     int section = [[table indexPathForCell:(UITableViewCell *)[[button superview] superview]] section];
     
     RFMedia *currentMedia = [((RFPlaylist *)[displayedPlaylists objectAtIndex:section]).media objectAtIndex:row];
-    [[LocalPlaylist sharedPlaylist] removeFromPlaylist:currentMedia];
+    [[RFLocalPlaylist sharedPlaylist] removeFromPlaylist:currentMedia];
     
     button.hidden = YES;
     [[button superview] viewWithTag:5].hidden = NO;
@@ -727,15 +727,15 @@ NSTimer *rotateImagesTimer;
     RFMedia *media = ((RFMedia *)[playlist.media objectAtIndex:indexPath.row]);
     
     SongCell *cell = [SongCell cellForMedia:media tableView:tableView buttonAction:^{
-        if ([[LocalPlaylist sharedPlaylist] existsInPlaylist:media])
-            [[LocalPlaylist sharedPlaylist] removeFromPlaylist:media];
+        if ([[RFLocalPlaylist sharedPlaylist] existsInPlaylist:media])
+            [[RFLocalPlaylist sharedPlaylist] removeFromPlaylist:media];
         else
-            [[LocalPlaylist sharedPlaylist] addToPlaylist:media];
+            [[RFLocalPlaylist sharedPlaylist] addToPlaylist:media];
         
         [tableView reloadData];
     }];
     
-    cell.songIsSaved = [[LocalPlaylist sharedPlaylist] existsInPlaylist:media];
+    cell.songIsSaved = [[RFLocalPlaylist sharedPlaylist] existsInPlaylist:media];
     
     return cell;
 }

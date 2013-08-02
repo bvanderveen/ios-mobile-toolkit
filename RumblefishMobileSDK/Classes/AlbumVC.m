@@ -24,7 +24,7 @@
 
 #import "AlbumVC.h"
 #import "SBJson/SBJson.h"
-#import "LocalPlaylist.h"
+#import "RFLocalPlaylist.h"
 #import "NSObject+AssociateProducer.h"
 #import "UIImage+RumblefishSDKResources.h"
 #import "PreviewController.h"
@@ -103,15 +103,15 @@
     RFMedia *currentMedia = [playlist.media objectAtIndex:indexPath.row];
     
     SongCell *cell = [SongCell cellForMedia:currentMedia tableView:tableView buttonAction:^{
-        if ([[LocalPlaylist sharedPlaylist] existsInPlaylist:currentMedia])
-            [[LocalPlaylist sharedPlaylist] removeFromPlaylist:currentMedia];
+        if ([[RFLocalPlaylist sharedPlaylist] existsInPlaylist:currentMedia])
+            [[RFLocalPlaylist sharedPlaylist] removeFromPlaylist:currentMedia];
         else
-            [[LocalPlaylist sharedPlaylist] addToPlaylist:currentMedia];
+            [[RFLocalPlaylist sharedPlaylist] addToPlaylist:currentMedia];
         
         [tableView reloadData];
     }];
     
-    cell.songIsSaved = [[LocalPlaylist sharedPlaylist] existsInPlaylist:currentMedia];
+    cell.songIsSaved = [[RFLocalPlaylist sharedPlaylist] existsInPlaylist:currentMedia];
     
     return cell;
 }

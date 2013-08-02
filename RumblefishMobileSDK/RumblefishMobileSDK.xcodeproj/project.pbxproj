@@ -46,7 +46,7 @@
 		413FD7DA1639AB2E002A9183 /* AlbumVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7B91639AB2E002A9183 /* AlbumVC.m */; };
 		413FD7DB1639AB2E002A9183 /* Async.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7BB1639AB2E002A9183 /* Async.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		413FD7DC1639AB2E002A9183 /* CoverFlowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7BD1639AB2E002A9183 /* CoverFlowVC.m */; };
-		413FD7DF1639AB2E002A9183 /* LocalPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7C31639AB2E002A9183 /* LocalPlaylist.m */; };
+		413FD7DF1639AB2E002A9183 /* RFLocalPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7C31639AB2E002A9183 /* RFLocalPlaylist.m */; };
 		413FD7E01639AB2E002A9183 /* MoodMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7C51639AB2E002A9183 /* MoodMapVC.m */; };
 		413FD7E11639AB2E002A9183 /* NSObject+AssociateProducer.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7C71639AB2E002A9183 /* NSObject+AssociateProducer.m */; };
 		413FD7E21639AB2E002A9183 /* OccasionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7C91639AB2E002A9183 /* OccasionVC.m */; };
@@ -291,8 +291,8 @@
 		413FD7BB1639AB2E002A9183 /* Async.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Async.m; path = Classes/Async.m; sourceTree = SOURCE_ROOT; };
 		413FD7BC1639AB2E002A9183 /* CoverFlowVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoverFlowVC.h; path = Classes/CoverFlowVC.h; sourceTree = SOURCE_ROOT; };
 		413FD7BD1639AB2E002A9183 /* CoverFlowVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoverFlowVC.m; path = Classes/CoverFlowVC.m; sourceTree = SOURCE_ROOT; };
-		413FD7C21639AB2E002A9183 /* LocalPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalPlaylist.h; path = Classes/LocalPlaylist.h; sourceTree = SOURCE_ROOT; };
-		413FD7C31639AB2E002A9183 /* LocalPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalPlaylist.m; path = Classes/LocalPlaylist.m; sourceTree = SOURCE_ROOT; };
+		413FD7C21639AB2E002A9183 /* RFLocalPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFLocalPlaylist.h; path = Classes/RFLocalPlaylist.h; sourceTree = SOURCE_ROOT; };
+		413FD7C31639AB2E002A9183 /* RFLocalPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFLocalPlaylist.m; path = Classes/RFLocalPlaylist.m; sourceTree = SOURCE_ROOT; };
 		413FD7C41639AB2E002A9183 /* MoodMapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoodMapVC.h; path = Classes/MoodMapVC.h; sourceTree = SOURCE_ROOT; };
 		413FD7C51639AB2E002A9183 /* MoodMapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoodMapVC.m; path = Classes/MoodMapVC.m; sourceTree = SOURCE_ROOT; };
 		413FD7C61639AB2E002A9183 /* NSObject+AssociateProducer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+AssociateProducer.h"; path = "Classes/NSObject+AssociateProducer.h"; sourceTree = SOURCE_ROOT; };
@@ -511,8 +511,8 @@
 				411FCEEB1639F0A8000B1841 /* RumblefishMobileSDK.h */,
 				413FD7CE1639AB2E002A9183 /* RFAPI.h */,
 				413FD7CF1639AB2E002A9183 /* RFAPI.m */,
-				413FD7C21639AB2E002A9183 /* LocalPlaylist.h */,
-				413FD7C31639AB2E002A9183 /* LocalPlaylist.m */,
+				413FD7C21639AB2E002A9183 /* RFLocalPlaylist.h */,
+				413FD7C31639AB2E002A9183 /* RFLocalPlaylist.m */,
 				41FE1A10176F8B27002E022D /* Preview */,
 				413FD7F11639AD24002A9183 /* Controllers */,
 				413FD7F31639AD48002A9183 /* Utilities */,
@@ -997,7 +997,7 @@
 			files = (
 				413FD7DA1639AB2E002A9183 /* AlbumVC.m in Sources */,
 				413FD7DC1639AB2E002A9183 /* CoverFlowVC.m in Sources */,
-				413FD7DF1639AB2E002A9183 /* LocalPlaylist.m in Sources */,
+				413FD7DF1639AB2E002A9183 /* RFLocalPlaylist.m in Sources */,
 				413FD7E01639AB2E002A9183 /* MoodMapVC.m in Sources */,
 				413FD7E11639AB2E002A9183 /* NSObject+AssociateProducer.m in Sources */,
 				413FD7E21639AB2E002A9183 /* OccasionVC.m in Sources */,
