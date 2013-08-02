@@ -72,7 +72,7 @@
 @property (nonatomic, strong) RFMoodMapControllerView *view;
 @property (nonatomic, strong) UIColor *selectedColor;
 @property (nonatomic, strong) RFMoodMapSelectorView *moodmapSelectorView;
-@property (nonatomic, weak) RFRootController *tabBarVC;
+@property (nonatomic, weak) RFRootController *rootController;
 @property (nonatomic, strong) RFPreviewController *previewController;
 
 @end
@@ -93,10 +93,10 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
                        0,  0,114,115,116,117, 84, 85, 86, 87,  0,  0,
                        0,  0,  0,118,119,120, 88, 89, 90,  0,  0,  0};
 
-- (id)initWithTabBarVC:(RFRootController *)tabBarVC
+- (id)initWithRootController:(RFRootController *)rootController
 {
     if (self = [super init]) {
-        _tabBarVC = tabBarVC;
+        _rootController = rootController;
     }
     return self;
 }
@@ -179,7 +179,7 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
 }
 
 - (IBAction)doneButtonPressed {
-    [_tabBarVC cancelModalView];
+    [_rootController dismissAnimated:YES];
 }
 
 - (IBAction)filterButtonPressed {

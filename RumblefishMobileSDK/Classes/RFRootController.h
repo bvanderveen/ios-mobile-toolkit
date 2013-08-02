@@ -24,6 +24,7 @@
 
 @interface RFRootController : UIViewController
 
-- (void)cancelModalView;
+- (void)presentWithParentController:(UIViewController *)parentController animated:(BOOL)animated;
+- (void)dismissAnimated:(BOOL)animated;
 
 @end

@@ -80,7 +80,7 @@ typedef enum RFTabView {
             tabBarImage = [UIImage imageInResourceBundleNamed:@"homeIcon.png"];
             break;
         case RFTabViewMood:
-            viewController = [[RFMoodMapController alloc] initWithTabBarVC:self];
+            viewController = [[RFMoodMapController alloc] initWithRootController:self];
             title = @"Mood";
             tabBarImage = [UIImage imageInResourceBundleNamed:@"moodIcon.png"];
             break;
@@ -107,7 +107,7 @@ typedef enum RFTabView {
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
                                                                      style:UIBarButtonItemStyleBordered
                                                                     target:self
-                                                                    action:@selector(cancelModalView)];
+                                                                    action:@selector(dismiss)];
     viewController.navigationItem.leftBarButtonItem = cancelButton;
     navController.tabBarItem.title = title;
     navController.tabBarItem.image = tabBarImage;
@@ -118,10 +118,17 @@ typedef enum RFTabView {
     return navController;
 }
 
-- (void)cancelModalView
+- (void)presentWithParentController:(UIViewController *)parentController animated:(BOOL)animated {
+    [parentController presentViewController:self animated:animated completion:nil];
+}
+
+- (void)dismiss {
+    [self dismissAnimated:YES];
+}
+
+- (void)dismissAnimated:(BOOL)animated
 {
-    NSLog(@"Cancel");
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:animated completion:nil];
 }
 
 

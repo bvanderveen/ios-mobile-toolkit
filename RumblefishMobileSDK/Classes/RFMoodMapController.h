@@ -34,7 +34,7 @@
     int playlistID, selectedCellID;
 }
 
-- (id)initWithTabBarVC:(RFRootController *)tabBarVC;
+- (id)initWithRootController:(RFRootController *)tabBarVC;
 - (IBAction)doneButtonPressed;
 
 @end

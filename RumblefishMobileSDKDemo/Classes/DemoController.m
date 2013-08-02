@@ -39,9 +39,9 @@
     [[UIApplication sharedApplication] openURL:url];
 }
 
-- (void)displayRumblfishSDK {
+- (void)displayRumblefishSDK {
     RFRootController *rootController = [[RFRootController alloc] init];
-    [self.navigationController pushViewController:rootController animated:YES];
+    [rootController presentWithParentController:self animated:YES];
 }
 
 - (void)setupRumblefishSDKWithVideoURL:(NSURL *)videoUrl {
@@ -56,8 +56,9 @@
                  navController.navigationBar.barStyle = UIBarStyleBlack;
                  [self.navigationController presentModalViewController:navController animated:YES];
                  
-                 purchase.license.firstname = @"Butts";
-                 purchase.license.lastname = @"McGee";
+                 purchase.license.firstname = @"John";
+                 purchase.license.lastname = @"Doe";
+                 
                  purchase.didCompletePurchase = ^ {
                      NSLog(@"Puchase completed sucessfully!");
                  };
@@ -74,7 +75,7 @@
 - (IBAction)start {
     NSURL *videoURL = [NSURL URLWithString:@"http://vimeo.com/48931301/download?t=1371599214&v=116073593&s=1d4de25bc703d2c8eec8dbcd166d5e3c"];
     [self setupRumblefishSDKWithVideoURL:videoURL];
-    [self displayRumblfishSDK];
+    [self displayRumblefishSDK];
 }
 
 #else
@@ -93,9 +94,7 @@
     [self setupRumblefishSDKWithVideoURL:pickedURL];
     
     [self dismissViewControllerAnimated:YES completion:^{
-        TabBarViewController *tabController = [[TabBarViewController alloc] init];
-        [self.navigationController pushViewController:tabController animated:YES];
-        [tabController release];
+        [self displayRumblefishSDK];
     }];
 }
 
