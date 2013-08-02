@@ -32,11 +32,11 @@
 
 @property (nonatomic, readonly) NSUInteger count;
 
-- (void)addToPlaylist:(Media *)media;
-- (void)removeFromPlaylist:(Media *)media;
+- (void)addToPlaylist:(RFMedia *)media;
+- (void)removeFromPlaylist:(RFMedia *)media;
 - (void)removeAtIndex:(NSUInteger)index;
-- (Media *)mediaAtIndex:(NSUInteger)index;
-- (BOOL)existsInPlaylist:(Media *)media;
+- (RFMedia *)mediaAtIndex:(NSUInteger)index;
+- (BOOL)existsInPlaylist:(RFMedia *)media;
 - (void)clear;
 
 @end

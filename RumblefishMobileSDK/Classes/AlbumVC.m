@@ -32,7 +32,7 @@
 
 @interface AlbumVC ()
 
-@property (nonatomic, strong) Playlist *playlist;
+@property (nonatomic, strong) RFPlaylist *playlist;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) PreviewController *previewController;
 
@@ -42,7 +42,7 @@
 
 @synthesize playlist, activityIndicator;
 
-- (id)initWithPlaylist:(Playlist *)lePlaylist {
+- (id)initWithPlaylist:(RFPlaylist *)lePlaylist {
     if (self = [super init]) {
         self.playlist = lePlaylist;
         self.title = playlist.title;
@@ -100,7 +100,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Media *currentMedia = [playlist.media objectAtIndex:indexPath.row];
+    RFMedia *currentMedia = [playlist.media objectAtIndex:indexPath.row];
     
     SongCell *cell = [SongCell cellForMedia:currentMedia tableView:tableView buttonAction:^{
         if ([[LocalPlaylist sharedPlaylist] existsInPlaylist:currentMedia])
@@ -121,7 +121,7 @@
     [activityIndicator startAnimating];
     
     [self associateProducer:getPlaylist callback:^ (id result) {
-        self.playlist = (Playlist *)result;
+        self.playlist = (RFPlaylist *)result;
         
         [self.tableView reloadData];
         [activityIndicator stopAnimating];
@@ -132,7 +132,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Media *currentMedia = [playlist.media objectAtIndex:indexPath.row];
+    RFMedia *currentMedia = [playlist.media objectAtIndex:indexPath.row];
     _previewController = [[PreviewController alloc] initWithMedia:currentMedia];
     [_previewController show];    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

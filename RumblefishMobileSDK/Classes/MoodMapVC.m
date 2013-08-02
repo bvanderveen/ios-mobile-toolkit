@@ -219,7 +219,7 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Media *currentMedia = (Media *)[playlist.media objectAtIndex:indexPath.row];
+    RFMedia *currentMedia = (RFMedia *)[playlist.media objectAtIndex:indexPath.row];
     
     SongCell *cell = [SongCell cellForMedia:currentMedia tableView:tableView buttonAction:^{
         if ([[LocalPlaylist sharedPlaylist] existsInPlaylist:currentMedia])
@@ -237,7 +237,7 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Media *currentMedia = [playlist.media objectAtIndex:indexPath.row];
+    RFMedia *currentMedia = [playlist.media objectAtIndex:indexPath.row];
     _previewController = [[PreviewController alloc] initWithMedia:currentMedia];
     [_previewController show];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -259,7 +259,7 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
     
     [self.view.activityIndicator startAnimating];
     [self associateProducer:getMedia callback:^ (id result) {
-        playlist = (Playlist *)result;
+        playlist = (RFPlaylist *)result;
         [self.view.activityIndicator stopAnimating];
         _moodmapSelectorView.doneButton.enabled = YES;
         [tabView reloadData];

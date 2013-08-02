@@ -30,6 +30,6 @@
 
 @property (nonatomic, strong) UIButton *displayAlbumButton;
 
-- (id)initWithPlaylist:(Playlist *)playlist;
+- (id)initWithPlaylist:(RFPlaylist *)playlist;
 
 @end

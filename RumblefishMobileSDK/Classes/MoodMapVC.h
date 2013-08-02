@@ -37,7 +37,7 @@
 
 @interface MoodMapVC : UIViewController <UITableViewDelegate, UITableViewDataSource, NSURLConnectionDelegate> {
     UITableView *tabView;
-    Playlist *playlist;
+    RFPlaylist *playlist;
     int playlistID, selectedCellID;
 }
 

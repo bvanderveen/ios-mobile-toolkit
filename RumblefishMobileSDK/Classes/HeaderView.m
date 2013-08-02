@@ -106,7 +106,7 @@
     
     //Create a "page" for each item
     for (int i = 0; i < numberOfPlaylists; i++) {
-        Playlist *playlist = [_dataSource playlistForPageNumber:i];
+        RFPlaylist *playlist = [_dataSource playlistForPageNumber:i];
         
         CGRect pageFrame;
         pageFrame.origin.x = self.scrollView.frame.size.width * i;

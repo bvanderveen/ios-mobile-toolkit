@@ -57,12 +57,12 @@ static LocalPlaylist *shared;
 
 - (NSArray *)readPlaylist {
     return [[[NSMutableDictionary dictionaryWithContentsOfFile:playlistFilePath] objectForKey:@"media"] map:^ id (id m) {
-        return [[Media alloc] initWithDictionary:m];
+        return [[RFMedia alloc] initWithDictionary:m];
     }];
 }
 
 - (void)flushPlaylist {
-    [[NSDictionary dictionaryWithObject:[contents map:^ id (id m) { return [((Media *)m) dictionaryRepresentation]; }] forKey:@"media"] writeToFile:playlistFilePath atomically:YES];
+    [[NSDictionary dictionaryWithObject:[contents map:^ id (id m) { return [((RFMedia *)m) dictionaryRepresentation]; }] forKey:@"media"] writeToFile:playlistFilePath atomically:YES];
 }
 
 - (id)init {
@@ -75,7 +75,7 @@ static LocalPlaylist *shared;
     return self;
 }
 
-- (void)addToPlaylist:(Media *)media {
+- (void)addToPlaylist:(RFMedia *)media {
     self.contents = [self.contents arrayByAddingObject:media];
     [self flushPlaylist];
 }
@@ -86,17 +86,17 @@ static LocalPlaylist *shared;
     self.contents = [mutableCopy copy];
 }
 
-- (void)removeFromPlaylist:(Media *)media {
-    self.contents = [contents filter:^ BOOL (id m) { return ![((Media *)m) isEqual:media]; }];
+- (void)removeFromPlaylist:(RFMedia *)media {
+    self.contents = [contents filter:^ BOOL (id m) { return ![((RFMedia *)m) isEqual:media]; }];
     [self flushPlaylist];
 }
 
-- (BOOL)existsInPlaylist:(Media *)media {
-    return [contents any:^ BOOL (id m) { return [((Media *)m) isEqual:media]; }];
+- (BOOL)existsInPlaylist:(RFMedia *)media {
+    return [contents any:^ BOOL (id m) { return [((RFMedia *)m) isEqual:media]; }];
 }
 
-- (Media *)mediaAtIndex:(NSUInteger)index {
-    return (Media *)[self.contents objectAtIndex:index];
+- (RFMedia *)mediaAtIndex:(NSUInteger)index {
+    return (RFMedia *)[self.contents objectAtIndex:index];
 }
 
 - (void)clear {

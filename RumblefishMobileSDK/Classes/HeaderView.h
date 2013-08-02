@@ -29,7 +29,7 @@
 
 @required
 - (NSInteger)numberOfPlaylists;
-- (Playlist *)playlistForPageNumber:(NSInteger)pageNumber;
+- (RFPlaylist *)playlistForPageNumber:(NSInteger)pageNumber;
 
 @end
 

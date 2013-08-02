@@ -28,6 +28,6 @@
 
 @interface AlbumVC : UITableViewController
 
-- (id)initWithPlaylist:(Playlist *)playlist;
+- (id)initWithPlaylist:(RFPlaylist *)playlist;
 
 @end

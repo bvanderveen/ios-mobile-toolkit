@@ -76,7 +76,7 @@
     if (!cell)
         cell = [[HomeCell alloc] initWithReuseIdentifier:@"Cell"];
     
-    Playlist *playlist = [_tablePlaylists objectAtIndex:indexPath.row];
+    RFPlaylist *playlist = [_tablePlaylists objectAtIndex:indexPath.row];
     cell.textLabel.text = playlist.title;
     cell.detailTextLabel.text = playlist.strippedEditorial;
     cell.imageURL = playlist.imageURL;
@@ -108,7 +108,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Playlist *playlist = [_tablePlaylists objectAtIndex:indexPath.row];
+    RFPlaylist *playlist = [_tablePlaylists objectAtIndex:indexPath.row];
     
 	AlbumVC *albumController = [[AlbumVC alloc] initWithPlaylist:playlist];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:albumController];
@@ -122,7 +122,7 @@
 
 #pragma mark HeaderViewDataSource
 
-- (Playlist *)playlistForPageNumber:(NSInteger)pageNumber
+- (RFPlaylist *)playlistForPageNumber:(NSInteger)pageNumber
 {
     return _headerPlaylists[pageNumber];
 }

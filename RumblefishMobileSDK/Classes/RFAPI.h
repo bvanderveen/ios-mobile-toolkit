@@ -26,13 +26,14 @@
 #import <UIKit/UIKit.h>
 #import "Async.h"
 
-@interface License : NSObject
+@interface RFLicense : NSObject
+
 @property (nonatomic, strong) NSString *mediaId, *token, *licenseType, *projectReference, *transactionReference, *invoiceId, *email, *firstname, *lastname, *company, *address1, *address2, *city, *state, *postalCode, *country, *phone, *licenseeReference;
 @property (nonatomic, assign) BOOL sendLicense;
 
 @end
 
-@interface Media : NSObject
+@interface RFMedia : NSObject
 
 @property (nonatomic, copy) NSString *title, *albumTitle, *genre;
 @property (nonatomic, assign) BOOL isExplicit;
@@ -46,16 +47,16 @@
 
 @interface RFPurchase : NSObject
 
-@property (nonatomic, strong) License *license;
+@property (nonatomic, strong) RFLicense *license;
 @property (nonatomic, copy) void(^didCompletePurchase)();
 @property (nonatomic, copy) void(^didFailToCompletePurchase)();
 
-- (id)initWithMedia:(Media *)media completion:(void(^)())completion;
+- (id)initWithMedia:(RFMedia *)media completion:(void(^)())completion;
 - (void)commitPurchase;
 
 @end
 
-@interface Playlist : NSObject
+@interface RFPlaylist : NSObject
 
 @property (nonatomic, assign) NSInteger ID;
 @property (nonatomic, copy) NSString *title, *editorial;
@@ -69,7 +70,7 @@
 
 @end
 
-@interface Occasion : NSObject
+@interface RFOccasion : NSObject
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, assign) NSInteger ID;
@@ -134,6 +135,6 @@ typedef enum RFAPIMethod {
 - (Producer)getOccasions;
 - (Producer)getOccasion:(NSInteger)occasionID;
 - (Producer)getImageAtURL:(NSURL *)url;
-- (Producer)postLicense:(License *)license;
+- (Producer)postLicense:(RFLicense *)license;
 
 @end

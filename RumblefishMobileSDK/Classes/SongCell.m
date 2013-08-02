@@ -102,7 +102,7 @@
     }
 }
 
-+ (SongCell *)cellForMedia:(Media *)media tableView:(UITableView *)tableView buttonAction:(void(^)())action {
++ (SongCell *)cellForMedia:(RFMedia *)media tableView:(UITableView *)tableView buttonAction:(void(^)())action {
     static NSString *ident = @"SongCell";
     
     SongCell *cell = (SongCell *)[tableView dequeueReusableCellWithIdentifier:ident];
@@ -122,7 +122,7 @@
     return cell;
 }
 
-+ (SongCell *)removeButtonCellForMedia:(Media *)media tableView:(UITableView *)tableView buttonAction:(void(^)())action {
++ (SongCell *)removeButtonCellForMedia:(RFMedia *)media tableView:(UITableView *)tableView buttonAction:(void(^)())action {
     SongCell *cell = [self cellForMedia:media tableView:tableView buttonAction:action];
     
     [cell.accessoryButton setImage:[UIImage imageInResourceBundleNamed:@"btn_remove.png"] forState:UIControlStateNormal];

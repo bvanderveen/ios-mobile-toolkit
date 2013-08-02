@@ -42,7 +42,7 @@
     
     NSArray *occasions;
     NSMutableArray *occasionStack;
-    Occasion *displayedOccasion;
+    RFOccasion *displayedOccasion;
     NSArray *displayedPlaylists;
 }
 

@@ -12,7 +12,7 @@
 
 @implementation PreviewView
 
-- (id)initWithMedia:(Media *)media;
+- (id)initWithMedia:(RFMedia *)media;
 {
     if (self = [super initWithFrame:CGRectZero]) {
         

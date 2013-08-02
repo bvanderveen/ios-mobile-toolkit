@@ -69,7 +69,7 @@
 
 @interface CoverflowCoverView : TKCoverflowCoverView
 
-@property (nonatomic, strong) Playlist *playlist;
+@property (nonatomic, strong) RFPlaylist *playlist;
 @property (nonatomic, strong) SimpleImageCache *cache;
 
 @end
@@ -92,7 +92,7 @@
     return self;
 }
 
-- (void)setPlaylist:(Playlist *)value {
+- (void)setPlaylist:(RFPlaylist *)value {
     [self deassociateProducer];
     _playlist = value;
     self.image = nil;
@@ -230,7 +230,7 @@
     if (index == -1)
         return;
     
-	self.coverFlowVCView.label.text = ((Playlist *)[self.playlists objectAtIndex:index]).title;
+	self.coverFlowVCView.label.text = ((RFPlaylist *)[self.playlists objectAtIndex:index]).title;
 }
 
 - (TKCoverflowCoverView*)coverflowView:(TKCoverflowView*)coverflowView coverAtIndex:(int)index {
@@ -247,7 +247,7 @@
 }
 
 - (void)coverflowView:(TKCoverflowView*)coverflowView coverAtIndexWasTappedInFront:(int)index tapCount:(NSInteger)tapCount {
-    Playlist *playlist = (Playlist *)[playlists objectAtIndex:index];
+    RFPlaylist *playlist = (RFPlaylist *)[playlists objectAtIndex:index];
     
 	AlbumVC *albumController = [[AlbumVC alloc] initWithPlaylist:playlist];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:albumController];
@@ -261,7 +261,7 @@
     [self.coverFlowVCView.activityIndicator startAnimating];
     Producer getPlaylists = [[RFAPI singleton] getPlaylistsWithOffset:0];    
     [self associateProducer:getPlaylists callback:^ (id results) {
-        self.playlists = [(NSArray *)results filter:^ BOOL (id p) { return ((Playlist *)p).imageURL != NULL; }];
+        self.playlists = [(NSArray *)results filter:^ BOOL (id p) { return ((RFPlaylist *)p).imageURL != NULL; }];
         self.coverFlowVCView.coverFlowView.numberOfCovers = playlists.count;
         [self.coverFlowVCView.activityIndicator stopAnimating];
     }];

@@ -30,7 +30,7 @@
 
 @interface HeaderPageView ()
 
-@property (nonatomic, strong) Playlist *playlist;
+@property (nonatomic, strong) RFPlaylist *playlist;
 
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIView *contentBox;
@@ -50,7 +50,7 @@
     _cancelImage = [cancelImage copy];
 }
 
-- (id)initWithPlaylist:(Playlist *)playlist
+- (id)initWithPlaylist:(RFPlaylist *)playlist
 {
     self = [super initWithFrame:CGRectZero];
     if (self) {

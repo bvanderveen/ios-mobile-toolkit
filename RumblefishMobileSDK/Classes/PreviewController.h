@@ -2,7 +2,7 @@
 
 @interface PreviewController : UIViewController
 
-- (id)initWithMedia:(Media *)media;
+- (id)initWithMedia:(RFMedia *)media;
 - (void)show;
 
 @end

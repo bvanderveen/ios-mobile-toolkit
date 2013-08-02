@@ -201,7 +201,7 @@
 
 @property (nonatomic, copy) NSArray *occasions;
 @property (nonatomic, strong) NSMutableArray *occasionStack;
-@property (nonatomic, strong) Occasion *displayedOccasion;
+@property (nonatomic, strong) RFOccasion *displayedOccasion;
 @property (nonatomic, copy) NSArray *displayedPlaylists;
 @property (nonatomic, copy) NSArray *occasionImages;
 @property (nonatomic, strong) OccasionControllerView *controllerView;
@@ -340,13 +340,13 @@ NSTimer *rotateImagesTimer;
 }
 
 - (void)pushOccasionNamed:(NSString *)name {
-    Occasion *occasion = [[occasions filter:^ BOOL (id o) { return [((Occasion *)o).name isEqual:name]; }] objectAtIndex:0];
+    RFOccasion *occasion = [[occasions filter:^ BOOL (id o) { return [((RFOccasion *)o).name isEqual:name]; }] objectAtIndex:0];
     [occasionStack addObject:occasion];
     
     NSArray *children = occasion.children;
     
     for (int i=0; i < children.count; i++) {
-        Occasion *child = [occasion.children objectAtIndex:i];
+        RFOccasion *child = [occasion.children objectAtIndex:i];
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.tag = i;
@@ -370,11 +370,11 @@ NSTimer *rotateImagesTimer;
     scroller.contentSize = CGSizeMake(self.view.bounds.size.width, children.count * 129);
 }
 
-- (void)pushOccasion:(Occasion *)occasion {
+- (void)pushOccasion:(RFOccasion *)occasion {
     [occasionStack addObject:occasion];
     
     for (int i=0; i< occasion.children.count; i++) {
-        Occasion *child = [occasion.children objectAtIndex:i];
+        RFOccasion *child = [occasion.children objectAtIndex:i];
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.tag = i;
@@ -519,8 +519,8 @@ NSTimer *rotateImagesTimer;
     int tag = [button tag];
     
     if (level == 2) {
-        Occasion *parent = [occasionStack objectAtIndex:0];
-        Occasion *child = [parent.children objectAtIndex:button.tag];
+        RFOccasion *parent = [occasionStack objectAtIndex:0];
+        RFOccasion *child = [parent.children objectAtIndex:button.tag];
         [self pushOccasion:child];
         
         button.titleLabel.font = [UIFont systemFontOfSize:32];
@@ -578,14 +578,14 @@ NSTimer *rotateImagesTimer;
     }
 }
 
-- (void)fetchPlaylistsForOccasion:(Occasion *)occasion {
+- (void)fetchPlaylistsForOccasion:(RFOccasion *)occasion {
     
     Producer mediaForOccasion = 
         [Async continueAfterProducer:[[RFAPI singleton] getOccasion:occasion.ID] withSelector:^ Producer (id result) {
-            self.displayedOccasion = (Occasion *)result;
+            self.displayedOccasion = (RFOccasion *)result;
             
             return [[displayedOccasion.playlists map:^ id (id p) {
-                return [[RFAPI singleton] getPlaylist:((Playlist *)p).ID];
+                return [[RFAPI singleton] getPlaylist:((RFPlaylist *)p).ID];
             }] parallelProducer];
         }];
     
@@ -604,8 +604,8 @@ NSTimer *rotateImagesTimer;
     int tag = [button tag];
     if (level == 3) {
         
-        Occasion *parent = [occasionStack objectAtIndex:1];
-        Occasion *child = [parent.children objectAtIndex:tag];
+        RFOccasion *parent = [occasionStack objectAtIndex:1];
+        RFOccasion *child = [parent.children objectAtIndex:tag];
         
         [self fetchPlaylistsForOccasion:child];
         
@@ -654,7 +654,7 @@ NSTimer *rotateImagesTimer;
     int row = [[table indexPathForCell:(UITableViewCell *)[[button superview] superview]] row];
     int section = [[table indexPathForCell:(UITableViewCell *)[[button superview] superview]] section];
     
-    Media *currentMedia = [((Playlist *)[displayedPlaylists objectAtIndex:section]).media objectAtIndex:row];
+    RFMedia *currentMedia = [((RFPlaylist *)[displayedPlaylists objectAtIndex:section]).media objectAtIndex:row];
     [[LocalPlaylist sharedPlaylist] addToPlaylist:currentMedia];
     
     button.hidden = YES;
@@ -665,7 +665,7 @@ NSTimer *rotateImagesTimer;
     int row = [[table indexPathForCell:(UITableViewCell *)[[button superview] superview]] row];
     int section = [[table indexPathForCell:(UITableViewCell *)[[button superview] superview]] section];
     
-    Media *currentMedia = [((Playlist *)[displayedPlaylists objectAtIndex:section]).media objectAtIndex:row];
+    RFMedia *currentMedia = [((RFPlaylist *)[displayedPlaylists objectAtIndex:section]).media objectAtIndex:row];
     [[LocalPlaylist sharedPlaylist] removeFromPlaylist:currentMedia];
     
     button.hidden = YES;
@@ -700,7 +700,7 @@ NSTimer *rotateImagesTimer;
     [self associateProducer:[[RFAPI singleton] getOccasions] callback:^ (id results) {
         self.occasions = [((NSArray *)results) filter:^ BOOL (id o) { 
             return [displayedOccasionNames any:^ BOOL (id n) {
-                return [((Occasion *)o).name isEqual:n];
+                return [((RFOccasion *)o).name isEqual:n];
             }];
         }];
         
@@ -718,13 +718,13 @@ NSTimer *rotateImagesTimer;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return ((Playlist *)[displayedPlaylists objectAtIndex:section]).media.count;
+    return ((RFPlaylist *)[displayedPlaylists objectAtIndex:section]).media.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Playlist *playlist = [displayedPlaylists objectAtIndex:indexPath.section];
-    Media *media = ((Media *)[playlist.media objectAtIndex:indexPath.row]);
+    RFPlaylist *playlist = [displayedPlaylists objectAtIndex:indexPath.section];
+    RFMedia *media = ((RFMedia *)[playlist.media objectAtIndex:indexPath.row]);
     
     SongCell *cell = [SongCell cellForMedia:media tableView:tableView buttonAction:^{
         if ([[LocalPlaylist sharedPlaylist] existsInPlaylist:media])
@@ -742,14 +742,14 @@ NSTimer *rotateImagesTimer;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Media *currentMedia = [((Playlist *)[displayedPlaylists objectAtIndex:indexPath.section]).media objectAtIndex:indexPath.row];
+    RFMedia *currentMedia = [((RFPlaylist *)[displayedPlaylists objectAtIndex:indexPath.section]).media objectAtIndex:indexPath.row];
     _previewController = [[PreviewController alloc] initWithMedia:currentMedia];
     [_previewController show];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    Playlist *playlist = [displayedPlaylists objectAtIndex:section];
+    RFPlaylist *playlist = [displayedPlaylists objectAtIndex:section];
     
     UIImageView *header = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
     header.image = [UIImage imageInResourceBundleNamed:@"occasion_header_bg.png"];

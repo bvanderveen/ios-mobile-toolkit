@@ -33,7 +33,7 @@
 
 #define StringOrEmpty(X) ([(X) isKindOfClass:[NSString class]] ? (X) : @"")
 
-@implementation License
+@implementation RFLicense
 
 - (NSDictionary *)dictionaryRepresentation {
     return @{@"media_id" : StringOrEmpty(_mediaId),
@@ -63,7 +63,7 @@
 @interface RFPurchase ()
 
 @property (nonatomic, copy) void(^completion)();
-@property (nonatomic, strong) Media *media;
+@property (nonatomic, strong) RFMedia *media;
 @property (nonatomic, copy) CancelCallback cancelCallback;
 
 @end
@@ -77,7 +77,7 @@
     _cancelCallback = [cancelCallback copy];
 }
 
-- (id)initWithMedia:(Media *)media completion:(void(^)())completion {
+- (id)initWithMedia:(RFMedia *)media completion:(void(^)())completion {
     if (self = [super init]) {
         assert(completion);
         _media = media;
@@ -87,7 +87,7 @@
 }
 
 - (void)commitPurchase {
-    License *license = [[License alloc] init];
+    RFLicense *license = [[RFLicense alloc] init];
     license.mediaId = [@(_media.ID) stringValue];
     Producer producer = [[RFAPI singleton] postLicense:license];
     self.cancelCallback = producer(^(id result) {
@@ -105,7 +105,7 @@
 
 @end
 
-@implementation Media
+@implementation RFMedia
 
 @synthesize title, albumTitle, genre, isExplicit, ID, previewURL;
 
@@ -133,15 +133,15 @@
 }
 
 - (BOOL)isEqual:(id)object {
-    if (![object isKindOfClass:[Media class]])
+    if (![object isKindOfClass:[RFMedia class]])
         return NO;
     
-    return self.ID == ((Media *)object).ID;
+    return self.ID == ((RFMedia *)object).ID;
 }
 
 @end
 
-@implementation Playlist
+@implementation RFPlaylist
 
 @synthesize title, editorial, ID, imageURL, image = _image, media;
 
@@ -156,7 +156,7 @@
             self.imageURL = [NSURL URLWithString:imageURLString];
         
         self.editorial = [dictionary objectForKey:@"editorial"];
-        self.media = [[dictionary objectForKey:@"media"] map:^ id (id m) { return [[Media alloc] initWithDictionary:m]; }];
+        self.media = [[dictionary objectForKey:@"media"] map:^ id (id m) { return [[RFMedia alloc] initWithDictionary:m]; }];
     }
     return self;
 }
@@ -188,7 +188,7 @@
 
 @end
 
-@implementation Occasion
+@implementation RFOccasion
 
 @synthesize name, ID, children, playlists;
 
@@ -197,11 +197,11 @@
         self.name = [dictionary objectForKey:@"name"];
         self.ID = [[dictionary objectForKey:@"id"] intValue];
         self.children = [[dictionary objectForKey:@"children"] map:^ id (id c) { 
-            return [[Occasion alloc] initWithDictionary:c]; }];
+            return [[RFOccasion alloc] initWithDictionary:c]; }];
         
         if ([[dictionary allKeys] containsObject:@"playlists"])
             self.playlists = [[dictionary objectForKey:@"playlists"] map:^ id (id p) {
-                return [[Playlist alloc] initWithDictionary:p]; }];
+                return [[RFPlaylist alloc] initWithDictionary:p]; }];
     }
     return self;
 }
@@ -478,7 +478,7 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
     __block id result;
     Producer getPlaylists = [[RFAPI singleton] getPlaylistsWithOffset:0];
     [self associateProducer:getPlaylists callback:^ (id results) {
-        result = [(NSArray *)results filter:^ BOOL (id p) { return ((Playlist *)p).imageURL != NULL; }];
+        result = [(NSArray *)results filter:^ BOOL (id p) { return ((RFPlaylist *)p).imageURL != NULL; }];
         r(result);
     }];
     
@@ -518,7 +518,7 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
     
     return [self performRequestWithMethod:RFAPIMethodGET resource:RFAPIResourcePlaylist parameters:params handler:^id(id json) {
         NSArray *playlists = [json objectForKey:@"playlists"];
-        return [playlists map: ^ id (id p) { return [[Playlist alloc] initWithDictionary:p]; }];
+        return [playlists map: ^ id (id p) { return [[RFPlaylist alloc] initWithDictionary:p]; }];
     }];
 }
 
@@ -528,14 +528,14 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
     
     return [self performRequestWithMethod:RFAPIMethodGET resource:RFAPIResourcePlaylist parameters:params handler:^id(id json) {
         NSDictionary *playlist = [json objectForKey:@"playlist"];
-        return [[Playlist alloc] initWithDictionary:playlist];
+        return [[RFPlaylist alloc] initWithDictionary:playlist];
     }];
 }
 
 - (Producer)getOccasions {
     return [self performRequestWithMethod:RFAPIMethodGET resource:RFAPIResourceOccasion parameters:nil handler:^id(id json) {
         NSArray *occasions = [json objectForKey:@"occasions"];
-        return [occasions map:^ id (id o) { return [[Occasion alloc] initWithDictionary:o]; }];
+        return [occasions map:^ id (id o) { return [[RFOccasion alloc] initWithDictionary:o]; }];
     }];
 }
 
@@ -545,7 +545,7 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
     
     return [self performRequestWithMethod:RFAPIMethodGET resource:RFAPIResourceOccasion parameters:params handler:^id(id json) {
         NSDictionary *occasion = [json objectForKey:@"occasion"];
-        return [[Occasion alloc] initWithDictionary:occasion];
+        return [[RFOccasion alloc] initWithDictionary:occasion];
     }];
 }
 
@@ -555,7 +555,7 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
     }];
 }
 
-- (Producer)postLicense:(License *)license {
+- (Producer)postLicense:(RFLicense *)license {
     return [self performRequestWithMethod:RFAPIMethodPOST resource:RFAPIResourceLicense parameters:license.dictionaryRepresentation handler:^id(id _) {
         return @0;
     }];

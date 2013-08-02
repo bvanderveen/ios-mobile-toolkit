@@ -6,7 +6,7 @@
 
 @interface PreviewController () <PlayerDelegate>
 
-@property (nonatomic, strong) Media *media;
+@property (nonatomic, strong) RFMedia *media;
 @property (nonatomic, strong) PreviewView *view;
 @property (nonatomic, strong) Player *moviePlayer, *musicPlayer;
 @property (nonatomic) BOOL volControlsShown, playing;
@@ -17,7 +17,7 @@
 
 @dynamic view;
 
-- (id)initWithMedia:(Media *)media {
+- (id)initWithMedia:(RFMedia *)media {
     if (self = [super init]) {
         _moviePlayer = [[Player alloc] initWithMediaURL:[RFAPI singleton].videoURL isVideo:YES];
         _musicPlayer = [[Player alloc] initWithMediaURL:media.previewURL isVideo:NO];

@@ -84,7 +84,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Media *media = [[LocalPlaylist sharedPlaylist] mediaAtIndex:indexPath.row];
+    RFMedia *media = [[LocalPlaylist sharedPlaylist] mediaAtIndex:indexPath.row];
     
     SongCell *cell = [SongCell removeButtonCellForMedia:media tableView:tableView buttonAction:^{
         [[LocalPlaylist sharedPlaylist] removeFromPlaylist:media];
@@ -98,7 +98,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Media *currentMedia = [[LocalPlaylist sharedPlaylist] mediaAtIndex:indexPath.row];
+    RFMedia *currentMedia = [[LocalPlaylist sharedPlaylist] mediaAtIndex:indexPath.row];
     _previewController = [[PreviewController alloc] initWithMedia:currentMedia];
     [_previewController show];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

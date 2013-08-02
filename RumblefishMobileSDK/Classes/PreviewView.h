@@ -11,6 +11,6 @@
 @property (nonatomic, strong) UISlider *volumeSlider;
 @property (nonatomic, strong) UIImageView *minimumSliderImageView, *maximumSliderImageView;
 
-- (id)initWithMedia:(Media *)media;
+- (id)initWithMedia:(RFMedia *)media;
 
 @end
