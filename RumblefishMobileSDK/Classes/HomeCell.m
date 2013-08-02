@@ -29,6 +29,7 @@
 #import "SMWebRequest+Async.h"
 #import "UIImage+Undeferred.h"
 #import "UIImage+Cached.h"
+#import "UIImage+RumblefishSDKResources.h"
 
 #define kCellLabelPadding 11
 #define kTitleSubtitlePadding 4
@@ -84,17 +85,16 @@
 - (void)setImageURL:(NSURL *)imageURL {
     _imageURL = imageURL;
     
+    self.imageView.image = [UIImage imageInResourceBundleNamed:@"album_placeholder.png"];
+
     if (_imageURL) {
         Producer p = [UIImage cachedImageWithURL:imageURL];
-        
-        self.imageView.image = nil;
         self.cancelImage = p(^ void (UIImage *result) {
             self.imageView.image = result;
             [self setNeedsLayout];
         }, ^ void (NSError *e) { });
     }
     else {
-        self.imageView.image = nil;
         self.cancelImage = nil;
         [self setNeedsLayout];
     }
