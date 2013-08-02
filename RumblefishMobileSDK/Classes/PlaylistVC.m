@@ -26,11 +26,11 @@
 #import "SBJson/SBJson.h"
 #import "RFLocalPlaylist.h"
 #import "SongCell.h"
-#import "PreviewController.h"
+#import "RFPreviewController.h"
 
 @interface PlaylistVC ()
 
-@property (nonatomic, strong) PreviewController *previewController;
+@property (nonatomic, strong) RFPreviewController *previewController;
 
 @end
 
@@ -99,7 +99,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RFMedia *currentMedia = [[RFLocalPlaylist sharedPlaylist] mediaAtIndex:indexPath.row];
-    _previewController = [[PreviewController alloc] initWithMedia:currentMedia];
+    _previewController = [[RFPreviewController alloc] initWithMedia:currentMedia];
     [_previewController show];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

@@ -33,7 +33,7 @@
 #import "RFRootController.h"
 #import "MoodMapSelectorView.h"
 #import "RFColor.h"
-#import "PreviewController.h"
+#import "RFPreviewController.h"
 
 @implementation MoodMapControllerView
 
@@ -66,7 +66,7 @@
 @property (nonatomic, strong) UIColor *selectedColor;
 @property (nonatomic, strong) MoodMapSelectorView *moodmapSelectorView;
 @property (nonatomic, weak) RFRootController *tabBarVC;
-@property (nonatomic, strong) PreviewController *previewController;
+@property (nonatomic, strong) RFPreviewController *previewController;
 
 @end
 
@@ -238,7 +238,7 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RFMedia *currentMedia = [playlist.media objectAtIndex:indexPath.row];
-    _previewController = [[PreviewController alloc] initWithMedia:currentMedia];
+    _previewController = [[RFPreviewController alloc] initWithMedia:currentMedia];
     [_previewController show];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

@@ -1,6 +1,6 @@
 #import "RFAPI.h"
 
-@interface PreviewController : UIViewController
+@interface RFPreviewController : UIViewController
 
 - (id)initWithMedia:(RFMedia *)media;
 - (void)show;

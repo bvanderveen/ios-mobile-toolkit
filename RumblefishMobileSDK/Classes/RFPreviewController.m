@@ -1,10 +1,10 @@
-#import "PreviewController.h"
+#import "RFPreviewController.h"
 #import "PreviewView.h"
 #import <AVFoundation/AVFoundation.h>
 #import "AVPlayerPlaybackView.h"
 #import "Player.h"
 
-@interface PreviewController () <PlayerDelegate>
+@interface RFPreviewController () <PlayerDelegate>
 
 @property (nonatomic, strong) RFMedia *media;
 @property (nonatomic, strong) PreviewView *view;
@@ -13,7 +13,7 @@
 
 @end
 
-@implementation PreviewController
+@implementation RFPreviewController
 
 @dynamic view;
 

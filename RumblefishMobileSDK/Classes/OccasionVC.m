@@ -33,7 +33,7 @@
 #import "NSBundle+RumblefishMobileSDKResources.h"
 #import "UIImage+RumblefishSDKResources.h"
 #import "SongCell.h"
-#import "PreviewController.h"
+#import "RFPreviewController.h"
 
 @class OccasionControllerView;
 
@@ -205,7 +205,7 @@
 @property (nonatomic, copy) NSArray *displayedPlaylists;
 @property (nonatomic, copy) NSArray *occasionImages;
 @property (nonatomic, strong) OccasionControllerView *controllerView;
-@property (nonatomic, strong) PreviewController *previewController;
+@property (nonatomic, strong) RFPreviewController *previewController;
 
 @end
 
@@ -743,7 +743,7 @@ NSTimer *rotateImagesTimer;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RFMedia *currentMedia = [((RFPlaylist *)[displayedPlaylists objectAtIndex:indexPath.section]).media objectAtIndex:indexPath.row];
-    _previewController = [[PreviewController alloc] initWithMedia:currentMedia];
+    _previewController = [[RFPreviewController alloc] initWithMedia:currentMedia];
     [_previewController show];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
