@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		34337D8317AC3EBD0045C76E /* album_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 34337D8117AC3EBD0045C76E /* album_placeholder.png */; };
 		34337D8417AC3EBD0045C76E /* album_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34337D8217AC3EBD0045C76E /* album_placeholder@2x.png */; };
-		3458930017712CAC00BE3B8A /* HeaderPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 345892FF17712CAC00BE3B8A /* HeaderPageView.m */; };
+		3458930017712CAC00BE3B8A /* RFHomeHeaderPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 345892FF17712CAC00BE3B8A /* RFHomeHeaderPageView.m */; };
 		34644CE5176F9237003DFAE1 /* RFRootController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34644CE4176F9236003DFAE1 /* RFRootController.m */; };
 		34644CEA176F9651003DFAE1 /* RFRootController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 34644CE3176F9235003DFAE1 /* RFRootController.h */; };
-		34644D4017710499003DFAE1 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34644D3F17710499003DFAE1 /* HeaderView.m */; };
-		34644D47177107A2003DFAE1 /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34644D46177107A1003DFAE1 /* HomeView.m */; };
+		34644D4017710499003DFAE1 /* RFHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34644D3F17710499003DFAE1 /* RFHomeHeaderView.m */; };
+		34644D47177107A2003DFAE1 /* RFHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34644D46177107A1003DFAE1 /* RFHomeView.m */; };
 		3473A7CA17810FB900FD1D8E /* volume_film@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3473A7C417810FB900FD1D8E /* volume_film@2x.png */; };
 		3473A7CB17810FB900FD1D8E /* volume_film.png in Resources */ = {isa = PBXBuildFile; fileRef = 3473A7C517810FB900FD1D8E /* volume_film.png */; };
 		3473A7CC17810FB900FD1D8E /* volume_music.png in Resources */ = {isa = PBXBuildFile; fileRef = 3473A7C617810FB900FD1D8E /* volume_music.png */; };
@@ -22,7 +22,7 @@
 		3473A7CF17810FB900FD1D8E /* volume_thumb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3473A7C917810FB900FD1D8E /* volume_thumb@2x.png */; };
 		3473A7D217811CE300FD1D8E /* preview_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 3473A7D017811CE300FD1D8E /* preview_close.png */; };
 		3473A7D317811CE300FD1D8E /* preview_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3473A7D117811CE300FD1D8E /* preview_close@2x.png */; };
-		34B61BAE1772D59A00D7E903 /* DisclosureArrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B61BAD1772D59A00D7E903 /* DisclosureArrow.m */; };
+		34B61BAE1772D59A00D7E903 /* RFDisclosureArrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B61BAD1772D59A00D7E903 /* RFDisclosureArrow.m */; };
 		34B61BF41773D20300D7E903 /* savedIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34B61BEB1773D20300D7E903 /* savedIcon@2x.png */; };
 		34B61BF51773D20300D7E903 /* savedIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 34B61BEC1773D20300D7E903 /* savedIcon.png */; };
 		34B61BF61773D20300D7E903 /* homeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 34B61BED1773D20300D7E903 /* homeIcon.png */; };
@@ -33,24 +33,24 @@
 		34B61BFB1773D20300D7E903 /* fireIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34B61BF21773D20300D7E903 /* fireIcon@2x.png */; };
 		34B61C001773D3EA00D7E903 /* homeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34B61BFF1773D3EA00D7E903 /* homeIcon@2x.png */; };
 		34B61C021773D40200D7E903 /* moodIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34B61C011773D40200D7E903 /* moodIcon@2x.png */; };
-		34E3C9D51779205200112A78 /* MoodMapSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3C9D41779205100112A78 /* MoodMapSelectorView.m */; };
+		34E3C9D51779205200112A78 /* RFMoodMapSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E3C9D41779205100112A78 /* RFMoodMapSelectorView.m */; };
 		34E487161772C135004D244F /* RFColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E487151772C135004D244F /* RFColor.m */; };
 		34E5C522178A318900730FEC /* btn_add_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E5C520178A318900730FEC /* btn_add_highlighted.png */; };
 		34E5C523178A318900730FEC /* btn_add_highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E5C521178A318900730FEC /* btn_add_highlighted@2x.png */; };
-		34F3876A177B84A700312BD1 /* AVPlayerPlaybackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F38769177B84A700312BD1 /* AVPlayerPlaybackView.m */; };
-		34F38771177BCF6000312BD1 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F38770177BCF6000312BD1 /* Player.m */; };
+		34F3876A177B84A700312BD1 /* RFPlayerPlaybackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F38769177B84A700312BD1 /* RFPlayerPlaybackView.m */; };
+		34F38771177BCF6000312BD1 /* RFPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F38770177BCF6000312BD1 /* RFPlayer.m */; };
 		411323EA17A1B83700B790F0 /* UIImage+Cached.m in Sources */ = {isa = PBXBuildFile; fileRef = 411323E917A1B83700B790F0 /* UIImage+Cached.m */; };
 		411FCEF11639F107000B1841 /* RumblefishMobileSDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 411FCEEB1639F0A8000B1841 /* RumblefishMobileSDK.h */; };
 		411FCF3C163AD205000B1841 /* occasion_image_cache.plist in Resources */ = {isa = PBXBuildFile; fileRef = 411FCF3B163AD1D0000B1841 /* occasion_image_cache.plist */; };
 		413FD7AA1639A84A002A9183 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 413FD7A91639A84A002A9183 /* Foundation.framework */; };
-		413FD7DA1639AB2E002A9183 /* AlbumVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7B91639AB2E002A9183 /* AlbumVC.m */; };
+		413FD7DA1639AB2E002A9183 /* RFAlbumController.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7B91639AB2E002A9183 /* RFAlbumController.m */; };
 		413FD7DB1639AB2E002A9183 /* Async.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7BB1639AB2E002A9183 /* Async.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		413FD7DC1639AB2E002A9183 /* CoverFlowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7BD1639AB2E002A9183 /* CoverFlowVC.m */; };
+		413FD7DC1639AB2E002A9183 /* RFCoverFlowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7BD1639AB2E002A9183 /* RFCoverFlowController.m */; };
 		413FD7DF1639AB2E002A9183 /* RFLocalPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7C31639AB2E002A9183 /* RFLocalPlaylist.m */; };
-		413FD7E01639AB2E002A9183 /* MoodMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7C51639AB2E002A9183 /* MoodMapVC.m */; };
+		413FD7E01639AB2E002A9183 /* RFMoodMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7C51639AB2E002A9183 /* RFMoodMapController.m */; };
 		413FD7E11639AB2E002A9183 /* NSObject+AssociateProducer.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7C71639AB2E002A9183 /* NSObject+AssociateProducer.m */; };
-		413FD7E21639AB2E002A9183 /* OccasionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7C91639AB2E002A9183 /* OccasionVC.m */; };
-		413FD7E41639AB2E002A9183 /* PlaylistVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7CD1639AB2E002A9183 /* PlaylistVC.m */; };
+		413FD7E21639AB2E002A9183 /* RFOccasionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7C91639AB2E002A9183 /* RFOccasionController.m */; };
+		413FD7E41639AB2E002A9183 /* RFPlaylistController.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7CD1639AB2E002A9183 /* RFPlaylistController.m */; };
 		413FD7E51639AB2E002A9183 /* RFAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7CF1639AB2E002A9183 /* RFAPI.m */; };
 		413FD7E61639AB2E002A9183 /* Sequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7D11639AB2E002A9183 /* Sequence.m */; };
 		413FD7E71639AB2E002A9183 /* SMWebRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD7D31639AB2E002A9183 /* SMWebRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -65,8 +65,8 @@
 		413FD9561639BFA2002A9183 /* Async.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 413FD7BA1639AB2E002A9183 /* Async.h */; };
 		413FD9641639CBBB002A9183 /* NSBundle+RumblefishMobileSDKResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD9631639CBBB002A9183 /* NSBundle+RumblefishMobileSDKResources.m */; };
 		413FD9691639CFD0002A9183 /* FriendlyMusic.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413FD9661639CF8A002A9183 /* FriendlyMusic.xib */; };
-		413FD96A1639CFD0002A9183 /* MoodMapSelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413FD9671639CF8A002A9183 /* MoodMapSelectorView.xib */; };
-		413FD96B1639CFD0002A9183 /* OccasionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413FD9681639CF8A002A9183 /* OccasionVC.xib */; };
+		413FD96A1639CFD0002A9183 /* RFMoodMapSelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413FD9671639CF8A002A9183 /* RFMoodMapSelectorView.xib */; };
+		413FD96B1639CFD0002A9183 /* RFOccasionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413FD9681639CF8A002A9183 /* RFOccasionController.xib */; };
 		413FD96D1639D086002A9183 /* playlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 413FD96C1639D07E002A9183 /* playlist.plist */; };
 		413FD9B91639D828002A9183 /* bg_surround.png in Resources */ = {isa = PBXBuildFile; fileRef = 413FD96F1639D7DA002A9183 /* bg_surround.png */; };
 		413FD9BA1639D828002A9183 /* bg_surround@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 413FD9701639D7DA002A9183 /* bg_surround@2x.png */; };
@@ -148,10 +148,10 @@
 		41C16A7B1770D4CB00717ADF /* RFFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C16A7A1770D4CB00717ADF /* RFFont.m */; };
 		41DAA76C16547DCE001D6D8D /* homeHeaderBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DAA76516547D02001D6D8D /* homeHeaderBackground.png */; };
 		41DAA76D16547DCE001D6D8D /* homeHeaderBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41DAA76616547D02001D6D8D /* homeHeaderBackground@2x.png */; };
-		41FE1A0C176F7FC5002E022D /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FE1A0B176F7FC5002E022D /* HomeController.m */; };
-		41FE1A0F176F8048002E022D /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FE1A0E176F8048002E022D /* HomeCell.m */; };
-		41FE1A13176F8B4F002E022D /* PreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FE1A12176F8B4F002E022D /* PreviewView.m */; };
-		41FE1A1E176FAA90002E022D /* SongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FE1A1D176FAA8F002E022D /* SongCell.m */; };
+		41FE1A0C176F7FC5002E022D /* RFHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FE1A0B176F7FC5002E022D /* RFHomeController.m */; };
+		41FE1A0F176F8048002E022D /* RFHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FE1A0E176F8048002E022D /* RFHomeCell.m */; };
+		41FE1A13176F8B4F002E022D /* RFPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FE1A12176F8B4F002E022D /* RFPreviewView.m */; };
+		41FE1A1E176FAA90002E022D /* RFSongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FE1A1D176FAA8F002E022D /* RFSongCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -239,14 +239,14 @@
 /* Begin PBXFileReference section */
 		34337D8117AC3EBD0045C76E /* album_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = album_placeholder.png; sourceTree = "<group>"; };
 		34337D8217AC3EBD0045C76E /* album_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album_placeholder@2x.png"; sourceTree = "<group>"; };
-		345892FE17712CAC00BE3B8A /* HeaderPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeaderPageView.h; path = Classes/HeaderPageView.h; sourceTree = SOURCE_ROOT; };
-		345892FF17712CAC00BE3B8A /* HeaderPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeaderPageView.m; path = Classes/HeaderPageView.m; sourceTree = SOURCE_ROOT; };
+		345892FE17712CAC00BE3B8A /* RFHomeHeaderPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFHomeHeaderPageView.h; path = Classes/RFHomeHeaderPageView.h; sourceTree = SOURCE_ROOT; };
+		345892FF17712CAC00BE3B8A /* RFHomeHeaderPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFHomeHeaderPageView.m; path = Classes/RFHomeHeaderPageView.m; sourceTree = SOURCE_ROOT; };
 		34644CE3176F9235003DFAE1 /* RFRootController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFRootController.h; path = Classes/RFRootController.h; sourceTree = SOURCE_ROOT; };
 		34644CE4176F9236003DFAE1 /* RFRootController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFRootController.m; path = Classes/RFRootController.m; sourceTree = SOURCE_ROOT; };
-		34644D3E17710499003DFAE1 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeaderView.h; path = Classes/HeaderView.h; sourceTree = SOURCE_ROOT; };
-		34644D3F17710499003DFAE1 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeaderView.m; path = Classes/HeaderView.m; sourceTree = SOURCE_ROOT; };
-		34644D45177107A1003DFAE1 /* HomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeView.h; path = Classes/HomeView.h; sourceTree = SOURCE_ROOT; };
-		34644D46177107A1003DFAE1 /* HomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeView.m; path = Classes/HomeView.m; sourceTree = SOURCE_ROOT; };
+		34644D3E17710499003DFAE1 /* RFHomeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFHomeHeaderView.h; path = Classes/RFHomeHeaderView.h; sourceTree = SOURCE_ROOT; };
+		34644D3F17710499003DFAE1 /* RFHomeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFHomeHeaderView.m; path = Classes/RFHomeHeaderView.m; sourceTree = SOURCE_ROOT; };
+		34644D45177107A1003DFAE1 /* RFHomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFHomeView.h; path = Classes/RFHomeView.h; sourceTree = SOURCE_ROOT; };
+		34644D46177107A1003DFAE1 /* RFHomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFHomeView.m; path = Classes/RFHomeView.m; sourceTree = SOURCE_ROOT; };
 		3473A7C417810FB900FD1D8E /* volume_film@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume_film@2x.png"; sourceTree = "<group>"; };
 		3473A7C517810FB900FD1D8E /* volume_film.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volume_film.png; sourceTree = "<group>"; };
 		3473A7C617810FB900FD1D8E /* volume_music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volume_music.png; sourceTree = "<group>"; };
@@ -255,8 +255,8 @@
 		3473A7C917810FB900FD1D8E /* volume_thumb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volume_thumb@2x.png"; sourceTree = "<group>"; };
 		3473A7D017811CE300FD1D8E /* preview_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preview_close.png; sourceTree = "<group>"; };
 		3473A7D117811CE300FD1D8E /* preview_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preview_close@2x.png"; sourceTree = "<group>"; };
-		34B61BAC1772D59A00D7E903 /* DisclosureArrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DisclosureArrow.h; path = Classes/DisclosureArrow.h; sourceTree = SOURCE_ROOT; };
-		34B61BAD1772D59A00D7E903 /* DisclosureArrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DisclosureArrow.m; path = Classes/DisclosureArrow.m; sourceTree = SOURCE_ROOT; };
+		34B61BAC1772D59A00D7E903 /* RFDisclosureArrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFDisclosureArrow.h; path = Classes/RFDisclosureArrow.h; sourceTree = SOURCE_ROOT; };
+		34B61BAD1772D59A00D7E903 /* RFDisclosureArrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFDisclosureArrow.m; path = Classes/RFDisclosureArrow.m; sourceTree = SOURCE_ROOT; };
 		34B61BEB1773D20300D7E903 /* savedIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "savedIcon@2x.png"; path = "RumblefishMobileSDKResources/Images/savedIcon@2x.png"; sourceTree = SOURCE_ROOT; };
 		34B61BEC1773D20300D7E903 /* savedIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = savedIcon.png; path = RumblefishMobileSDKResources/Images/savedIcon.png; sourceTree = SOURCE_ROOT; };
 		34B61BED1773D20300D7E903 /* homeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = homeIcon.png; path = RumblefishMobileSDKResources/Images/homeIcon.png; sourceTree = SOURCE_ROOT; };
@@ -267,16 +267,16 @@
 		34B61BF21773D20300D7E903 /* fireIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fireIcon@2x.png"; path = "RumblefishMobileSDKResources/Images/fireIcon@2x.png"; sourceTree = SOURCE_ROOT; };
 		34B61BFF1773D3EA00D7E903 /* homeIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "homeIcon@2x.png"; path = "RumblefishMobileSDKResources/Images/homeIcon@2x.png"; sourceTree = SOURCE_ROOT; };
 		34B61C011773D40200D7E903 /* moodIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "moodIcon@2x.png"; path = "RumblefishMobileSDKResources/Images/moodIcon@2x.png"; sourceTree = SOURCE_ROOT; };
-		34E3C9D31779205100112A78 /* MoodMapSelectorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoodMapSelectorView.h; path = Classes/MoodMapSelectorView.h; sourceTree = SOURCE_ROOT; };
-		34E3C9D41779205100112A78 /* MoodMapSelectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoodMapSelectorView.m; path = Classes/MoodMapSelectorView.m; sourceTree = SOURCE_ROOT; };
+		34E3C9D31779205100112A78 /* RFMoodMapSelectorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFMoodMapSelectorView.h; path = Classes/RFMoodMapSelectorView.h; sourceTree = SOURCE_ROOT; };
+		34E3C9D41779205100112A78 /* RFMoodMapSelectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFMoodMapSelectorView.m; path = Classes/RFMoodMapSelectorView.m; sourceTree = SOURCE_ROOT; };
 		34E487141772C135004D244F /* RFColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFColor.h; path = Classes/RFColor.h; sourceTree = SOURCE_ROOT; };
 		34E487151772C135004D244F /* RFColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFColor.m; path = Classes/RFColor.m; sourceTree = SOURCE_ROOT; };
 		34E5C520178A318900730FEC /* btn_add_highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_add_highlighted.png; sourceTree = "<group>"; };
 		34E5C521178A318900730FEC /* btn_add_highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_add_highlighted@2x.png"; sourceTree = "<group>"; };
-		34F38768177B84A700312BD1 /* AVPlayerPlaybackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVPlayerPlaybackView.h; sourceTree = SOURCE_ROOT; };
-		34F38769177B84A700312BD1 /* AVPlayerPlaybackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVPlayerPlaybackView.m; sourceTree = SOURCE_ROOT; };
-		34F3876F177BCF6000312BD1 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = SOURCE_ROOT; };
-		34F38770177BCF6000312BD1 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = SOURCE_ROOT; };
+		34F38768177B84A700312BD1 /* RFPlayerPlaybackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFPlayerPlaybackView.h; sourceTree = SOURCE_ROOT; };
+		34F38769177B84A700312BD1 /* RFPlayerPlaybackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFPlayerPlaybackView.m; sourceTree = SOURCE_ROOT; };
+		34F3876F177BCF6000312BD1 /* RFPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFPlayer.h; sourceTree = SOURCE_ROOT; };
+		34F38770177BCF6000312BD1 /* RFPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFPlayer.m; sourceTree = SOURCE_ROOT; };
 		411323E817A1B83700B790F0 /* UIImage+Cached.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Cached.h"; path = "Classes/UIImage+Cached.h"; sourceTree = SOURCE_ROOT; };
 		411323E917A1B83700B790F0 /* UIImage+Cached.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Cached.m"; path = "Classes/UIImage+Cached.m"; sourceTree = SOURCE_ROOT; };
 		411FCED21639E922000B1841 /* RumblefishMobileSDKResources-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "RumblefishMobileSDKResources-Info.plist"; path = "RumblefishMobileSDKResources/RumblefishMobileSDKResources-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -285,22 +285,22 @@
 		413FD7A61639A84A002A9183 /* libRumblefishMobileSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRumblefishMobileSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		413FD7A91639A84A002A9183 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		413FD7B71639A970002A9183 /* RumblefishMobileSDK-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RumblefishMobileSDK-Prefix.pch"; path = "Classes/RumblefishMobileSDK-Prefix.pch"; sourceTree = SOURCE_ROOT; };
-		413FD7B81639AB2E002A9183 /* AlbumVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumVC.h; path = Classes/AlbumVC.h; sourceTree = SOURCE_ROOT; };
-		413FD7B91639AB2E002A9183 /* AlbumVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumVC.m; path = Classes/AlbumVC.m; sourceTree = SOURCE_ROOT; };
+		413FD7B81639AB2E002A9183 /* RFAlbumController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFAlbumController.h; path = Classes/RFAlbumController.h; sourceTree = SOURCE_ROOT; };
+		413FD7B91639AB2E002A9183 /* RFAlbumController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFAlbumController.m; path = Classes/RFAlbumController.m; sourceTree = SOURCE_ROOT; };
 		413FD7BA1639AB2E002A9183 /* Async.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Async.h; path = Classes/Async.h; sourceTree = SOURCE_ROOT; };
 		413FD7BB1639AB2E002A9183 /* Async.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Async.m; path = Classes/Async.m; sourceTree = SOURCE_ROOT; };
-		413FD7BC1639AB2E002A9183 /* CoverFlowVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoverFlowVC.h; path = Classes/CoverFlowVC.h; sourceTree = SOURCE_ROOT; };
-		413FD7BD1639AB2E002A9183 /* CoverFlowVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoverFlowVC.m; path = Classes/CoverFlowVC.m; sourceTree = SOURCE_ROOT; };
+		413FD7BC1639AB2E002A9183 /* RFCoverFlowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFCoverFlowController.h; path = Classes/RFCoverFlowController.h; sourceTree = SOURCE_ROOT; };
+		413FD7BD1639AB2E002A9183 /* RFCoverFlowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFCoverFlowController.m; path = Classes/RFCoverFlowController.m; sourceTree = SOURCE_ROOT; };
 		413FD7C21639AB2E002A9183 /* RFLocalPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFLocalPlaylist.h; path = Classes/RFLocalPlaylist.h; sourceTree = SOURCE_ROOT; };
 		413FD7C31639AB2E002A9183 /* RFLocalPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFLocalPlaylist.m; path = Classes/RFLocalPlaylist.m; sourceTree = SOURCE_ROOT; };
-		413FD7C41639AB2E002A9183 /* MoodMapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoodMapVC.h; path = Classes/MoodMapVC.h; sourceTree = SOURCE_ROOT; };
-		413FD7C51639AB2E002A9183 /* MoodMapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoodMapVC.m; path = Classes/MoodMapVC.m; sourceTree = SOURCE_ROOT; };
+		413FD7C41639AB2E002A9183 /* RFMoodMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFMoodMapController.h; path = Classes/RFMoodMapController.h; sourceTree = SOURCE_ROOT; };
+		413FD7C51639AB2E002A9183 /* RFMoodMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFMoodMapController.m; path = Classes/RFMoodMapController.m; sourceTree = SOURCE_ROOT; };
 		413FD7C61639AB2E002A9183 /* NSObject+AssociateProducer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+AssociateProducer.h"; path = "Classes/NSObject+AssociateProducer.h"; sourceTree = SOURCE_ROOT; };
 		413FD7C71639AB2E002A9183 /* NSObject+AssociateProducer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+AssociateProducer.m"; path = "Classes/NSObject+AssociateProducer.m"; sourceTree = SOURCE_ROOT; };
-		413FD7C81639AB2E002A9183 /* OccasionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OccasionVC.h; path = Classes/OccasionVC.h; sourceTree = SOURCE_ROOT; };
-		413FD7C91639AB2E002A9183 /* OccasionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OccasionVC.m; path = Classes/OccasionVC.m; sourceTree = SOURCE_ROOT; };
-		413FD7CC1639AB2E002A9183 /* PlaylistVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaylistVC.h; path = Classes/PlaylistVC.h; sourceTree = SOURCE_ROOT; };
-		413FD7CD1639AB2E002A9183 /* PlaylistVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaylistVC.m; path = Classes/PlaylistVC.m; sourceTree = SOURCE_ROOT; };
+		413FD7C81639AB2E002A9183 /* RFOccasionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFOccasionController.h; path = Classes/RFOccasionController.h; sourceTree = SOURCE_ROOT; };
+		413FD7C91639AB2E002A9183 /* RFOccasionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFOccasionController.m; path = Classes/RFOccasionController.m; sourceTree = SOURCE_ROOT; };
+		413FD7CC1639AB2E002A9183 /* RFPlaylistController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFPlaylistController.h; path = Classes/RFPlaylistController.h; sourceTree = SOURCE_ROOT; };
+		413FD7CD1639AB2E002A9183 /* RFPlaylistController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFPlaylistController.m; path = Classes/RFPlaylistController.m; sourceTree = SOURCE_ROOT; };
 		413FD7CE1639AB2E002A9183 /* RFAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFAPI.h; path = Classes/RFAPI.h; sourceTree = SOURCE_ROOT; };
 		413FD7CF1639AB2E002A9183 /* RFAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFAPI.m; path = Classes/RFAPI.m; sourceTree = SOURCE_ROOT; };
 		413FD7D01639AB2E002A9183 /* Sequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sequence.h; path = Classes/Sequence.h; sourceTree = SOURCE_ROOT; };
@@ -323,8 +323,8 @@
 		413FD9621639CBBB002A9183 /* NSBundle+RumblefishMobileSDKResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSBundle+RumblefishMobileSDKResources.h"; path = "Classes/NSBundle+RumblefishMobileSDKResources.h"; sourceTree = SOURCE_ROOT; };
 		413FD9631639CBBB002A9183 /* NSBundle+RumblefishMobileSDKResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+RumblefishMobileSDKResources.m"; path = "Classes/NSBundle+RumblefishMobileSDKResources.m"; sourceTree = SOURCE_ROOT; };
 		413FD9661639CF8A002A9183 /* FriendlyMusic.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FriendlyMusic.xib; path = RumblefishMobileSDKResources/FriendlyMusic.xib; sourceTree = SOURCE_ROOT; };
-		413FD9671639CF8A002A9183 /* MoodMapSelectorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MoodMapSelectorView.xib; path = RumblefishMobileSDKResources/MoodMapSelectorView.xib; sourceTree = SOURCE_ROOT; };
-		413FD9681639CF8A002A9183 /* OccasionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OccasionVC.xib; path = RumblefishMobileSDKResources/OccasionVC.xib; sourceTree = SOURCE_ROOT; };
+		413FD9671639CF8A002A9183 /* RFMoodMapSelectorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RFMoodMapSelectorView.xib; path = RumblefishMobileSDKResources/RFMoodMapSelectorView.xib; sourceTree = SOURCE_ROOT; };
+		413FD9681639CF8A002A9183 /* RFOccasionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RFOccasionController.xib; path = RumblefishMobileSDKResources/RFOccasionController.xib; sourceTree = SOURCE_ROOT; };
 		413FD96C1639D07E002A9183 /* playlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = playlist.plist; path = RumblefishMobileSDKResources/playlist.plist; sourceTree = SOURCE_ROOT; };
 		413FD96F1639D7DA002A9183 /* bg_surround.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_surround.png; sourceTree = "<group>"; };
 		413FD9701639D7DA002A9183 /* bg_surround@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_surround@2x.png"; sourceTree = "<group>"; };
@@ -409,14 +409,14 @@
 		41C16A7A1770D4CB00717ADF /* RFFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFFont.m; path = Classes/RFFont.m; sourceTree = SOURCE_ROOT; };
 		41DAA76516547D02001D6D8D /* homeHeaderBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeHeaderBackground.png; sourceTree = "<group>"; };
 		41DAA76616547D02001D6D8D /* homeHeaderBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeHeaderBackground@2x.png"; sourceTree = "<group>"; };
-		41FE1A0A176F7FC5002E022D /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeController.h; path = Classes/HomeController.h; sourceTree = SOURCE_ROOT; };
-		41FE1A0B176F7FC5002E022D /* HomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeController.m; path = Classes/HomeController.m; sourceTree = SOURCE_ROOT; };
-		41FE1A0D176F8048002E022D /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeCell.h; path = Classes/HomeCell.h; sourceTree = SOURCE_ROOT; };
-		41FE1A0E176F8048002E022D /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeCell.m; path = Classes/HomeCell.m; sourceTree = SOURCE_ROOT; };
-		41FE1A11176F8B4F002E022D /* PreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreviewView.h; path = Classes/PreviewView.h; sourceTree = SOURCE_ROOT; };
-		41FE1A12176F8B4F002E022D /* PreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreviewView.m; path = Classes/PreviewView.m; sourceTree = SOURCE_ROOT; };
-		41FE1A1C176FAA8E002E022D /* SongCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SongCell.h; path = Classes/SongCell.h; sourceTree = SOURCE_ROOT; };
-		41FE1A1D176FAA8F002E022D /* SongCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SongCell.m; path = Classes/SongCell.m; sourceTree = SOURCE_ROOT; };
+		41FE1A0A176F7FC5002E022D /* RFHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFHomeController.h; path = Classes/RFHomeController.h; sourceTree = SOURCE_ROOT; };
+		41FE1A0B176F7FC5002E022D /* RFHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFHomeController.m; path = Classes/RFHomeController.m; sourceTree = SOURCE_ROOT; };
+		41FE1A0D176F8048002E022D /* RFHomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFHomeCell.h; path = Classes/RFHomeCell.h; sourceTree = SOURCE_ROOT; };
+		41FE1A0E176F8048002E022D /* RFHomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFHomeCell.m; path = Classes/RFHomeCell.m; sourceTree = SOURCE_ROOT; };
+		41FE1A11176F8B4F002E022D /* RFPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFPreviewView.h; path = Classes/RFPreviewView.h; sourceTree = SOURCE_ROOT; };
+		41FE1A12176F8B4F002E022D /* RFPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFPreviewView.m; path = Classes/RFPreviewView.m; sourceTree = SOURCE_ROOT; };
+		41FE1A1C176FAA8E002E022D /* RFSongCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFSongCell.h; path = Classes/RFSongCell.h; sourceTree = SOURCE_ROOT; };
+		41FE1A1D176FAA8F002E022D /* RFSongCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFSongCell.m; path = Classes/RFSongCell.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -535,20 +535,20 @@
 				41FE1A05176F7FAF002E022D /* Home */,
 				34644CE3176F9235003DFAE1 /* RFRootController.h */,
 				34644CE4176F9236003DFAE1 /* RFRootController.m */,
-				41FE1A1C176FAA8E002E022D /* SongCell.h */,
-				41FE1A1D176FAA8F002E022D /* SongCell.m */,
-				413FD7B81639AB2E002A9183 /* AlbumVC.h */,
-				413FD7B91639AB2E002A9183 /* AlbumVC.m */,
-				413FD7BC1639AB2E002A9183 /* CoverFlowVC.h */,
-				413FD7BD1639AB2E002A9183 /* CoverFlowVC.m */,
-				413FD7C41639AB2E002A9183 /* MoodMapVC.h */,
-				413FD7C51639AB2E002A9183 /* MoodMapVC.m */,
-				34E3C9D31779205100112A78 /* MoodMapSelectorView.h */,
-				34E3C9D41779205100112A78 /* MoodMapSelectorView.m */,
-				413FD7C81639AB2E002A9183 /* OccasionVC.h */,
-				413FD7C91639AB2E002A9183 /* OccasionVC.m */,
-				413FD7CC1639AB2E002A9183 /* PlaylistVC.h */,
-				413FD7CD1639AB2E002A9183 /* PlaylistVC.m */,
+				41FE1A1C176FAA8E002E022D /* RFSongCell.h */,
+				41FE1A1D176FAA8F002E022D /* RFSongCell.m */,
+				413FD7B81639AB2E002A9183 /* RFAlbumController.h */,
+				413FD7B91639AB2E002A9183 /* RFAlbumController.m */,
+				413FD7BC1639AB2E002A9183 /* RFCoverFlowController.h */,
+				413FD7BD1639AB2E002A9183 /* RFCoverFlowController.m */,
+				413FD7C41639AB2E002A9183 /* RFMoodMapController.h */,
+				413FD7C51639AB2E002A9183 /* RFMoodMapController.m */,
+				34E3C9D31779205100112A78 /* RFMoodMapSelectorView.h */,
+				34E3C9D41779205100112A78 /* RFMoodMapSelectorView.m */,
+				413FD7C81639AB2E002A9183 /* RFOccasionController.h */,
+				413FD7C91639AB2E002A9183 /* RFOccasionController.m */,
+				413FD7CC1639AB2E002A9183 /* RFPlaylistController.h */,
+				413FD7CD1639AB2E002A9183 /* RFPlaylistController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -612,8 +612,8 @@
 				413FD96C1639D07E002A9183 /* playlist.plist */,
 				411FCF3B163AD1D0000B1841 /* occasion_image_cache.plist */,
 				413FD9661639CF8A002A9183 /* FriendlyMusic.xib */,
-				413FD9671639CF8A002A9183 /* MoodMapSelectorView.xib */,
-				413FD9681639CF8A002A9183 /* OccasionVC.xib */,
+				413FD9671639CF8A002A9183 /* RFMoodMapSelectorView.xib */,
+				413FD9681639CF8A002A9183 /* RFOccasionController.xib */,
 				413FD8331639B33C002A9183 /* Supporting Files */,
 			);
 			path = RumblefishSDKResources;
@@ -722,18 +722,18 @@
 		41FE1A05176F7FAF002E022D /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				41FE1A0A176F7FC5002E022D /* HomeController.h */,
-				41FE1A0B176F7FC5002E022D /* HomeController.m */,
-				34644D45177107A1003DFAE1 /* HomeView.h */,
-				34644D46177107A1003DFAE1 /* HomeView.m */,
-				34644D3E17710499003DFAE1 /* HeaderView.h */,
-				34644D3F17710499003DFAE1 /* HeaderView.m */,
-				345892FE17712CAC00BE3B8A /* HeaderPageView.h */,
-				345892FF17712CAC00BE3B8A /* HeaderPageView.m */,
-				41FE1A0D176F8048002E022D /* HomeCell.h */,
-				41FE1A0E176F8048002E022D /* HomeCell.m */,
-				34B61BAC1772D59A00D7E903 /* DisclosureArrow.h */,
-				34B61BAD1772D59A00D7E903 /* DisclosureArrow.m */,
+				41FE1A0A176F7FC5002E022D /* RFHomeController.h */,
+				41FE1A0B176F7FC5002E022D /* RFHomeController.m */,
+				34644D45177107A1003DFAE1 /* RFHomeView.h */,
+				34644D46177107A1003DFAE1 /* RFHomeView.m */,
+				34644D3E17710499003DFAE1 /* RFHomeHeaderView.h */,
+				34644D3F17710499003DFAE1 /* RFHomeHeaderView.m */,
+				345892FE17712CAC00BE3B8A /* RFHomeHeaderPageView.h */,
+				345892FF17712CAC00BE3B8A /* RFHomeHeaderPageView.m */,
+				41FE1A0D176F8048002E022D /* RFHomeCell.h */,
+				41FE1A0E176F8048002E022D /* RFHomeCell.m */,
+				34B61BAC1772D59A00D7E903 /* RFDisclosureArrow.h */,
+				34B61BAD1772D59A00D7E903 /* RFDisclosureArrow.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -743,12 +743,12 @@
 			children = (
 				4149C82417711BAE00A3998D /* RFPreviewController.h */,
 				4149C82517711BAE00A3998D /* RFPreviewController.m */,
-				34F3876F177BCF6000312BD1 /* Player.h */,
-				34F38770177BCF6000312BD1 /* Player.m */,
-				41FE1A11176F8B4F002E022D /* PreviewView.h */,
-				41FE1A12176F8B4F002E022D /* PreviewView.m */,
-				34F38768177B84A700312BD1 /* AVPlayerPlaybackView.h */,
-				34F38769177B84A700312BD1 /* AVPlayerPlaybackView.m */,
+				34F3876F177BCF6000312BD1 /* RFPlayer.h */,
+				34F38770177BCF6000312BD1 /* RFPlayer.m */,
+				41FE1A11176F8B4F002E022D /* RFPreviewView.h */,
+				41FE1A12176F8B4F002E022D /* RFPreviewView.m */,
+				34F38768177B84A700312BD1 /* RFPlayerPlaybackView.h */,
+				34F38769177B84A700312BD1 /* RFPlayerPlaybackView.m */,
 			);
 			name = Preview;
 			sourceTree = "<group>";
@@ -960,8 +960,8 @@
 				413FDA021639D828002A9183 /* themes@2x.png in Resources */,
 				413FD96D1639D086002A9183 /* playlist.plist in Resources */,
 				413FD9691639CFD0002A9183 /* FriendlyMusic.xib in Resources */,
-				413FD96A1639CFD0002A9183 /* MoodMapSelectorView.xib in Resources */,
-				413FD96B1639CFD0002A9183 /* OccasionVC.xib in Resources */,
+				413FD96A1639CFD0002A9183 /* RFMoodMapSelectorView.xib in Resources */,
+				413FD96B1639CFD0002A9183 /* RFOccasionController.xib in Resources */,
 				413FD8E01639B53F002A9183 /* InfoPlist.strings in Resources */,
 				34B61BF41773D20300D7E903 /* savedIcon@2x.png in Resources */,
 				34B61BF51773D20300D7E903 /* savedIcon.png in Resources */,
@@ -995,13 +995,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				413FD7DA1639AB2E002A9183 /* AlbumVC.m in Sources */,
-				413FD7DC1639AB2E002A9183 /* CoverFlowVC.m in Sources */,
+				413FD7DA1639AB2E002A9183 /* RFAlbumController.m in Sources */,
+				413FD7DC1639AB2E002A9183 /* RFCoverFlowController.m in Sources */,
 				413FD7DF1639AB2E002A9183 /* RFLocalPlaylist.m in Sources */,
-				413FD7E01639AB2E002A9183 /* MoodMapVC.m in Sources */,
+				413FD7E01639AB2E002A9183 /* RFMoodMapController.m in Sources */,
 				413FD7E11639AB2E002A9183 /* NSObject+AssociateProducer.m in Sources */,
-				413FD7E21639AB2E002A9183 /* OccasionVC.m in Sources */,
-				413FD7E41639AB2E002A9183 /* PlaylistVC.m in Sources */,
+				413FD7E21639AB2E002A9183 /* RFOccasionController.m in Sources */,
+				413FD7E41639AB2E002A9183 /* RFPlaylistController.m in Sources */,
 				413FD7E51639AB2E002A9183 /* RFAPI.m in Sources */,
 				413FD7E61639AB2E002A9183 /* Sequence.m in Sources */,
 				413FD7E91639AB2E002A9183 /* UIApplication+NetworkActivity.m in Sources */,
@@ -1011,21 +1011,21 @@
 				413FD7EA1639AB2E002A9183 /* UIImage+Undeferred.m in Sources */,
 				413FD9641639CBBB002A9183 /* NSBundle+RumblefishMobileSDKResources.m in Sources */,
 				413FDA051639DC49002A9183 /* UIImage+RumblefishSDKResources.m in Sources */,
-				41FE1A0C176F7FC5002E022D /* HomeController.m in Sources */,
-				41FE1A0F176F8048002E022D /* HomeCell.m in Sources */,
+				41FE1A0C176F7FC5002E022D /* RFHomeController.m in Sources */,
+				41FE1A0F176F8048002E022D /* RFHomeCell.m in Sources */,
 				34644CE5176F9237003DFAE1 /* RFRootController.m in Sources */,
-				41FE1A13176F8B4F002E022D /* PreviewView.m in Sources */,
-				41FE1A1E176FAA90002E022D /* SongCell.m in Sources */,
+				41FE1A13176F8B4F002E022D /* RFPreviewView.m in Sources */,
+				41FE1A1E176FAA90002E022D /* RFSongCell.m in Sources */,
 				41C16A7B1770D4CB00717ADF /* RFFont.m in Sources */,
-				34644D4017710499003DFAE1 /* HeaderView.m in Sources */,
-				34644D47177107A2003DFAE1 /* HomeView.m in Sources */,
-				3458930017712CAC00BE3B8A /* HeaderPageView.m in Sources */,
+				34644D4017710499003DFAE1 /* RFHomeHeaderView.m in Sources */,
+				34644D47177107A2003DFAE1 /* RFHomeView.m in Sources */,
+				3458930017712CAC00BE3B8A /* RFHomeHeaderPageView.m in Sources */,
 				34E487161772C135004D244F /* RFColor.m in Sources */,
-				34B61BAE1772D59A00D7E903 /* DisclosureArrow.m in Sources */,
+				34B61BAE1772D59A00D7E903 /* RFDisclosureArrow.m in Sources */,
 				4149C82617711BAE00A3998D /* RFPreviewController.m in Sources */,
-				34E3C9D51779205200112A78 /* MoodMapSelectorView.m in Sources */,
-				34F3876A177B84A700312BD1 /* AVPlayerPlaybackView.m in Sources */,
-				34F38771177BCF6000312BD1 /* Player.m in Sources */,
+				34E3C9D51779205200112A78 /* RFMoodMapSelectorView.m in Sources */,
+				34F3876A177B84A700312BD1 /* RFPlayerPlaybackView.m in Sources */,
+				34F38771177BCF6000312BD1 /* RFPlayer.m in Sources */,
 				411323EA17A1B83700B790F0 /* UIImage+Cached.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

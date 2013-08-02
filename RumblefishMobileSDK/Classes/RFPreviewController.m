@@ -1,14 +1,14 @@
 #import "RFPreviewController.h"
-#import "PreviewView.h"
+#import "RFPreviewView.h"
 #import <AVFoundation/AVFoundation.h>
-#import "AVPlayerPlaybackView.h"
-#import "Player.h"
+#import "RFPlayerPlaybackView.h"
+#import "RFPlayer.h"
 
-@interface RFPreviewController () <PlayerDelegate>
+@interface RFPreviewController () <RFPlayerDelegate>
 
 @property (nonatomic, strong) RFMedia *media;
-@property (nonatomic, strong) PreviewView *view;
-@property (nonatomic, strong) Player *moviePlayer, *musicPlayer;
+@property (nonatomic, strong) RFPreviewView *view;
+@property (nonatomic, strong) RFPlayer *moviePlayer, *musicPlayer;
 @property (nonatomic) BOOL volControlsShown, playing;
 
 @end
@@ -19,8 +19,8 @@
 
 - (id)initWithMedia:(RFMedia *)media {
     if (self = [super init]) {
-        _moviePlayer = [[Player alloc] initWithMediaURL:[RFAPI singleton].videoURL isVideo:YES];
-        _musicPlayer = [[Player alloc] initWithMediaURL:media.previewURL isVideo:NO];
+        _moviePlayer = [[RFPlayer alloc] initWithMediaURL:[RFAPI singleton].videoURL isVideo:YES];
+        _musicPlayer = [[RFPlayer alloc] initWithMediaURL:media.previewURL isVideo:NO];
         _moviePlayer.delegate = self;
         _musicPlayer.delegate = self;
         _media = media;
@@ -50,7 +50,7 @@
 }
 
 - (void)loadView {
-    self.view = [[PreviewView alloc] initWithMedia:_media];
+    self.view = [[RFPreviewView alloc] initWithMedia:_media];
     [self.view.dismissButton addTarget:self
                                 action:@selector(dismiss)
                       forControlEvents:UIControlEventTouchUpInside];

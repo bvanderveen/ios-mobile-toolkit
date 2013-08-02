@@ -23,11 +23,11 @@
  */
 
 #import "RFRootController.h"
-#import "MoodMapVC.h"
-#import "OccasionVC.h"
-#import "CoverFlowVC.h"
-#import "PlaylistVC.h"
-#import "HomeController.h"
+#import "RFMoodMapController.h"
+#import "RFOccasionController.h"
+#import "RFCoverFlowController.h"
+#import "RFPlaylistController.h"
+#import "RFHomeController.h"
 #import "UIImage+RumblefishSDKResources.h"
 
 typedef enum RFTabView {
@@ -75,27 +75,27 @@ typedef enum RFTabView {
     UIImage *tabBarImage;
     switch (tabView) {
         case RFTabViewHome:
-            viewController = [[HomeController alloc] init];
+            viewController = [[RFHomeController alloc] init];
             title = @"Home";
             tabBarImage = [UIImage imageInResourceBundleNamed:@"homeIcon.png"];
             break;
         case RFTabViewMood:
-            viewController = [[MoodMapVC alloc] initWithTabBarVC:self];
+            viewController = [[RFMoodMapController alloc] initWithTabBarVC:self];
             title = @"Mood";
             tabBarImage = [UIImage imageInResourceBundleNamed:@"moodIcon.png"];
             break;
         case RFTabViewOccasion:
-            viewController = [[OccasionVC alloc] init];
+            viewController = [[RFOccasionController alloc] init];
             title = @"Occasion";
             tabBarImage = [UIImage imageInResourceBundleNamed:@"occasionIcon.png"];
             break;
         case RFTabViewHot:
-            viewController = [[CoverFlowVC alloc] init];
+            viewController = [[RFCoverFlowController alloc] init];
             title = @"Hot";
             tabBarImage = [UIImage imageInResourceBundleNamed:@"fireIcon.png"];
             break;
         case RFTabViewSaved:
-            viewController = [[PlaylistVC alloc] init];
+            viewController = [[RFPlaylistController alloc] init];
             title = @"Saved";
             tabBarImage = [UIImage imageInResourceBundleNamed:@"savedIcon.png"];
         default:
