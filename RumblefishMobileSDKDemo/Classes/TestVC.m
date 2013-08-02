@@ -26,6 +26,7 @@
 #import "RumblefishMobileSDK/RumblefishMobileSDK.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "LogoViewController.h"
+#include "TargetConditionals.h"
 
 @interface TestVC () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -33,60 +34,53 @@
 
 @implementation TestVC
 
-- (void)viewDidLoad {
-    ((UIScrollView *)self.view.subviews[0]).contentSize = CGSizeMake(320, 480);
-}
-
 - (void)emailLinkClicked {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"mailto:%@?subject=%@", [@"info@rumblefish.com" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], [@"Friendly Music Info" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
     [[UIApplication sharedApplication] openURL:url];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    button.enabled = TRUE;
-    
-    // PLEASE SPECIFY A VALID public key and password. Contact developers@rumblefish.com for more info.
-    // NSURL *url = [[NSBundle mainBundle] URLForResource:@"maiden_trashplane_1280x720" withExtension:@"mp4"];
-//    NSURL *url = [NSURL URLWithString:@"http://vimeo.com/48931301/download?t=1371599214&v=116073593&s=1d4de25bc703d2c8eec8dbcd166d5e3c"];
-
+- (void)displayRumblfishSDK {
+    TabBarViewController *tabController = [[TabBarViewController alloc] init];
+    [self.navigationController pushViewController:tabController animated:YES];
 }
 
-- (IBAction)start {
-    
-#warning DEVELOPMENT ONLY
-    NSURL *url = [NSURL URLWithString:@"http://vimeo.com/48931301/download?t=1371599214&v=116073593&s=1d4de25bc703d2c8eec8dbcd166d5e3c"];
+- (void)setupRumblefishSDKWithVideoURL:(NSURL *)videoUrl {
+    // PLEASE SPECIFY A VALID public key and password. Contact developers@rumblefish.com for more info.
     [RFAPI rumbleWithEnvironment:RFAPIEnvSandbox
                        publicKey:@"sandbox"
                         password:@"sandbox"
-                        videoURL:url
-                        didInitiatePurchase:^ (RFPurchase *purchase) {
-                            LogoViewController *logoViewController = [[LogoViewController alloc] init];
-                            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:logoViewController];
-                            navController.navigationBar.barStyle = UIBarStyleBlack;
-                            [self.navigationController presentModalViewController:navController animated:YES];
-                        }];
+                        videoURL:videoUrl
+             didInitiatePurchase:^ (RFPurchase *purchase) {
+                 LogoViewController *logoViewController = [[LogoViewController alloc] init];
+                 UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:logoViewController];
+                 navController.navigationBar.barStyle = UIBarStyleBlack;
+                 [self.navigationController presentModalViewController:navController animated:YES];
+             }];
+    
+}
 
-    TabBarViewController *tabController = [[TabBarViewController alloc] init];
-    [self.navigationController pushViewController:tabController animated:YES];
-    [tabController release];
-#warning END DEV
+#if TARGET_IPHONE_SIMULATOR
 
-#warning Uncomment for productio
-//    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-//    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-//    [self presentModalViewController:imagePickerController animated:YES];
-//    imagePickerController.mediaTypes = @[(NSString *)kUTTypeMovie];
-//    imagePickerController.delegate = self;
+- (IBAction)start {
+    NSURL *videoURL = [NSURL URLWithString:@"http://vimeo.com/48931301/download?t=1371599214&v=116073593&s=1d4de25bc703d2c8eec8dbcd166d5e3c"];
+    [self setupRumblefishSDKWithVideoURL:videoURL];
+    [self displayRumblfishSDK];
+}
+
+#else
+
+- (IBAction)start {
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentModalViewController:imagePickerController animated:YES];
+    imagePickerController.mediaTypes = @[(NSString *)kUTTypeMovie];
+    imagePickerController.delegate = self;
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    NSURL *pickedURL = info[@"UIImagePickerControllerMediaURL"];
     
-    NSLog(@"Found url %@", info[@"UIImagePickerControllerMediaURL"]);
-    
-    [RFAPI rumbleWithEnvironment:RFAPIEnvSandbox
-                       publicKey:@"sandbox"
-                        password:@"sandbox"
-                        videoURL:info[@"UIImagePickerControllerMediaURL"]];
+    [self setupRumblefishSDKWithVideoURL:pickedURL];
     
     [self dismissViewControllerAnimated:YES completion:^{
         TabBarViewController *tabController = [[TabBarViewController alloc] init];
@@ -96,8 +90,9 @@
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    NSLog(@"Canceled");
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#endif
 
 @end
