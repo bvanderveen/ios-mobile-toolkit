@@ -227,6 +227,11 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Rumblefish, Inc.";
+				TargetAttributes = {
+					413FD8FB1639B787002A9183 = {
+						DevelopmentTeam = WDAFBU5PT6;
+					};
+				};
 			};
 			buildConfigurationList = 413FD8F61639B787002A9183 /* Build configuration list for PBXProject "RumblefishMobileSDKDemo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -334,7 +339,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos6.1;
 			};
 			name = Debug;
 		};
@@ -354,7 +359,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos6.1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -363,6 +368,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Classes/RumblefishMobileSDKDemo-Prefix.pch";
 				HEADER_SEARCH_PATHS = Dependencies/TestFlightSDK0.8.2;
@@ -379,6 +385,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Classes/RumblefishMobileSDKDemo-Prefix.pch";
 				HEADER_SEARCH_PATHS = Dependencies/TestFlightSDK0.8.2;
