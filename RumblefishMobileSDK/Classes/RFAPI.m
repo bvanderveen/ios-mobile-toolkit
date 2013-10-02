@@ -171,8 +171,13 @@ typedef enum RFAPIMethod {
         
         NSString *imageURLString = [[dictionary objectForKey:@"image_url"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         
+        imageURLString = [imageURLString stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+        
         if (imageURLString && ![imageURLString isEqual:@""])
             self.imageURL = [NSURL URLWithString:imageURLString];
+        
+        if (!self.imageURL)
+            return nil;
         
         self.editorial = [dictionary objectForKey:@"editorial"];
         self.media = [[dictionary objectForKey:@"media"] map:^ id (id m) { return [[RFMedia alloc] initWithDictionary:m]; }];
@@ -198,10 +203,24 @@ typedef enum RFAPIMethod {
     }
     else {
         NSString *h2 = [editorial substringFromIndex:h2range.location+4];
-        h2 = [h2 substringToIndex:[h2 rangeOfString:@"</h2"].location];
         NSString *h3 = [editorial substringFromIndex:h3range.location+4];
-        h3 = [h3 substringToIndex:[h3 rangeOfString:@"</h3"].location];
-        return [NSString stringWithFormat:@"%@. %@", h2, h3];
+        h2range = [h2 rangeOfString:@"</h2"];
+        h3range = [h3 rangeOfString:@"</h3"];
+        
+        if (NSEqualRanges(h2range, notFound)) {
+            h2 = @"";
+        }
+        else {
+            h2 = [[h2 substringToIndex:h2range.location] stringByAppendingString:@"."];
+        }
+        
+        if (NSEqualRanges(h3range, notFound)) {
+            h3 = @"";
+        }
+        else {
+            h3 = [h3 substringToIndex:h3range.location];
+        }
+        return [NSString stringWithFormat:@"%@%@%@", h2, h2.length && h3.length ? @" " : @"", h3];
     }
 }
 
@@ -517,18 +536,19 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
 
 - (Producer)getHome
 {
+    return [self getPlaylistsWithOffset:0];
 //    return [[@[@415, @883, @11761, @371, @427, @879, @425, @932, @397, @859, @417, @378] map:^id(NSNumber *n) {
-//        return [SMWebRequest producerWithURLRequest:[self requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://megabass.rumblefish.com/playlists/%@", n]] method:RFAPIMethodGET] dataParser:^id(NSData *d) {
-//            return [[Playlist alloc] initWithDictionary:[d JSONValue]];
+//        return [SMWebRequest producerWithURLRequest:[self requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://sandbox.rumblefish.com/playlists/%@", n]] method:RFAPIMethodGET] dataParser:^id(NSData *d) {
+//            return [[RFPlaylist alloc] initWithDictionary:[d JSONValue]];
 //        }];
 //    }] parallelProducer];
     
-    return ^ CancelCallback (ResultCallback r, ErrorCallback e) {
-        [self performSelector:@selector(yieldHome:) withObject:r afterDelay:1];
-        return ^ {
-            [NSObject cancelPreviousPerformRequestsWithTarget:self];
-        };
-    };
+//    return ^ CancelCallback (ResultCallback r, ErrorCallback e) {
+//        [self performSelector:@selector(yieldHome:) withObject:r afterDelay:1];
+//        return ^ {
+//            [NSObject cancelPreviousPerformRequestsWithTarget:self];
+//        };
+//    };
 }
 
 - (Producer)getPlaylistsWithOffset:(NSInteger)offset {
