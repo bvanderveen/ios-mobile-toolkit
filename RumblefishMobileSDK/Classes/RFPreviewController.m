@@ -32,7 +32,7 @@
 
 - (void)show
 {
-    UIView *newParentView = [UIApplication sharedApplication].keyWindow.rootViewController.view;
+    UIView *newParentView = [UIApplication sharedApplication].keyWindow;
     self.view.frame = newParentView.bounds;
     self.view.auditionBackgroundView.alpha = 0;
     self.view.alpha = 0;
