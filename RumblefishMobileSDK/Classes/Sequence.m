@@ -29,8 +29,11 @@
 - (NSArray *)map:(id(^)(id))map {
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:self.count];
     
-    for (id obj in self)
-        [result addObject:map(obj)];
+    for (id obj in self) {
+        id r = map(obj);
+        if (r)
+            [result addObject:r];
+    }
     
     return [result copy];
 }
