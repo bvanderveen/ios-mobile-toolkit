@@ -30,6 +30,8 @@
 
 @interface DemoController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
+@property (nonatomic, strong) RFRootController *rfController;
+
 @end
 
 @implementation DemoController
@@ -40,8 +42,8 @@
 }
 
 - (void)displayRumblefishSDK {
-    RFRootController *rootController = [RFRootController controller];
-    [rootController presentWithParentController:self animated:YES];
+    _rfController = [RFRootController controller];
+    [_rfController presentWithParentController:self animated:YES];
 }
 
 - (void)setupRumblefishSDKWithVideoURL:(NSURL *)videoUrl {
@@ -54,7 +56,7 @@
                  LogoViewController *logoViewController = [[LogoViewController alloc] init];
                  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:logoViewController];
                  navController.navigationBar.barStyle = UIBarStyleBlack;
-                 [self.navigationController presentModalViewController:navController animated:YES];
+                 [_rfController presentModalViewController:navController animated:YES];
                  
                  purchase.license.firstname = @"John";
                  purchase.license.lastname = @"Doe";
