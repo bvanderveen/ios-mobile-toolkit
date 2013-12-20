@@ -123,6 +123,8 @@
 {
    [super layoutSubviews];
     
+    self.imageView.frame = CGRectMake(0, 0, self.imageView.bounds.size.width, self.imageView.bounds.size.height);
+
     //add 1px border to image
     _imageSeparator.frame = CGRectMake(self.imageView.bounds.size.width, 0, 1, self.bounds.size.height);
 }
