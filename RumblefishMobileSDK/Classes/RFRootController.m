@@ -58,7 +58,7 @@ typedef enum RFTabView {
 {
     //Set up the content view
     UIView *contentView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
-	contentView.backgroundColor = [UIColor lightGrayColor];
+	contentView.backgroundColor = [UIColor blackColor];
 	self.view = contentView;
     
     //Create an empty tab controller and set it to fill the screen minus the top title bar
@@ -74,6 +74,8 @@ typedef enum RFTabView {
                                             [self cancelableNavControllerWithTabView:RFTabViewSaved]
                                             ]];
     [self.view addSubview:_tabBarController.view];
+    
+    _tabBarController.tabBar.barStyle = UIBarStyleBlack;
 }
 
 - (UINavigationController *)cancelableNavControllerWithTabView:(RFTabView)tabView
