@@ -39,14 +39,16 @@
 - (void)viewDidLoad
 {
     self.navigationItem.title = @"Playlist";
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Remove all" style:UIBarButtonItemStyleBordered target:self action:@selector(removeAll)];
     self.navigationItem.rightBarButtonItem = rightButton;
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:.88 green:0 blue:0 alpha:1];
     
-    self.tableView.separatorColor = [UIColor colorWithRed:0.08f green:0.08f blue:0.08f alpha:1.0f];
+    self.tableView.separatorColor = [UIColor blackColor];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.1568f green:0.1529f blue:0.1451f alpha:1.0f];
     self.tableView.rowHeight = 60;
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
