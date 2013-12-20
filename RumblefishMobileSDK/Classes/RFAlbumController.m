@@ -53,14 +53,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(close)];
     
     self.tableView.rowHeight = 60;
-    self.tableView.separatorColor = [UIColor colorWithRed:0.08f green:0.08f blue:0.08f alpha:1.0f];
+    self.tableView.separatorColor = [UIColor blackColor];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.125f green:0.125f blue:0.125f alpha:1.0f];
     
-    self.activityIndicator = [[UIActivityIndicatorView alloc] init];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [activityIndicator sizeToFit];
     activityIndicator.frame = CGRectMake(
                                          (self.tableView.frame.size.width - activityIndicator.frame.size.width) / 2,
