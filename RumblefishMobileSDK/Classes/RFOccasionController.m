@@ -236,6 +236,8 @@ NSTimer *rotateImagesTimer;
 
 - (void)viewDidLoad
 {
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+
     self.controllerView.delegate = self;
     [self.controllerView setDisplaysHomeButtons:NO animated:NO];
     
@@ -245,8 +247,9 @@ NSTimer *rotateImagesTimer;
     level = 1;
     table.alpha = 0;
     
-    table.separatorColor = [UIColor colorWithRed:0.08f green:0.08f blue:0.08f alpha:1.0f];
+    table.separatorColor = [UIColor blackColor];
     table.rowHeight = 60;
+    table.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
     
     UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageInResourceBundleNamed:@"friendlymusic_logo.png"]];
     self.navigationItem.titleView = titleView;
