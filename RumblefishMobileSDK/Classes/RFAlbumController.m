@@ -61,6 +61,7 @@
     self.tableView.rowHeight = 60;
     self.tableView.separatorColor = [UIColor blackColor];
     self.tableView.backgroundColor = [UIColor colorWithRed:0.125f green:0.125f blue:0.125f alpha:1.0f];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero]; //removes ugly separators for blank cells
     
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [activityIndicator sizeToFit];
