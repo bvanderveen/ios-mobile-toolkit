@@ -50,6 +50,7 @@
         _tableView.delegate = viewController;
         _tableView.dataSource = viewController;
         _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0); //fixes tab bar overlap on last tableview cell
         [self addSubview:_tableView];
         
         //Loading Views
@@ -69,7 +70,7 @@
 
 - (void)layoutSubviews
 {
-    CGRect headerFrame = CGRectMake(0, 0, self.frame.size.width, 158);
+    CGRect headerFrame = CGRectMake(0, 0, self.frame.size.width, 158+44);
     _headerView.frame = headerFrame;
     
     CGRect tableViewFrame = CGRectMake(0, headerFrame.origin.y + headerFrame.size.height, self.frame.size.width, self.frame.size.height - headerFrame.size.height);
