@@ -116,10 +116,6 @@
 		413FD8F11639B787002A9183 = {
 			isa = PBXGroup;
 			children = (
-				3476DA021785E367003C34F9 /* MobileCoreServices.framework */,
-				34F38772177CBD2300312BD1 /* CoreMedia.framework */,
-				41C16A7C1770D54800717ADF /* CoreText.framework */,
-				41FE1A16176F9263002E022D /* MediaPlayer.framework */,
 				411FCED01639E85D000B1841 /* Icon@2x.png */,
 				411FCECE1639E856000B1841 /* Icon.png */,
 				413FD9061639B787002A9183 /* RumblefishMobileSDKDemo */,
@@ -139,6 +135,10 @@
 		413FD8FF1639B787002A9183 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3476DA021785E367003C34F9 /* MobileCoreServices.framework */,
+				34F38772177CBD2300312BD1 /* CoreMedia.framework */,
+				41C16A7C1770D54800717ADF /* CoreText.framework */,
+				41FE1A16176F9263002E022D /* MediaPlayer.framework */,
 				413FD93B1639BF2C002A9183 /* RumblefishMobileSDK.xcodeproj */,
 				413FD95A1639BFE5002A9183 /* AVFoundation.framework */,
 				413FD9581639BFD9002A9183 /* QuartzCore.framework */,
