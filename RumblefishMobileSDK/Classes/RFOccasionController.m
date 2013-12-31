@@ -250,6 +250,8 @@ NSTimer *rotateImagesTimer;
     table.separatorColor = [UIColor blackColor];
     table.rowHeight = 60;
     table.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    table.contentInset = UIEdgeInsetsMake(0, 0, 49, 0); //fixes tab bar overlap on last tableview cell
+    scroller.contentInset = UIEdgeInsetsMake(0, 0, 49, 0); //fixes tab bar overlap on last tableview cell
     
     UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageInResourceBundleNamed:@"friendlymusic_logo.png"]];
     self.navigationItem.titleView = titleView;
