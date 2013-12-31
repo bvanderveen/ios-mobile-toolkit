@@ -81,7 +81,7 @@
     
     if (self.textLabel.frame.size.width + _priceLabel.frame.size.width + margin > self.contentView.bounds.size.width) {
         CGRect f = self.textLabel.frame;
-        f.size.width -= _priceLabel.frame.size.width + self.textLabel.frame.size.width + margin - self.contentView.bounds.size.width;
+        f.size.width -= _priceLabel.frame.size.width + self.textLabel.frame.size.width + margin - self.contentView.bounds.size.width + 14;
         self.textLabel.frame = f;
     }
     
