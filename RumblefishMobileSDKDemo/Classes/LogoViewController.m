@@ -38,6 +38,7 @@
 
 - (void)loadView
 {
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view = [[UIView alloc] init];
     [self.view addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logos.png"]]];
     
