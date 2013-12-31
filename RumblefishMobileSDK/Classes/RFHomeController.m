@@ -53,8 +53,6 @@
     self.view = [[RFHomeView alloc] initWithViewController:self];
     self.view.headerView.dataSource = self;
     self.view.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-
     
     Producer getPlaylists = [[RFAPI singleton] getHome];
     [self associateProducer:getPlaylists callback:^ (id results) {
