@@ -54,13 +54,21 @@
     [self.view.dismissButton addTarget:self
                                 action:@selector(dismiss)
                       forControlEvents:UIControlEventTouchUpInside];
+    [self.view.videoSlider addTarget:self
+                               action:@selector(videoSliderTouched)
+                     forControlEvents:UIControlEventTouchDown];
+    [self.view.videoSlider addTarget:self
+                               action:@selector(videoSliderChanged:)
+                     forControlEvents:UIControlEventValueChanged];
+    [self.view.videoSlider addTarget:self
+                               action:@selector(videoSliderDoneBeingTouched)
+                     forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
     [self.view.volumeSlider addTarget:self
                                action:@selector(volumeSliderTouched)
                      forControlEvents:UIControlEventTouchDown];
     [self.view.volumeSlider addTarget:self
                                action:@selector(volumeSliderChanged:)
                      forControlEvents:UIControlEventValueChanged];
-    
     [self.view.volumeSlider addTarget:self
                                action:@selector(volumeSliderDoneBeingTouched)
                      forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
@@ -82,27 +90,29 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [NSObject cancelPreviousPerformRequestsWithTarget:self
-                                             selector:@selector(hideVolumeControls)
+                                             selector:@selector(hideSliders)
                                                object:nil];
     
-    [self showVolumeControls];
+    [self showSliders];
 }
 
-- (void)showVolumeControls {
+- (void)showSliders {
     [UIView animateWithDuration:0.2
                      animations:^{
-                         self.view.sliderContainerView.alpha = 1;
+                         self.view.volumeSliderContainerView.alpha = 1;
+                         self.view.videoSliderContainerView.alpha = 1;
                      } completion:^(BOOL finished) {
-                         [self performSelector:@selector(hideVolumeControls)
+                         [self performSelector:@selector(hideSliders)
                                     withObject:nil
                                     afterDelay:2.25];
                      }];
 }
 
-- (void)hideVolumeControls {
+- (void)hideSliders {
     [UIView animateWithDuration:0.2
                      animations:^{
-                         self.view.sliderContainerView.alpha = 0;
+                         self.view.volumeSliderContainerView.alpha = 0;
+                         self.view.videoSliderContainerView.alpha = 0;
                      } completion:nil];
 }
 
@@ -141,7 +151,7 @@
 
 - (void)volumeSliderTouched {
     [NSObject cancelPreviousPerformRequestsWithTarget:self
-                                             selector:@selector(hideVolumeControls)
+                                             selector:@selector(hideSliders)
                                                object:nil];
 }
 
@@ -155,7 +165,21 @@
 }
 
 - (void)volumeSliderDoneBeingTouched {
-    [self performSelector:@selector(hideVolumeControls) withObject:nil afterDelay:0.8];
+    [self performSelector:@selector(hideSliders) withObject:nil afterDelay:0.8];
+}
+
+- (void)videoSliderTouched {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self
+                                             selector:@selector(hideSliders)
+                                               object:nil];
+}
+
+- (void)videoSliderChanged:(UISlider *)slider {
+    NSLog(@"VIDEO SLIDER CHANGED. SCRUB VIDEO.");
+}
+
+- (void)videoSliderDoneBeingTouched {
+    [self performSelector:@selector(hideSliders) withObject:nil afterDelay:0.8];
 }
 
 #pragma mark - PlayerDelegate
@@ -170,7 +194,7 @@
         self.view.playbackView.hidden = NO;
         [self playPlayers];
         if (!_volControlsShown)
-            [self showVolumeControls];
+            [self showSliders];
         _volControlsShown = YES;
     }
 }

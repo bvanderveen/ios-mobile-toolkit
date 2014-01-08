@@ -22,6 +22,8 @@
 		3473A7CF17810FB900FD1D8E /* volume_thumb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3473A7C917810FB900FD1D8E /* volume_thumb@2x.png */; };
 		3473A7D217811CE300FD1D8E /* preview_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 3473A7D017811CE300FD1D8E /* preview_close.png */; };
 		3473A7D317811CE300FD1D8E /* preview_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3473A7D117811CE300FD1D8E /* preview_close@2x.png */; };
+		34ADE2BA187DE707003DA816 /* video_thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 34ADE2B8187DE707003DA816 /* video_thumb.png */; };
+		34ADE2BB187DE707003DA816 /* video_thumb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34ADE2B9187DE707003DA816 /* video_thumb@2x.png */; };
 		34B61BAE1772D59A00D7E903 /* RFDisclosureArrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B61BAD1772D59A00D7E903 /* RFDisclosureArrow.m */; };
 		34B61BF41773D20300D7E903 /* savedIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34B61BEB1773D20300D7E903 /* savedIcon@2x.png */; };
 		34B61BF51773D20300D7E903 /* savedIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 34B61BEC1773D20300D7E903 /* savedIcon.png */; };
@@ -256,6 +258,8 @@
 		3473A7D017811CE300FD1D8E /* preview_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preview_close.png; sourceTree = "<group>"; };
 		3473A7D117811CE300FD1D8E /* preview_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preview_close@2x.png"; sourceTree = "<group>"; };
 		349F9BD717AC4B3400A93B3F /* RFAPI+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RFAPI+Private.h"; path = "Classes/RFAPI+Private.h"; sourceTree = SOURCE_ROOT; };
+		34ADE2B8187DE707003DA816 /* video_thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = video_thumb.png; sourceTree = "<group>"; };
+		34ADE2B9187DE707003DA816 /* video_thumb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_thumb@2x.png"; sourceTree = "<group>"; };
 		34B61BAC1772D59A00D7E903 /* RFDisclosureArrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RFDisclosureArrow.h; path = Classes/RFDisclosureArrow.h; sourceTree = SOURCE_ROOT; };
 		34B61BAD1772D59A00D7E903 /* RFDisclosureArrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RFDisclosureArrow.m; path = Classes/RFDisclosureArrow.m; sourceTree = SOURCE_ROOT; };
 		34B61BEB1773D20300D7E903 /* savedIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "savedIcon@2x.png"; path = "RumblefishMobileSDKResources/Images/savedIcon@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -710,6 +714,8 @@
 				413FD9AE1639D7DA002A9183 /* selector@2x.png */,
 				413FD9AF1639D7DA002A9183 /* separator_horizontal.png */,
 				413FD9B01639D7DA002A9183 /* separator_vertical.png */,
+				34ADE2B8187DE707003DA816 /* video_thumb.png */,
+				34ADE2B9187DE707003DA816 /* video_thumb@2x.png */,
 				413FD9B31639D7DA002A9183 /* sports.png */,
 				413FD9B41639D7DA002A9183 /* sports@2x.png */,
 				413FD9B51639D7DA002A9183 /* start_message.png */,
@@ -885,6 +891,7 @@
 				41C16A781770D32A00717ADF /* TradeGothicLTBoldCondensedNo20.ttf in Resources */,
 				41DAA76C16547DCE001D6D8D /* homeHeaderBackground.png in Resources */,
 				41DAA76D16547DCE001D6D8D /* homeHeaderBackground@2x.png in Resources */,
+				34ADE2BB187DE707003DA816 /* video_thumb@2x.png in Resources */,
 				411FCF3C163AD205000B1841 /* occasion_image_cache.plist in Resources */,
 				413FD9B91639D828002A9183 /* bg_surround.png in Resources */,
 				413FD9BA1639D828002A9183 /* bg_surround@2x.png in Resources */,
@@ -928,6 +935,7 @@
 				413FD9E01639D828002A9183 /* holiday@2x.png in Resources */,
 				413FD9E11639D828002A9183 /* homeHeader.png in Resources */,
 				413FD9E21639D828002A9183 /* homeHeader@2x.png in Resources */,
+				34ADE2BA187DE707003DA816 /* video_thumb.png in Resources */,
 				413FD9E31639D828002A9183 /* logo.png in Resources */,
 				413FD9E41639D828002A9183 /* logo@2x.png in Resources */,
 				413FD9E51639D828002A9183 /* mood.png in Resources */,
