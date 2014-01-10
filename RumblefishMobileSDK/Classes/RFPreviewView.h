@@ -5,7 +5,7 @@
 
 @property (nonatomic, strong) UIView *auditionBackgroundView, *contentView, *videoContainerView, *volumeSliderContainerView, *videoSliderContainerView;
 @property (nonatomic, strong) UIButton *dismissButton, *buyButton, *replayButton;
-@property (nonatomic, strong) UILabel *titleLabel, *songNameLabel, *genreLabel;
+@property (nonatomic, strong) UILabel *titleLabel, *songNameLabel, *genreLabel, *durationMinimumLabel, *durationMaximumLabel;
 @property (nonatomic, strong) RFPlayerPlaybackView *playbackView;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) UISlider *volumeSlider, *videoSlider;

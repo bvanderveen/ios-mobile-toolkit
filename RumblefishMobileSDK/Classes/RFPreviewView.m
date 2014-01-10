@@ -61,6 +61,21 @@
                             forState:UIControlStateNormal];
         [_videoSliderContainerView addSubview:_videoSlider];
         
+        int durationFontSize = 13;
+        _durationMinimumLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _durationMinimumLabel.text = @"0:00";
+        _durationMinimumLabel.font = [RFFont fontWithSize:durationFontSize];
+        _durationMinimumLabel.textColor = [UIColor blackColor];
+        _durationMinimumLabel.backgroundColor = [UIColor clearColor];
+        [_videoSliderContainerView addSubview:_durationMinimumLabel];
+
+        _durationMaximumLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _durationMaximumLabel.text = @"2:54";
+        _durationMaximumLabel.font = [RFFont fontWithSize:durationFontSize];
+        _durationMaximumLabel.textColor = [UIColor blackColor];
+        _durationMaximumLabel.backgroundColor = [UIColor clearColor];
+        [_videoSliderContainerView addSubview:_durationMaximumLabel];
+        
         _volumeSliderContainerView = [[UIView alloc] initWithFrame:CGRectZero];
         _volumeSliderContainerView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.6];
         _volumeSliderContainerView.alpha = 0;
@@ -130,11 +145,11 @@
     
     [_titleLabel sizeToFit];
     _titleLabel.center = CGPointMake(_auditionBackgroundView.center.x - PADDING,
-                                     14);
+                                     13);
     
     _dismissButton.frame = CGRectMake(0,0,30,30);
     _dismissButton.center = CGPointMake(_auditionBackgroundView.bounds.size.width - 14,
-                                        14);
+                                        13);
     
     _contentView.frame = CGRectMake(0,
                                     26,
@@ -161,15 +176,31 @@
     _videoSlider.center = CGPointMake(_videoSliderContainerView.center.x,
                                       _videoSliderContainerView.bounds.size.height/2);
     
+    _durationMinimumLabel.frame = CGRectMake(PADDING,
+                                             PADDING,
+                                             SLIDERIMAGEWIDTH,
+                                             SLIDERIMAGEWIDTH);
+    
+    _durationMinimumLabel.center = CGPointMake(_durationMinimumLabel.center.x,
+                                               _videoSliderContainerView.bounds.size.height/2);
+    
+    _durationMaximumLabel.frame = CGRectMake(_videoSliderContainerView.bounds.size.width - PADDING - SLIDERIMAGEWIDTH,
+                                             PADDING,
+                                             SLIDERIMAGEWIDTH,
+                                             SLIDERIMAGEWIDTH);
+    
+    _durationMaximumLabel.center = CGPointMake(_durationMaximumLabel.center.x,
+                                               _videoSliderContainerView.bounds.size.height/2);
+    
     _volumeSliderContainerView.frame = CGRectMake(0,
-                                            _videoContainerView.bounds.size.height * .80,
-                                            _videoContainerView.bounds.size.width,
-                                            _videoContainerView.bounds.size.height * .20);
+                                                  _videoContainerView.bounds.size.height * .80,
+                                                  _videoContainerView.bounds.size.width,
+                                                  _videoContainerView.bounds.size.height * .20);
     
     _minimumVolumeSliderImageView.frame = CGRectMake(PADDING,
-                                               PADDING,
-                                               SLIDERIMAGEWIDTH,
-                                               SLIDERIMAGEWIDTH);
+                                                     PADDING,
+                                                     SLIDERIMAGEWIDTH,
+                                                     SLIDERIMAGEWIDTH);
     
     _minimumVolumeSliderImageView.center = CGPointMake(_minimumVolumeSliderImageView.center.x,
                                                  _volumeSliderContainerView.bounds.size.height/2);
@@ -183,9 +214,9 @@
                                        _volumeSliderContainerView.bounds.size.height/2);
     
     _maximumVolumeSliderImageView.frame = CGRectMake(_volumeSliderContainerView.bounds.size.width - PADDING - SLIDERIMAGEWIDTH,
-                                               PADDING,
-                                               SLIDERIMAGEWIDTH,
-                                               SLIDERIMAGEWIDTH);
+                                                     PADDING,
+                                                     SLIDERIMAGEWIDTH,
+                                                     SLIDERIMAGEWIDTH);
 
     _maximumVolumeSliderImageView.center = CGPointMake(_maximumVolumeSliderImageView.center.x,
                                                   _volumeSliderContainerView.bounds.size.height/2);
