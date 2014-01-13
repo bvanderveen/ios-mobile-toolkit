@@ -53,27 +53,29 @@
         
         _videoSlider = [[UISlider alloc] initWithFrame:CGRectZero];
         _videoSlider.minimumValue = 0;
-        _videoSlider.maximumValue = 100;
-        _videoSlider.value = 50;
+        _videoSlider.maximumValue = 200;
+        _videoSlider.value = 0;
         _videoSlider.minimumTrackTintColor = [UIColor whiteColor];
         _videoSlider.maximumTrackTintColor = [UIColor whiteColor];
         [_videoSlider setThumbImage:[UIImage imageInResourceBundleNamed:@"video_thumb.png"]
                             forState:UIControlStateNormal];
         [_videoSliderContainerView addSubview:_videoSlider];
         
-        int durationFontSize = 13;
+        int durationFontSize = 14;
         _durationMinimumLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _durationMinimumLabel.text = @"0:00";
         _durationMinimumLabel.font = [RFFont fontWithSize:durationFontSize];
         _durationMinimumLabel.textColor = [UIColor blackColor];
         _durationMinimumLabel.backgroundColor = [UIColor clearColor];
+        _durationMinimumLabel.textAlignment = NSTextAlignmentCenter;
         [_videoSliderContainerView addSubview:_durationMinimumLabel];
 
         _durationMaximumLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _durationMaximumLabel.text = @"2:54";
+        _durationMaximumLabel.text = @"0:00";
         _durationMaximumLabel.font = [RFFont fontWithSize:durationFontSize];
         _durationMaximumLabel.textColor = [UIColor blackColor];
         _durationMaximumLabel.backgroundColor = [UIColor clearColor];
+        _durationMaximumLabel.textAlignment = NSTextAlignmentCenter;
         [_videoSliderContainerView addSubview:_durationMaximumLabel];
         
         _volumeSliderContainerView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -176,17 +178,19 @@
     _videoSlider.center = CGPointMake(_videoSliderContainerView.center.x,
                                       _videoSliderContainerView.bounds.size.height/2);
     
-    _durationMinimumLabel.frame = CGRectMake(PADDING,
+    int labelWidth = (_videoSliderContainerView.bounds.size.width - _videoSlider.bounds.size.width) / 2;
+    
+    _durationMinimumLabel.frame = CGRectMake(0,
                                              PADDING,
-                                             SLIDERIMAGEWIDTH,
+                                             labelWidth,
                                              SLIDERIMAGEWIDTH);
     
     _durationMinimumLabel.center = CGPointMake(_durationMinimumLabel.center.x,
                                                _videoSliderContainerView.bounds.size.height/2);
     
-    _durationMaximumLabel.frame = CGRectMake(_videoSliderContainerView.bounds.size.width - PADDING - SLIDERIMAGEWIDTH,
+    _durationMaximumLabel.frame = CGRectMake(labelWidth + _videoSlider.bounds.size.width,
                                              PADDING,
-                                             SLIDERIMAGEWIDTH,
+                                             labelWidth,
                                              SLIDERIMAGEWIDTH);
     
     _durationMaximumLabel.center = CGPointMake(_durationMaximumLabel.center.x,
@@ -219,7 +223,7 @@
                                                      SLIDERIMAGEWIDTH);
 
     _maximumVolumeSliderImageView.center = CGPointMake(_maximumVolumeSliderImageView.center.x,
-                                                  _volumeSliderContainerView.bounds.size.height/2);
+                                                       _volumeSliderContainerView.bounds.size.height/2);
     
     _activityIndicator.center = _playbackView.center;
     
@@ -246,5 +250,6 @@
     genreFrame.size.width = _contentView.bounds.size.width - PADDING*2 - _buyButton.bounds.size.width;
     _genreLabel.frame = genreFrame;
 }
+
 
 @end
