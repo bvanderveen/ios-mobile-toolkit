@@ -123,14 +123,24 @@
         _genreLabel.backgroundColor = [UIColor clearColor];
         [_contentView addSubview:_genreLabel];
     
-        _buyButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [_buyButton setTitle:@"$0.99 | Buy" forState:UIControlStateNormal];
+        _buyButton = [UIButton buttonWithType:UIButtonTypeSystem];
         _buyButton.titleLabel.font = [RFFont fontWithSize:18];
-        [_buyButton setTitleColor:[RFColor lightBlue] forState:UIControlStateNormal];
-        [_buyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-        _buyButton.titleLabel.textColor = [RFColor darkBlue];
         _buyButton.backgroundColor = [UIColor whiteColor];
         
+        NSString *priceString = [NSString stringWithFormat:@"BUY  |  %@", media.price];
+        
+        NSMutableAttributedString * buyString = [[NSMutableAttributedString alloc] initWithString:priceString];
+        [buyString addAttribute:NSForegroundColorAttributeName value:[RFColor lightBlue] range:NSMakeRange(0,4)];
+        [buyString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithWhite:0.8 alpha:1] range:NSMakeRange(4,2)];
+        [buyString addAttribute:NSForegroundColorAttributeName value:[RFColor lightBlue] range:NSMakeRange(6,buyString.length-6)];
+        [_buyButton setAttributedTitle:buyString forState:UIControlStateNormal];
+        
+        NSMutableAttributedString * buyStringHighlighted = [[NSMutableAttributedString alloc] initWithString:priceString];
+        [buyStringHighlighted addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithWhite:0.8 alpha:1] range:NSMakeRange(0,4)];
+        [buyStringHighlighted addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithWhite:0.9 alpha:1] range:NSMakeRange(4,2)];
+        [buyStringHighlighted addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithWhite:0.8 alpha:1] range:NSMakeRange(6,buyStringHighlighted.length-6)];
+        [_buyButton setAttributedTitle:buyStringHighlighted forState:UIControlStateHighlighted];
+
         [_contentView addSubview:_buyButton];
     }
     return self;
