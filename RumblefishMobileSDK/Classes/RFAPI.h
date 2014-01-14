@@ -35,7 +35,7 @@
 
 @interface RFMedia : NSObject
 
-@property (nonatomic, copy) NSString *title, *albumTitle, *genre;
+@property (nonatomic, copy) NSString *title, *albumTitle, *genre, *price;
 @property (nonatomic, assign) BOOL isExplicit;
 @property (nonatomic, assign) NSInteger ID;
 @property (nonatomic, strong) NSURL *previewURL;

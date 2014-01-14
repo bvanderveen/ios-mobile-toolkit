@@ -126,7 +126,7 @@ typedef enum RFAPIMethod {
 
 @implementation RFMedia
 
-@synthesize title, albumTitle, genre, isExplicit, ID, previewURL;
+@synthesize title, albumTitle, genre, price, isExplicit, ID, previewURL;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     if (self = [super init]) {
@@ -136,6 +136,8 @@ typedef enum RFAPIMethod {
         self.isExplicit = [[dictionary objectForKey:@"explicit"] boolValue];
         self.ID = [[dictionary objectForKey:@"id"] intValue];
         self.previewURL = [NSURL URLWithString:[dictionary objectForKey:@"preview_url"]];
+        // eventually this should be sent in
+        self.price = @"$0.99";
     }
     return self;
 }

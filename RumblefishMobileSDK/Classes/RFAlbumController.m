@@ -105,6 +105,9 @@
 {
     RFMedia *currentMedia = [playlist.media objectAtIndex:indexPath.row];
     
+    if (indexPath.row < 2)
+        currentMedia.price = @"FREE";
+    
     RFSongCell *cell = [RFSongCell cellForMedia:currentMedia tableView:tableView buttonAction:^{
         if ([[RFLocalPlaylist sharedPlaylist] existsInPlaylist:currentMedia])
             [[RFLocalPlaylist sharedPlaylist] removeFromPlaylist:currentMedia];
