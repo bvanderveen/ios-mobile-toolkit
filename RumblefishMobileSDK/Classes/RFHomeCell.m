@@ -123,7 +123,10 @@
 {
    [super layoutSubviews];
     
-    self.imageView.frame = CGRectMake(0, 0, self.imageView.bounds.size.width, self.imageView.bounds.size.height);
+    self.textLabel.center = CGPointMake(self.textLabel.center.x - 16, self.textLabel.center.y);
+    self.detailTextLabel.center = CGPointMake(self.detailTextLabel.center.x - 16, self.detailTextLabel.center.y);
+    
+    self.imageView.frame = CGRectMake(0, 0, self.bounds.size.height, self.bounds.size.height);
 
     //add 1px border to image
     _imageSeparator.frame = CGRectMake(self.imageView.bounds.size.width, 0, 1, self.bounds.size.height);
