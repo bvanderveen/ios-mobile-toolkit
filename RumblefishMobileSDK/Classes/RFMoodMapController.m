@@ -61,7 +61,7 @@
     [super layoutSubviews];
     _tableView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
     [_activityIndicator sizeToFit];
-    _activityIndicator.center = CGPointMake(_tableView.center.x, 320 + _tableView.rowHeight / 2);
+    _activityIndicator.center = CGPointMake(_tableView.center.x, 340 + _tableView.rowHeight / 2);
 }
 
 @end
@@ -111,7 +111,8 @@ int idArray[12][12] = {0,  0,  0,  1,  2,  3, 31, 32, 33,  0,  0,  0,
     self.view.tableView.delegate = self;
     self.view.tableView.dataSource = self;
     tabView = self.view.tableView;    
-    tabView.separatorColor = [UIColor colorWithRed:0.08f green:0.08f blue:0.08f alpha:1.0f];
+    tabView.separatorColor = [UIColor blackColor];
+    tabView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
 
 
     /* Tableview is set up with an empty section 0 that has the MoodMapSelectorView as it's header view
