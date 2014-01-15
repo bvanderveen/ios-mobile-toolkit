@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		3476DA031785E367003C34F9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3476DA021785E367003C34F9 /* MobileCoreServices.framework */; };
+		347F45A51886355E00EFCE83 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 347F45A31886355E00EFCE83 /* Default-568h@2x.png */; };
+		347F45A61886355E00EFCE83 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 347F45A41886355E00EFCE83 /* Default@2x.png */; };
+		34E5CFDF18862DE400BD7B57 /* logos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E5CFDB18862DE400BD7B57 /* logos@2x.png */; };
+		34E5CFE018862DE400BD7B57 /* friendlylogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E5CFDC18862DE400BD7B57 /* friendlylogo@2x.png */; };
+		34E5CFE118862DE400BD7B57 /* logos.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E5CFDD18862DE400BD7B57 /* logos.png */; };
+		34E5CFE218862DE400BD7B57 /* friendlylogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E5CFDE18862DE400BD7B57 /* friendlylogo.png */; };
 		34F38773177CBD2300312BD1 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F38772177CBD2300312BD1 /* CoreMedia.framework */; };
 		411FCECF1639E856000B1841 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 411FCECE1639E856000B1841 /* Icon.png */; };
 		411FCED11639E85D000B1841 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 411FCED01639E85D000B1841 /* Icon@2x.png */; };
@@ -19,17 +25,12 @@
 		413FD9261639BA9F002A9183 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD91F1639BA9F002A9183 /* main.m */; };
 		413FD9271639BA9F002A9183 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD9221639BA9F002A9183 /* AppDelegate.m */; };
 		413FD9281639BA9F002A9183 /* DemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 413FD9241639BA9F002A9183 /* DemoController.m */; };
-		413FD9331639BBD2002A9183 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 413FD92C1639BBD2002A9183 /* Default-568h@2x.png */; };
-		413FD9341639BBD2002A9183 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 413FD92D1639BBD2002A9183 /* Default.png */; };
-		413FD9351639BBD2002A9183 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 413FD92E1639BBD2002A9183 /* Default@2x.png */; };
 		413FD9381639BBD2002A9183 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413FD9311639BBD2002A9183 /* MainWindow.xib */; };
 		413FD9391639BBD2002A9183 /* DemoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413FD9321639BBD2002A9183 /* DemoController.xib */; };
 		413FD9591639BFD9002A9183 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 413FD9581639BFD9002A9183 /* QuartzCore.framework */; };
 		413FD95B1639BFE5002A9183 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 413FD95A1639BFE5002A9183 /* AVFoundation.framework */; };
 		413FD95F1639C2EA002A9183 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 413FD95E1639C2EA002A9183 /* MapKit.framework */; };
 		41BCF6F117AAFC0E00C66C76 /* LogoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BCF6F017AAFC0E00C66C76 /* LogoViewController.m */; };
-		41BCF6FB17AB1A6F00C66C76 /* logos.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BCF6F917AB1A6F00C66C76 /* logos.png */; };
-		41BCF6FC17AB1A6F00C66C76 /* logos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41BCF6FA17AB1A6F00C66C76 /* logos@2x.png */; };
 		41C16A7D1770D54800717ADF /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C16A7C1770D54800717ADF /* CoreText.framework */; };
 		41FE1A17176F9263002E022D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41FE1A16176F9263002E022D /* MediaPlayer.framework */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,12 @@
 
 /* Begin PBXFileReference section */
 		3476DA021785E367003C34F9 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		347F45A31886355E00EFCE83 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
+		347F45A41886355E00EFCE83 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = SOURCE_ROOT; };
+		34E5CFDB18862DE400BD7B57 /* logos@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logos@2x.png"; sourceTree = SOURCE_ROOT; };
+		34E5CFDC18862DE400BD7B57 /* friendlylogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "friendlylogo@2x.png"; sourceTree = SOURCE_ROOT; };
+		34E5CFDD18862DE400BD7B57 /* logos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logos.png; sourceTree = SOURCE_ROOT; };
+		34E5CFDE18862DE400BD7B57 /* friendlylogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friendlylogo.png; sourceTree = SOURCE_ROOT; };
 		34F38772177CBD2300312BD1 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		411FCECE1639E856000B1841 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		411FCED01639E85D000B1841 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
@@ -73,9 +80,6 @@
 		413FD9221639BA9F002A9183 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		413FD9231639BA9F002A9183 /* DemoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DemoController.h; path = Classes/DemoController.h; sourceTree = SOURCE_ROOT; };
 		413FD9241639BA9F002A9183 /* DemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DemoController.m; path = Classes/DemoController.m; sourceTree = SOURCE_ROOT; };
-		413FD92C1639BBD2002A9183 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
-		413FD92D1639BBD2002A9183 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = SOURCE_ROOT; };
-		413FD92E1639BBD2002A9183 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = SOURCE_ROOT; };
 		413FD9311639BBD2002A9183 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = SOURCE_ROOT; };
 		413FD9321639BBD2002A9183 /* DemoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DemoController.xib; path = Resources/DemoController.xib; sourceTree = SOURCE_ROOT; };
 		413FD93B1639BF2C002A9183 /* RumblefishMobileSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RumblefishMobileSDK.xcodeproj; path = ../RumblefishMobileSDK/RumblefishMobileSDK.xcodeproj; sourceTree = "<group>"; };
@@ -85,8 +89,6 @@
 		413FD95E1639C2EA002A9183 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		41BCF6EF17AAFC0E00C66C76 /* LogoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogoViewController.h; path = Classes/LogoViewController.h; sourceTree = SOURCE_ROOT; };
 		41BCF6F017AAFC0E00C66C76 /* LogoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogoViewController.m; path = Classes/LogoViewController.m; sourceTree = SOURCE_ROOT; };
-		41BCF6F917AB1A6F00C66C76 /* logos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logos.png; path = Resources/logos.png; sourceTree = SOURCE_ROOT; };
-		41BCF6FA17AB1A6F00C66C76 /* logos@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logos@2x.png"; path = "Resources/logos@2x.png"; sourceTree = SOURCE_ROOT; };
 		41C16A7C1770D54800717ADF /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		41FE1A16176F9263002E022D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -178,13 +180,14 @@
 		413FD93A1639BBD7002A9183 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				41BCF6F917AB1A6F00C66C76 /* logos.png */,
-				41BCF6FA17AB1A6F00C66C76 /* logos@2x.png */,
+				347F45A31886355E00EFCE83 /* Default-568h@2x.png */,
+				347F45A41886355E00EFCE83 /* Default@2x.png */,
 				413FD9311639BBD2002A9183 /* MainWindow.xib */,
 				413FD9321639BBD2002A9183 /* DemoController.xib */,
-				413FD92C1639BBD2002A9183 /* Default-568h@2x.png */,
-				413FD92D1639BBD2002A9183 /* Default.png */,
-				413FD92E1639BBD2002A9183 /* Default@2x.png */,
+				34E5CFDB18862DE400BD7B57 /* logos@2x.png */,
+				34E5CFDC18862DE400BD7B57 /* friendlylogo@2x.png */,
+				34E5CFDD18862DE400BD7B57 /* logos.png */,
+				34E5CFDE18862DE400BD7B57 /* friendlylogo.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -229,7 +232,7 @@
 				ORGANIZATIONNAME = "Rumblefish, Inc.";
 				TargetAttributes = {
 					413FD8FB1639B787002A9183 = {
-						DevelopmentTeam = WDAFBU5PT6;
+						DevelopmentTeam = 7PEKB5YJT5;
 					};
 				};
 			};
@@ -279,15 +282,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				411FCEF91639F757000B1841 /* RumblefishMobileSDKResources.bundle in Resources */,
-				413FD9331639BBD2002A9183 /* Default-568h@2x.png in Resources */,
-				413FD9341639BBD2002A9183 /* Default.png in Resources */,
-				413FD9351639BBD2002A9183 /* Default@2x.png in Resources */,
+				34E5CFE018862DE400BD7B57 /* friendlylogo@2x.png in Resources */,
+				34E5CFE218862DE400BD7B57 /* friendlylogo.png in Resources */,
+				347F45A51886355E00EFCE83 /* Default-568h@2x.png in Resources */,
 				413FD9381639BBD2002A9183 /* MainWindow.xib in Resources */,
+				347F45A61886355E00EFCE83 /* Default@2x.png in Resources */,
 				413FD9391639BBD2002A9183 /* DemoController.xib in Resources */,
+				34E5CFDF18862DE400BD7B57 /* logos@2x.png in Resources */,
 				411FCECF1639E856000B1841 /* Icon.png in Resources */,
+				34E5CFE118862DE400BD7B57 /* logos.png in Resources */,
 				411FCED11639E85D000B1841 /* Icon@2x.png in Resources */,
-				41BCF6FB17AB1A6F00C66C76 /* logos.png in Resources */,
-				41BCF6FC17AB1A6F00C66C76 /* logos@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

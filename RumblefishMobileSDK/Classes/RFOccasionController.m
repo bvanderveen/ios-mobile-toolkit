@@ -272,8 +272,7 @@ NSTimer *rotateImagesTimer;
     secondButtons = [[NSMutableArray alloc] init];
     thirdButtons = [[NSMutableArray alloc] init];
     
-    bigSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
-                  UIActivityIndicatorViewStyleWhiteLarge];
+    bigSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     
     UIWindow *topWindow = [[UIApplication sharedApplication] keyWindow];
     bigSpinner.center = topWindow.center;

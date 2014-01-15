@@ -43,7 +43,7 @@
     [self.view addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logos.png"]]];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(dismiss)];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor blackColor];
 }
 
 - (void)dismiss {

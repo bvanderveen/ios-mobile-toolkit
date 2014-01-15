@@ -56,7 +56,7 @@
         _videoSlider.maximumValue = 200;
         _videoSlider.value = 0;
         _videoSlider.minimumTrackTintColor = [UIColor whiteColor];
-        _videoSlider.maximumTrackTintColor = [UIColor whiteColor];
+        _videoSlider.maximumTrackTintColor = [RFColor lightGray];
         [_videoSlider setThumbImage:[UIImage imageInResourceBundleNamed:@"video_thumb.png"]
                             forState:UIControlStateNormal];
         [_videoSliderContainerView addSubview:_videoSlider];
@@ -125,19 +125,19 @@
     
         _buyButton = [UIButton buttonWithType:UIButtonTypeSystem];
         _buyButton.titleLabel.font = [RFFont fontWithSize:18];
-        _buyButton.backgroundColor = [UIColor whiteColor];
+        _buyButton.backgroundColor = [UIColor colorWithWhite:1 alpha:.15];
         
         NSString *priceString = [NSString stringWithFormat:@"BUY  |  %@", media.price];
         
         NSMutableAttributedString * buyString = [[NSMutableAttributedString alloc] initWithString:priceString];
         [buyString addAttribute:NSForegroundColorAttributeName value:[RFColor lightBlue] range:NSMakeRange(0,4)];
-        [buyString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithWhite:0.8 alpha:1] range:NSMakeRange(4,2)];
+        [buyString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithWhite:0.8 alpha:.1] range:NSMakeRange(4,2)];
         [buyString addAttribute:NSForegroundColorAttributeName value:[RFColor lightBlue] range:NSMakeRange(6,buyString.length-6)];
         [_buyButton setAttributedTitle:buyString forState:UIControlStateNormal];
         
         NSMutableAttributedString * buyStringHighlighted = [[NSMutableAttributedString alloc] initWithString:priceString];
         [buyStringHighlighted addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithWhite:0.8 alpha:1] range:NSMakeRange(0,4)];
-        [buyStringHighlighted addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithWhite:0.9 alpha:1] range:NSMakeRange(4,2)];
+        [buyStringHighlighted addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithWhite:0.9 alpha:.1] range:NSMakeRange(4,2)];
         [buyStringHighlighted addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithWhite:0.8 alpha:1] range:NSMakeRange(6,buyStringHighlighted.length-6)];
         [_buyButton setAttributedTitle:buyStringHighlighted forState:UIControlStateHighlighted];
 

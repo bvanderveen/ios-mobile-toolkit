@@ -32,20 +32,22 @@
                     </connections>
                 </button>
                 <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6">
-                    <rect key="frame" x="51" y="359" width="229" height="57"/>
+                    <rect key="frame" x="46" y="403" width="229" height="57"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="0.14999999999999999" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
+                    <color key="tintColor" red="0.0078431377190000002" green="0.6549019814" blue="0.89411771299999998" alpha="1" colorSpace="deviceRGB"/>
                     <state key="normal" title="Get Started"/>
                     <connections>
                         <action selector="start" destination="-1" eventType="touchUpInside" id="18"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friendlymusic_logo.png" id="SO5-iY-iZy">
-                    <rect key="frame" x="40" y="104" width="240" height="54"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friendlylogo.png" id="SO5-iY-iZy">
+                    <rect key="frame" x="19" y="145" width="283" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick a Video. Pick a Soundtrack." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UWR-MZ-wfy">
-                    <rect key="frame" x="18" y="166" width="294" height="74"/>
+                    <rect key="frame" x="13" y="203" width="294" height="74"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -57,6 +59,6 @@
         </view>
     </objects>
     <resources>
-        <image name="friendlymusic_logo.png" width="110" height="21"/>
+        <image name="friendlylogo.png" width="283" height="50"/>
     </resources>
 </document>
