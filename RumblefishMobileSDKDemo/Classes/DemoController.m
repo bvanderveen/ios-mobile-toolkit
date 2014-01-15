@@ -85,9 +85,9 @@
 - (IBAction)start {
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    [self presentModalViewController:imagePickerController animated:YES];
     imagePickerController.mediaTypes = @[(NSString *)kUTTypeMovie];
     imagePickerController.delegate = self;
+    [self presentModalViewController:imagePickerController animated:YES];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
