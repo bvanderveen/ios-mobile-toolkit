@@ -57,6 +57,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(close)];
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithWhite:0 alpha:.05];
     
     self.tableView.rowHeight = 60;
     self.tableView.separatorColor = [UIColor blackColor];
