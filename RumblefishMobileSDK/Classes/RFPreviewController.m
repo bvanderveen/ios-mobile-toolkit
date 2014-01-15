@@ -168,6 +168,10 @@
                      animations:^{
                          self.view.alpha = 0;
                      } completion:^(BOOL finished) {
+                         _moviePlayer.delegate = nil;
+                         _musicPlayer.delegate = nil;
+                         _moviePlayer = nil;
+                         _musicPlayer = nil;
                          [self.view removeFromSuperview];
                      }];
 }
