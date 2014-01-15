@@ -42,5 +42,6 @@
 // note: accessing this performs a synchronous network request.
 // probably you should not do it on the main thread.
 @property (nonatomic, readonly) UIImage *image;
+@property (nonatomic, assign) BOOL hasImage;
 
 @end

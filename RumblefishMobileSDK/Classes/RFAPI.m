@@ -164,7 +164,7 @@ typedef enum RFAPIMethod {
 
 @implementation RFPlaylist
 
-@synthesize title, editorial, ID, imageURL, image = _image, media;
+@synthesize title, editorial, ID, imageURL, image = _image, media, hasImage;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary {
     if (self = [super init]) {
@@ -178,8 +178,7 @@ typedef enum RFAPIMethod {
         if (imageURLString && ![imageURLString isEqual:@""])
             self.imageURL = [NSURL URLWithString:imageURLString];
         
-        if (!self.imageURL)
-            return nil;
+        hasImage = (self.imageURL) ? YES : NO;
         
         self.editorial = [dictionary objectForKey:@"editorial"];
         self.media = [[dictionary objectForKey:@"media"] map:^ id (id m) { return [[RFMedia alloc] initWithDictionary:m]; }];
@@ -559,7 +558,10 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
     
     return [self performRequestWithMethod:RFAPIMethodGET resource:RFAPIResourcePlaylist parameters:params handler:^id(id json) {
         NSArray *playlists = [json objectForKey:@"playlists"];
-        return [playlists map: ^ id (id p) { return [[RFPlaylist alloc] initWithDictionary:p]; }];
+        return [playlists map: ^ id (id p) {
+            RFPlaylist *playlist = [[RFPlaylist alloc] initWithDictionary:p];
+            return playlist.hasImage ? playlist : nil;
+        }];
     }];
 }
 
