@@ -537,19 +537,14 @@ static int RFAPI_TIMEOUT = 30.0; // request timeout
 
 - (Producer)getHome
 {
-    return [self getPlaylistsWithOffset:0];
-//    return [[@[@415, @883, @11761, @371, @427, @879, @425, @932, @397, @859, @417, @378] map:^id(NSNumber *n) {
-//        return [SMWebRequest producerWithURLRequest:[self requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://sandbox.rumblefish.com/playlists/%@", n]] method:RFAPIMethodGET] dataParser:^id(NSData *d) {
-//            return [[RFPlaylist alloc] initWithDictionary:[d JSONValue]];
-//        }];
-//    }] parallelProducer];
-    
-//    return ^ CancelCallback (ResultCallback r, ErrorCallback e) {
-//        [self performSelector:@selector(yieldHome:) withObject:r afterDelay:1];
-//        return ^ {
-//            [NSObject cancelPreviousPerformRequestsWithTarget:self];
-//        };
-//    };
+    NSArray *playlists = @[@1343, @1902, @1622, @388, @370, @910, @425, @398, @424, @396, @728, @371, @409, @859, @417, @386];
+    return [[playlists map:^id(NSNumber *n) {
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:n.stringValue, @"id", nil];
+        return [self performRequestWithMethod:RFAPIMethodGET resource:RFAPIResourcePlaylist parameters:params handler:^id(id json) {
+            NSDictionary *playlist = [json objectForKey:@"playlist"];
+            return [[RFPlaylist alloc] initWithDictionary:playlist];
+        }];
+    }] parallelProducer];
 }
 
 - (Producer)getPlaylistsWithOffset:(NSInteger)offset {
